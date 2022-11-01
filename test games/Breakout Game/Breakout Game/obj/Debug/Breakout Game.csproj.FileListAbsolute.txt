@@ -1,0 +1,11 @@
+C:\Users\amrok\source\repos\amorokdeh\gpp2022_yalla\test games\Breakout Game\Breakout Game\bin\Debug\Breakout Game.exe.config
+C:\Users\amrok\source\repos\amorokdeh\gpp2022_yalla\test games\Breakout Game\Breakout Game\bin\Debug\Breakout Game.exe
+C:\Users\amrok\source\repos\amorokdeh\gpp2022_yalla\test games\Breakout Game\Breakout Game\bin\Debug\Breakout Game.pdb
+C:\Users\amrok\source\repos\amorokdeh\gpp2022_yalla\test games\Breakout Game\Breakout Game\obj\Debug\Breakout Game.csproj.AssemblyReference.cache
+C:\Users\amrok\source\repos\amorokdeh\gpp2022_yalla\test games\Breakout Game\Breakout Game\obj\Debug\Breakout Game.csproj.SuggestedBindingRedirects.cache
+C:\Users\amrok\source\repos\amorokdeh\gpp2022_yalla\test games\Breakout Game\Breakout Game\obj\Debug\Breakout_Game.Form1.resources
+C:\Users\amrok\source\repos\amorokdeh\gpp2022_yalla\test games\Breakout Game\Breakout Game\obj\Debug\Breakout_Game.Properties.Resources.resources
+C:\Users\amrok\source\repos\amorokdeh\gpp2022_yalla\test games\Breakout Game\Breakout Game\obj\Debug\Breakout Game.csproj.GenerateResource.cache
+C:\Users\amrok\source\repos\amorokdeh\gpp2022_yalla\test games\Breakout Game\Breakout Game\obj\Debug\Breakout Game.csproj.CoreCompileInputs.cache
+C:\Users\amrok\source\repos\amorokdeh\gpp2022_yalla\test games\Breakout Game\Breakout Game\obj\Debug\Breakout Game.exe
+C:\Users\amrok\source\repos\amorokdeh\gpp2022_yalla\test games\Breakout Game\Breakout Game\obj\Debug\Breakout Game.pdb
