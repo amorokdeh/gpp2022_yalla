@@ -1,9 +1,7 @@
 ﻿using SDL2;
 using System;
-
-
-
-
+using System.IO;
+using System.Text;
 
 namespace Pong
 {
@@ -48,57 +46,85 @@ namespace Pong
             SDL.SDL_RenderFillRect(Program.renderer, ref ball);
         }
 
-
-
     }
 
-    class RightPaddle
+    class Paddle
     {
-        const int RIGHT_PADDLE_WIDTH = 10;
-        const int RIGHT_PADDLE_HEIGHT = 100;
+        const int PADDLE_WIDTH = 10;
+        const int PADDLE_HEIGHT = 100;
 
-        const int RIGHT_PADDLE_VEL = 10;
+        const int PADDLE_VEL = 10;
 
         //The X and Y offsets
-        int mPosX = 770;
-        int mPosY = Program.SCREEN_HEIGHT / 2 - 50;
+        int mPosX;
+        int mPosY;
 
         //The velocity
         int mVelY = 0;
 
-        SDL.SDL_Rect rightPaddle;
+        SDL.SDL_Rect paddle;
 
-        public RightPaddle() 
+        public Paddle(int mPosX, int mPosY) 
         {
-            rightPaddle = new SDL.SDL_Rect
+            this.mPosX = mPosX;
+            this.mPosY = mPosY;
+
+            paddle = new SDL.SDL_Rect
             {
                 x = mPosX,
                 y = mPosY,
-                w = RIGHT_PADDLE_WIDTH,
-                h = RIGHT_PADDLE_HEIGHT
+                w = PADDLE_WIDTH,
+                h = PADDLE_HEIGHT
             };
         }
 
-        public void handleEvent(SDL.SDL_Event e)
+        public void handleEvent(SDL.SDL_Event e, string upDownButtons)
         {
-            //If a key was pressed
-            if (e.type == SDL.SDL_EventType.SDL_KEYDOWN && e.key.repeat == 0)
-            {
-                //Adjust the velocity
-                switch (e.key.keysym.sym)
+            if (upDownButtons.Equals("UP_DOWN")) { 
+                //If a key was pressed
+                if (e.type == SDL.SDL_EventType.SDL_KEYDOWN && e.key.repeat == 0)
                 {
-                    case SDL.SDL_Keycode.SDLK_UP: mVelY -= RIGHT_PADDLE_VEL; break;
-                    case SDL.SDL_Keycode.SDLK_DOWN: mVelY += RIGHT_PADDLE_VEL; break;
+                
+                    //Adjust the velocity
+                    switch (e.key.keysym.sym)
+                    {
+                        case SDL.SDL_Keycode.SDLK_UP: mVelY -= PADDLE_VEL; break;
+                        case SDL.SDL_Keycode.SDLK_DOWN: mVelY += PADDLE_VEL; break;
+                    }
+                }
+                //If a key was released
+                else if (e.type == SDL.SDL_EventType.SDL_KEYUP && e.key.repeat == 0)
+                {
+                    //Adjust the velocity
+                    switch (e.key.keysym.sym)
+                    {
+                        case SDL.SDL_Keycode.SDLK_UP: mVelY += PADDLE_VEL; break;
+                        case SDL.SDL_Keycode.SDLK_DOWN: mVelY -= PADDLE_VEL; break;
+                    }
                 }
             }
-            //If a key was released
-            else if (e.type == SDL.SDL_EventType.SDL_KEYUP && e.key.repeat == 0)
-            {
-                //Adjust the velocity
-                switch (e.key.keysym.sym)
+
+            if (upDownButtons.Equals("W_S")) { 
+                //If a key was pressed
+                if (e.type == SDL.SDL_EventType.SDL_KEYDOWN && e.key.repeat == 0)
                 {
-                    case SDL.SDL_Keycode.SDLK_UP: mVelY += RIGHT_PADDLE_VEL; break;
-                    case SDL.SDL_Keycode.SDLK_DOWN: mVelY -= RIGHT_PADDLE_VEL; break;
+                
+                    //Adjust the velocity
+                    switch (e.key.keysym.sym)
+                    {
+                        case SDL.SDL_Keycode.SDLK_w: mVelY -= PADDLE_VEL; break;
+                        case SDL.SDL_Keycode.SDLK_s: mVelY += PADDLE_VEL; break;
+                    }
+                }
+                //If a key was released
+                else if (e.type == SDL.SDL_EventType.SDL_KEYUP && e.key.repeat == 0)
+                {
+                    //Adjust the velocity
+                    switch (e.key.keysym.sym)
+                    {
+                        case SDL.SDL_Keycode.SDLK_w: mVelY += PADDLE_VEL; break;
+                        case SDL.SDL_Keycode.SDLK_s: mVelY -= PADDLE_VEL; break;
+                    }
                 }
             }
         }
@@ -110,7 +136,7 @@ namespace Pong
             mPosY += mVelY;
 
             //If the dot went too far up or down
-            if ((mPosY < 0) || (mPosY + RIGHT_PADDLE_HEIGHT > Program.SCREEN_HEIGHT))
+            if ((mPosY < 0) || (mPosY + PADDLE_HEIGHT > Program.SCREEN_HEIGHT))
             {
                 //Move back
                 mPosY -= mVelY;
@@ -120,9 +146,9 @@ namespace Pong
         public void render()
         {
 
-            rightPaddle.y = mPosY;
+            paddle.y = mPosY;
             SDL.SDL_SetRenderDrawColor(Program.renderer, 250, 250, 250, 255);
-            SDL.SDL_RenderFillRect(Program.renderer, ref rightPaddle);
+            SDL.SDL_RenderFillRect(Program.renderer, ref paddle);
         }
 
     }
@@ -134,10 +160,27 @@ namespace Pong
         public const int SCREEN_WIDTH = 800;
         public static IntPtr window;
         public static IntPtr renderer;
+        
+        public static void runSound(string path, uint time) { 
+            SDL.SDL_Init(SDL.SDL_INIT_AUDIO);
+            SDL.SDL_AudioSpec spec = new SDL.SDL_AudioSpec();
+
+            //string path = Path.Combine(Directory.GetCurrentDirectory() + "\\sound.wav");
+
+            SDL.SDL_LoadWAV(path, ref spec, out IntPtr audioBuffer, out uint audioLength);
+            uint deviceId = SDL.SDL_OpenAudioDevice(null, 0, ref spec, out SDL.SDL_AudioSpec obtained, 0);
+            SDL.SDL_QueueAudio(deviceId, audioBuffer, audioLength);
+            SDL.SDL_PauseAudioDevice(deviceId, 0);
+            SDL.SDL_Delay(time);
+            SDL.SDL_CloseAudioDevice(deviceId);
+            SDL.SDL_FreeWAV(audioBuffer);
+            SDL.SDL_Quit();
+        }
 
         static void Main(string[] args)
         {
-
+            
+            runSound("sound.wav", 5000);
             bool running = true;
 
             Setup();
@@ -149,10 +192,6 @@ namespace Pong
             }
 
             CleanUp();
-
-
-
-
 
             // <summary>
             // Setup all of the SDL resources we'll need to display a window.
@@ -232,24 +271,12 @@ namespace Pong
                     line++;
                 }
 
-                // left paddle
-                var leftPaddle = new SDL.SDL_Rect
-                {
-                    x = 20,
-                    y = 20,
-                    w = 10,
-                    h = 100
-                };
-                
                 // ball
                 Ball ball = new Ball();
                 
-                
-
-
-
                 SDL.SDL_Event e;
-                RightPaddle rightPaddle = new RightPaddle();
+                Paddle rightPaddle = new Paddle(770, Program.SCREEN_HEIGHT / 2 - 50);
+                Paddle leftPaddle = new Paddle(20, 60);
 
                 while (running)
                 {
@@ -263,16 +290,14 @@ namespace Pong
                         }
 
                         // Handle input
-                        rightPaddle.handleEvent(e);
+                        rightPaddle.handleEvent(e, "UP_DOWN");
+                        leftPaddle.handleEvent(e, "W_S");
                     }
                     //ball.x = ball.x + 1;
                     ball.move();
 
-                    
-
-
                     rightPaddle.move();
-
+                    leftPaddle.move();
 
                     //Clear screen
                     SDL.SDL_SetRenderDrawColor(renderer, 5, 5, 5, 255);
@@ -285,20 +310,15 @@ namespace Pong
                     // right paddle
                     rightPaddle.render();
                     // left paddle
-                    SDL.SDL_SetRenderDrawColor(renderer, 250, 250, 250, 255);
-                    SDL.SDL_RenderFillRect(renderer, ref leftPaddle);
+                    leftPaddle.render();
                     //ball
                     ball.render();
                 
                     //SDL.SDL_Surface 
                     
-
-
-
                     // Update screen
                     SDL.SDL_RenderPresent(renderer);
                 }
-
 
                 // Switches out the currently presented render surface with the one we just did work on.
                 SDL.SDL_RenderPresent(renderer);
@@ -313,10 +333,6 @@ namespace Pong
                 SDL.SDL_DestroyWindow(window);
                 SDL.SDL_Quit();
             }
-
-
-
-
 
         }
     }
