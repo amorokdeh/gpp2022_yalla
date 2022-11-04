@@ -23,7 +23,6 @@ C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 1\Pong1\Pong1\obj\Debug\Pong1
 C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 1\Pong1\Pong1\obj\Debug\Pong1.csproj.CopyComplete
 C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 1\Pong1\Pong1\obj\Debug\Pong1.exe
 C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 1\Pong1\Pong1\obj\Debug\Pong1.pdb
-C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 1\Pong1\Pong1\bin\Debug\SDL2.dll
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 1\Pong1\Pong1\bin\Debug\SDL2_image.dll
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 1\Pong1\Pong1\bin\Debug\SDL2_ttf.dll
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 1\Pong1\Pong1\bin\Debug\Pong1.exe.config
@@ -35,3 +34,17 @@ C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 1\Pong1\Pon
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 1\Pong1\Pong1\obj\Debug\Pong1.csproj.CopyComplete
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 1\Pong1\Pong1\obj\Debug\Pong1.exe
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 1\Pong1\Pong1\obj\Debug\Pong1.pdb
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 1\Pong1\Pong1\bin\Debug\beat.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 1\Pong1\Pong1\bin\Debug\high.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 1\Pong1\Pong1\bin\Debug\libfreetype-6.dll
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 1\Pong1\Pong1\bin\Debug\libpng16-16.dll
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 1\Pong1\Pong1\bin\Debug\low.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 1\Pong1\Pong1\bin\Debug\medium.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 1\Pong1\Pong1\bin\Debug\pumpkin.bmp
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 1\Pong1\Pong1\bin\Debug\pumpkin.png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 1\Pong1\Pong1\bin\Debug\scratch.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 1\Pong1\Pong1\bin\Debug\SDL2_mixer.dll
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 1\Pong1\Pong1\bin\Debug\sound.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 1\Pong1\Pong1\bin\Debug\zlib1.dll
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 1\Pong1\Pong1\bin\Debug\lazy.ttf
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 1\Pong1\Pong1\bin\Debug\SDL2.dll
