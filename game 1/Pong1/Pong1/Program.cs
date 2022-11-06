@@ -27,10 +27,10 @@ namespace Pong
         private static IntPtr _Music = IntPtr.Zero;
 
         // sound effects
-        private static IntPtr _Scratch = IntPtr.Zero;
-        private static IntPtr _High = IntPtr.Zero;
-        private static IntPtr _Medium = IntPtr.Zero;
-        private static IntPtr _Low = IntPtr.Zero;
+        public static IntPtr _Scratch = IntPtr.Zero;
+        public static IntPtr _High = IntPtr.Zero;
+        public static IntPtr _Medium = IntPtr.Zero;
+        public static IntPtr _Low = IntPtr.Zero;
 
         // font
         public static IntPtr Font = IntPtr.Zero;

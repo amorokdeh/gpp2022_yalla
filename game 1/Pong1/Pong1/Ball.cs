@@ -11,8 +11,10 @@ namespace Pong
         int mPosY = Program.SCREEN_HEIGHT / 2 - 5;
 
         //The velocity
-        int mVelX = 2;
-        int mVelY = 1;
+        int velX = 2;
+        int velY = 1;
+        int mVelX;
+        int mVelY;
 
         public const int BALL_SIZE = 10;
 
@@ -21,6 +23,8 @@ namespace Pong
 
         public Ball()
         {
+            mVelX = velX;
+            mVelY = velY;
 
             ball = new SDL.SDL_Rect
             {
@@ -37,22 +41,43 @@ namespace Pong
             mPosX = mPosX + mVelX;
             mPosY = mPosY + mVelY;
 
-            if ((mPosX < 0) || (mPosX + BALL_SIZE > Program.SCREEN_WIDTH) || checkCollisionX())
+            if ((mPosX < 0) || (mPosX + BALL_SIZE > Program.SCREEN_WIDTH))
             {
-                mVelX = -mVelX;
+                //SDL_mixer.Mix_PlayChannel(-1, Program._High, 0);
+                //mVelX = -mVelX;
             }
+
+
+
+            
   
-            if ((mPosY < 0) || (mPosY + BALL_SIZE > Program.SCREEN_HEIGHT) || checkCollisionY())
+            if ((mPosY < 0) || (mPosY + BALL_SIZE > Program.SCREEN_HEIGHT))
             {
+                SDL_mixer.Mix_PlayChannel(-1, Program._High, 0);
                 mVelY = -mVelY;
             }
+
+
+            if(checkCollisionX())
+            {
+                SDL_mixer.Mix_PlayChannel(-1, Program._Medium, 0);
+                mVelX = -mVelX;
+            }
+            else if (checkCollisionY())
+            {
+                SDL_mixer.Mix_PlayChannel(-1, Program._Medium, 0);
+                mVelY = -mVelY;
+            }
+
         }
 
         private bool checkCollisionX()
         {
+
+   
             if ((mPosY + BALL_SIZE > Program.rightPaddle.mPosY) && (mPosY < Program.rightPaddle.mPosY + Paddle.PADDLE_HEIGHT))
             {
-                if (mPosX + BALL_SIZE > Program.rightPaddle.mPosX)
+                if (mPosX + BALL_SIZE > Program.rightPaddle.mPosX && mPosX + BALL_SIZE <= Program.rightPaddle.mPosX + velX)
                 {
                     return true;
                 }
@@ -60,7 +85,7 @@ namespace Pong
 
             if ((mPosY + BALL_SIZE > Program.leftPaddle.mPosY) && (mPosY < Program.leftPaddle.mPosY + Paddle.PADDLE_HEIGHT))
             {
-                if (mPosX < Program.leftPaddle.mPosX + Paddle.PADDLE_WIDTH)
+                if (mPosX < Program.leftPaddle.mPosX + Paddle.PADDLE_WIDTH && mPosX >= Program.leftPaddle.mPosX + Paddle.PADDLE_WIDTH - velX )
                 {
                     return true;
                 }
@@ -72,7 +97,7 @@ namespace Pong
         {
             if ((mPosX + BALL_SIZE > Program.rightPaddle.mPosX) && (mPosX < Program.rightPaddle.mPosX + Paddle.PADDLE_WIDTH))
             {
-                if (mPosY + BALL_SIZE > Program.rightPaddle.mPosY && mPosY < Program.rightPaddle.mPosY + Paddle.PADDLE_HEIGHT)
+                if (mPosY + BALL_SIZE > Program.rightPaddle.mPosY && mPosY < Program.rightPaddle.mPosY + Paddle.PADDLE_HEIGHT )
                 {
                     Program.rightPaddle.mPosY = Program.rightPaddle.mPosY - Program.rightPaddle.mVelY;
                     return true;
