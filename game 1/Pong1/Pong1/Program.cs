@@ -15,10 +15,10 @@ namespace Pong
         public const int SCREEN_WIDTH = 800;
 
         public static IntPtr window;
-        public static IntPtr renderer;
-        public static Ball ball;
+        public static IntPtr renderer;       
         public static Paddle leftPaddle;
         public static Paddle rightPaddle;
+        public static Ball ball;
         public static SDL.SDL_Rect[] centerLine;
 
         public static SDL.SDL_Event e;
@@ -209,19 +209,19 @@ namespace Pong
                 line++;
             }
 
-            // ball
-            ball = new Ball();
+            
 
 
             rightPaddle = new Paddle(770, Program.SCREEN_HEIGHT / 2 - 50);
             leftPaddle = new Paddle(20, 60);
+            // ball
+            ball = new Ball();
         }
         public static void Update()
-        {
-
-            ball.move();
+        {         
             rightPaddle.move();
             leftPaddle.move();
+            ball.move();
         }
 
         /// <summary>

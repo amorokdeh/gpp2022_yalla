@@ -11,17 +11,19 @@ namespace Pong
 {
     class Paddle
     {
-        const int PADDLE_WIDTH = 10;
-        const int PADDLE_HEIGHT = 100;
+        public const int PADDLE_WIDTH = 10;
+        public const int PADDLE_HEIGHT = 100;
 
-        const int PADDLE_VEL = 10;
+        public int score = 0;
+
+        const int PADDLE_VEL = 4;
 
         //The X and Y offsets
-        int mPosX;
-        int mPosY;
+        public int mPosX;
+        public int mPosY;
 
         //The velocity
-        int mVelY = 0;
+        public int mVelY = 0;
 
         SDL.SDL_Rect paddle;
 
@@ -98,13 +100,14 @@ namespace Pong
             //Move up or down
             mPosY += mVelY;
 
-            //If the dot went too far up or down
             if ((mPosY < 0) || (mPosY + PADDLE_HEIGHT > Program.SCREEN_HEIGHT))
             {
                 //Move back
                 mPosY -= mVelY;
             }
         }
+
+
 
         public void render()
         {
