@@ -34,6 +34,8 @@ namespace Pong
 
         // font
         public static IntPtr Font = IntPtr.Zero;
+        public static IntPtr surfaceMessage = IntPtr.Zero;
+        public static IntPtr Message = IntPtr.Zero;
 
         public static void runSound(string path, uint time) { 
             SDL.SDL_Init(SDL.SDL_INIT_AUDIO);
@@ -192,6 +194,11 @@ namespace Pong
 
         public static void LoadElements()
         {
+            // Text
+            SDL.SDL_Color Gray = new SDL.SDL_Color() { r = 150, g = 150, b = 150 };
+            surfaceMessage = SDL_ttf.TTF_RenderText_Solid(Font, "0", Gray);
+            Message = SDL.SDL_CreateTextureFromSurface(renderer, surfaceMessage);
+
             //center line
             int lines = 13;
             centerLine = new SDL.SDL_Rect[lines];
@@ -236,6 +243,28 @@ namespace Pong
             // Draw
             SDL.SDL_SetRenderDrawColor(renderer, 150, 150, 150, 255);
             SDL.SDL_RenderFillRects(renderer, centerLine, 13);
+
+            
+            // Text
+            SDL.SDL_Rect Message_rect;
+            Message_rect.x = 500;
+            Message_rect.y = 10;
+            Message_rect.w = 100;
+            Message_rect.h = 100;
+            SDL.SDL_RenderCopy(renderer, Message, IntPtr.Zero, ref Message_rect);
+
+            SDL.SDL_Rect Message_rect2;
+            Message_rect2.x = 200;
+            Message_rect2.y = 10;
+            Message_rect2.w = 100;
+            Message_rect2.h = 100;
+            SDL.SDL_RenderCopy(renderer, Message, IntPtr.Zero, ref Message_rect2);
+
+
+
+            
+
+
             rightPaddle.render();
             leftPaddle.render();
             ball.render();
@@ -249,6 +278,25 @@ namespace Pong
         /// </summary>
         public static void CleanUp()
         {
+
+            //Free the sound effects
+            SDL_mixer.Mix_FreeChunk(_Scratch);
+            SDL_mixer.Mix_FreeChunk(_High);
+            SDL_mixer.Mix_FreeChunk(_Medium);
+            SDL_mixer.Mix_FreeChunk(_Low);
+            _Scratch = IntPtr.Zero;
+            _High = IntPtr.Zero;
+            _Medium = IntPtr.Zero;
+            _Low = IntPtr.Zero;
+
+            //Free the music
+            SDL_mixer.Mix_FreeMusic(_Music);
+            _Music = IntPtr.Zero;
+
+            // free surface and texture
+            //SDL.SDL_FreeSurface(surfaceMessage);
+            //SDL.SDL_DestroyTexture(Message);
+
             SDL.SDL_DestroyRenderer(renderer);
             SDL.SDL_DestroyWindow(window);
             SDL.SDL_Quit();
