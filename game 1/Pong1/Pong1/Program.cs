@@ -13,6 +13,7 @@ namespace Pong
         public const double PI = 3.14159;
         public const int SCREEN_HEIGHT = 600;
         public const int SCREEN_WIDTH = 800;
+
         public static IntPtr window;
         public static IntPtr renderer;
         public static Ball ball;
