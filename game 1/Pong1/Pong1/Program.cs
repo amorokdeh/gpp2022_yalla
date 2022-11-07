@@ -10,7 +10,6 @@ namespace Pong
     {
         public static bool running = true;
 
-        public const double PI = 3.14159;
         public const int SCREEN_HEIGHT = 600;
         public const int SCREEN_WIDTH = 800;
 
@@ -32,10 +31,19 @@ namespace Pong
         public static IntPtr _Medium = IntPtr.Zero;
         public static IntPtr _Low = IntPtr.Zero;
 
+        // image
+        private static IntPtr pumpkinTexture = IntPtr.Zero;
+        private static SDL.SDL_Rect sRect;
+        private static SDL.SDL_Rect tRect;
+
         // font
         public static IntPtr Font = IntPtr.Zero;
-        public static IntPtr surfaceMessage = IntPtr.Zero;
-        public static IntPtr Message = IntPtr.Zero;
+        public static IntPtr surfaceMessageR = IntPtr.Zero;
+        public static IntPtr MessageR = IntPtr.Zero;
+        public static IntPtr surfaceMessageL = IntPtr.Zero;
+        public static IntPtr MessageL = IntPtr.Zero;
+
+        private static SDL.SDL_Color Gray;
 
         public static void runSound(string path, uint time) { 
             SDL.SDL_Init(SDL.SDL_INIT_AUDIO);
@@ -142,7 +150,7 @@ namespace Pong
 
             // SOUND AND MUSIC
             //Load music
-            _Music = SDL_mixer.Mix_LoadMUS("beat.wav");
+            _Music = SDL_mixer.Mix_LoadMUS("sound/beat.wav");
             if (_Music == IntPtr.Zero)
             {
                 Console.WriteLine("Failed to load! {0}", SDL.SDL_GetError());
@@ -150,38 +158,60 @@ namespace Pong
             }
 
             //Load sound effects
-            _Scratch = SDL_mixer.Mix_LoadWAV("scratch.wav");
+            _Scratch = SDL_mixer.Mix_LoadWAV("sound/scratch.wav");
             if (_Scratch == IntPtr.Zero)
             {
                 Console.WriteLine("Failed to load! {0}", SDL.SDL_GetError());
                 success = false;
             }
 
-            _High = SDL_mixer.Mix_LoadWAV("high.wav");
+            _High = SDL_mixer.Mix_LoadWAV("sound/high.wav");
             if (_High == IntPtr.Zero)
             {
                 Console.WriteLine("Failed to load! {0}", SDL.SDL_GetError());
                 success = false;
             }
 
-            _Medium = SDL_mixer.Mix_LoadWAV("medium.wav");
+            _Medium = SDL_mixer.Mix_LoadWAV("sound/medium.wav");
             if (_Medium == IntPtr.Zero)
             {
                 Console.WriteLine("Failed to load! {0}", SDL.SDL_GetError());
                 success = false;
             }
 
-            _Low = SDL_mixer.Mix_LoadWAV("low.wav");
+            _Low = SDL_mixer.Mix_LoadWAV("sound/low.wav");
             if (_Low == IntPtr.Zero)
             {
                 Console.WriteLine("Failed to load! {0}", SDL.SDL_GetError());
                 success = false;
             }
 
+            //image
+            pumpkinTexture = SDL_image.IMG_LoadTexture(renderer, "image/pumpkin.bmp");
+            sRect.x = 0;
+            sRect.y = 0;
+            sRect.w = 128;
+            sRect.h = 128;
+
+            tRect.x = SCREEN_WIDTH/2 - 1024 / 2;
+            tRect.y = SCREEN_HEIGHT/2 - (1024 -480);
+            tRect.w = 1024;
+            tRect.h = 1024;
+
+            //SDL.SDL_RenderCopy(renderer, texture, IntPtr.Zero, ref tRect);
+            SDL.SDL_RenderCopy(renderer, pumpkinTexture, ref sRect, ref tRect);
+            //SDL.SDL_RenderCopy(renderer, texture, IntPtr.Zero, IntPtr.Zero);
+
+            // Switches out the currently presented render surface with the one we just did work on.
+            SDL.SDL_RenderPresent(renderer);
+
 
             // TEXT
-            //Open the font
-            Font = SDL_ttf.TTF_OpenFont("lazy.ttf", 24);
+            // Open the font
+            //Font = SDL_ttf.TTF_OpenFont("font/lazy.ttf", 40);
+            Font = SDL_ttf.TTF_OpenFont("font/automati.ttf", 16);
+            //Font = SDL_ttf.TTF_OpenFont("font/aerial.ttf", 40);
+            //Font = SDL_ttf.TTF_OpenFont("font/Adequate-ExtraLight.ttf", 40);
             if (Font == IntPtr.Zero)
             {
                 Console.WriteLine("Failed to load lazy font! SDL_ttf Error: {0}", SDL.SDL_GetError());
@@ -195,9 +225,8 @@ namespace Pong
         public static void LoadElements()
         {
             // Text
-            SDL.SDL_Color Gray = new SDL.SDL_Color() { r = 150, g = 150, b = 150 };
-            surfaceMessage = SDL_ttf.TTF_RenderText_Solid(Font, "0", Gray);
-            Message = SDL.SDL_CreateTextureFromSurface(renderer, surfaceMessage);
+            Gray = new SDL.SDL_Color() { r = 150, g = 150, b = 150 };
+            
 
             //center line
             int lines = 13;
@@ -239,26 +268,32 @@ namespace Pong
             // Clear screen
             SDL.SDL_SetRenderDrawColor(renderer, 5, 5, 5, 255);
             SDL.SDL_RenderClear(renderer);
+            SDL.SDL_RenderCopy(renderer, pumpkinTexture, ref sRect, ref tRect);
 
             // Draw
             SDL.SDL_SetRenderDrawColor(renderer, 150, 150, 150, 255);
             SDL.SDL_RenderFillRects(renderer, centerLine, 13);
 
-            
+
             // Text
+            surfaceMessageL = SDL_ttf.TTF_RenderText_Solid(Font, leftPaddle.score.ToString(), Gray);
+            MessageL = SDL.SDL_CreateTextureFromSurface(renderer, surfaceMessageL);
+
             SDL.SDL_Rect Message_rect;
             Message_rect.x = 500;
             Message_rect.y = 10;
             Message_rect.w = 100;
             Message_rect.h = 100;
-            SDL.SDL_RenderCopy(renderer, Message, IntPtr.Zero, ref Message_rect);
+            SDL.SDL_RenderCopy(renderer, MessageL, IntPtr.Zero, ref Message_rect);
 
+            surfaceMessageR = SDL_ttf.TTF_RenderText_Solid(Font, rightPaddle.score.ToString(), Gray);
+            MessageR = SDL.SDL_CreateTextureFromSurface(renderer, surfaceMessageR);
             SDL.SDL_Rect Message_rect2;
             Message_rect2.x = 200;
             Message_rect2.y = 10;
             Message_rect2.w = 100;
             Message_rect2.h = 100;
-            SDL.SDL_RenderCopy(renderer, Message, IntPtr.Zero, ref Message_rect2);
+            SDL.SDL_RenderCopy(renderer, MessageR, IntPtr.Zero, ref Message_rect2);
 
 
 

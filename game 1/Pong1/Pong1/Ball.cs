@@ -7,14 +7,14 @@ namespace Pong
 {
     class Ball
     {
+        Random rd = new Random();
+
         int mPosX = Program.SCREEN_WIDTH / 2 - 5;
         int mPosY = Program.SCREEN_HEIGHT / 2 - 5;
 
         //The velocity
-        int velX = 2;
-        int velY = 1;
-        int mVelX;
-        int mVelY;
+        int mVelX = 2;
+        int mVelY = 1;
 
         public const int BALL_SIZE = 10;
 
@@ -23,8 +23,7 @@ namespace Pong
 
         public Ball()
         {
-            mVelX = velX;
-            mVelY = velY;
+
 
             ball = new SDL.SDL_Rect
             {
@@ -35,23 +34,34 @@ namespace Pong
             };
         }
 
+        private void afterScore()
+        {
+            SDL_mixer.Mix_PlayChannel(-1, Program._Scratch, 0);
+            mPosX = Program.SCREEN_WIDTH / 2 - 5;
+            //mVelX = (int)(Math.Pow(-1, rd.Next(1, 2)) );
+            // 2 or -2 , ball flies left or right
+            mVelX = ((int)rd.Next(0, 2) *2 -1) *2;
+            //Console.WriteLine(mVelX + " mVelX ");
+        }
+
         public void move()
         {
 
             mPosX = mPosX + mVelX;
             mPosY = mPosY + mVelY;
 
-            if ((mPosX < 0) || (mPosX + BALL_SIZE > Program.SCREEN_WIDTH))
+            if (mPosX < 0)
             {
-                //SDL_mixer.Mix_PlayChannel(-1, Program._High, 0);
-                //mVelX = -mVelX;
+                Program.rightPaddle.score++;
+                afterScore();
+
             }
-
-
-
-            
-  
-            if ((mPosY < 0) || (mPosY + BALL_SIZE > Program.SCREEN_HEIGHT))
+            else if (mPosX + BALL_SIZE > Program.SCREEN_WIDTH)
+            {
+                Program.leftPaddle.score++;
+                afterScore();
+            }
+            else if ((mPosY < 0) || (mPosY + BALL_SIZE > Program.SCREEN_HEIGHT))
             {
                 SDL_mixer.Mix_PlayChannel(-1, Program._High, 0);
                 mVelY = -mVelY;
@@ -77,7 +87,7 @@ namespace Pong
    
             if ((mPosY + BALL_SIZE > Program.rightPaddle.mPosY) && (mPosY < Program.rightPaddle.mPosY + Paddle.PADDLE_HEIGHT))
             {
-                if (mPosX + BALL_SIZE > Program.rightPaddle.mPosX && mPosX + BALL_SIZE <= Program.rightPaddle.mPosX + velX)
+                if (mPosX + BALL_SIZE > Program.rightPaddle.mPosX && mPosX + BALL_SIZE <= Program.rightPaddle.mPosX + Math.Abs(mVelX))
                 {
                     return true;
                 }
@@ -85,7 +95,7 @@ namespace Pong
 
             if ((mPosY + BALL_SIZE > Program.leftPaddle.mPosY) && (mPosY < Program.leftPaddle.mPosY + Paddle.PADDLE_HEIGHT))
             {
-                if (mPosX < Program.leftPaddle.mPosX + Paddle.PADDLE_WIDTH && mPosX >= Program.leftPaddle.mPosX + Paddle.PADDLE_WIDTH - velX )
+                if (mPosX < Program.leftPaddle.mPosX + Paddle.PADDLE_WIDTH && mPosX >= Program.leftPaddle.mPosX + Paddle.PADDLE_WIDTH - Math.Abs(mVelX))
                 {
                     return true;
                 }
