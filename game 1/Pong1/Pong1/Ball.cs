@@ -23,7 +23,7 @@ namespace Pong
 
         public Ball()
         {
-
+            mVelX = ((int)rd.Next(0, 2) * 2 - 1) * 2;
 
             ball = new SDL.SDL_Rect
             {

@@ -8,7 +8,8 @@ namespace Pong
 
     class Program
     {
-        public static bool running = true;
+        private static bool running = true;
+        private static bool quit = false;
 
         public const int SCREEN_HEIGHT = 600;
         public const int SCREEN_WIDTH = 800;
@@ -134,7 +135,16 @@ namespace Pong
                 //User requests quit
                 if (e.type == SDL.SDL_EventType.SDL_QUIT)
                 {
+                    quit = true;
                     running = false;
+                }
+                else if (e.type == SDL.SDL_EventType.SDL_KEYDOWN)
+                {
+
+                    switch (e.key.keysym.sym)
+                    {
+                        case SDL.SDL_Keycode.SDLK_RETURN: quit = true; break;
+                    }
                 }
 
                 // Handle input
@@ -249,7 +259,7 @@ namespace Pong
 
 
             rightPaddle = new Paddle(770, Program.SCREEN_HEIGHT / 2 - 50);
-            leftPaddle = new Paddle(20, 60);
+            leftPaddle = new Paddle(20, Program.SCREEN_HEIGHT / 2 - 50);
             // ball
             ball = new Ball();
         }
@@ -280,7 +290,7 @@ namespace Pong
             MessageL = SDL.SDL_CreateTextureFromSurface(renderer, surfaceMessageL);
 
             SDL.SDL_Rect Message_rect;
-            Message_rect.x = 500;
+            Message_rect.x = 200;
             Message_rect.y = 10;
             Message_rect.w = 100;
             Message_rect.h = 100;
@@ -289,7 +299,7 @@ namespace Pong
             surfaceMessageR = SDL_ttf.TTF_RenderText_Solid(Font, rightPaddle.score.ToString(), Gray);
             MessageR = SDL.SDL_CreateTextureFromSurface(renderer, surfaceMessageR);
             SDL.SDL_Rect Message_rect2;
-            Message_rect2.x = 200;
+            Message_rect2.x = 500;
             Message_rect2.y = 10;
             Message_rect2.w = 100;
             Message_rect2.h = 100;
@@ -307,6 +317,10 @@ namespace Pong
             // Update screen
             SDL.SDL_RenderPresent(renderer);
         }
+
+
+
+       
 
         /// <summary>
         /// Clean up the resources that were created.
@@ -338,6 +352,55 @@ namespace Pong
         }
 
 
+        public static void GameOver()
+        {
+            if (rightPaddle.score == 10)
+            { 
+                SDL.SDL_SetRenderDrawColor(renderer, 5, 255, 5, 255);
+            } 
+            else
+            {
+                SDL.SDL_SetRenderDrawColor(renderer, 255, 5, 5, 255);
+            }
+
+            SDL.SDL_RenderClear(renderer);
+            SDL.SDL_RenderPresent(renderer);
+
+        }
+
+        // test if one side wins
+        // when user presses enter reset data
+        public static void Over()
+        {
+            quit = false;   
+            if (rightPaddle.score == 10 || leftPaddle.score == 10)
+            {
+                while (!quit)
+                {
+                    PollEvents();
+                    GameOver();
+                }
+                rightPaddle.score = 0;
+                leftPaddle.score = 0;
+                rightPaddle.mPosY = Program.SCREEN_HEIGHT / 2 - 50;
+                leftPaddle.mPosY = Program.SCREEN_HEIGHT / 2 - 50;
+            }
+           
+        }
+
+
+        
+
+
+
+
+            
+
+
+
+    
+
+
         static void Main(string[] args)
         {
             
@@ -353,9 +416,12 @@ namespace Pong
                 PollEvents();
                 Update();
                 Render();
+                Over();
             }
 
-            CleanUp();      
+            CleanUp();
+
+
 
         }
     }
