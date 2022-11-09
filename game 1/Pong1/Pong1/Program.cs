@@ -44,7 +44,15 @@ namespace Pong
         public static IntPtr surfaceMessageL = IntPtr.Zero;
         public static IntPtr MessageL = IntPtr.Zero;
 
+        // Gameover text
+        private static IntPtr surfaceMessageGO = IntPtr.Zero;
+        private static IntPtr MessageGO = IntPtr.Zero;
+        private static IntPtr surfaceMessageAgain = IntPtr.Zero;
+        private static IntPtr MessageAgain = IntPtr.Zero;
+
         private static SDL.SDL_Color Gray;
+        private static SDL.SDL_Color LightGray;
+        private static SDL.SDL_Color White;
 
         public static void runSound(string path, uint time) { 
             SDL.SDL_Init(SDL.SDL_INIT_AUDIO);
@@ -236,7 +244,9 @@ namespace Pong
         {
             // Text
             Gray = new SDL.SDL_Color() { r = 150, g = 150, b = 150 };
-            
+            White = new SDL.SDL_Color() { r = 255, g = 255, b = 255 };
+            LightGray= new SDL.SDL_Color() { r = 235, g = 235, b = 240 };
+
 
             //center line
             int lines = 13;
@@ -354,16 +364,42 @@ namespace Pong
 
         public static void GameOver()
         {
+
+            string winnerText = "hallo";
+
             if (rightPaddle.score == 10)
             { 
-                SDL.SDL_SetRenderDrawColor(renderer, 5, 255, 5, 255);
+                SDL.SDL_SetRenderDrawColor(renderer, 0, 60, 20, 255);
+                winnerText = "Der rechte Spieler hat gewonnen!";
             } 
             else
             {
-                SDL.SDL_SetRenderDrawColor(renderer, 255, 5, 5, 255);
+                SDL.SDL_SetRenderDrawColor(renderer, 110, 0, 0, 255);
+                winnerText = "Der linke Spieler hat gewonnen!";
             }
-
             SDL.SDL_RenderClear(renderer);
+
+            surfaceMessageGO = SDL_ttf.TTF_RenderText_Solid(Font, winnerText, White);
+            MessageGO = SDL.SDL_CreateTextureFromSurface(renderer, surfaceMessageGO);
+            SDL.SDL_Rect Message_rectGO;
+            Message_rectGO.x = 40;
+            Message_rectGO.y = SCREEN_HEIGHT/2 -100;
+            Message_rectGO.w = SCREEN_WIDTH -80;
+            Message_rectGO.h = 100;
+            SDL.SDL_RenderCopy(renderer, MessageGO, IntPtr.Zero, ref Message_rectGO);
+
+            string againText = "DRUECKE ENTER, UM NOCHMAL ZU SPIELEN";
+            surfaceMessageAgain = SDL_ttf.TTF_RenderText_Solid(Font, againText, LightGray);
+            MessageAgain = SDL.SDL_CreateTextureFromSurface(renderer, surfaceMessageAgain);
+            SDL.SDL_Rect Message_rectAgain;
+            Message_rectAgain.x = 100;
+            Message_rectAgain.y = SCREEN_HEIGHT / 2 + 120;
+            Message_rectAgain.w = SCREEN_WIDTH - 200;
+            Message_rectAgain.h = 30;
+            SDL.SDL_RenderCopy(renderer, MessageAgain, IntPtr.Zero, ref Message_rectAgain);
+
+
+
             SDL.SDL_RenderPresent(renderer);
 
         }
