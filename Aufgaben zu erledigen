@@ -1,7 +1,7 @@
 [] Main Menu 
 [x] Score 
 [] Background Musik 
-[] Game Over, Wiederholen (bis jetzt: durch Enter drücken -> für User erkennbar machen)
+[] Game Over, Wiederholen (bis jetzt: durch Enter drücken -> evtl. ändern zu Button)
 [] Schneller Kugel 
-[] Nachricht, wer gewonnen hat (bis jetzt: durch grün und rot -> Text wäre gut)
+[x] Nachricht, wer gewonnen hat 
 [x] Sound, gegen Wand oder Padel stoß
