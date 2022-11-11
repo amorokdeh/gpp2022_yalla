@@ -12,7 +12,7 @@ Mögliche Erweiterungen:
 [] Vollbild
 [] Controller-Steuerung
 [] Delta t beim Update
-[] abgerundetes Paddle (bzw. nur Kollision als wäre es aberundet)
+[x] abgerundetes Paddle (bzw. nur Kollision als wäre es aberundet) -> so ähnlich
 [] Optionen einstellen
     [] Farbschema
     [] Schriftart
@@ -22,7 +22,7 @@ Mögliche Erweiterungen:
     [] mehrere Bälle
     [] PowerUps
     [] Hindernisse
-    [] Schweif am Ball
+    [] bunter Schweif am Ball
 
 
 
