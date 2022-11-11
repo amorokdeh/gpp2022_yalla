@@ -4,6 +4,10 @@
 [x] Nachricht, wer gewonnen hat 
 [x] Sound, gegen Wand oder Padel stoß
 
+
+
+Mögliche Erweiterungen:
+
 [] Background Musik 
 [] Schneller Kugel 
 [] Vollbild
@@ -11,8 +15,17 @@
 [] Delta t beim Update
 [] abgerundetes Paddle (bzw. nur Kollision als wäre es aberundet)
 [] Optionen einstellen
+    [] Farbschema
+    [] Schriftart
+    [] Lautstärke
 [] weiteres Level
-[] linkes Paddle als KI
+    [] linkes Paddle als KI
+    [] mehrere Bälle
+    [] PowerUps
+    [] Hindernisse
+    [] Schweif am Ball
+
+
 
 
 
