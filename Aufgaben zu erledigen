@@ -1,7 +1,17 @@
-[] Main Menu 
+[x] Main Menu 
 [x] Score 
-[] Background Musik 
-[] Game Over, Wiederholen (bis jetzt: durch Enter drücken -> evtl. ändern zu Button)
-[] Schneller Kugel 
+[x] Game Over, Wiederholen 
 [x] Nachricht, wer gewonnen hat 
 [x] Sound, gegen Wand oder Padel stoß
+
+[] Background Musik 
+[] Schneller Kugel 
+[] Vollbild
+[] Controller-Steuerung
+[] Delta t beim Update
+[] abgerundetes Paddle (bzw. nur Kollision als wäre es aberundet)
+[] Optionen einstellen
+[] weiteres Level
+
+
+
