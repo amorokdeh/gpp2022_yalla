@@ -14,6 +14,7 @@ namespace Pong
         static void Main(string[] args)
         {
             window.setup(); //setup the window
+            //SDL.SDL_SetWindowFullscreen(window.show, 0x1u); //full screen
             game.run(); //run the game loop
         }
     }

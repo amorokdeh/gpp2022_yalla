@@ -31,6 +31,7 @@ namespace Pong
             {
                 Console.WriteLine($"There was an issue creating the window. {SDL.SDL_GetError()}");
             }
+            
         }
     }
 }

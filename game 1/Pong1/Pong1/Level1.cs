@@ -27,7 +27,7 @@ namespace Pong
         public Sound sound = new Sound();
         public Image img = new Image();
         public Text txt = new Text();
-        public int win = 10; //score to win
+        public int win = 2; //score to win
         public Level1() {
             setup();
             map();
