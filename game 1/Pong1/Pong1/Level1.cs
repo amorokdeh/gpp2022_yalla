@@ -76,7 +76,7 @@ namespace Pong
 
             //Text
             txt.setUp();
-            txt.loadText(1);
+            txt.loadText(2);
         }
 
         public void update() {
