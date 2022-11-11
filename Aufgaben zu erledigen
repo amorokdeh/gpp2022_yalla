@@ -3,13 +3,12 @@
 [x] Game Over, Wiederholen 
 [x] Nachricht, wer gewonnen hat 
 [x] Sound, gegen Wand oder Padel stoß
-
+[x] Schneller Kugel 
 
 
 Mögliche Erweiterungen:
 
 [] Background Musik 
-[] Schneller Kugel 
 [] Vollbild
 [] Controller-Steuerung
 [] Delta t beim Update
