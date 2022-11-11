@@ -37,7 +37,7 @@ namespace Pong
             switch (num)
             {
                 case 1: Font = SDL_ttf.TTF_OpenFont("font/automati.ttf", 16); break;
-                case 2: Font = SDL_ttf.TTF_OpenFont("font/lazy.ttf", 40); break;
+                case 2: Font = SDL_ttf.TTF_OpenFont("font/lazy.ttf", 12); break;
                 case 3: Font = SDL_ttf.TTF_OpenFont("font/aerial.ttf", 40); break;
                 case 4: Font = SDL_ttf.TTF_OpenFont("font/Adequate-ExtraLight.ttf", 40); break;
             }
