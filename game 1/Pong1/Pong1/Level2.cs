@@ -6,10 +6,11 @@ using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace Pong
 {
-    class Level1
+    class Level2
     {
 
         public int lines = 13;
@@ -21,19 +22,21 @@ namespace Pong
         public bool running = true;
         public bool quit = false;
 
-        public Ball ball = new Ball(6);
+        public Ball ball = new Ball(10);
         public Paddle rightPaddle = new Paddle(Program.window.width - 30, Program.window.heigh / 2 - 50);
         public Paddle leftPaddle = new Paddle(20, Program.window.heigh / 2 - 50);
 
-        public Image img = new Image();
+
         public Text txt = new Text();
         public int win = 10; //score to win
-        public Level1() {
+        public Level2()
+        {
             setup();
             map();
         }
 
-        private void map() {
+        private void map()
+        {
             for (int i = 0; i < lines; i++)
             {
                 centerLine[line] =
@@ -59,32 +62,38 @@ namespace Pong
             {
                 Console.WriteLine($"There was an issue creating the renderer. {SDL.SDL_GetError()}");
             }
+            /*
+            // SOUND AND MUSIC
+            sound.setup();
+            //Load music
+            sound._Music = sound.loadMusic("sound/beat.wav");
+            //Load sound effects
+            sound._Scratch = sound.loadSound("sound/scratch.wav");
+            sound._High = sound.loadSound("sound/high.wav");
+            sound._Medium = sound.loadSound("sound/medium.wav");
+            sound._Low = sound.loadSound("sound/low.wav");*/
 
-            
-            
 
-            //Image
-            img.setUp();
-            img.loadImage(renderer, "image/pumpkin.bmp");
 
             //Text
             txt.setUp();
             txt.loadText(2);
         }
 
-        private void update() {
+        private void update()
+        {
             rightPaddle.move();
             leftPaddle.move();
-            ball.moveL1();         
+            ball.moveL2();
         }
 
-        private void render() {
+        private void render()
+        {
             //Clear screen
             SDL.SDL_SetRenderDrawColor(renderer, 5, 5, 5, 255);
             SDL.SDL_RenderClear(renderer);
 
-            // ----draw----
-            SDL.SDL_RenderCopy(renderer, img.pumpkinTexture, ref img.sRect, ref img.tRect);
+           
             // center line
             SDL.SDL_SetRenderDrawColor(renderer, 150, 150, 150, 255);
             SDL.SDL_RenderFillRects(renderer, centerLine, lines);
@@ -101,13 +110,14 @@ namespace Pong
             // left paddle
             leftPaddle.render(renderer);
             //ball
-            ball.render(renderer);
+            ball.renderL2(renderer);
             // Update screen
             SDL.SDL_RenderPresent(renderer);
 
         }
 
-        public void controll() {
+        public void controll()
+        {
             //Key
             SDL.SDL_Event e;
             // Handle events on queue
@@ -128,12 +138,14 @@ namespace Pong
 
         public void run()
         {
-            
+
             while (running)
             {
                 controll();
                 update();
+                //Thread.Sleep(100);
                 render();
+                //Thread.Sleep(100);
                 over();
             }
 
@@ -171,7 +183,8 @@ namespace Pong
             sound._Low = IntPtr.Zero;
             //Free the music
             SDL_mixer.Mix_FreeMusic(sound._Music);
-            sound._Music = IntPtr.Zero;*/
+            sound._Music = IntPtr.Zero;
+            */
             //clear renderer
             SDL.SDL_RenderClear(renderer);
             SDL.SDL_DestroyRenderer(renderer);
@@ -180,3 +193,4 @@ namespace Pong
         }
     }
 }
+

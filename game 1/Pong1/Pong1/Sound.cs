@@ -29,6 +29,13 @@ namespace Pong
             {
                 Console.WriteLine("SDL_mixer could not initialize! SDL_mixer Error: {0}", SDL.SDL_GetError());
             }
+            //Load music
+            _Music = loadMusic("sound/beat.wav");
+            //Load sound effects
+            _Scratch = loadSound("sound/scratch.wav");
+            _High = loadSound("sound/high.wav");
+            _Medium = loadSound("sound/medium.wav");
+            _Low = loadSound("sound/low.wav");
 
         }
 

@@ -12,6 +12,7 @@ namespace Pong
         public int display;
         public MainMenu mainMenu;
         public Level1 level1;
+        public Level2 level2;
         public GameOver gameOver;
         public Game() {
             display = 1;
@@ -25,6 +26,11 @@ namespace Pong
         {
             level1 = new Level1();
             level1.run(); 
+        }
+        public void runLevel2()
+        {
+            level2 = new Level2();
+            level2.run();
         }
         public void runGameOver()
         {
@@ -43,7 +49,8 @@ namespace Pong
                     case 0: quit(); return;
                     case 1: runMainMenu(); break;
                     case 2: runLevel1(); break;
-                    case 3: runGameOver(); break;
+                    case 3: runLevel2(); break;
+                    case 4: runGameOver(); break;
                 }
             }
             

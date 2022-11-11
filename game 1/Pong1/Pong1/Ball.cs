@@ -12,25 +12,28 @@ namespace Pong
         Paddle leftPaddle = new Paddle(0,0);
         Paddle rightPaddle = new Paddle(0,0);
         Random rd = new Random();
-        int mPosX = Program.window.width / 2 - 5;
-        int mPosY = Program.window.heigh / 2 - 5;
+        double mPosX = Program.window.width / 2 - 5;
+        double mPosY = Program.window.heigh / 2 - 5;
 
         //The velocity
-        int mVelX = 2;
-        int mVelY = 1;
+        double vel = 6;
+        double mVelX;
+        double mVelY;
 
         public const int BALL_SIZE = 10;
 
         SDL.SDL_Rect ball;
 
-        public Ball()
+        public Ball(double v)
         {
-            mVelX = ((int)rd.Next(0, 2) * 2 - 1) * 2;
+            vel = v;
+            mVelX = ((double)rd.Next(0, 2) * 2 - 1) * (vel / 3 * 2);
+            mVelY = ((double)rd.Next(0, 2) * 2 - 1) * (vel / 3 * 1);
 
             ball = new SDL.SDL_Rect
             {
-                x = mPosX,
-                y = mPosY,
+                x = (int)mPosX,
+                y = (int)mPosY,
                 w = BALL_SIZE,
                 h = BALL_SIZE
             };
@@ -38,17 +41,18 @@ namespace Pong
 
         private void afterScore()
         {
-            SDL_mixer.Mix_PlayChannel(-1, Program.game.level1.sound._Scratch, 0);
+            SDL_mixer.Mix_PlayChannel(-1, Program.game.mainMenu.sound._Scratch, 0);
+            // Ball auf die Mittellinie setzen
             mPosX = Program.window.width / 2 - 5;
-            //mVelX = (int)(Math.Pow(-1, rd.Next(1, 2)) );
+            mPosY = (float)rd.Next(0, (Program.window.heigh - BALL_SIZE));
+
             // 2 or -2 , ball flies left or right
-            mVelX = ((int)rd.Next(0, 2) * 2 - 1) * 2;
-            //Console.WriteLine(mVelX + " mVelX ");
+            mVelX = ((float)rd.Next(0, 2) * 2 - 1) * (vel / 3 * 2);
+            mVelY = ((float)rd.Next(0, 2) * 2 - 1) * (vel / 3 * 1);
         }
 
-        public void move()
+        public void moveL1()
         {
-
             mPosX = mPosX + mVelX;
             mPosY = mPosY + mVelY;
 
@@ -65,25 +69,52 @@ namespace Pong
             }
             else if ((mPosY < 0) || (mPosY + BALL_SIZE > Program.window.heigh))
             {
-                SDL_mixer.Mix_PlayChannel(-1, Program.game.level1.sound._High, 0);
+                SDL_mixer.Mix_PlayChannel(-1, Program.game.mainMenu.sound._High, 0);
                 mVelY = -mVelY;
             }
-
-
             if (checkCollisionX())
             {
-                SDL_mixer.Mix_PlayChannel(-1, Program.game.level1.sound._Medium, 0);
+                SDL_mixer.Mix_PlayChannel(-1, Program.game.mainMenu.sound._Medium, 0);
                 mVelX = -mVelX;
                 speedUp();
             }
             else if (checkCollisionY())
             {
-                SDL_mixer.Mix_PlayChannel(-1, Program.game.level1.sound._Medium, 0);
+                SDL_mixer.Mix_PlayChannel(-1, Program.game.mainMenu.sound._Medium, 0);
                 mVelY = -mVelY;
+            }
+        }
+
+        public void moveL2()
+        {
+            mPosX = mPosX + mVelX;
+            mPosY = mPosY + mVelY;
+
+            if (mPosX < 0)
+            {
+                Program.game.level2.rightPaddle.score++;
+                afterScore();
+
+            }
+            else if (mPosX + BALL_SIZE > Program.window.width)
+            {
+                Program.game.level2.leftPaddle.score++;
+                afterScore();
+            }
+            else if ((mPosY < 0) || (mPosY + BALL_SIZE > Program.window.heigh))
+            {
+                SDL_mixer.Mix_PlayChannel(-1, Program.game.mainMenu.sound._High, 0);
+                mVelY = -mVelY;
+            }
+            if (checkCollisionXL2())
+            {
+                SDL_mixer.Mix_PlayChannel(-1, Program.game.mainMenu.sound._Medium, 0);
+                //mVelX = -mVelX;
             }
 
         }
 
+       
         public void speedUp() {
             if (mVelX > 0) {
                 mVelX++;
@@ -92,6 +123,7 @@ namespace Pong
             {
                 mVelX--;
             }
+
         }
 
         private bool checkCollisionX()
@@ -110,6 +142,41 @@ namespace Pong
             {
                 if (mPosX < leftPaddle.mPosX + leftPaddle.PADDLE_WIDTH && mPosX >= leftPaddle.mPosX + leftPaddle.PADDLE_WIDTH - Math.Abs(mVelX))
                 {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+        // Je nachdem, wo der Ball am Paddle anstößt, fliegt er in eine bestimmte Richtung
+        private bool checkCollisionXL2()
+        {
+
+
+            if ((mPosY + BALL_SIZE > rightPaddle.mPosY) && (mPosY < rightPaddle.mPosY + rightPaddle.PADDLE_HEIGH))
+            {
+                if (mPosX + BALL_SIZE > rightPaddle.mPosX && mPosX + BALL_SIZE <= rightPaddle.mPosX + Math.Abs(mVelX))
+
+                {
+                    double distance = (rightPaddle.mPosY + 50) - (mPosY + 5);
+                    double change = 9.0 / 55.0 * distance;
+                    mVelY = -change;
+                    mVelX = -(vel - Math.Abs(change)); 
+                    return true;
+                }
+            }
+
+            if ((mPosY + BALL_SIZE > leftPaddle.mPosY) && (mPosY < leftPaddle.mPosY + leftPaddle.PADDLE_HEIGH))
+            {
+                if (mPosX < leftPaddle.mPosX + leftPaddle.PADDLE_WIDTH && mPosX >= leftPaddle.mPosX + leftPaddle.PADDLE_WIDTH - Math.Abs(mVelX))
+                {
+                    double distance = (leftPaddle.mPosY + 50) - (mPosY + 5);
+                    double change = 9.0 / 55.0 * distance;
+                    mVelY = -change;
+                    mVelX = vel - Math.Abs(change);
+
+
                     return true;
                 }
             }
@@ -142,11 +209,20 @@ namespace Pong
         {
             leftPaddle = Program.game.level1.leftPaddle;
             rightPaddle = Program.game.level1.rightPaddle;
-            ball.x = mPosX;
-            ball.y = mPosY;
+            ball.x = (int)mPosX;
+            ball.y = (int)mPosY;
             SDL.SDL_SetRenderDrawColor(renderer, 250, 250, 250, 255);
             SDL.SDL_RenderFillRect(renderer, ref ball);
         }
 
+        public void renderL2(IntPtr renderer)
+        {
+            leftPaddle = Program.game.level2.leftPaddle;
+            rightPaddle = Program.game.level2.rightPaddle;
+            ball.x = (int)mPosX;
+            ball.y = (int)mPosY;
+            SDL.SDL_SetRenderDrawColor(renderer, 250, 250, 250, 255);
+            SDL.SDL_RenderFillRect(renderer, ref ball);
+        }
     }
 }

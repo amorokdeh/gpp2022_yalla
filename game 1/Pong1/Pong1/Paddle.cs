@@ -16,14 +16,14 @@ namespace Pong
 
         public int score = 0;
 
-        const int PADDLE_VEL = 4;
+        public int paddleVel = 8;
 
         //The X and Y offsets
-        public int mPosX;
-        public int mPosY;
+        public float mPosX;
+        public float mPosY;
 
         //The velocity
-        public int mVelY = 0;
+        public float mVelY = 0;
 
         SDL.SDL_Rect paddle;
 
@@ -52,8 +52,8 @@ namespace Pong
                     //Adjust the velocity
                     switch (e.key.keysym.sym)
                     {
-                        case SDL.SDL_Keycode.SDLK_UP: mVelY -= PADDLE_VEL; break;
-                        case SDL.SDL_Keycode.SDLK_DOWN: mVelY += PADDLE_VEL; break;
+                        case SDL.SDL_Keycode.SDLK_UP: mVelY -= paddleVel; break;
+                        case SDL.SDL_Keycode.SDLK_DOWN: mVelY += paddleVel; break;
                     }
                 }
                 //If a key was released
@@ -62,8 +62,8 @@ namespace Pong
                     //Adjust the velocity
                     switch (e.key.keysym.sym)
                     {
-                        case SDL.SDL_Keycode.SDLK_UP: mVelY += PADDLE_VEL; break;
-                        case SDL.SDL_Keycode.SDLK_DOWN: mVelY -= PADDLE_VEL; break;
+                        case SDL.SDL_Keycode.SDLK_UP: mVelY += paddleVel; break;
+                        case SDL.SDL_Keycode.SDLK_DOWN: mVelY -= paddleVel; break;
                     }
                 }
             }
@@ -77,8 +77,8 @@ namespace Pong
                     //Adjust the velocity
                     switch (e.key.keysym.sym)
                     {
-                        case SDL.SDL_Keycode.SDLK_w: mVelY -= PADDLE_VEL; break;
-                        case SDL.SDL_Keycode.SDLK_s: mVelY += PADDLE_VEL; break;
+                        case SDL.SDL_Keycode.SDLK_w: mVelY -= paddleVel; break;
+                        case SDL.SDL_Keycode.SDLK_s: mVelY += paddleVel; break;
                     }
                 }
                 //If a key was released
@@ -87,8 +87,8 @@ namespace Pong
                     //Adjust the velocity
                     switch (e.key.keysym.sym)
                     {
-                        case SDL.SDL_Keycode.SDLK_w: mVelY += PADDLE_VEL; break;
-                        case SDL.SDL_Keycode.SDLK_s: mVelY -= PADDLE_VEL; break;
+                        case SDL.SDL_Keycode.SDLK_w: mVelY += paddleVel; break;
+                        case SDL.SDL_Keycode.SDLK_s: mVelY -= paddleVel; break;
                     }
                 }
             }
@@ -100,7 +100,7 @@ namespace Pong
             //Move up or down
             mPosY += mVelY;
 
-            //If the dot went too far up or down
+            //If the paddle went too far up or down
             if ((mPosY < 0) || (mPosY + PADDLE_HEIGH > Program.window.heigh))
             {
                 //Move back
@@ -111,7 +111,7 @@ namespace Pong
         public void render(IntPtr renderer)
         {
 
-            paddle.y = mPosY;
+            paddle.y = (int)mPosY;
             SDL.SDL_SetRenderDrawColor(renderer, 250, 250, 250, 255);
             SDL.SDL_RenderFillRect(renderer, ref paddle);
         }

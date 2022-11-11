@@ -33,7 +33,7 @@ namespace Pong
             txt.setUp();
             txt.loadText(1);
             //winner
-            if (Program.game.level1.rightPaddle.score == Program.game.level1.win)
+            if (Program.game.mainMenu.winner == 2)
             {
                 SDL.SDL_SetRenderDrawColor(renderer, 0, 60, 20, 255);
                 winnerText = "Der rechte Spieler hat gewonnen!";
@@ -74,8 +74,22 @@ namespace Pong
 
                     switch (e.key.keysym.sym)
                     {
-                        case SDL.SDL_Keycode.SDLK_RETURN: running = false; closeAndGoTo(2); break;
-                        case SDL.SDL_Keycode.SDLK_SPACE: running = false; closeAndGoTo(1); break;
+                        case SDL.SDL_Keycode.SDLK_RETURN: 
+                            running = false;
+                            if(Program.game.mainMenu.level == 1)
+                            {
+                                closeAndGoTo(2); 
+                            }
+                            else
+                            {
+                                closeAndGoTo(3);
+                            }
+                            
+                            break;
+                        case SDL.SDL_Keycode.SDLK_SPACE: 
+                            running = false; 
+                            closeAndGoTo(1); 
+                            break;
                     }
                 }
 

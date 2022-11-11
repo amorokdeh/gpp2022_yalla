@@ -70,6 +70,7 @@
     <Compile Include="GameOver.cs" />
     <Compile Include="Image.cs" />
     <Compile Include="Level1.cs" />
+    <Compile Include="Level2.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="Paddle.cs" />
     <Compile Include="Program.cs" />

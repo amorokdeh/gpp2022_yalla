@@ -10,6 +10,13 @@ namespace Pong
 {
     class MainMenu
     {
+        public Sound sound = new Sound();
+        public int winner;
+        public int level;
+        
+        
+
+
         public bool running = true;
         public bool quit = false;
         public IntPtr renderer;
@@ -44,6 +51,9 @@ namespace Pong
 
             SDL.SDL_SetRenderDrawColor(renderer, 0, 60, 20, 255);
             winnerText = "Der rechte Spieler hat gewonnen!";
+
+            // SOUND AND MUSIC
+            sound.setup();
 
         }
         public void run()
@@ -86,8 +96,17 @@ namespace Pong
         }
         public void goTo() {
             switch (selected) {
-                case 1: startGame(); return;
-                case 3: endGame(); return;
+                case 1:
+                    level = 1;
+                    startLevel1(); 
+                    return;
+                case 2: 
+                    startLevel2();
+                    level = 2;
+                    return;
+                case 4: 
+                    endGame(); 
+                    return;
             }
         }
         public void goUp() {
@@ -96,7 +115,7 @@ namespace Pong
             }
         }
         public void goDown() {
-            if (selected < 3)
+            if (selected < 4)
             {
                 selected++;
             }
@@ -108,10 +127,16 @@ namespace Pong
 
         }
 
-        public void startGame()
+        public void startLevel1()
         {
             running = false;
             closeAndGoTo(2);
+
+        }
+        public void startLevel2()
+        {
+            running = false;
+            closeAndGoTo(3);
 
         }
         public void render()
@@ -120,18 +145,23 @@ namespace Pong
             SDL.SDL_SetRenderDrawColor(renderer, 5, 5, 5, 255);
             SDL.SDL_RenderClear(renderer);
 
-            text = "Start game";
+            text = "Start Level 1";
             checkSelected(1);
             surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
-            txt.addText(renderer, surfaceMessage, Program.window.heigh / 2, Program.window.heigh / 2 , Program.window.width - 600, textSize);
+            txt.addText(renderer, surfaceMessage, Program.window.heigh / 2, Program.window.heigh / 2 - 50, Program.window.width - 600, textSize);
+
+            text = "Start Level 2";
+            checkSelected(2);
+            surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
+            txt.addText(renderer, surfaceMessage, Program.window.heigh / 2, Program.window.heigh / 2, Program.window.width - 600, textSize);
 
             text = "Options";
-            checkSelected(2);
+            checkSelected(3);
             surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
             txt.addText(renderer, surfaceMessage, Program.window.heigh / 2, Program.window.heigh / 2 + 50, Program.window.width - 600, textSize);
 
             text = "Quit";
-            checkSelected(3);
+            checkSelected(4);
             surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
             txt.addText(renderer, surfaceMessage, Program.window.heigh / 2 + 50, Program.window.heigh / 2 + 100, Program.window.width - 700, textSize);
 
