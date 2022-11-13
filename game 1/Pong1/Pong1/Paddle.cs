@@ -27,10 +27,11 @@ namespace Pong
 
         SDL.SDL_Rect paddle;
 
-        public Paddle(int mPosX, int mPosY)
+        public Paddle(int mPosX, int mPosY, int width)
         {
             this.mPosX = mPosX;
             this.mPosY = mPosY;
+            this.PADDLE_WIDTH = width;
 
             paddle = new SDL.SDL_Rect
             {
@@ -115,6 +116,34 @@ namespace Pong
             SDL.SDL_SetRenderDrawColor(renderer, 250, 250, 250, 255);
             SDL.SDL_RenderFillRect(renderer, ref paddle);
         }
+
+        public void renderL2(IntPtr renderer)
+        {
+
+
+            
+
+            for (int i = 0; i < 20; i++)
+            {
+                SDL.SDL_SetRenderDrawBlendMode(renderer, SDL.SDL_BlendMode.SDL_BLENDMODE_BLEND);
+                //SDL.SDL_SetRenderDrawColor(renderer, 255, 255, 200, 2);
+                SDL.SDL_SetRenderDrawColor(renderer, 255, 255, 220, (byte)(5 - i/4 ));
+                paddle.x = (int)mPosX - i;
+                paddle.y = (int)mPosY - i;
+                paddle.w = PADDLE_WIDTH + i * 2;
+                paddle.h = PADDLE_HEIGH + i * 2;
+                SDL.SDL_RenderFillRect(renderer, ref paddle);
+
+            }
+            
+            paddle.x = (int)mPosX;
+            paddle.y = (int)mPosY;
+            paddle.w = PADDLE_WIDTH;
+            paddle.h = PADDLE_HEIGH;
+            SDL.SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+            SDL.SDL_RenderFillRect(renderer, ref paddle);
+        }
+
 
     }
 }

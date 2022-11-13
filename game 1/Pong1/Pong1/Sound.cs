@@ -17,6 +17,7 @@ namespace Pong
         public IntPtr _High = IntPtr.Zero;
         public IntPtr _Medium = IntPtr.Zero;
         public IntPtr _Low = IntPtr.Zero;
+        public IntPtr _Portal = IntPtr.Zero;
 
         public Sound() { 
         
@@ -36,6 +37,7 @@ namespace Pong
             _High = loadSound("sound/high.wav");
             _Medium = loadSound("sound/medium.wav");
             _Low = loadSound("sound/low.wav");
+            _Portal = loadSound("sound/blinz.wav");
 
         }
 
@@ -49,7 +51,7 @@ namespace Pong
             return music;
         }
 
-        public IntPtr loadSound(String source)
+        private IntPtr loadSound(String source)
         {
 
             IntPtr sound = SDL_mixer.Mix_LoadWAV(source);

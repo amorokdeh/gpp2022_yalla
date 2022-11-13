@@ -22,8 +22,8 @@ namespace Pong
         public bool quit = false;
 
         public Ball ball = new Ball(6);
-        public Paddle rightPaddle = new Paddle(Program.window.width - 30, Program.window.heigh / 2 - 50);
-        public Paddle leftPaddle = new Paddle(20, Program.window.heigh / 2 - 50);
+        public Paddle rightPaddle = new Paddle(Program.window.width - 30, Program.window.heigh / 2 - 50, 10);
+        public Paddle leftPaddle = new Paddle(20, Program.window.heigh / 2 - 50, 10);
 
         public Image img = new Image();
         public Text txt = new Text();

@@ -13,18 +13,15 @@ namespace Pong
     class Level2
     {
 
-        public int lines = 13;
-        public static int linesStatic = 13;
-        public SDL.SDL_Rect[] centerLine = new SDL.SDL_Rect[linesStatic];
-        public int line = 0;
-
         public IntPtr renderer;
         public bool running = true;
         public bool quit = false;
 
         public Ball ball = new Ball(10);
-        public Paddle rightPaddle = new Paddle(Program.window.width - 30, Program.window.heigh / 2 - 50);
-        public Paddle leftPaddle = new Paddle(20, Program.window.heigh / 2 - 50);
+        public Paddle rightPaddle = new Paddle(Program.window.width - 23, Program.window.heigh / 2 - 50, 3);
+        public Paddle leftPaddle = new Paddle(20, Program.window.heigh / 2 - 50, 3);
+        public Portal bluePortal = new Portal(11, 57, 250, 0);
+        public Portal redPortal = new Portal(233, 7, 48, Program.window.heigh-1);
 
 
         public Text txt = new Text();
@@ -32,24 +29,9 @@ namespace Pong
         public Level2()
         {
             setup();
-            map();
         }
 
-        private void map()
-        {
-            for (int i = 0; i < lines; i++)
-            {
-                centerLine[line] =
-                    new SDL.SDL_Rect
-                    {
-                        x = Program.window.width / 2 - 2,
-                        y = line * 48,
-                        w = 4,
-                        h = 24
-                    };
-                line++;
-            }
-        }
+
         private void setup()
         {
             renderer = SDL.SDL_CreateRenderer(
@@ -77,7 +59,7 @@ namespace Pong
 
             //Text
             txt.setUp();
-            txt.loadText(2);
+            txt.loadText(3);
         }
 
         private void update()
@@ -95,20 +77,23 @@ namespace Pong
 
            
             // center line
-            SDL.SDL_SetRenderDrawColor(renderer, 150, 150, 150, 255);
-            SDL.SDL_RenderFillRects(renderer, centerLine, lines);
+            SDL.SDL_SetRenderDrawColor(renderer, 235, 235, 240, 255);
+            SDL.SDL_RenderDrawLine(renderer, Program.window.width/2, 0, Program.window.width / 2, Program.window.heigh);
             //Text
             //left score
-            IntPtr surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, leftPaddle.score.ToString(), txt.Gray);
-            txt.addText(renderer, surfaceMessage, 200, 10, 100, 100);
+            IntPtr surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, leftPaddle.score.ToString(), txt.LightGray);
+            txt.addText(renderer, surfaceMessage, 200, 10, 20, 100);
             //right score
-            surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, rightPaddle.score.ToString(), txt.Gray);
-            txt.addText(renderer, surfaceMessage, 500, 10, 100, 100);
+            surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, rightPaddle.score.ToString(), txt.LightGray);
+            txt.addText(renderer, surfaceMessage, 580, 10, 20, 100);
 
             // right paddle
-            rightPaddle.render(renderer);
+            rightPaddle.renderL2(renderer);
             // left paddle
-            leftPaddle.render(renderer);
+            leftPaddle.renderL2(renderer);
+            // blue Portal
+            bluePortal.render(renderer);
+            redPortal.render(renderer);
             //ball
             ball.renderL2(renderer);
             // Update screen
@@ -158,12 +143,14 @@ namespace Pong
             {
                 Program.game.mainMenu.winner = 2;
                 running = false;
+                Thread.Sleep(300);
                 closeAndGoTo(4); // go to game over
             }
             else if (leftPaddle.score == win)
             {
                 Program.game.mainMenu.winner = 2;
                 running = false;
+                Thread.Sleep(300);
                 closeAndGoTo(4); // go to game over
             }
 

@@ -9,8 +9,8 @@ namespace Pong
 {
     class Ball
     {
-        Paddle leftPaddle = new Paddle(0,0);
-        Paddle rightPaddle = new Paddle(0,0);
+        Paddle leftPaddle = new Paddle(0,0,0);
+        Paddle rightPaddle = new Paddle(0,0,0);
         Random rd = new Random();
         double mPosX = Program.window.width / 2 - 5;
         double mPosY = Program.window.heigh / 2 - 5;
@@ -64,6 +64,8 @@ namespace Pong
             }
             else if (mPosX + BALL_SIZE > Program.window.width)
             {
+
+
                 Program.game.level1.leftPaddle.score++;
                 afterScore();
             }
@@ -72,6 +74,8 @@ namespace Pong
                 SDL_mixer.Mix_PlayChannel(-1, Program.game.mainMenu.sound._High, 0);
                 mVelY = -mVelY;
             }
+
+
             if (checkCollisionX())
             {
                 SDL_mixer.Mix_PlayChannel(-1, Program.game.mainMenu.sound._Medium, 0);
@@ -83,6 +87,15 @@ namespace Pong
                 SDL_mixer.Mix_PlayChannel(-1, Program.game.mainMenu.sound._Medium, 0);
                 mVelY = -mVelY;
             }
+        }
+
+        public bool checkPortal()
+        {
+            if(mPosX > Program.game.level2.bluePortal.leftX && mPosX < Program.game.level2.bluePortal.leftX + 200)
+            {
+                return true;
+            }
+            return false;
         }
 
         public void moveL2()
@@ -101,16 +114,46 @@ namespace Pong
                 Program.game.level2.leftPaddle.score++;
                 afterScore();
             }
-            else if ((mPosY < 0) || (mPosY + BALL_SIZE > Program.window.heigh))
+            else if (mPosY < 0)
             {
-                SDL_mixer.Mix_PlayChannel(-1, Program.game.mainMenu.sound._High, 0);
-                mVelY = -mVelY;
+                
+                if (checkPortal())
+                {
+                    SDL_mixer.Mix_PlayChannel(-1, Program.game.mainMenu.sound._Portal, 0);
+                    mPosY = Program.window.heigh - 10;
+                }
+                else
+                {
+                    SDL_mixer.Mix_PlayChannel(-1, Program.game.mainMenu.sound._High, 0);
+                    mVelY = -mVelY;
+                }
             }
+            else if (mPosY + BALL_SIZE > Program.window.heigh)
+            {
+                
+                if (checkPortal())
+                {
+                    SDL_mixer.Mix_PlayChannel(-1, Program.game.mainMenu.sound._Portal, 0);
+                    mPosY = 0;
+                }
+                else
+                {
+                    SDL_mixer.Mix_PlayChannel(-1, Program.game.mainMenu.sound._High, 0);
+                    mVelY = -mVelY;
+                }
+            }
+            
             if (checkCollisionXL2())
             {
                 SDL_mixer.Mix_PlayChannel(-1, Program.game.mainMenu.sound._Medium, 0);
                 //mVelX = -mVelX;
             }
+            /*
+            else if (checkCollisionYL2())
+            {
+                SDL_mixer.Mix_PlayChannel(-1, Program.game.mainMenu.sound._Medium, 0);
+                mVelY = -mVelY;
+            }*/
 
         }
 
@@ -205,6 +248,28 @@ namespace Pong
             return false;
         }
 
+        private bool checkCollisionYL2()
+        {
+            if ((mPosX + BALL_SIZE > rightPaddle.mPosX) && (mPosX < rightPaddle.mPosX + rightPaddle.PADDLE_WIDTH))
+            {
+                if (mPosY + BALL_SIZE > rightPaddle.mPosY && mPosY < rightPaddle.mPosY + rightPaddle.PADDLE_HEIGH)
+                {
+                    Program.game.level2.rightPaddle.mPosY = rightPaddle.mPosY - rightPaddle.mVelY;
+                    return true;
+                }
+            }
+
+            if ((mPosX + BALL_SIZE > leftPaddle.mPosX) && (mPosX < leftPaddle.mPosX + leftPaddle.PADDLE_WIDTH))
+            {
+                if (mPosY + BALL_SIZE > leftPaddle.mPosY && mPosY < leftPaddle.mPosY + leftPaddle.PADDLE_HEIGH)
+                {
+                    Program.game.level2.leftPaddle.mPosY = leftPaddle.mPosY - leftPaddle.mVelY;
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public void render(IntPtr renderer)
         {
             leftPaddle = Program.game.level1.leftPaddle;
@@ -219,10 +284,34 @@ namespace Pong
         {
             leftPaddle = Program.game.level2.leftPaddle;
             rightPaddle = Program.game.level2.rightPaddle;
+            //ball.x = (int)mPosX;
+            //ball.y = (int)mPosY;
+            //SDL.SDL_SetRenderDrawColor(renderer, 250, 250, 250, 255);
+            //SDL.SDL_RenderFillRect(renderer, ref ball);
+
+            
+
+            for (int i = 0; i < 20; i++)
+            {
+                SDL.SDL_SetRenderDrawBlendMode(renderer, SDL.SDL_BlendMode.SDL_BLENDMODE_BLEND);
+                //SDL.SDL_SetRenderDrawColor(renderer, 255, 255, 220, 1);
+                SDL.SDL_SetRenderDrawColor(renderer, 255, 255, 220, (byte)(5 - i / 4));
+                ball.x = (int)mPosX - i;
+                ball.y = (int)mPosY - i;
+                ball.w = 10 + i * 2;
+                ball.h = 10 + i * 2;
+                SDL.SDL_RenderFillRect(renderer, ref ball);
+
+            }
+
             ball.x = (int)mPosX;
             ball.y = (int)mPosY;
-            SDL.SDL_SetRenderDrawColor(renderer, 250, 250, 250, 255);
+            ball.w = 10;
+            ball.h = 10;
+            SDL.SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
             SDL.SDL_RenderFillRect(renderer, ref ball);
         }
+
+
     }
 }
