@@ -119,10 +119,8 @@ namespace Pong
 
         public void renderL2(IntPtr renderer)
         {
-
-
-            
-
+    
+            // Licht/Schein des Paddles zeichnen
             for (int i = 0; i < 20; i++)
             {
                 SDL.SDL_SetRenderDrawBlendMode(renderer, SDL.SDL_BlendMode.SDL_BLENDMODE_BLEND);
@@ -136,6 +134,7 @@ namespace Pong
 
             }
             
+            // Paddle zeichenen
             paddle.x = (int)mPosX;
             paddle.y = (int)mPosY;
             paddle.w = PADDLE_WIDTH;

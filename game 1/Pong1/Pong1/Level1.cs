@@ -20,9 +20,10 @@ namespace Pong
         
         public Level1() 
         {
-            ball = new Ball(6);
+            
             rightPaddle = new Paddle(Program.window.width - 30, Program.window.heigh / 2 - 50, 10);
             leftPaddle = new Paddle(20, Program.window.heigh / 2 - 50, 10);
+            ball = new Ball(6, ref leftPaddle, ref rightPaddle);
 
             setup();
             map();

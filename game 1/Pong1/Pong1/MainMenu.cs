@@ -10,7 +10,7 @@ namespace Pong
 {
     class MainMenu
     {
-        public Sound sound = new Sound();
+        public static Sound sound = new Sound();
         public int winner;
         public int level;
         
@@ -19,8 +19,8 @@ namespace Pong
 
         public bool running = true;
         public bool quit = false;
-        public IntPtr renderer;
-        public string winnerText = "hallo";
+        public static IntPtr renderer;
+        public string winnerText;
         public Text txt = new Text();
         public int selected = 1;
         public string text;
@@ -67,6 +67,8 @@ namespace Pong
 
             if (quit) { closeAndGoTo(0); } //close the game
         }
+
+
 
         public void controll()
         {

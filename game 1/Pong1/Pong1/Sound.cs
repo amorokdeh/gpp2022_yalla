@@ -78,5 +78,22 @@ namespace Pong
             SDL.SDL_Quit();
         }
 
+        public void cleanUp()
+        {
+            //Free the sound effects
+            SDL_mixer.Mix_FreeChunk(_Scratch);
+            SDL_mixer.Mix_FreeChunk(_High);
+            SDL_mixer.Mix_FreeChunk(_Medium);
+            SDL_mixer.Mix_FreeChunk(_Low);
+            _Scratch = IntPtr.Zero;
+            _High = IntPtr.Zero;
+            _Medium = IntPtr.Zero;
+            _Low = IntPtr.Zero;
+
+            //Free the music
+            SDL_mixer.Mix_FreeMusic(_Music);
+            _Music = IntPtr.Zero;
+        }
+
     }
 }

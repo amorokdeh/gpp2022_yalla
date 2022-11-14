@@ -19,11 +19,12 @@ namespace Pong
 
         public Level2()
         {
-            ball = new Ball(10);
+            
             rightPaddle = new Paddle(Program.window.width - 23, Program.window.heigh / 2 - 50, 3);
             leftPaddle = new Paddle(20, Program.window.heigh / 2 - 50, 3);
             bluePortal = new Portal(11, 57, 250, 0);
             redPortal = new Portal(233, 7, 48, Program.window.heigh - 1);
+            ball = new Ball(10, ref leftPaddle, ref rightPaddle, ref bluePortal, ref redPortal);
             setup();
         }
 

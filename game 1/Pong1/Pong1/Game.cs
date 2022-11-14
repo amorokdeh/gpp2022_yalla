@@ -39,6 +39,7 @@ namespace Pong
         }
         public void quit()
         {
+            MainMenu.sound.cleanUp();
             SDL.SDL_DestroyWindow(Program.window.show);
             SDL.SDL_Quit();
         }
