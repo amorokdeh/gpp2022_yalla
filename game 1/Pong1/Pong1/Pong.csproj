@@ -69,6 +69,7 @@
     <Compile Include="Game.cs" />
     <Compile Include="GameOver.cs" />
     <Compile Include="Image.cs" />
+    <Compile Include="Level.cs" />
     <Compile Include="Level1.cs" />
     <Compile Include="Level2.cs" />
     <Compile Include="MainMenu.cs" />
