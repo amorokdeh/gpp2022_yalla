@@ -24,16 +24,7 @@ namespace Pong
 
         public virtual void setup()
         {
-            renderer = SDL.SDL_CreateRenderer(
-                Program.window.show,
-                -1,
-                SDL.SDL_RendererFlags.SDL_RENDERER_ACCELERATED |
-                SDL.SDL_RendererFlags.SDL_RENDERER_PRESENTVSYNC);
-
-            if (renderer == IntPtr.Zero)
-            {
-                Console.WriteLine($"There was an issue creating the renderer. {SDL.SDL_GetError()}");
-            }
+            renderer = Program.window.renderer;
 
         }
 
@@ -60,6 +51,17 @@ namespace Pong
                 // Handle input
                 rightPaddle.handleEvent(e, "UP_DOWN");
                 leftPaddle.handleEvent(e, "W_S");
+                checkWithdrow(e);
+            }
+        }
+
+        public void checkWithdrow(SDL.SDL_Event e)
+        {
+            if (e.type == SDL.SDL_EventType.SDL_KEYDOWN && e.key.repeat == 0){
+                switch (e.key.keysym.sym)
+                {
+                    case SDL.SDL_Keycode.SDLK_ESCAPE: running = false; closeAndGoTo(1); break; //quit game
+                }
             }
         }
 
@@ -98,6 +100,7 @@ namespace Pong
                 update();
                 render();
                 over();
+                
             }
 
             if (quit) { closeAndGoTo(0); } //close the game
@@ -121,8 +124,8 @@ namespace Pong
             sound._Music = IntPtr.Zero;
             */
             //clear renderer
-            SDL.SDL_RenderClear(renderer);
-            SDL.SDL_DestroyRenderer(renderer);
+            //SDL.SDL_RenderClear(renderer);
+            //SDL.SDL_DestroyRenderer(renderer);
             //go to ...
             Program.game.display = displayNum;
         }

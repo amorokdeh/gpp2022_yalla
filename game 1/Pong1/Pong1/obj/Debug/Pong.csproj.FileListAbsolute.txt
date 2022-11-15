@@ -114,3 +114,4 @@ C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 1\Pong1\Pon
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 1\Pong1\Pong1\obj\Debug\Pong1.exe
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 1\Pong1\Pong1\obj\Debug\Pong1.pdb
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 1\Pong1\Pong1\bin\Debug\sound\blinz.wav
+C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 1\Pong1\Pong1\bin\Debug\sound\blinz.wav

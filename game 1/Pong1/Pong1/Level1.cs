@@ -62,6 +62,7 @@ namespace Pong
             ball.moveL1();         
         }
 
+
         public override void render()
         {
             base.render();

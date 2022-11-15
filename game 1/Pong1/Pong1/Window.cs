@@ -10,7 +10,8 @@ namespace Pong
         public int heigh;
         public int width;
         public IntPtr show;
-
+        public IntPtr renderer;
+        public string screenMode = "Mini screen";
         public Window(int SCREEN_HEIGH, int SCREEN_WIDTH)
         {
             heigh = SCREEN_HEIGH;
@@ -31,7 +32,36 @@ namespace Pong
             {
                 Console.WriteLine($"There was an issue creating the window. {SDL.SDL_GetError()}");
             }
-            
+
+            renderer = SDL.SDL_CreateRenderer(
+                Program.window.show,
+                -1,
+                SDL.SDL_RendererFlags.SDL_RENDERER_ACCELERATED |
+                SDL.SDL_RendererFlags.SDL_RENDERER_PRESENTVSYNC);
+
+            if (renderer == IntPtr.Zero)
+            {
+                Console.WriteLine($"There was an issue creating the renderer. {SDL.SDL_GetError()}");
+            }
+
+        }
+        public void fullScreen() {
+            SDL.SDL_SetWindowFullscreen(show, 0x1u);
+            screenMode = "Full screen";
+        }
+        public void miniScreen()
+        {
+            SDL.SDL_SetWindowFullscreen(show, 0);
+            screenMode = "Mini screen";
+        }
+
+        public void changeScreenMode() {
+            if (screenMode.Equals("Full screen")) {
+                miniScreen();
+            }
+            else {
+                fullScreen();
+            }
         }
     }
 }
