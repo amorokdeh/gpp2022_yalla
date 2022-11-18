@@ -1,5 +1,6 @@
 ﻿using SDL2;
 using System;
+using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +27,11 @@ namespace Pong
 
         SDL.SDL_Rect ball;
 
+        int frames = 0;
+        string countdown;
+        
+        public Text txt = new Text();
+
 
         public Ball(double v, ref Paddle left, ref Paddle right)
         {
@@ -43,6 +49,10 @@ namespace Pong
                 w = BALL_SIZE,
                 h = BALL_SIZE
             };
+
+            //Text
+            txt.setUp();
+            txt.loadText(3);
         }
 
         public Ball(double v, ref Paddle left, ref Paddle right, ref Portal blue, ref Portal red ) : this(v, ref left, ref right)//den anderen Konstruktor aufrufen
@@ -54,6 +64,9 @@ namespace Pong
 
         private void afterScore()
         {
+            //Thread.Sleep(200);
+            frames = 90;
+
             SDL_mixer.Mix_PlayChannel(-1, MainMenu.sound._Scratch, 0);
             // Ball auf die Mittellinie setzen
             mPosX = Program.window.width / 2 - 5;
@@ -64,39 +77,65 @@ namespace Pong
             mVelY = ((float)rd.Next(0, 2) * 2 - 1) * (vel / 3 * 1);
         }
 
+        private void moveCountdown()
+        {
+            if (frames > 60)
+            {
+                countdown = "3";
+            }
+            else if (frames > 30)
+            {
+                countdown = "2";
+            }
+            else
+            {
+                countdown = "1";
+            }
+
+        }
+
+
+
         public void moveL1()
         {
-            mPosX = mPosX + mVelX;
-            mPosY = mPosY + mVelY;
-
-            if (mPosX < 0)
+            if (frames > 0)
             {
-                rightPaddle.score++;
-                afterScore();
+                moveCountdown();
 
             }
-            else if (mPosX + BALL_SIZE > Program.window.width)
-            {
-                leftPaddle.score++;
-                afterScore();
-            }
-            else if ((mPosY < 0) || (mPosY + BALL_SIZE > Program.window.heigh))
-            {
-                SDL_mixer.Mix_PlayChannel(-1, MainMenu.sound._High, 0);
-                mVelY = -mVelY;
-            }
+            else { 
+                mPosX = mPosX + mVelX;
+                mPosY = mPosY + mVelY;
+
+                if (mPosX < 0)
+                {
+                    rightPaddle.score++;
+                    afterScore();
+
+                }
+                else if (mPosX + BALL_SIZE > Program.window.width)
+                {
+                    leftPaddle.score++;
+                    afterScore();
+                }
+                else if ((mPosY < 0) || (mPosY + BALL_SIZE > Program.window.heigh))
+                {
+                    SDL_mixer.Mix_PlayChannel(-1, MainMenu.sound._High, 0);
+                    mVelY = -mVelY;
+                }
 
 
-            if (checkCollisionX())
-            {
-                SDL_mixer.Mix_PlayChannel(-1, MainMenu.sound._Medium, 0);
-                mVelX = -mVelX;
-                speedUp();
-            }
-            else if (checkCollisionY())
-            {
-                SDL_mixer.Mix_PlayChannel(-1, MainMenu.sound._Medium, 0);
-                mVelY = -mVelY;
+                if (checkCollisionX())
+                {
+                    SDL_mixer.Mix_PlayChannel(-1, MainMenu.sound._Medium, 0);
+                    mVelX = -mVelX;
+                    speedUp();
+                }
+                else if (checkCollisionY())
+                {
+                    SDL_mixer.Mix_PlayChannel(-1, MainMenu.sound._Medium, 0);
+                    mVelY = -mVelY;
+                }
             }
         }
 
@@ -111,53 +150,60 @@ namespace Pong
 
         public void moveL2()
         {
-            mPosX = mPosX + mVelX;
-            mPosY = mPosY + mVelY;
+            if (frames > 0)
+            {
+                moveCountdown();
+            }
+            else
+            {
+                mPosX = mPosX + mVelX;
+                mPosY = mPosY + mVelY;
 
-            if (mPosX < 0)
-            {
-                rightPaddle.score++;
-                afterScore();
+                if (mPosX < 0)
+                {
+                    rightPaddle.score++;
+                    afterScore();
 
-            }
-            else if (mPosX + BALL_SIZE > Program.window.width)
-            {
-                leftPaddle.score++;
-                afterScore();
-            }
-            else if (mPosY < 0)
-            {
-                
-                if (checkPortal())
-                {
-                    SDL_mixer.Mix_PlayChannel(-1, MainMenu.sound._Portal, 0);
-                    mPosY = Program.window.heigh - 10;
                 }
-                else
+                else if (mPosX + BALL_SIZE > Program.window.width)
                 {
-                    SDL_mixer.Mix_PlayChannel(-1, MainMenu.sound._High, 0);
-                    mVelY = -mVelY;
+                    leftPaddle.score++;
+                    afterScore();
                 }
-            }
-            else if (mPosY + BALL_SIZE > Program.window.heigh)
-            {
-                
-                if (checkPortal())
+                else if (mPosY < 0)
                 {
-                    SDL_mixer.Mix_PlayChannel(-1, MainMenu.sound._Portal, 0);
-                    mPosY = 0;
+
+                    if (checkPortal())
+                    {
+                        SDL_mixer.Mix_PlayChannel(-1, MainMenu.sound._Portal, 0);
+                        mPosY = Program.window.heigh - 10;
+                    }
+                    else
+                    {
+                        SDL_mixer.Mix_PlayChannel(-1, MainMenu.sound._High, 0);
+                        mVelY = -mVelY;
+                    }
                 }
-                else
+                else if (mPosY + BALL_SIZE > Program.window.heigh)
                 {
-                    SDL_mixer.Mix_PlayChannel(-1, MainMenu.sound._High, 0);
-                    mVelY = -mVelY;
+
+                    if (checkPortal())
+                    {
+                        SDL_mixer.Mix_PlayChannel(-1, MainMenu.sound._Portal, 0);
+                        mPosY = 0;
+                    }
+                    else
+                    {
+                        SDL_mixer.Mix_PlayChannel(-1, MainMenu.sound._High, 0);
+                        mVelY = -mVelY;
+                    }
                 }
-            }
-            
-            if (checkCollisionXL2())
-            {
-                SDL_mixer.Mix_PlayChannel(-1, MainMenu.sound._Medium, 0);
-                //mVelX = -mVelX;
+
+                if (checkCollisionXL2())
+                {
+                    SDL_mixer.Mix_PlayChannel(-1, MainMenu.sound._Medium, 0);
+                    //mVelX = -mVelX;
+                }
             }
 
         }
@@ -247,40 +293,64 @@ namespace Pong
             return false;
         }
 
+        // Countdown anzeigen, bevor der Ball von der Mitte losfliegt
+        private void renderCountdown(IntPtr renderer)
+        {
+            IntPtr surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, countdown, txt.LightGray);
+            txt.addText(renderer, surfaceMessage, Program.window.width / 2 -50, Program.window.heigh / 2 -50, 100, 100);
+            frames--;
+        }
  
 
         public void render(IntPtr renderer)
         {
-            ball.x = (int)mPosX;
-            ball.y = (int)mPosY;
-            SDL.SDL_SetRenderDrawColor(renderer, 250, 250, 250, 255);
-            SDL.SDL_RenderFillRect(renderer, ref ball);
+            if (frames > 0)
+            {
+                renderCountdown(renderer);   
+            }
+            else
+            {
+                ball.x = (int)mPosX;
+                ball.y = (int)mPosY;
+                SDL.SDL_SetRenderDrawColor(renderer, 250, 250, 250, 255);
+                SDL.SDL_RenderFillRect(renderer, ref ball);
+            }
         }
 
         public void renderL2(IntPtr renderer)
         {
-
-            // Licht/Schein des Balls zeichenen
-            for (int i = 0; i < 20; i++)
+            if (frames > 0)
             {
-                SDL.SDL_SetRenderDrawBlendMode(renderer, SDL.SDL_BlendMode.SDL_BLENDMODE_BLEND);
-                SDL.SDL_SetRenderDrawColor(renderer, 255, 255, 220, (byte)(5 - i / 4));
-                ball.x = (int)mPosX - i;
-                ball.y = (int)mPosY - i;
-                ball.w = 10 + i * 2;
-                ball.h = 10 + i * 2;
-                SDL.SDL_RenderFillRect(renderer, ref ball);
-
+                renderCountdown(renderer);
             }
+            else
+            {
 
-            // Ball zeichnen
-            ball.x = (int)mPosX;
-            ball.y = (int)mPosY;
-            ball.w = 10;
-            ball.h = 10;
-            SDL.SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-            SDL.SDL_RenderFillRect(renderer, ref ball);
+                // Licht/Schein des Balls zeichenen
+                for (int i = 0; i < 20; i++)
+                {
+                    SDL.SDL_SetRenderDrawBlendMode(renderer, SDL.SDL_BlendMode.SDL_BLENDMODE_BLEND);
+                    SDL.SDL_SetRenderDrawColor(renderer, 255, 255, 220, (byte)(5 - i / 4));
+                    ball.x = (int)mPosX - i;
+                    ball.y = (int)mPosY - i;
+                    ball.w = 10 + i * 2;
+                    ball.h = 10 + i * 2;
+                    SDL.SDL_RenderFillRect(renderer, ref ball);
+
+                }
+
+
+                // Ball zeichnen
+                ball.x = (int)mPosX;
+                ball.y = (int)mPosY;
+                ball.w = 10;
+                ball.h = 10;
+                SDL.SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+                SDL.SDL_RenderFillRect(renderer, ref ball);
+            }
         }
+
+
 
 
     }

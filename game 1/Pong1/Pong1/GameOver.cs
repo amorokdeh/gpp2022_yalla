@@ -104,12 +104,12 @@ namespace Pong
             IntPtr surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, winnerText, txt.White);
             txt.addText(renderer, surfaceMessage, 40, Program.window.heigh / 2 - 100, Program.window.width - 80, 100);
 
-            string Text = "DRUECKE ENTER, UM NOCHMAL ZU SPIELEN";
-            surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, Text, txt.LightGray);
+            string text = "DRUECKE ENTER, UM NOCHMAL ZU SPIELEN";
+            surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, txt.LightGray);
             txt.addText(renderer, surfaceMessage, 100, Program.window.heigh / 2 + 120, Program.window.width - 200, 30);
 
-            Text = "DRUECKE SPACE, UM MAIN MENU ZU ZEIGEN";
-            surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, Text, txt.LightGray);
+            text = "DRUECKE SPACE, UM MAIN MENU ZU ZEIGEN";
+            surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, txt.LightGray);
             txt.addText(renderer, surfaceMessage, 100, Program.window.heigh / 2 + 170, Program.window.width - 200, 30);
 
             SDL.SDL_RenderPresent(renderer);
