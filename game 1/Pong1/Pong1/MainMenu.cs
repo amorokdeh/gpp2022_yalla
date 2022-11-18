@@ -115,9 +115,13 @@ namespace Pong
                         level = 2;
                         return;
                     case 3:
-                        option();
+                        startLevel3();
+                        level = 3;
                         return;
                     case 4:
+                        option();
+                        return;
+                    case 5:
                         endGame();
                         return;
                 }
@@ -129,7 +133,7 @@ namespace Pong
             }
         }
         public void goDown() {
-            if ((!optionSelected) && (selected < 4))
+            if ((!optionSelected) && (selected < 5))
             {
                 selected++;
             }
@@ -157,10 +161,15 @@ namespace Pong
             closeAndGoTo(3);
 
         }
+        public void startLevel3()
+        {
+            running = false;
+            closeAndGoTo(4);
+
+        }
         public void option()
         {
             selected = 1;
-            //closeAndGoTo(3);
             optionSelected = true;
 
         }
@@ -182,15 +191,21 @@ namespace Pong
                 surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
                 txt.addText(renderer, surfaceMessage, Program.window.heigh / 2, Program.window.heigh / 2, Program.window.width - 600, textSize);
 
-                text = "Options";
+                text = "Start Level 3";
                 checkSelected(3);
                 surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
                 txt.addText(renderer, surfaceMessage, Program.window.heigh / 2, Program.window.heigh / 2 + 50, Program.window.width - 600, textSize);
 
-                text = "Quit";
+
+                text = "Options";
                 checkSelected(4);
                 surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
-                txt.addText(renderer, surfaceMessage, Program.window.heigh / 2 + 50, Program.window.heigh / 2 + 100, Program.window.width - 700, textSize);
+                txt.addText(renderer, surfaceMessage, Program.window.heigh / 2, Program.window.heigh / 2 + 100, Program.window.width - 600, textSize);
+
+                text = "Quit";
+                checkSelected(5);
+                surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
+                txt.addText(renderer, surfaceMessage, Program.window.heigh / 2 + 50, Program.window.heigh / 2 + 150, Program.window.width - 700, textSize);
             }
             else {
                 text = "Screen: " + Program.window.screenMode;

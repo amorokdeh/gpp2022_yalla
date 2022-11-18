@@ -15,8 +15,8 @@ namespace Pong
         public bool quit = false;
 
         public Ball ball;
-        public Paddle rightPaddle;
-        public Paddle leftPaddle;
+        public PaddleGeneral rightPaddle;
+        public PaddleGeneral leftPaddle;
 
         public Image img = new Image();
         public Text txt = new Text();
@@ -81,14 +81,14 @@ namespace Pong
                 Program.game.mainMenu.winner = 2;
                 running = false;
                 Thread.Sleep(300);
-                closeAndGoTo(4); // go to game over
+                closeAndGoTo(5); // go to game over
             }
             else if (leftPaddle.score == win)
             {
-                Program.game.mainMenu.winner = 2;
+                Program.game.mainMenu.winner = 1;
                 running = false;
                 Thread.Sleep(300);
-                closeAndGoTo(4); // go to game over
+                closeAndGoTo(5); // go to game over
             }
         }
 

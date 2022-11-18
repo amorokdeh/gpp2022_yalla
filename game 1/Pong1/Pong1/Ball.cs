@@ -10,18 +10,18 @@ namespace Pong
 {
     class Ball
     {
-        Paddle leftPaddle;
-        Paddle rightPaddle;
+        PaddleGeneral leftPaddle;
+        PaddleGeneral rightPaddle;
         Portal bluePortal;
         Portal redPortal;
         Random rd = new Random();
-        double mPosX = Program.window.width / 2 - 5;
-        double mPosY = Program.window.heigh / 2 - 5;
+        public double mPosX = Program.window.width / 2 - 5;
+        public double mPosY = Program.window.heigh / 2 - 5;
 
         //The velocity
         double vel = 6;
-        double mVelX;
-        double mVelY;
+        public double mVelX;
+        public double mVelY;
 
         public const int BALL_SIZE = 10;
 
@@ -33,7 +33,7 @@ namespace Pong
         public Text txt = new Text();
 
 
-        public Ball(double v, ref Paddle left, ref Paddle right)
+        public Ball(double v, ref PaddleGeneral left, ref PaddleGeneral right)
         {
             leftPaddle = left;
             rightPaddle = right;
@@ -55,7 +55,8 @@ namespace Pong
             txt.loadText(3);
         }
 
-        public Ball(double v, ref Paddle left, ref Paddle right, ref Portal blue, ref Portal red ) : this(v, ref left, ref right)//den anderen Konstruktor aufrufen
+
+        public Ball(double v, ref PaddleGeneral left, ref PaddleGeneral right, ref Portal blue, ref Portal red ) : this(v, ref left, ref right)//den anderen Konstruktor aufrufen
         {
             bluePortal = blue;
             redPortal = red;
@@ -141,7 +142,7 @@ namespace Pong
 
         public bool checkPortal()
         {
-            if(mPosX > Program.game.level2.bluePortal.leftX && mPosX < Program.game.level2.bluePortal.leftX + 200)
+            if(mPosX > bluePortal.leftX && mPosX < bluePortal.leftX + 200)
             {
                 return true;
             }

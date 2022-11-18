@@ -81,11 +81,15 @@ namespace Pong
                             {
                                 closeAndGoTo(2); 
                             }
-                            else
+                            else if (Program.game.mainMenu.level == 2)
                             {
                                 closeAndGoTo(3);
                             }
-                            
+                            else if (Program.game.mainMenu.level == 3)
+                            {
+                                closeAndGoTo(4);
+                            }
+
                             break;
                         case SDL.SDL_Keycode.SDLK_SPACE: 
                             running = false; 

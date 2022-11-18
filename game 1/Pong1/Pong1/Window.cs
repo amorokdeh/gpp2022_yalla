@@ -21,7 +21,7 @@ namespace Pong
         public void setup() {
             // Create a new window given a title, size, and passes it a flag indicating it should be shown.
             show = SDL.SDL_CreateWindow(
-                        "SDL .NET 6 Tutorial",
+                        "Yalla Pong",
                         SDL.SDL_WINDOWPOS_UNDEFINED,
                         SDL.SDL_WINDOWPOS_UNDEFINED,
                         width,
