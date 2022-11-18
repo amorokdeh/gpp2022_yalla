@@ -74,7 +74,7 @@ namespace Pong
             SDL.SDL_RenderFillRects(renderer, centerLine, lines);
             //Text
             //left score
-            IntPtr surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, leftPaddle.score.ToString(), txt.Gray);
+            surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, leftPaddle.score.ToString(), txt.Gray);
             txt.addText(renderer, surfaceMessage, 200, 10, 100, 100);
             //right score
             surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, rightPaddle.score.ToString(), txt.Gray);

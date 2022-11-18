@@ -57,7 +57,7 @@ namespace Pong
             SDL.SDL_RenderDrawLine(renderer, Program.window.width/2, 0, Program.window.width / 2, Program.window.heigh);
             //Text
             //left score
-            IntPtr surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, leftPaddle.score.ToString(), txt.LightGray);
+            surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, leftPaddle.score.ToString(), txt.LightGray);
             txt.addText(renderer, surfaceMessage, 200, 10, 20, 100);
             //right score
             surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, rightPaddle.score.ToString(), txt.LightGray);

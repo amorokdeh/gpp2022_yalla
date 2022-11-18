@@ -22,6 +22,8 @@ namespace Pong
         public Text txt = new Text();
         public int win = 10; //score to win
 
+        public IntPtr surfaceMessage;
+
         public virtual void setup()
         {
             renderer = Program.window.renderer;

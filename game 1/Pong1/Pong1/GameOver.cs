@@ -19,11 +19,12 @@ namespace Pong
         }
         public void setup()
         {
-            renderer = SDL.SDL_CreateRenderer(
+            renderer = Program.window.renderer;
+            /*renderer = SDL.SDL_CreateRenderer(
                 Program.window.show,
                 -1,
                 SDL.SDL_RendererFlags.SDL_RENDERER_ACCELERATED |
-                SDL.SDL_RendererFlags.SDL_RENDERER_PRESENTVSYNC);
+                SDL.SDL_RendererFlags.SDL_RENDERER_PRESENTVSYNC);*/
 
             if (renderer == IntPtr.Zero)
             {
@@ -118,8 +119,8 @@ namespace Pong
         {
             
             //clear renderer
-            SDL.SDL_RenderClear(renderer);
-            SDL.SDL_DestroyRenderer(renderer);
+            //SDL.SDL_RenderClear(renderer);
+            //SDL.SDL_DestroyRenderer(renderer);
             //go to ...
             Program.game.display = displayNum;
         }
