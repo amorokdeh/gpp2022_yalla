@@ -15,11 +15,13 @@ namespace Pong
         public Level2 level2;
         public Level3 level3;
         public GameOver gameOver;
+        public Control gamePad = new Control();
         public Game() {
             display = 1;
         }
         public void runMainMenu()
         {
+            gamePad.setup();
             mainMenu = new MainMenu();
             mainMenu.run();
         }

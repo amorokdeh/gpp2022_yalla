@@ -27,11 +27,6 @@ namespace Pong
                 h = PADDLE_HEIGH
             };
         }
-
-        
-
-
-
         public override void handleEvent(SDL.SDL_Event e, string upDownButtons)
         {
             if (upDownButtons.Equals("UP_DOWN"))
@@ -55,6 +50,43 @@ namespace Pong
                     {
                         case SDL.SDL_Keycode.SDLK_UP: mVelY += paddleVel; break;
                         case SDL.SDL_Keycode.SDLK_DOWN: mVelY -= paddleVel; break;
+                    }
+                }
+
+                //joystick
+                //If a key was pressed
+                /*
+                if (e.type == SDL.SDL_EventType.SDL_JOYAXISMOTION)
+                {
+                    Console.WriteLine("axis: %i %i\n" + e.jaxis.axisValue);
+                    //if (e.type == SDL.SDL_EventType.SDL_JOYAXISMOTION) { }
+                    //Adjust the velocity
+                    switch (e.cbutton.button)
+                    {
+                        //case SDL.SDL_CONTROLLER_BUTTON_A: mVelY -= paddleVel; break;
+                        //case SDL.SDL_Keycode.SDLK_DOWN: mVelY += paddleVel; break;
+                    }
+                }
+                */
+
+                //joystick
+                //If a key was released
+                if (e.type == SDL.SDL_EventType.SDL_JOYBUTTONDOWN)
+                {
+                    //Adjust the velocity
+                    switch (e.jbutton.button)
+                    {
+                        case 3: mVelY -= paddleVel; break;
+                        case 0: mVelY += paddleVel; break;
+                    }
+                }
+                else if (e.type == SDL.SDL_EventType.SDL_JOYBUTTONUP)
+                {
+                    //Adjust the velocity
+                    switch (e.jbutton.button)
+                    {
+                        case 3: mVelY += paddleVel; break;
+                        case 0: mVelY -= paddleVel; break;
                     }
                 }
             }
