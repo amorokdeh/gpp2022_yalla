@@ -22,11 +22,11 @@ namespace Pong
         {
             //Initialization flag
             bool success = true;
-            SDL.SDL_Init(SDL.SDL_INIT_GAMECONTROLLER); //Init SDL and Control
+            SDL.SDL_Init(SDL.SDL_INIT_JOYSTICK); //Init SDL and Control
 
 
             //Check for joysticks
-            if (SDL.SDL_NumJoysticks() < 1)
+            if (SDL.SDL_NumJoysticks() <= 1)
             {
                 Console.WriteLine("Warning: No Controller connected!\n");
                 success = false;
