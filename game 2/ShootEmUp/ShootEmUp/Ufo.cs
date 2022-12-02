@@ -8,5 +8,9 @@ namespace ShootEmUp
 {
     class Ufo:Enemy
     {
+        public Ufo(string name) : base(name)
+        {
+
+        }
     }
 }

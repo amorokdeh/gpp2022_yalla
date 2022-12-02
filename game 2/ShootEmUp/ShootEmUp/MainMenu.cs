@@ -10,7 +10,7 @@ namespace ShootEmUp
 {
     class MainMenu
     {
-        public static Sound sound = new Sound();
+        //public static Sound sound = new Sound();
         public int winner;
         public int level;
         
@@ -45,7 +45,7 @@ namespace ShootEmUp
             winnerText = "Der rechte Spieler hat gewonnen!";
 
             // SOUND AND MUSIC
-            sound.setup();
+            //sound.setup();
 
         }
         public void run()

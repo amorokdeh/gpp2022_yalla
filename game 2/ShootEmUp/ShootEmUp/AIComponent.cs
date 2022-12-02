@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShootEmUp
 {
-    class Ship:Enemy
+    class AIComponent : Component
     {
-        public Ship(string name) : base(name)
-        {
-
-        }
     }
 }

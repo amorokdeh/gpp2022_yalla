@@ -9,61 +9,61 @@ namespace ShootEmUp
 {
     class Game
     {
+
+
+        private GameObjectManager _objects = new GameObjectManager();
+        private PhysicsManager _physics = new PhysicsManager();
+        private RenderingManager _rendering = new RenderingManager();
+        private AudioManager _audio = new AudioManager();
+        private LevelManager _levels = new LevelManager();
+
+
+
+
+
+        public void BuildGameObject()
+        {
+            GameObject ship = _objects.CreateGameObject("ship");
+            ship.AddComponent(_physics.CreateComponent());
+        }
+
+
+
+
+
         public int display;
-        public MainMenu mainMenu;
-        public Level1 level1;
-        public Level2 level2;
-        public Level3 level3;
-        public GameOver gameOver;
-        public Control gamePad = new Control();
+
         public Game() {
             display = 1;
         }
-        public void runMainMenu()
-        {
-            gamePad.setup();
-            mainMenu = new MainMenu();
-            mainMenu.run();
-        }
-        public void runLevel1()
-        {
-            level1 = new Level1();
-            level1.run(); 
-        }
-        public void runLevel2()
-        {
-            level2 = new Level2();
-            level2.run();
-        }
-        public void runLevel3()
-        {
-            level3 = new Level3();
-            level3.run();
-        }
-        public void runGameOver()
-        {
-            gameOver = new GameOver();
-            gameOver.run();
-        }
-        public void quit()
-        {
-            MainMenu.sound.cleanUp();
-            SDL.SDL_DestroyWindow(Program.window.show);
-            SDL.SDL_Quit();
-        }
+        
+        
         //Game loop
         public void run() {
             while (true) { 
                 switch (display) { //if display = 0 end the game
                     case 0: quit(); return;
-                    case 1: runMainMenu(); break;
-                    case 2: runLevel1(); break;
-                    case 3: runLevel2(); break;
-                    case 4: runLevel3(); break;
-                    case 5: runGameOver(); break;
+                    case 1: _levels.runMainMenu(); break;
+                    case 2: _levels.runLevel1(); break;
+                    case 3: _levels.runLevel2(); break;
+                    case 4: _levels.runLevel3(); break;
+                    case 5: _levels.runGameOver(); break;
                 }
             }
             
+        }
+
+        public void quit()
+        {
+            _objects = null;
+            _physics = null;
+            _rendering = null;
+            _audio = null;
+            _levels = null;
+
+
+            SDL.SDL_DestroyWindow(Program.window.show);
+            SDL.SDL_Quit();
         }
     }
 }

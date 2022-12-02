@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ShootEmUp
 {
-    class Sound
+    class AudioComponent : Component
     {
         // music
         public IntPtr _Music = IntPtr.Zero;
@@ -19,7 +19,7 @@ namespace ShootEmUp
         public IntPtr _Low = IntPtr.Zero;
         public IntPtr _Portal = IntPtr.Zero;
 
-        public Sound() { 
+        public AudioComponent() { 
         
         }
 

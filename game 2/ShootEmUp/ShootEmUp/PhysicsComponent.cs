@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace ShootEmUp
 {
-    class Ship:Enemy
+    class PhysicsComponent : Component
     {
-        public Ship(string name) : base(name)
+        PhysicsManager PhysicsManager;
+        public PhysicsComponent(PhysicsManager pm)
         {
-
+            this.PhysicsManager = pm;
         }
     }
 }

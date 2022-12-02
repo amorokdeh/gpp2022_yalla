@@ -8,5 +8,9 @@ namespace ShootEmUp
 {
     class Enemy:GameObject
     {
+        public Enemy(string name) : base(name)
+        {
+
+        }
     }
 }
