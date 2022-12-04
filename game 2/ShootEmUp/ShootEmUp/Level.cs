@@ -8,6 +8,6 @@ namespace ShootEmUp
 {
     class Level
     {
-        public void run() { }
+        public virtual void run() { }
     }
 }

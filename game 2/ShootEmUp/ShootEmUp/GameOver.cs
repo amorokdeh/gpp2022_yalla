@@ -9,6 +9,7 @@ namespace ShootEmUp
 {
     class GameOver
     {
+        /*
         public bool running = true;
         public bool quit = false;
         public IntPtr renderer;
@@ -20,11 +21,7 @@ namespace ShootEmUp
         public void setup()
         {
             renderer = Program.window.renderer;
-            /*renderer = SDL.SDL_CreateRenderer(
-                Program.window.show,
-                -1,
-                SDL.SDL_RendererFlags.SDL_RENDERER_ACCELERATED |
-                SDL.SDL_RendererFlags.SDL_RENDERER_PRESENTVSYNC);*/
+
 
             if (renderer == IntPtr.Zero)
             {
@@ -128,5 +125,6 @@ namespace ShootEmUp
             //go to ...
             Program.game.display = displayNum;
         }
+*/
     }
 }

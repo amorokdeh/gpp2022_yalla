@@ -10,7 +10,10 @@ namespace ShootEmUp
     {
         public Ship(string name) : base(name)
         {
-
+            PosX = 600;
+            PosY = 200;
+            Width = 50;
+            Height = 50;
         }
     }
 }

@@ -10,7 +10,10 @@ namespace ShootEmUp
     {
         public Ufo(string name) : base(name)
         {
-
+            PosX = 500;
+            PosY = 200;
+            Width = 50;
+            Height = 50;
         }
     }
 }

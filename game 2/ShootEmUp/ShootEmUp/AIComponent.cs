@@ -8,5 +8,15 @@ namespace ShootEmUp
 {
     class AIComponent : Component
     {
+        AIManager AIManager;
+        public AIComponent(AIManager am)
+        {
+            this.AIManager = am;
+        }
+
+        public void Control()
+        {
+            GameObject.CurrentVelY = GameObject.VelY;
+        }
     }
 }

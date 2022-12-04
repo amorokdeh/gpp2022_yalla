@@ -26,14 +26,16 @@ namespace ShootEmUp
 
         }
 
-        public void loadImage(IntPtr renderer, String source) {
+
+
+        public void loadImage(String source) {
             //image
-            pumpkinTexture = SDL_image.IMG_LoadTexture(renderer, source);
+            pumpkinTexture = SDL_image.IMG_LoadTexture(Program.window.renderer, source);
             sRect.x = 0;
             sRect.y = 0;
             sRect.w = 128;
             sRect.h = 128;
-
+            /*
             tRect.x = Program.window.width / 2 - 1024 / 2;
             tRect.y = Program.window.heigh / 2 - (1024 - 480);
             tRect.w = 1024;
@@ -44,7 +46,7 @@ namespace ShootEmUp
             //SDL.SDL_RenderCopy(renderer, texture, IntPtr.Zero, IntPtr.Zero);
 
             // Switches out the currently presented render surface with the one we just did work on.
-            SDL.SDL_RenderPresent(renderer);
+            SDL.SDL_RenderPresent(renderer);*/
         }
     }
 }

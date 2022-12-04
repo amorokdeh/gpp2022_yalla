@@ -54,7 +54,7 @@ namespace ShootEmUp
         public void runGameOver()
         {
             gameOver = new GameOver();
-            gameOver.run();
+            //gameOver.run();
         }
     }
 }

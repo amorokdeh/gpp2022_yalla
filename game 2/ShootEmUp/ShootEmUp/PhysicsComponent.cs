@@ -13,5 +13,11 @@ namespace ShootEmUp
         {
             this.PhysicsManager = pm;
         }
+
+        public void Move()
+        {
+            GameObject.PosX += GameObject.CurrentVelX;
+            GameObject.PosY += GameObject.CurrentVelY;
+        }
     }
 }

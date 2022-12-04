@@ -19,5 +19,13 @@ namespace ShootEmUp
             return pc;
         }
 
+        public void Move()
+        {
+            foreach (var component in _physicsComponents)
+            {
+                component.Move();
+            }
+        }
+
     }
 }
