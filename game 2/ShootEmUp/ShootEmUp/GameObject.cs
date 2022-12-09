@@ -38,7 +38,7 @@ namespace ShootEmUp
 
             Img.setUp();
 
-            Img.loadImage("image/MiniPixelPack3/PlayerShip/PlayerShip.png");
+            
 
 
             this.Name = name;

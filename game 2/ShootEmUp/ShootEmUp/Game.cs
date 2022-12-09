@@ -31,6 +31,14 @@ namespace ShootEmUp
             //display = 1;
         }
 
+        public void BuildBackground()
+        {
+            GameObject bg = _objects.CreateGameBackground("background");
+            bg.AddComponent(_physics.CreateComponent());
+            bg.AddComponent(_rendering.CreateBGComponent());
+            bg.AddComponent(_ai.CreateComponent());
+        }
+
         public void BuildPlayer()
         {
             GameObject player = _objects.CreateGamePlayer("player");

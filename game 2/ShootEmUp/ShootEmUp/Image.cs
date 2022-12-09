@@ -41,21 +41,6 @@ namespace ShootEmUp
             sRect.y = 0;
             SDL.SDL_QueryTexture(imageTexture, out format, out access, out sRect.w, out sRect.h);
             Console.WriteLine("image w h ", sRect.w, sRect.h);
-
-            //sRect.w = 48;
-            //sRect.h = 16;
-            /*
-            tRect.x = Program.window.width / 2 - 1024 / 2;
-            tRect.y = Program.window.heigh / 2 - (1024 - 480);
-            tRect.w = 1024;
-            tRect.h = 1024;
-
-            //SDL.SDL_RenderCopy(renderer, texture, IntPtr.Zero, ref tRect);
-            SDL.SDL_RenderCopy(renderer, pumpkinTexture, ref sRect, ref tRect);
-            //SDL.SDL_RenderCopy(renderer, texture, IntPtr.Zero, IntPtr.Zero);
-
-            // Switches out the currently presented render surface with the one we just did work on.
-            SDL.SDL_RenderPresent(renderer);*/
         }
     }
 }

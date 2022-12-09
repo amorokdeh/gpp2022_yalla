@@ -15,9 +15,11 @@ namespace ShootEmUp
         public override void run()
         {
 
+            Program.game.BuildBackground();
             Program.game.BuildPlayer();
             Program.game.BuildShip();
             Program.game.BuildUfo();
+            
 
             while (true)
             {

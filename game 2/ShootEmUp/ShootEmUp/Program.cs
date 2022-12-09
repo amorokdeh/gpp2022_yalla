@@ -8,7 +8,7 @@ namespace ShootEmUp
 {
     class Program
     {
-        public static Window window = new Window(600, 800); //window size
+        public static Window window = new Window(64 * 6,128 * 6); //window size
         public static Game game = new Game(); //create the game
         static void Main(string[] args)
         {

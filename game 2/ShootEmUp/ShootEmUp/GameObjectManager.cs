@@ -11,6 +11,13 @@ namespace ShootEmUp
     {
         List<GameObject> _gameObjects = new List<GameObject>();
 
+
+        public GameObject CreateGameBackground(string name)
+        {
+            GameObject gameObject = new Background(name);
+            _gameObjects.Add(gameObject);
+            return gameObject;
+        }
         public GameObject CreateGameShip(string name)
         {
             GameObject gameObject = new Ship(name);

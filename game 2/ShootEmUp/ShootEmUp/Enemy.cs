@@ -10,7 +10,7 @@ namespace ShootEmUp
     {
         public Enemy(string name) : base(name)
         {
-
+            Img.loadImage("image/MiniPixelPack3/PlayerShip/PlayerShip.png");
         }
     }
 }
