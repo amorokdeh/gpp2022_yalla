@@ -115,6 +115,35 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="image\MiniPixelPack3\Effects\Explosion %2816 x 16%29.png" />
+    <Content Include="image\MiniPixelPack3\Effects\Sparkle %2816 x 16%29.png" />
+    <Content Include="image\MiniPixelPack3\Enemies\Alan %2816 x 16%29.png" />
+    <Content Include="image\MiniPixelPack3\Enemies\Bon_Bon %2816 x 16%29.png" />
+    <Content Include="image\MiniPixelPack3\Enemies\Lips %2816 x 16%29.png" />
+    <Content Include="image\MiniPixelPack3\Items\Circle_+_Square_+_Missile_pick-ups %2816 x 16%29.png" />
+    <Content Include="image\MiniPixelPack3\Items\Power_item %2816 x 16%29.png" />
+    <Content Include="image\MiniPixelPack3\LICENSE.txt" />
+    <Content Include="image\MiniPixelPack3\PlayerShip\Boosters %2816 x 16%29.png" />
+    <Content Include="image\MiniPixelPack3\PlayerShip\Boosters_left %2816 x 16%29.png" />
+    <Content Include="image\MiniPixelPack3\PlayerShip\Boosters_right %2816 x 16%29.png" />
+    <Content Include="image\MiniPixelPack3\PlayerShip\PlayerShip.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="image\MiniPixelPack3\Projectiles\Enemy_projectile %2816 x 16%29.png" />
+    <Content Include="image\MiniPixelPack3\Projectiles\Player_beam %2816 x 16%29.png" />
+    <Content Include="image\MiniPixelPack3\Projectiles\Player_charged_beam %2816 x 16%29.png" />
+    <Content Include="image\MiniPixelPack3\Projectiles\Player_charged_donut_shot %2816 x 16%29.png" />
+    <Content Include="image\MiniPixelPack3\Projectiles\Player_charged_square_shot %2816 x 16%29.png" />
+    <Content Include="image\MiniPixelPack3\Projectiles\Player_donut_shot %2816 x 16%29.png" />
+    <Content Include="image\MiniPixelPack3\Projectiles\Player_missile_shots %2816 x 16%29.png" />
+    <Content Include="image\MiniPixelPack3\Projectiles\Player_square_shot %2816 x 16%29.png" />
+    <Content Include="image\MiniPixelPack3\Space_BG %282 frames%29 %2864 x 64%29.png" />
+    <Content Include="image\MiniPixelPack3\UI objects\GAME_OVER %2872 x 8%29.png" />
+    <Content Include="image\MiniPixelPack3\UI objects\Item_held_box %2816 x 16%29.png" />
+    <Content Include="image\MiniPixelPack3\UI objects\Number_font %288 x 8%29.png" />
+    <Content Include="image\MiniPixelPack3\UI objects\Player_life_icon %2816 x 16%29.png" />
+    <Content Include="image\MiniPixelPack3\UI objects\Power_+_charge_bars %28full + empty%29 %2832 x 16%29.png" />
+    <Content Include="image\MiniPixelPack3\UI objects\START %2848 x 8%29.png" />
     <Content Include="image\pumpkin.bmp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

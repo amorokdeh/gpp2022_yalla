@@ -14,10 +14,10 @@ namespace ShootEmUp
             this.PhysicsManager = pm;
         }
 
-        public void Move()
+        public void Move(float deltaT)
         {
-            GameObject.PosX += GameObject.CurrentVelX;
-            GameObject.PosY += GameObject.CurrentVelY;
+            GameObject.PosX += GameObject.CurrentVelX * deltaT;
+            GameObject.PosY += GameObject.CurrentVelY * deltaT;
         }
     }
 }

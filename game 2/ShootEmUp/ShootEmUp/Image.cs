@@ -9,9 +9,14 @@ namespace ShootEmUp
 {
     class Image
     {
-        public IntPtr pumpkinTexture = IntPtr.Zero;
+        
+        public IntPtr imageTexture;
+        public IntPtr imageSurface;
         public SDL.SDL_Rect sRect;
         public SDL.SDL_Rect tRect;
+
+        uint format;
+        int access;
         public Image() {
             
         }
@@ -30,11 +35,15 @@ namespace ShootEmUp
 
         public void loadImage(String source) {
             //image
-            pumpkinTexture = SDL_image.IMG_LoadTexture(Program.window.renderer, source);
+            imageSurface = SDL_image.IMG_Load(source);
+            imageTexture = SDL.SDL_CreateTextureFromSurface(Program.window.renderer, imageSurface);
             sRect.x = 0;
             sRect.y = 0;
-            sRect.w = 128;
-            sRect.h = 128;
+            SDL.SDL_QueryTexture(imageTexture, out format, out access, out sRect.w, out sRect.h);
+            Console.WriteLine("image w h ", sRect.w, sRect.h);
+
+            //sRect.w = 48;
+            //sRect.h = 16;
             /*
             tRect.x = Program.window.width / 2 - 1024 / 2;
             tRect.y = Program.window.heigh / 2 - (1024 - 480);

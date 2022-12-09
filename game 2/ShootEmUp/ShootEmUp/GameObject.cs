@@ -9,14 +9,14 @@ namespace ShootEmUp
     class GameObject
     {
         private string Name { get; set; }
-        public int PosX { get; set; }
-        public int PosY { get; set; }
+        public float PosX { get; set; }
+        public float PosY { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }
-        public int VelX { get; set; }
-        public int CurrentVelX { get; set; }
-        public int VelY { get; set; }
-        public int CurrentVelY { get; set; }
+        public float VelX { get; set; }
+        public float CurrentVelX { get; set; }
+        public float VelY { get; set; }
+        public float CurrentVelY { get; set; }
 
 
         public Image Img = new Image();
@@ -30,14 +30,15 @@ namespace ShootEmUp
             PosY = 200;
             Width = 200;
             Height = 200;
-            VelX = 2;
-            VelY = 2;
+            VelX = 50;
+            VelY = 50;
             CurrentVelX = 0;
             CurrentVelY = 0;
 
 
             Img.setUp();
-            Img.loadImage( "image/pumpkin.bmp");
+
+            Img.loadImage("image/MiniPixelPack3/PlayerShip/PlayerShip.png");
 
 
             this.Name = name;

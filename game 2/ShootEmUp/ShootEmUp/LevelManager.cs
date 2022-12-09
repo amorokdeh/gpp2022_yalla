@@ -8,7 +8,7 @@ namespace ShootEmUp
 {
     class LevelManager
     {
-        
+
 
         public Level1 level1;
         public Level2 level2;
@@ -16,14 +16,23 @@ namespace ShootEmUp
 
 
 
-        
+
         public MainMenu mainMenu;
 
         public GameOver gameOver;
         public Control gamePad = new Control();
 
+        public enum GameState
+        {
+            Quit,
+            MainMenu,
+            Level1,
+            Level2,
+            Level3,
+            GameOver
+        }
 
-
+        public GameState display;
 
 
         public void runLevel1()
@@ -47,7 +56,7 @@ namespace ShootEmUp
         public void runMainMenu()
         {
             gamePad.setup();
-            mainMenu = new MainMenu();
+            mainMenu = new MainMenu(this);
             mainMenu.run();
         }
 
@@ -55,6 +64,24 @@ namespace ShootEmUp
         {
             gameOver = new GameOver();
             //gameOver.run();
+        }
+
+
+        public void run()
+        {
+            display = GameState.MainMenu;
+            while (true)
+            {
+                switch (display)
+                {
+                    case GameState.Quit: Program.game.quit(); return;
+                    case GameState.MainMenu: runMainMenu(); break;
+                    case GameState.Level1: runLevel1(); break;
+                    case GameState.Level2: runLevel2(); break;
+                    case GameState.Level3: runLevel3(); break;
+                    case GameState.GameOver: runGameOver(); break;
+                }
+            }
         }
     }
 }

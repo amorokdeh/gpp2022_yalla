@@ -22,13 +22,13 @@ namespace ShootEmUp
 
 
 
-        public int display;
+        //public int display;
 
 
         public Game()
         {
             
-            display = 1;
+            //display = 1;
         }
 
         public void BuildPlayer()
@@ -71,9 +71,9 @@ namespace ShootEmUp
         }
 
 
-        public void Move()
+        public void Move(float deltaT)
         {
-            _physics.Move();
+            _physics.Move(deltaT);
         }
 
 
@@ -89,8 +89,9 @@ namespace ShootEmUp
         
         
         //Game loop
-        public void run() {            
-            while (true) { 
+        public void run() {
+            _levels.run();
+            /*while (true) { 
                 switch (display) { //if display = 0 end the game
                     case 0: quit(); return;
                     case 1: _levels.runMainMenu(); break;
@@ -99,7 +100,7 @@ namespace ShootEmUp
                     case 4: _levels.runLevel3(); break;
                     case 5: _levels.runGameOver(); break;
                 }
-            }
+            }*/
             
         }
 

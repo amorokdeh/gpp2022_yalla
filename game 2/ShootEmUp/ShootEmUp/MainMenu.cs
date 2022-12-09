@@ -28,8 +28,12 @@ namespace ShootEmUp
         public SDL.SDL_Color color;
         public int textSize = 30;
         public bool optionSelected = false;
-        public MainMenu()
+
+
+        private LevelManager _levelManager;
+        public MainMenu(LevelManager lvlM)
         {
+            this._levelManager = lvlM;
             setup();
         }
 
@@ -145,26 +149,26 @@ namespace ShootEmUp
 
         public void endGame() {
             running = false; 
-            closeAndGoTo(0);
+            closeAndGoTo(LevelManager.GameState.Quit);
 
         }
 
         public void startLevel1()
         {
             running = false;
-            closeAndGoTo(2);
+            closeAndGoTo(LevelManager.GameState.Level1);
 
         }
         public void startLevel2()
         {
             running = false;
-            closeAndGoTo(3);
+            closeAndGoTo(LevelManager.GameState.Level2);
 
         }
         public void startLevel3()
         {
             running = false;
-            closeAndGoTo(4);
+            closeAndGoTo(LevelManager.GameState.Level3);
 
         }
         public void option()
@@ -238,14 +242,15 @@ namespace ShootEmUp
             }
         }
 
-        public void closeAndGoTo(int displayNum)
+        public void closeAndGoTo(LevelManager.GameState gs)
         {
-
+            _levelManager.display = gs;
             //clear renderer
             //SDL.SDL_RenderClear(renderer);
             //SDL.SDL_DestroyRenderer(renderer);
             //go to ...
-            Program.game.display = displayNum;
+            //Program.game.display = displayNum;
+           
         }
     }
 }
