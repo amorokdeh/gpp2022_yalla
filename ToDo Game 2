@@ -1,0 +1,13 @@
+Kritik überarbeiten:
+[] mehr Einstellmölichkeiten
+[] Fullscreen durch Skalierung
+![] Gampeloop angepasst an Refreshrate (delta t)
+[] C# Standards
+[] Display Werte per Enum
+[] Manager und Components
+
+Spiel:
+[] Bilder finden
+[] Sound finden
+[] Menü überarbeiten
+[] GameOver überarbeiten
