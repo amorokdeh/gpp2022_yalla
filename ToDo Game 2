@@ -1,10 +1,10 @@
 Kritik überarbeiten:
 [] mehr Einstellmöglichkeiten
 [] Fullscreen durch Skalierung
-![] Gampeloop angepasst an Refreshrate (delta t)
+[x] Gampeloop angepasst an Refreshrate (delta t)
 [] C# Standards
-[] Display Werte per Enum
-[] Manager und Components
+[teilweise] Display Werte per Enum
+[teilweise] Manager und Components
 
 Spiel:
 [] Bilder finden
