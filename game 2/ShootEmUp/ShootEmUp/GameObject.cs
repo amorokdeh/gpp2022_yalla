@@ -8,6 +8,8 @@ namespace ShootEmUp
 {
     class GameObject
     {
+        public bool Active = false;
+
         private string Name { get; set; }
         public float PosX { get; set; }
         public float PosY { get; set; }
@@ -23,15 +25,15 @@ namespace ShootEmUp
 
 
 
-        public GameObject(string name)
+        public GameObject(string name, int w, int h)
         {
             //for testing
             PosX = 200;
             PosY = 200;
-            Width = 200;
-            Height = 200;
-            VelX = 50;
-            VelY = 50;
+            Width = w;
+            Height = h;
+            VelX = 100;
+            VelY = 100;
             CurrentVelX = 0;
             CurrentVelY = 0;
 

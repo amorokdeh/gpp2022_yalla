@@ -25,7 +25,12 @@ namespace ShootEmUp
             // Handle events on queue
             while (SDL.SDL_PollEvent(out e) != 0)
             {
-                foreach(var component in _controlComponents)
+                if (e.type == SDL.SDL_EventType.SDL_QUIT)
+                {
+                    Program.game.Quit = true;
+                    
+                }
+                foreach (var component in _controlComponents)
                 {
                     component.HandleEvent(e);
                 }

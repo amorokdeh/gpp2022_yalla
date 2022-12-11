@@ -14,10 +14,31 @@ namespace ShootEmUp
             this.PhysicsManager = pm;
         }
 
-        public void Move(float deltaT)
+        public virtual void Move(float deltaT)
         {
             GameObject.PosX += GameObject.CurrentVelX * deltaT;
             GameObject.PosY += GameObject.CurrentVelY * deltaT;
+        }
+
+        public void CheckBorders()
+        {
+            if(GameObject.PosX < 0 - 16)
+            {
+                GameObject.PosX = 0 - 16;
+            } else if(GameObject.PosX > Program.window.width - 16)
+            {
+                GameObject.PosX = Program.window.width - 16;
+            }
+            if (GameObject.PosY < 0 - 16)
+            {
+                GameObject.PosY = 0 - 16;
+            }
+            else if (GameObject.PosY > Program.window.heigh - 16)
+            {
+                GameObject.PosY = Program.window.heigh - 16;
+            }
+
+
         }
     }
 }

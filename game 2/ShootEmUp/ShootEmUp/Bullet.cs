@@ -8,7 +8,7 @@ namespace ShootEmUp
 {
     class Bullet:GameObject
     {
-        public Bullet(string name):base(name)
+        public Bullet(string name, int w, int h):base(name, w, h)
         {
 
         }

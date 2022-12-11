@@ -72,15 +72,16 @@
     <Compile Include="MainMenu.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="obj\Release\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
+    <Compile Include="PhysicsBGComponent.cs" />
     <Compile Include="PhysicsManager.cs" />
     <Compile Include="PhysicsComponent.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="PoolManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RenderingComponent.cs" />
     <Compile Include="RenderingManager.cs" />
     <Compile Include="Ship.cs" />
-    <Compile Include="ShootEmUp.cs" />
     <Compile Include="AudioComponent.cs" />
     <Compile Include="Text.cs" />
     <Compile Include="Ufo.cs" />
@@ -118,9 +119,13 @@
   <ItemGroup>
     <Content Include="image\MiniPixelPack3\Effects\Explosion %2816 x 16%29.png" />
     <Content Include="image\MiniPixelPack3\Effects\Sparkle %2816 x 16%29.png" />
-    <Content Include="image\MiniPixelPack3\Enemies\Alan %2816 x 16%29.png" />
+    <Content Include="image\MiniPixelPack3\Enemies\Alan.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="image\MiniPixelPack3\Enemies\Bon_Bon %2816 x 16%29.png" />
-    <Content Include="image\MiniPixelPack3\Enemies\Lips %2816 x 16%29.png" />
+    <Content Include="image\MiniPixelPack3\Enemies\Lips.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="image\MiniPixelPack3\Items\Circle_+_Square_+_Missile_pick-ups %2816 x 16%29.png" />
     <Content Include="image\MiniPixelPack3\Items\Power_item %2816 x 16%29.png" />
     <Content Include="image\MiniPixelPack3\LICENSE.txt" />
@@ -147,12 +152,6 @@
     <Content Include="image\MiniPixelPack3\UIobjects\Player_life_icon %2816 x 16%29.png" />
     <Content Include="image\MiniPixelPack3\UIobjects\Power_+_charge_bars %28full + empty%29 %2832 x 16%29.png" />
     <Content Include="image\MiniPixelPack3\UIobjects\START %2848 x 8%29.png" />
-    <Content Include="image\pumpkin.bmp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="image\pumpkin.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="image\SpaceBG.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

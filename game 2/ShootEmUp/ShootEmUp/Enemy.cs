@@ -8,9 +8,10 @@ namespace ShootEmUp
 {
     class Enemy:GameObject
     {
-        public Enemy(string name) : base(name)
+        
+        public Enemy(string name, int w, int h) : base(name, w, h)
         {
-            Img.loadImage("image/MiniPixelPack3/PlayerShip/PlayerShip.png");
+            
         }
     }
 }

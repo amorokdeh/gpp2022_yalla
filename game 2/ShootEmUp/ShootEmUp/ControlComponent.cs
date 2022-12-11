@@ -33,12 +33,6 @@ namespace ShootEmUp
                     case SDL.SDL_Keycode.SDLK_DOWN: GameObject.CurrentVelY += GameObject.VelY; break;
                     case SDL.SDL_Keycode.SDLK_LEFT: GameObject.CurrentVelX -= GameObject.VelX; break;
                     case SDL.SDL_Keycode.SDLK_RIGHT: GameObject.CurrentVelX += GameObject.VelX; break;
-                        /*
-                        case SDL.SDL_Keycode.SDLK_UP: GameObject.PosY -= 2; break;
-                        case SDL.SDL_Keycode.SDLK_DOWN: GameObject.PosY += 2; break;
-                        case SDL.SDL_Keycode.SDLK_LEFT: GameObject.PosX -= 2; break;
-                        case SDL.SDL_Keycode.SDLK_RIGHT: GameObject.PosX += 2; break;
-                        */
 
                 }
             }
@@ -51,12 +45,6 @@ namespace ShootEmUp
                     case SDL.SDL_Keycode.SDLK_DOWN: GameObject.CurrentVelY -= GameObject.VelY; break;
                     case SDL.SDL_Keycode.SDLK_LEFT: GameObject.CurrentVelX += GameObject.VelX; break;
                     case SDL.SDL_Keycode.SDLK_RIGHT: GameObject.CurrentVelX -= GameObject.VelX; break;
-                        /*
-                        case SDL.SDL_Keycode.SDLK_UP: GameObject.PosY += 2; break;
-                        case SDL.SDL_Keycode.SDLK_DOWN: GameObject.PosY -= 2; break;
-                        case SDL.SDL_Keycode.SDLK_LEFT: GameObject.PosX += 2; break;
-                        case SDL.SDL_Keycode.SDLK_RIGHT: GameObject.PosX -= 2; break;
-                        */
 
                 }
             }

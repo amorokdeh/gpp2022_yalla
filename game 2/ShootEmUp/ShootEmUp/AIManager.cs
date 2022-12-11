@@ -17,6 +17,8 @@ namespace ShootEmUp
             return rc;
         }
 
+
+
         public void Control()
         {
 

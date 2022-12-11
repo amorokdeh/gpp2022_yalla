@@ -12,16 +12,18 @@ namespace ShootEmUp
         DateTime timeNow = DateTime.Now;
         float deltaTime;
         float avDeltaTime = -1;
+
         public override void run()
         {
+
 
             Program.game.BuildBackground();
             Program.game.BuildPlayer();
             Program.game.BuildShip();
-            Program.game.BuildUfo();
+            //Program.game.BuildUfo();
             
 
-            while (true)
+            while (!Program.game.Quit)
             {
                 timeNow = DateTime.Now;
                 deltaTime = (timeNow.Ticks - timeBefore.Ticks) / 10000000f;
@@ -35,10 +37,28 @@ namespace ShootEmUp
                 }               
                 timeBefore = timeNow;
 
+                produceEnemies(avDeltaTime);
                 Program.game.ControlEnemy();   
                 Program.game.ControlPlayer();
                 Program.game.Move(avDeltaTime);
                 Program.game.Render();
+                
+            }
+            Program.game.quit();
+        }
+
+        float gap = 0;
+        GameObject enemy;
+        public void produceEnemies(float deltaTime)
+        {
+            gap += deltaTime;
+            if (gap > 1)
+            {
+                enemy = Program.game.RequestEnemy();
+
+                enemy.PosY = 0;
+                
+                gap = 0;
             }
         }
         

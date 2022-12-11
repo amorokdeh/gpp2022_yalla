@@ -8,12 +8,12 @@ namespace ShootEmUp
 {
     class Ship:Enemy
     {
-        public Ship(string name) : base(name)
+        public Ship(string name, int w, int h) : base(name, w, h)
         {
             PosX = 600;
-            PosY = 200;
-            Width = 50;
-            Height = 50;
+            PosY = 0;
+
+            Img.loadImage("image/MiniPixelPack3/Enemies/Lips.png");
         }
     }
 }

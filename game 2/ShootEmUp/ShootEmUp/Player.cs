@@ -8,7 +8,7 @@ namespace ShootEmUp
 {
     class Player:GameObject
     {
-        public Player(string name): base(name)
+        public Player(string name, int w, int h): base(name, w, h)
         {
             Img.loadImage("image/MiniPixelPack3/PlayerShip/PlayerShip.png");
         }

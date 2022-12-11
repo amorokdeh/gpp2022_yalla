@@ -17,6 +17,12 @@ namespace ShootEmUp
         public void Control()
         {
             GameObject.CurrentVelY = GameObject.VelY;
+
+            //nur zum Testen
+            if(GameObject is Ufo && GameObject.PosY > 300)
+            {
+                GameObject.Active = false;
+            }
         }
     }
 }

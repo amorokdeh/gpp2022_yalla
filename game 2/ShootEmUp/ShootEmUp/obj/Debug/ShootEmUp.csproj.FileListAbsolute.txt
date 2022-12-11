@@ -7,8 +7,6 @@ C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\obj\Debug\ShootEmUp.csproj.CopyComplete
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\obj\Debug\ShootEmUp.exe
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\obj\Debug\ShootEmUp.pdb
-C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\image\pumpkin.bmp
-C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\image\pumpkin.png
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\libfreetype-6.dll
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\libpng16-16.dll
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\SDL2.dll
@@ -30,3 +28,5 @@ C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\image\MiniPixelPack3\PlayerShip\PlayerShip.png
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\image\MiniPixelPack3\SpaceBG.png
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\image\SpaceBG.png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\image\MiniPixelPack3\Enemies\Alan.png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\image\MiniPixelPack3\Enemies\Lips.png

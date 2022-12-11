@@ -11,9 +11,10 @@ namespace ShootEmUp
     {
         private SDL.SDL_Rect rect;
         private SDL.SDL_Rect srcRect;
+        int dstX = 0;
 
         RenderingManager RenderingManager;
-        public RenderingComponent(RenderingManager rm, int x, int y, int w, int h, int dstW, int dstH)
+        public RenderingComponent(RenderingManager rm, int x, int y, int w, int h, int dstW, int dstH, int dstX=0)
         {
             this.RenderingManager = rm;
             srcRect.x = x;
@@ -22,12 +23,13 @@ namespace ShootEmUp
             srcRect.h = h;
             rect.w = dstW;
             rect.h = dstH;
+            this.dstX = dstX;
         }
 
         public void Render()
         {
             //SDL.SDL_SetRenderDrawColor(Program.window.renderer, 0, 60, 20, 255);            
-            rect.x = (int)GameObject.PosX;
+            rect.x = (int)GameObject.PosX + dstX;
             rect.y = (int)GameObject.PosY;           
             //SDL.SDL_RenderFillRect(Program.window.renderer, ref rect);
 

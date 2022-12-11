@@ -8,12 +8,12 @@ namespace ShootEmUp
 {
     class Ufo:Enemy
     {
-        public Ufo(string name) : base(name)
+        public Ufo(string name, int w, int h) : base(name, w, h)
         {
             PosX = 500;
-            PosY = 200;
-            Width = 50;
-            Height = 50;
+            PosY = 0;
+
+            Img.loadImage("image/MiniPixelPack3/Enemies/Alan.png");
         }
     }
 }

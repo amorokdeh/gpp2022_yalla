@@ -40,7 +40,6 @@ namespace ShootEmUp
             sRect.x = 0;
             sRect.y = 0;
             SDL.SDL_QueryTexture(imageTexture, out format, out access, out sRect.w, out sRect.h);
-            Console.WriteLine("image w h ", sRect.w, sRect.h);
         }
     }
 }

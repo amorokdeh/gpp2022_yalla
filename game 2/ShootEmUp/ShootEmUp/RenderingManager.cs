@@ -11,15 +11,16 @@ namespace ShootEmUp
     {
         List<RenderingComponent> _renderingComponents = new List<RenderingComponent>();
 
-        internal Component CreateComponent()
+        internal Component CreateComponent(int w, int h)
         {
-            RenderingComponent rc = new RenderingComponent(this, 16, 0, 16, 16, 16*2, 16*2);
+
+            RenderingComponent rc = new RenderingComponent(this, 16, 0, 16, 16, w, h);
             _renderingComponents.Add(rc);
             return rc;
         }
-        internal Component CreateBGComponent()
+        internal Component CreateBGComponent(int x, int y, int w, int h, int dstW, int dstH, int dstX = 0)
         {
-            RenderingComponent rc = new RenderingComponent(this, 0, 0, 128, 64, 128*6, 64*6);
+            RenderingComponent rc = new RenderingComponent(this, x, y, w, h, dstW, dstH, dstX);
             _renderingComponents.Add(rc);
             return rc;
         }
@@ -30,7 +31,8 @@ namespace ShootEmUp
             SDL.SDL_RenderClear(Program.window.renderer);
             foreach (var component in _renderingComponents)
             {
-                component.Render();
+                if(component.GameObject.Active)
+                    component.Render();
             }
                // _renderingComponents[0].Render();
             /*
