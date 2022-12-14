@@ -37,6 +37,18 @@ namespace ShootEmUp
             //display = 1;
         }
 
+        public void tryHeroStuff()
+        {
+            Hero hero = new Hero();
+            GameMaster gm = new GameMaster();
+            hero.AddObserver(gm);
+            while (Console.ReadKey().Key != ConsoleKey.Escape) {
+                hero.SlayMonsters();
+                //gm.DoTurn();
+            }
+
+        }
+
         public void BuildBackground()
         {
             GameObject bg = _objects.CreateGameBackground("background", 128*4, 64*4, 0, 0);
@@ -61,24 +73,27 @@ namespace ShootEmUp
             bg3.AddComponent(_ai.CreateComponent());
         }
 
-        public void BuildPlayer()
+        public GameObject BuildPlayer()
         {
             GameObject player = _objects.CreateGamePlayer("player", 16*2, 16*2);
             player.Active = true;
             player.AddComponent(_physics.CreateComponent());
             player.AddComponent(_rendering.CreateComponent(16*2, 16*2));
             player.AddComponent(_controls.CreateComponent());
+            return player;
         }
 
 
         //Enemy
-        public void BuildShip()
+        public GameObject BuildShip(GameObject ship)
         {
-            GameObject ship = _objects.CreateGameShip("ship", 16*2, 16*2);
-            ship.Active = true;
+            ship = _objects.CreateGameShip("ship", 16*2, 16*2);
             ship.AddComponent(_physics.CreateComponent());
             ship.AddComponent(_rendering.CreateComponent(16*2, 16*2));
             ship.AddComponent(_ai.CreateComponent());
+            ship.AddComponent(_collisions.CreateComponent());
+
+            return ship;
 
         }
 
@@ -89,18 +104,46 @@ namespace ShootEmUp
             ufo.AddComponent(_physics.CreateComponent());
             ufo.AddComponent(_rendering.CreateComponent(16*2, 16*2));
             ufo.AddComponent(_ai.CreateComponent());
+            ufo.AddComponent(_collisions.CreateComponent());
 
             return ufo;
 
         }
 
-        public GameObject RequestEnemy()
+        public GameObject BuildPlayerBullet(GameObject bullet, GameObject player)
         {
-            return _pool.RequestEnemy();
+            bullet = _objects.CreatePlayerBullet("bullet",player, 16 * 2, 16 * 2);
+            bullet.AddComponent(_physics.CreateComponent());
+            bullet.AddComponent(_rendering.CreateComponent(16 * 2, 16 * 2));
+            bullet.AddComponent(_ai.CreateComponent());
+            bullet.AddComponent(_collisions.CreateComponent());
+            return bullet;
+
         }
-        public void DespawnEnemy(GameObject enemy)
+
+        public GameObject RequestEnemyUfo()
         {
-            _pool.DespawnEnemy(enemy);
+            return _pool.RequestEnemyUfo();
+        }
+        public void DespawnEnemyUfo(GameObject enemy)
+        {
+            _pool.DespawnEnemyUfo(enemy);
+        }
+        public GameObject RequestEnemyShip()
+        {
+            return _pool.RequestEnemyShip();
+        }
+        public void DespawnEnemyShip(GameObject enemy)
+        {
+            _pool.DespawnEnemyShip(enemy);
+        }
+        public GameObject RequestPlayerBullet(GameObject player)
+        {
+            return _pool.RequestPlayerBullet(player);
+        }
+        public void DespawnPlayerBullet(GameObject bullet)
+        {
+            _pool.DespawnPlayerBullet(bullet);
         }
 
 
@@ -117,6 +160,11 @@ namespace ShootEmUp
         public void Move(float deltaT)
         {
             _physics.Move(deltaT);
+        }
+
+        public void Collide()
+        {
+            _collisions.Collide();
         }
 
 

@@ -14,7 +14,7 @@ namespace ShootEmUp
         internal Component CreateComponent(int w, int h)
         {
 
-            RenderingComponent rc = new RenderingComponent(this, 16, 0, 16, 16, w, h);
+            RenderingComponent rc = new RenderingComponent(this, 0, 0, 16, 16, w, h);
             _renderingComponents.Add(rc);
             return rc;
         }

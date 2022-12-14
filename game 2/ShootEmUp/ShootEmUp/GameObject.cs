@@ -23,6 +23,8 @@ namespace ShootEmUp
 
         public Image Img = new Image();
 
+        public int ImgChange = 0;
+
 
 
         public GameObject(string name, int w, int h)

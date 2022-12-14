@@ -12,14 +12,24 @@ namespace ShootEmUp
         DateTime timeNow = DateTime.Now;
         float deltaTime;
         float avDeltaTime = -1;
+        GameObject player;
+
+        float gap = 0;
+        float gapSize = 1f;
+        GameObject gameObject;
+
+
+        float bulletGap = 0;
+        float bulletGapSize = 0.8f;
+        Bullet bullet;
 
         public override void run()
         {
 
 
             Program.game.BuildBackground();
-            Program.game.BuildPlayer();
-            Program.game.BuildShip();
+            player = Program.game.BuildPlayer();
+            //Program.game.BuildShip();
             //Program.game.BuildUfo();
             
 
@@ -38,29 +48,50 @@ namespace ShootEmUp
                 timeBefore = timeNow;
 
                 produceEnemies(avDeltaTime);
+                produceBullets(avDeltaTime);
                 Program.game.ControlEnemy();   
                 Program.game.ControlPlayer();
                 Program.game.Move(avDeltaTime);
+                Program.game.Collide();
                 Program.game.Render();
                 
             }
             Program.game.quit();
         }
 
-        float gap = 0;
-        GameObject enemy;
+
         public void produceEnemies(float deltaTime)
         {
             gap += deltaTime;
-            if (gap > 1)
+            if (gap > gapSize)
             {
-                enemy = Program.game.RequestEnemy();
+                gameObject = Program.game.RequestEnemyShip();
 
-                enemy.PosY = 0;
+                gameObject.PosY = 0;
+                gameObject.PosX = 0;
+                gameObject = Program.game.RequestEnemyUfo();
+
+                gameObject.PosY = 0;
+                gameObject.PosX = 300;
                 
                 gap = 0;
             }
         }
+
         
+        public void produceBullets(float deltaTime)
+        {
+            bulletGap += deltaTime;
+            if (bulletGap > bulletGapSize)
+            {
+                bullet = (Bullet)Program.game.RequestPlayerBullet(player);
+
+                bullet.PosY = bullet.Gameobject.PosY;
+                bullet.PosX = bullet.Gameobject.PosX;
+
+                bulletGap = 0;
+            }
+        }
+
     }
 }

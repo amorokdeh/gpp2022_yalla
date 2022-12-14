@@ -27,11 +27,14 @@ namespace ShootEmUp
         }
 
         public void Render()
-        {
-            //SDL.SDL_SetRenderDrawColor(Program.window.renderer, 0, 60, 20, 255);            
+        {         
             rect.x = (int)GameObject.PosX + dstX;
-            rect.y = (int)GameObject.PosY;           
-            //SDL.SDL_RenderFillRect(Program.window.renderer, ref rect);
+            rect.y = (int)GameObject.PosY;      
+            
+            //zum testen
+
+                srcRect.x = GameObject.ImgChange;
+
 
             SDL.SDL_RenderCopy(Program.window.renderer, GameObject.Img.imageTexture, ref srcRect, ref rect);
         }

@@ -8,9 +8,14 @@ namespace ShootEmUp
 {
     class Bullet:GameObject
     {
-        public Bullet(string name, int w, int h):base(name, w, h)
+        public GameObject Gameobject;
+        public Bullet(string name, GameObject player, int w, int h):base(name, w, h)
         {
+            Gameobject = player;
 
+            //VelY = -10;
+            VelY = -100;
+            Img.loadImage("image/MiniPixelPack3/Projectiles/PlayerBeam.png");
         }
     }
 }

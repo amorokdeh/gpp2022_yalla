@@ -40,6 +40,13 @@ namespace ShootEmUp
             return gameObject;
         }
 
+        public GameObject CreatePlayerBullet(string name,GameObject player, int w, int h)
+        {
+            GameObject gameObject = new Bullet(name,player, w, h);
+            _gameObjects.Add(gameObject);
+            return gameObject;
+        }
+
 
 
     }

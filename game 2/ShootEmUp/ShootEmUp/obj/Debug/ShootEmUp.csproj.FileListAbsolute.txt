@@ -27,6 +27,6 @@ C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\sound.wav
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\image\MiniPixelPack3\PlayerShip\PlayerShip.png
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\image\MiniPixelPack3\SpaceBG.png
-C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\image\SpaceBG.png
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\image\MiniPixelPack3\Enemies\Alan.png
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\image\MiniPixelPack3\Enemies\Lips.png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\image\MiniPixelPack3\Projectiles\PlayerBeam.png

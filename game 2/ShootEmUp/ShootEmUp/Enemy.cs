@@ -11,7 +11,7 @@ namespace ShootEmUp
         
         public Enemy(string name, int w, int h) : base(name, w, h)
         {
-            
+            VelY = 100;
         }
     }
 }

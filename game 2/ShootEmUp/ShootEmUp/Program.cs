@@ -15,6 +15,10 @@ namespace ShootEmUp
 
             window.setup(); //setup the window
             game.run(); //run the game loop
+
+
+            //Observable und Observer aus der Vorlesung
+            //game.tryHeroStuff();
         }
     }
 }
