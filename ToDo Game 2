@@ -7,10 +7,12 @@ Kritik überarbeiten:
 [teilweise] Manager und Components
 
 Spiel:
-[] Bilder finden
+[x] Bilder finden
 [] Sound finden
 [] Menü überarbeiten
 [] GameOver überarbeiten
+[] Kollision
+[] Score
 
 [] Observer
 
