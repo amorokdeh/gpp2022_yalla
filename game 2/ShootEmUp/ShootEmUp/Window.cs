@@ -37,7 +37,7 @@ namespace ShootEmUp
         {
             // Create a new window given a title, size, and passes it a flag indicating it should be shown.
             show = SDL.SDL_CreateWindow(
-                        "Yalla Pong",
+                        "Yalla Shoot Em Up",
                         SDL.SDL_WINDOWPOS_UNDEFINED,
                         SDL.SDL_WINDOWPOS_UNDEFINED,
                         width,
@@ -125,6 +125,28 @@ namespace ShootEmUp
         public void calculateFPS()
         {
             startFPS = SDL.SDL_GetTicks();
+        }
+        public void changeFPSLimit() {
+            limitedFPS = limitedFPS * 2;
+            if (limitedFPS > 120) {
+                limitedFPS = 15;
+            }
+            desiredDelta = 1000 / limitedFPS;
+        }
+
+        public void changeWindowSize() {
+            if (heigh == 512 && width == 1024)
+            {
+                heigh = 1920;
+                width = 1080;
+            }
+            else {
+                heigh = 800;
+                width = 600;
+            }
+
+            SDL.SDL_SetWindowSize(show, heigh, width);
+
         }
 
     }

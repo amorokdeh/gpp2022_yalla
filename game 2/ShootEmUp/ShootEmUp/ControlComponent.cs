@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static ShootEmUp.LevelManager;
 
 namespace ShootEmUp
 {
@@ -33,6 +34,7 @@ namespace ShootEmUp
                     case SDL.SDL_Keycode.SDLK_DOWN: GameObject.CurrentVelY += GameObject.VelY; break;
                     case SDL.SDL_Keycode.SDLK_LEFT: GameObject.CurrentVelX -= GameObject.VelX; break;
                     case SDL.SDL_Keycode.SDLK_RIGHT: GameObject.CurrentVelX += GameObject.VelX; break;
+                    case SDL.SDL_Keycode.SDLK_ESCAPE: Program.game._levels.display = GameState.MainMenu; Program.game._levels.controlQuitRequest = true; break; //quit game
 
                 }
             }

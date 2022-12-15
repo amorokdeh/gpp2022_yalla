@@ -16,10 +16,10 @@ namespace ShootEmUp
         private PhysicsManager _physics = new PhysicsManager();
         private RenderingManager _rendering = new RenderingManager();
         private AudioManager _audio = new AudioManager();
-        private LevelManager _levels = new LevelManager();
+        public LevelManager _levels = new LevelManager();
         private CollisionManager _collisions = new CollisionManager();
         private AIManager _ai = new AIManager();
-        private ControlManager _controls = new ControlManager();
+        public ControlManager _controls = new ControlManager();
 
         private PoolManager _pool = new PoolManager();
 

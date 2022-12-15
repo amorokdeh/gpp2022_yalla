@@ -21,6 +21,7 @@ namespace ShootEmUp
 
         public GameOver gameOver;
         public Control gamePad = new Control();
+        public bool controlQuitRequest = false;
 
         public enum GameState
         {

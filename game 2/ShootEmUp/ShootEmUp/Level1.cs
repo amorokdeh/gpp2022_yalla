@@ -31,10 +31,13 @@ namespace ShootEmUp
             player = Program.game.BuildPlayer();
             //Program.game.BuildShip();
             //Program.game.BuildUfo();
-            
+            Program.game._levels.controlQuitRequest = false;
+
+
 
             while (!Program.game.Quit)
             {
+                Program.window.calculateFPS(); //frame limit start calculating here
                 timeNow = DateTime.Now;
                 deltaTime = (timeNow.Ticks - timeBefore.Ticks) / 10000000f;
                 if(avDeltaTime == -1) 
@@ -54,7 +57,9 @@ namespace ShootEmUp
                 Program.game.Move(avDeltaTime);
                 Program.game.Collide();
                 Program.game.Render();
-                
+                if (Program.game._levels.controlQuitRequest) { return; }  // press escape to quit
+                Program.window.deltaFPS(); //frame limit end calculating here
+
             }
             Program.game.quit();
         }
