@@ -56,8 +56,10 @@ namespace ShootEmUp
         {
             while (running)
             {
+                Program.window.calculateFPS(); //frame limit start calculating here
                 render();
                 controll();
+                Program.window.deltaFPS(); //frame limit end calculating here
 
             }
 
@@ -182,6 +184,9 @@ namespace ShootEmUp
             //Clear screen
             SDL.SDL_SetRenderDrawColor(renderer, 5, 5, 5, 255);
             SDL.SDL_RenderClear(renderer);
+
+            //show FPS
+            Program.window.fpsCalculate();
 
             if (!optionSelected)
             {

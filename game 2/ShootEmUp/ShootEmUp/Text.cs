@@ -52,6 +52,8 @@ namespace ShootEmUp
             Message_rect.w = w;
             Message_rect.h = h;
             SDL.SDL_RenderCopy(renderer, Message, IntPtr.Zero, ref Message_rect);
+            SDL.SDL_FreeSurface(surfaceMessage);
+            SDL.SDL_DestroyTexture(Message);
         }
 
     }

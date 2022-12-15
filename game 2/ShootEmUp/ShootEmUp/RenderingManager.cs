@@ -34,7 +34,9 @@ namespace ShootEmUp
                 if(component.GameObject.Active)
                     component.Render();
             }
-               // _renderingComponents[0].Render();
+            Program.window.fpsCalculate();
+
+            // _renderingComponents[0].Render();
             /*
             foreach(var rc in SubsetThatNeedsRendering())
             {
