@@ -20,6 +20,23 @@ namespace ShootEmUp
             GameObject.PosX += GameObject.CurrentVelX * deltaT;
             GameObject.PosY += GameObject.CurrentVelY * deltaT;
 
+            if(GameObject is Player)
+            {
+                Player p = (Player)GameObject;
+                if (GameObject.CurrentVelX > 0)
+                {
+                    p.FlyRight();
+                } else if(GameObject.CurrentVelX < 0)
+                {
+                    p.FlyLeft();
+                } else
+                {
+                    p.FlyStraight();
+                }
+
+                
+            }
+
         }
 
         public void CheckBorders()

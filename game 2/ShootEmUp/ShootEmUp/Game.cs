@@ -25,8 +25,8 @@ namespace ShootEmUp
 
         public bool Quit;
 
+        public uint ticks = SDL.SDL_GetTicks();
 
-        
 
         //public int display;
 

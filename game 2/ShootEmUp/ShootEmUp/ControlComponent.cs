@@ -31,16 +31,8 @@ namespace ShootEmUp
                 {
                     case SDL.SDL_Keycode.SDLK_UP: GameObject.CurrentVelY -= GameObject.VelY; break;
                     case SDL.SDL_Keycode.SDLK_DOWN: GameObject.CurrentVelY += GameObject.VelY; break;
-                    case SDL.SDL_Keycode.SDLK_LEFT: 
-                        GameObject.CurrentVelX -= GameObject.VelX;
-                        Player p = (Player)GameObject;
-                        p.FlyLeft();
-                        break;
-                    case SDL.SDL_Keycode.SDLK_RIGHT: 
-                        GameObject.CurrentVelX += GameObject.VelX;
-                        Player p1 = (Player)GameObject;
-                        p1.FlyRight();
-                        break;
+                    case SDL.SDL_Keycode.SDLK_LEFT: GameObject.CurrentVelX -= GameObject.VelX; break;
+                    case SDL.SDL_Keycode.SDLK_RIGHT: GameObject.CurrentVelX += GameObject.VelX; break;
 
                 }
             }
@@ -51,16 +43,8 @@ namespace ShootEmUp
                 {
                     case SDL.SDL_Keycode.SDLK_UP: GameObject.CurrentVelY += GameObject.VelY; break;
                     case SDL.SDL_Keycode.SDLK_DOWN: GameObject.CurrentVelY -= GameObject.VelY; break;
-                    case SDL.SDL_Keycode.SDLK_LEFT: 
-                        GameObject.CurrentVelX += GameObject.VelX;
-                        Player p = (Player)GameObject;
-                        p.FlyStraight();
-                        break;
-                    case SDL.SDL_Keycode.SDLK_RIGHT: 
-                        GameObject.CurrentVelX -= GameObject.VelX;
-                        Player p1 = (Player)GameObject;
-                        p1.FlyStraight();
-                        break;
+                    case SDL.SDL_Keycode.SDLK_LEFT: GameObject.CurrentVelX += GameObject.VelX; break;
+                    case SDL.SDL_Keycode.SDLK_RIGHT: GameObject.CurrentVelX -= GameObject.VelX; break;
 
                 }
             }
