@@ -1,6 +1,6 @@
 Kritik überarbeiten:
 [] mehr Einstellmöglichkeiten
-[] Fullscreen durch Skalierung
+[] Fullscreen durch Skalierung (Amr)
 [x] Gampeloop angepasst an Refreshrate (delta t)
 [] C# Standards
 [teilweise] Display Werte per Enum
@@ -8,11 +8,22 @@ Kritik überarbeiten:
 
 Spiel:
 [x] Bilder finden
-[] Sound finden
+[] Sound finden und einbauen (Amr)
 [] Menü überarbeiten
 [] GameOver überarbeiten
-[] Kollision
-[] Score
+[] Kollision (Majbrit)
+[] Score (Majbrit)
+[] Unterschiedliche Anfangsposition der Gegner
+[] Bullets werden schneller bei Kollision
+[] Powerups
+[] Zeitlupeneffekt
+[] Mehrere Leben
+[] Animation
+    - Bewegung der Gegner
+    - Zerstörung der Gegner
+    - ...
+[] Gegner die schießen
+    
 
-[] Observer
+[] Observer (Amr)
 
