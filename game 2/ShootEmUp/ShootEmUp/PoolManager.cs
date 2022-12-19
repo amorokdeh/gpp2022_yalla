@@ -30,12 +30,12 @@ namespace ShootEmUp
             {
                 if (enemy.Active == false)
                 {
-                    Console.WriteLine("Old enemy");
+                    //Console.WriteLine("Old enemy");
                     enemy.Active = true;
                     return enemy;
                 }
             }
-            Console.WriteLine("New enemy");
+            //Console.WriteLine("New enemy");
             GameObject newEnemy = Program.game.BuildUfo(_objectPrefab);
             newEnemy.Active = true;
             _enemyUfoPool.Add(newEnemy);
@@ -54,12 +54,12 @@ namespace ShootEmUp
             {
                 if (enemy.Active == false)
                 {
-                    Console.WriteLine("Old enemy");
+                    //Console.WriteLine("Old enemy");
                     enemy.Active = true;
                     return enemy;
                 }
             }
-            Console.WriteLine("New enemy");
+            //Console.WriteLine("New enemy");
             GameObject newEnemy = Program.game.BuildShip(_objectPrefab);
             newEnemy.Active = true;
             _enemyShipPool.Add(newEnemy);
@@ -78,12 +78,12 @@ namespace ShootEmUp
             {
                 if (bullet.Active == false)
                 {
-                    Console.WriteLine("Old bullet");
+                    //Console.WriteLine("Old bullet");
                     bullet.Active = true;
                     return bullet;
                 }
             }
-            Console.WriteLine("New bullet");
+            //Console.WriteLine("New bullet");
             GameObject newBullet = Program.game.BuildPlayerBullet(_objectPrefab, player);
             newBullet.Active = true;
             _playerBulletPool.Add(newBullet);

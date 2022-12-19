@@ -11,16 +11,28 @@ namespace ShootEmUp
     {
         List<RenderingComponent> _renderingComponents = new List<RenderingComponent>();
 
+
+        
+
+        
+
         internal Component CreateComponent(int w, int h)
         {
 
-            RenderingComponent rc = new RenderingComponent(this, 0, 0, 16, 16, w, h);
+            RenderingComponent rc = new ImageRenderingComponent(this, 0, 0, 16, 16, w, h);
+            _renderingComponents.Add(rc);
+            return rc;
+        }
+        internal Component CreateInfoComponent()
+        {
+
+            InfoRenderingComponent rc = new InfoRenderingComponent(this);
             _renderingComponents.Add(rc);
             return rc;
         }
         internal Component CreateBGComponent(int x, int y, int w, int h, int dstW, int dstH, int dstX = 0)
         {
-            RenderingComponent rc = new RenderingComponent(this, x, y, w, h, dstW, dstH, dstX);
+            RenderingComponent rc = new ImageRenderingComponent(this, x, y, w, h, dstW, dstH, dstX);
             _renderingComponents.Add(rc);
             return rc;
         }
@@ -33,8 +45,11 @@ namespace ShootEmUp
             {
                 if(component.GameObject.Active)
                     component.Render();
+
+                
             }
             Program.window.fpsCalculate();
+
 
             // _renderingComponents[0].Render();
             /*
@@ -45,6 +60,7 @@ namespace ShootEmUp
             SDL.SDL_RenderPresent(Program.window.renderer);
         }
 
+        //noch machne, wenn es wirklich gebraucht wird
         public IEnumerable<RenderingComponent> SubsetThatNeedsRendering()
         {
             yield break;

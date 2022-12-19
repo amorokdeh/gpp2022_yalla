@@ -68,6 +68,8 @@
     <Compile Include="Hero.cs" />
     <Compile Include="HeroEvent.cs" />
     <Compile Include="Image.cs" />
+    <Compile Include="ImageRenderingComponent.cs" />
+    <Compile Include="InfoRenderingComponent.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Level1.cs" />
     <Compile Include="Level2.cs" />

@@ -8,6 +8,8 @@ namespace ShootEmUp
 {
     class Player:GameObject
     {
+        public int Lives = 3;
+        public int Score = 0;
         public Player(string name, int w, int h): base(name, w, h)
         {
             ImgChange = 16;

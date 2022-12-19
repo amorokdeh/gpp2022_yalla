@@ -14,23 +14,33 @@ namespace ShootEmUp
             this.CollisionManager = cm;
         }
 
-        public void Collide(GameObject bullet)
+        public void Collide(GameObject colObject)
         {
             //TODO genauere Kollision
-            if(bullet.PosY+(bullet.Height-6) > GameObject.PosY  && bullet.PosY < GameObject.PosY+(GameObject.Height-6))
+            if(colObject.PosY+(colObject.Height-6) > GameObject.PosY  && colObject.PosY < GameObject.PosY+(GameObject.Height-6))
             {
-                if(bullet.PosX+(bullet.Width-6) > GameObject.PosX && bullet.PosX < GameObject.PosX+(GameObject.Width-6))
+                if(colObject.PosX+(colObject.Width-6) > GameObject.PosX && colObject.PosX < GameObject.PosX+(GameObject.Width-6))
                 {
                     /*
-                    Console.WriteLine("Bullet, Enemy " + bullet.PosY.ToString(".0##")+ GameObject.PosY.ToString(".0##"));
-                    Console.WriteLine("Width " + bullet.Width + GameObject.Width);
-                    Console.WriteLine("Height " + bullet.Height + GameObject.Height);
-                    Console.WriteLine("collision");*/
-                    Program.game.DespawnPlayerBullet(bullet);
-                    if(GameObject is Ufo)
+                    Console.WriteLine("colObject, Enemy " + colObject.PosY.ToString(".0##")+ GameObject.PosY.ToString(".0##"));
+                    Console.WriteLine("Width " + colObject.Width + GameObject.Width);
+                    Console.WriteLine("Height " + colObject.Height + GameObject.Height);*/
+                    Console.WriteLine("collision");
+                    if(colObject is Bullet)
+                        Program.game.DespawnPlayerBullet(colObject);
+                    if (colObject is Player)
+                    {
+                        Console.WriteLine("player hit");
+                        Player player = (Player)colObject;
+                        player.Lives--;
+                    }
+
+
+                    if (GameObject is Ufo)
                         Program.game.DespawnEnemyUfo(GameObject);
                     if(GameObject is Ship)
                         Program.game.DespawnEnemyShip(GameObject);
+                    
                 }
             }
 

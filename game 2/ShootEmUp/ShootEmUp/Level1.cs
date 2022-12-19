@@ -20,7 +20,7 @@ namespace ShootEmUp
 
 
         float bulletGap = 0;
-        float bulletGapSize = 0.8f;
+        float bulletGapSize = 2f;
         Bullet bullet;
 
         public override void run()
