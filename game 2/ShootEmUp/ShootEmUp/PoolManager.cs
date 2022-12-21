@@ -18,6 +18,7 @@ namespace ShootEmUp
         private List<GameObject> _playerBulletPool = new List<GameObject>();
 
 
+
         public PoolManager()
         {
             
@@ -78,7 +79,7 @@ namespace ShootEmUp
             {
                 if (bullet.Active == false)
                 {
-                    //Console.WriteLine("Old bullet");
+                    Console.WriteLine("Old bullet");
                     bullet.Active = true;
                     return bullet;
                 }
@@ -95,5 +96,24 @@ namespace ShootEmUp
         {
             bullet.Active = false;
         }
+
+
+        public void SetInactive()
+        {
+            foreach (var gameObject in _enemyUfoPool)
+            {
+                gameObject.Active = false;
+            }
+            foreach (var gameObject in _enemyShipPool)
+            {
+                gameObject.Active = false;
+            }
+            foreach (var gameObject in _playerBulletPool)
+            {
+                gameObject.Active = false;
+            }
+        }
+
+
     }
 }

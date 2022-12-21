@@ -33,9 +33,9 @@ namespace ShootEmUp
             return gameObject;
         }
 
-        public GameObject CreateGamePlayer(string name, int w, int h)
+        public Player CreateGamePlayer(string name, int w, int h)
         {
-            GameObject gameObject = new Player(name, w, h);
+            Player gameObject = new Player(name, w, h);
             _gameObjects.Add(gameObject);
             return gameObject;
         }
@@ -46,6 +46,9 @@ namespace ShootEmUp
             _gameObjects.Add(gameObject);
             return gameObject;
         }
+
+
+        
 
 
 

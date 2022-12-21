@@ -23,11 +23,13 @@ namespace ShootEmUp
 
         private PoolManager _pool = new PoolManager();
 
-        public bool Quit;
+        public static bool Quit;
 
         public uint ticks = SDL.SDL_GetTicks();
 
 
+
+        public Player Player;
         //public int display;
 
 
@@ -75,7 +77,7 @@ namespace ShootEmUp
 
         public GameObject BuildPlayer()
         {
-            GameObject player = _objects.CreateGamePlayer("player", 16*2, 16*2);
+            Player player = _objects.CreateGamePlayer("player", 16*2, 16*2);
             player.Active = true;
             player.AddComponent(_physics.CreateComponent());
             player.AddComponent(_rendering.CreateComponent(16*2, 16*2));
@@ -175,6 +177,12 @@ namespace ShootEmUp
             _rendering.Render();
         }
 
+        public void SetInactive()
+        {
+            _pool.SetInactive();
+            
+        }
+
 
 
 
@@ -182,6 +190,8 @@ namespace ShootEmUp
         
         //Game loop
         public void run() {
+            BuildBackground();
+            Player = (Player)BuildPlayer();
             _levels.run();    
         }
 

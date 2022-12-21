@@ -28,6 +28,7 @@ namespace ShootEmUp
                     Console.WriteLine("collision");
                     if(colObject is Bullet)
                         Program.game.DespawnPlayerBullet(colObject);
+                    
                     if (colObject is Player)
                     {
                         Console.WriteLine("player hit");
@@ -35,6 +36,7 @@ namespace ShootEmUp
                         player.Lives--;
                     }
 
+                    Program.game.Player.Score++;
 
                     if (GameObject is Ufo)
                         Program.game.DespawnEnemyUfo(GameObject);

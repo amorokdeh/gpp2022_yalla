@@ -28,5 +28,17 @@ namespace ShootEmUp
         {
             ImgChange = 16*2;
         }
+
+        public void Reset()
+        {
+            Lives = 3;
+            Score = 0;
+            PosX = 200;
+            PosY = 200;
+            VelX = 100;
+            VelY = 100;
+            CurrentVelX = 0;
+            CurrentVelY = 0;
+        }
     }
 }

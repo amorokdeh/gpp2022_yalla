@@ -21,7 +21,8 @@ namespace ShootEmUp
 
         public GameOver gameOver;
         public Control gamePad = new Control();
-        public bool controlQuitRequest = false;
+        public static bool ControlQuitRequest = false;
+
 
         public enum GameState
         {
@@ -33,7 +34,7 @@ namespace ShootEmUp
             GameOver
         }
 
-        public GameState display;
+        public static GameState display;
 
 
         public void runLevel1()
@@ -57,14 +58,15 @@ namespace ShootEmUp
         public void runMainMenu()
         {
             gamePad.setup();
-            mainMenu = new MainMenu(this);
+            mainMenu = new MainMenu();
             mainMenu.run();
         }
 
         public void runGameOver()
         {
             gameOver = new GameOver();
-            //gameOver.run();
+            Console.WriteLine("GameOver");
+            gameOver.run();
         }
 
 

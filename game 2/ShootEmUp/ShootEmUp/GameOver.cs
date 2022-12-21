@@ -9,7 +9,7 @@ namespace ShootEmUp
 {
     class GameOver
     {
-        /*
+        
         public bool running = true;
         public bool quit = false;
         public IntPtr renderer;
@@ -31,16 +31,10 @@ namespace ShootEmUp
             txt.setUp();
             txt.loadText(1);
             //winner
-            if (Program.game.mainMenu.winner == 2)
-            {
+
                 SDL.SDL_SetRenderDrawColor(renderer, 0, 60, 20, 255);
-                winnerText = "Der rechte Spieler hat gewonnen!";
-            }
-            else
-            {
-                SDL.SDL_SetRenderDrawColor(renderer, 110, 0, 0, 255);
-                winnerText = "Der linke Spieler hat gewonnen!";
-            }
+                winnerText = "GAME OVER";
+
         }
         public void run()
         {
@@ -51,7 +45,7 @@ namespace ShootEmUp
 
             }
 
-            if (quit) { closeAndGoTo(0); } //close the game
+            if (quit) { closeAndGoTo(LevelManager.GameState.Quit); } //close the game
         }
 
         public void controll()
@@ -74,10 +68,10 @@ namespace ShootEmUp
                     {
                         case SDL.SDL_Keycode.SDLK_RETURN: 
                             running = false;
-                            if(Program.game.mainMenu.level == 1)
-                            {
-                                closeAndGoTo(2); 
-                            }
+                          /*  if(Program.game.mainMenu.level == 1)
+                            {*/
+                                closeAndGoTo(LevelManager.GameState.Level1); 
+                          /*  }
                             else if (Program.game.mainMenu.level == 2)
                             {
                                 closeAndGoTo(3);
@@ -85,12 +79,12 @@ namespace ShootEmUp
                             else if (Program.game.mainMenu.level == 3)
                             {
                                 closeAndGoTo(4);
-                            }
+                            }*/
 
                             break;
                         case SDL.SDL_Keycode.SDLK_SPACE: 
                             running = false; 
-                            closeAndGoTo(1); 
+                            closeAndGoTo(LevelManager.GameState.MainMenu); 
                             break;
                     }
                 }
@@ -116,15 +110,15 @@ namespace ShootEmUp
             SDL.SDL_RenderPresent(renderer);
         }
 
-        public void closeAndGoTo(int displayNum)
+        public void closeAndGoTo(LevelManager.GameState gs)
         {
             
             //clear renderer
             //SDL.SDL_RenderClear(renderer);
             //SDL.SDL_DestroyRenderer(renderer);
             //go to ...
-            Program.game.display = displayNum;
+            LevelManager.display = gs;
         }
-*/
+
     }
 }

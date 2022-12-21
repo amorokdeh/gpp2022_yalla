@@ -11,27 +11,39 @@ namespace ShootEmUp
     class MainMenu
     {
         //public static Sound sound = new Sound();
-        public int winner;
-        public int level;
-        
-        
+
 
 
         public bool running = true;
         public bool quit = false;
         public Text txt = new Text();
-        public int selected = 1;
+        //public int selected = 1;
+        //private LevelManager.GameState selected = LevelManager.GameState.MainMenu;
         public string text;
         public IntPtr surfaceMessage;
         public SDL.SDL_Color color;
         public int textSize = 30;
         public String menuSelected = "main menu";
 
-
-        private LevelManager _levelManager;
-        public MainMenu(LevelManager lvlM)
+        public enum Choices
         {
-            this._levelManager = lvlM;
+            Level1,
+            Level2,
+            Level3,
+            Options,
+            Quit,
+            Window,
+            BackMainMenu,
+            Screen,
+            FpsLimit,
+            ScreenSize,
+            BackOption
+
+        }
+        private Choices selected = Choices.Level1;
+
+        public MainMenu()
+        {
             setup();
         }
 
@@ -59,7 +71,7 @@ namespace ShootEmUp
 
             }
 
-            if (quit) { closeAndGoTo(0); } //close the game
+            if (quit) { closeAndGoTo(LevelManager.GameState.Quit); } //close the game
         }
 
 
@@ -91,17 +103,18 @@ namespace ShootEmUp
             }
         }
         public void goTo() {
+            
             if (menuSelected.Equals("option"))
             {
                 switch (selected)
                 {
-                    case 1:
+                    case Choices.Window:
                         menuSelected = "window";
-                        selected = 1;
+                        selected = Choices.Screen;
                         return;
-                    case 2:
+                    case Choices.BackMainMenu:
                         menuSelected = "main menu";
-                        selected = 1;
+                        selected = Choices.Level1;
                         return;
                 }
             }
@@ -109,19 +122,19 @@ namespace ShootEmUp
             {
                 switch (selected)
                 {
-                    case 1:
+                    case Choices.Screen:
                         Program.window.changeScreenMode();
-                        selected = 1;
+                        selected = Choices.Screen;
                         return;
-                    case 2:
+                    case Choices.FpsLimit:
                         Program.window.changeFPSLimit();
                         return;
-                    case 3:
+                    case Choices.ScreenSize:
                         Program.window.changeWindowSize();
                         return;
-                    case 4:
+                    case Choices.BackOption:
                         menuSelected = "option";
-                        selected = 1;
+                        selected = Choices.Window;
                         return;
                 }
             }
@@ -129,45 +142,54 @@ namespace ShootEmUp
             {
                 switch (selected)
                 {
-                    case 1:
-                        level = 1;
+                    case Choices.Level1:
                         startLevel1();
                         return;
-                    case 2:
+                    case Choices.Level2:
                         startLevel2();
-                        level = 2;
                         return;
-                    case 3:
+                    case Choices.Level3:
                         startLevel3();
-                        level = 3;
                         return;
-                    case 4:
+                    case Choices.Options:
                         menuSelected = "option";
-                        selected = 1;
+                        selected = Choices.Window;
                         return;
-                    case 5:
+                    case Choices.Quit:
                         endGame();
                         return;
                 }
             }
         }
         public void goUp() {
-            if (selected > 1) {
+            if ((menuSelected.Equals("option")) && (selected > Choices.Window))
+            {
                 selected--;
+                return;
             }
+            else if ((menuSelected.Equals("window")) && (selected > Choices.Screen))
+            {
+                selected--;
+                return;
+            }
+            else if ((menuSelected.Equals("main menu")) && selected > Choices.Level1) {
+                selected--;
+                return;
+            }
+
         }
         public void goDown() {
             
-            if ((menuSelected.Equals("option")) && (selected < 2))
+            if ((menuSelected.Equals("option")) && (selected < Choices.BackMainMenu))
             {
                 selected++;
                 return;
             }
-            else if ((menuSelected.Equals("window")) && (selected < 4)) {
+            else if ((menuSelected.Equals("window")) && (selected < Choices.BackOption)) {
                 selected++;
                 return;
             }
-            else if ((menuSelected.Equals("main menu")) && selected < 5)
+            else if ((menuSelected.Equals("main menu")) && selected < Choices.Quit)
             {
                 selected++;
                 return;
@@ -207,15 +229,16 @@ namespace ShootEmUp
             //show FPS
             Program.window.fpsCalculate();
 
+            
             if (menuSelected.Equals("option"))
             {
                 text = "Window";
-                checkSelected(1);
+                checkSelected(Choices.Window);
                 surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
                 txt.addText(Program.window.renderer, surfaceMessage, Program.window.heigh / 2, Program.window.heigh / 2 - 50, Program.window.width - 600, textSize);
 
                 text = "Back";
-                checkSelected(2);
+                checkSelected(Choices.BackMainMenu);
                 surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
                 txt.addText(Program.window.renderer, surfaceMessage, Program.window.heigh / 2 + 50, Program.window.heigh / 2, Program.window.width - 700, textSize);
 
@@ -223,58 +246,58 @@ namespace ShootEmUp
             }
             else if (menuSelected.Equals("window")) {
                 text = "Screen: " + Program.window.screenMode;
-                checkSelected(1);
+                checkSelected(Choices.Screen);
                 surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
                 txt.addText(Program.window.renderer, surfaceMessage, Program.window.heigh / 2, Program.window.heigh / 2 - 50, Program.window.width - 600, textSize);
 
                 text = "FPS limit: " + Program.window.limitedFPS;
-                checkSelected(2);
+                checkSelected(Choices.FpsLimit);
                 surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
                 txt.addText(Program.window.renderer, surfaceMessage, Program.window.heigh / 2, Program.window.heigh / 2, Program.window.width - 600, textSize);
 
                 text = "Screen size: " + Program.window.heigh + " x " + Program.window.width;
-                checkSelected(3);
+                checkSelected(Choices.ScreenSize);
                 surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
                 txt.addText(Program.window.renderer, surfaceMessage, Program.window.heigh / 2, Program.window.heigh / 2 + 50, Program.window.width - 600, textSize);
 
                 text = "Back";
-                checkSelected(4);
+                checkSelected(Choices.BackOption);
                 surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
                 txt.addText(Program.window.renderer, surfaceMessage, Program.window.heigh / 2, Program.window.heigh / 2 + 100, Program.window.width - 600, textSize);
             }
             else
             {
                 text = "Start Level 1";
-                checkSelected(1);
+                checkSelected(Choices.Level1);
                 surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
                 txt.addText(Program.window.renderer, surfaceMessage, Program.window.heigh / 2, Program.window.heigh / 2 - 50, Program.window.width - 600, textSize);
 
                 text = "Start Level 2";
-                checkSelected(2);
+                checkSelected(Choices.Level2);
                 surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
                 txt.addText(Program.window.renderer, surfaceMessage, Program.window.heigh / 2, Program.window.heigh / 2, Program.window.width - 600, textSize);
 
                 text = "Start Level 3";
-                checkSelected(3);
+                checkSelected(Choices.Level3);
                 surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
                 txt.addText(Program.window.renderer, surfaceMessage, Program.window.heigh / 2, Program.window.heigh / 2 + 50, Program.window.width - 600, textSize);
 
 
                 text = "Options";
-                checkSelected(4);
+                checkSelected(Choices.Options);
                 surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
                 txt.addText(Program.window.renderer, surfaceMessage, Program.window.heigh / 2, Program.window.heigh / 2 + 100, Program.window.width - 600, textSize);
 
                 text = "Quit";
-                checkSelected(5);
+                checkSelected(Choices.Quit);
                 surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
                 txt.addText(Program.window.renderer, surfaceMessage, Program.window.heigh / 2 + 50, Program.window.heigh / 2 + 150, Program.window.width - 700, textSize);
             }
             SDL.SDL_RenderPresent(Program.window.renderer);
         }
 
-        public void checkSelected(int num) {
-            if (num == selected)
+        public void checkSelected(Choices choice) {
+            if (choice == selected)
             {
                 color = txt.Red;
                 textSize = 40;
@@ -283,17 +306,11 @@ namespace ShootEmUp
                 color = txt.White;
                 textSize = 30;
             }
-
         }
 
         public void closeAndGoTo(LevelManager.GameState gs)
         {
-            _levelManager.display = gs;
-            //clear renderer
-            //SDL.SDL_RenderClear(renderer);
-            //SDL.SDL_DestroyRenderer(renderer);
-            //go to ...
-            //Program.game.display = displayNum;
+            LevelManager.display = gs;
            
         }
     }

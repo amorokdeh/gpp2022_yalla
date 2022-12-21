@@ -27,7 +27,7 @@ namespace ShootEmUp
             {
                 if (e.type == SDL.SDL_EventType.SDL_QUIT)
                 {
-                    Program.game.Quit = true;
+                    Game.Quit = true;
                     
                 }
                 foreach (var component in _controlComponents)

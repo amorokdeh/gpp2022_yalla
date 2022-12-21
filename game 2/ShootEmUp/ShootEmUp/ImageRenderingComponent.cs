@@ -35,6 +35,9 @@ namespace ShootEmUp
 
 
             SDL.SDL_RenderCopy(Program.window.renderer, GameObject.Img.imageTexture, ref srcRect, ref rect);
+
+            SDL.SDL_SetRenderDrawColor(Program.window.renderer, 255, 255, 255, 255);
+            //SDL.SDL_RenderDrawLine(Program.window.renderer, 0, 0, (int)GameObject.PosX, (int)GameObject.PosY);
         }
     }
 }

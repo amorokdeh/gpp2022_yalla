@@ -12,7 +12,7 @@ namespace ShootEmUp
         DateTime timeNow = DateTime.Now;
         float deltaTime;
         float avDeltaTime = -1;
-        GameObject player;
+        Player player;
 
         float gap = 0;
         float gapSize = 1f;
@@ -25,17 +25,18 @@ namespace ShootEmUp
 
         public override void run()
         {
+            this.player = Program.game.Player;
+            player.Reset();
 
-
-            Program.game.BuildBackground();
-            player = Program.game.BuildPlayer();
+            //Program.game.BuildBackground();
+            //player = (Player)Program.game.BuildPlayer();
             //Program.game.BuildShip();
             //Program.game.BuildUfo();
-            Program.game._levels.controlQuitRequest = false;
+            LevelManager.ControlQuitRequest = false;
 
 
 
-            while (!Program.game.Quit)
+            while (true)
             {
                 Program.window.calculateFPS(); //frame limit start calculating here
                 timeNow = DateTime.Now;
@@ -49,6 +50,8 @@ namespace ShootEmUp
                     avDeltaTime = (deltaTime + avDeltaTime) / 2f;
                 }               
                 timeBefore = timeNow;
+                //Console.WriteLine(deltaTime);
+                //Console.WriteLine(avDeltaTime);
 
                 produceEnemies(avDeltaTime);
                 produceBullets(avDeltaTime);
@@ -56,12 +59,27 @@ namespace ShootEmUp
                 Program.game.ControlPlayer();
                 Program.game.Move(avDeltaTime);
                 Program.game.Collide();
+                if(player.Lives <= 0) 
+                { 
+                    LevelManager.display = LevelManager.GameState.GameOver;
+                    Program.game.SetInactive();
+                    return; 
+                }
                 Program.game.Render();
-                if (Program.game._levels.controlQuitRequest) { return; }  // press escape to quit
+
+                if (Game.Quit) { 
+                    LevelManager.display = LevelManager.GameState.Quit; 
+                    LevelManager.ControlQuitRequest = true;
+                    Program.game.SetInactive();
+                }
+                if (LevelManager.ControlQuitRequest) 
+                {
+                    Program.game.SetInactive();
+                    return; 
+                }  // press escape to quit
                 Program.window.deltaFPS(); //frame limit end calculating here
 
             }
-            Program.game.quit();
         }
 
 
@@ -90,6 +108,7 @@ namespace ShootEmUp
             if (bulletGap > bulletGapSize)
             {
                 bullet = (Bullet)Program.game.RequestPlayerBullet(player);
+                Console.WriteLine(bullet.Active);
 
                 bullet.PosY = bullet.Gameobject.PosY;
                 bullet.PosX = bullet.Gameobject.PosX;
