@@ -23,7 +23,7 @@ namespace ShootEmUp
         int _framesRendered;
         int _fps;
         Text txt = new Text();
-        bool showFPSRunning = true;
+        public String showFPSRunning = "Yes";
 
         public uint limitedFPS;
         public uint desiredDelta;
@@ -109,7 +109,7 @@ namespace ShootEmUp
             }
 
             //FPS Render
-            if (showFPSRunning)
+            if (showFPSRunning.Equals("Yes"))
             {
                 String text = "FPS: " + _fps.ToString();
                 IntPtr surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, txt.White);
@@ -139,6 +139,16 @@ namespace ShootEmUp
                 limitedFPS = 15;
             }
             desiredDelta = 1000 / limitedFPS;
+        }
+
+        public void showHideFPS() {
+            if (showFPSRunning.Equals("Yes"))
+            {
+                showFPSRunning = "No";
+            }
+            else {
+                showFPSRunning = "Yes";
+            }
         }
 
         public void changeWindowSize() {
