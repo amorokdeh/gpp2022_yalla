@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using static SDL2.SDL;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace ShootEmUp
@@ -11,6 +12,7 @@ namespace ShootEmUp
     {
         public int heigh;
         public int width;
+        public SDL.SDL_DisplayMode DM;//real size
         public IntPtr show;
         public IntPtr renderer;
         public string screenMode = "Mini screen";
@@ -60,6 +62,8 @@ namespace ShootEmUp
                 Console.WriteLine($"There was an issue creating the renderer. {SDL.SDL_GetError()}");
             }
 
+            //SDL.SDL_GetRendererOutputSize(renderer, w, h);
+
             //fps text
             txt.setUp();
             txt.loadText(1);
@@ -72,6 +76,7 @@ namespace ShootEmUp
         {
             SDL.SDL_SetWindowFullscreen(show, 0x1u);
             screenMode = "Full screen";
+
         }
         public void miniScreen()
         {
@@ -84,10 +89,12 @@ namespace ShootEmUp
             if (screenMode.Equals("Full screen"))
             {
                 miniScreen();
+
             }
             else
             {
                 fullScreen();
+                
             }
         }
         public void fpsCalculate()
@@ -106,7 +113,7 @@ namespace ShootEmUp
             {
                 String text = "FPS: " + _fps.ToString();
                 IntPtr surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, txt.White);
-                txt.addText(Program.window.renderer, surfaceMessage, 30, 10, 75, 20);
+                txt.addText(Program.window.renderer, surfaceMessage, width/90, heigh/90, 75, 20);
             }
 
         }
@@ -135,18 +142,24 @@ namespace ShootEmUp
         }
 
         public void changeWindowSize() {
-            if (heigh == 512 && width == 1024)
+
+            if (width == 1024 && heigh == 512)
             {
-                heigh = 1920;
-                width = 1080;
+                width = 1024;
+                heigh = 768;
+                SDL.SDL_SetWindowSize(show, width, heigh);
+            }
+            else if (width == 1024 && heigh == 768)
+            {
+                width = 1920;
+                heigh = 1080;
+                SDL.SDL_SetWindowSize(show, width, heigh);
             }
             else {
-                heigh = 800;
-                width = 600;
+                width = 1024;
+                heigh = 512;
+                SDL.SDL_SetWindowSize(show, width, heigh);
             }
-
-            SDL.SDL_SetWindowSize(show, heigh, width);
-
         }
 
     }

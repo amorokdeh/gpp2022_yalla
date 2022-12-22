@@ -20,10 +20,13 @@ namespace ShootEmUp
         //public int selected = 1;
         //private LevelManager.GameState selected = LevelManager.GameState.MainMenu;
         public string text;
+        public int textXPosition;
+        public int textEndPosition;
         public IntPtr surfaceMessage;
         public SDL.SDL_Color color;
         public int textSize = 30;
         public String menuSelected = "main menu";
+        
 
         public enum Choices
         {
@@ -235,12 +238,16 @@ namespace ShootEmUp
                 text = "Window";
                 checkSelected(Choices.Window);
                 surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
-                txt.addText(Program.window.renderer, surfaceMessage, Program.window.heigh / 2, Program.window.heigh / 2 - 50, Program.window.width - 600, textSize);
+                textXPosition = (Program.window.width / 2) - (text.Length * 17);
+                textEndPosition = (Program.window.width / 2) - (text.Length * 50);
+                txt.addText(Program.window.renderer, surfaceMessage, textXPosition, Program.window.heigh / 2 - 50, textEndPosition, textSize);
 
                 text = "Back";
                 checkSelected(Choices.BackMainMenu);
                 surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
-                txt.addText(Program.window.renderer, surfaceMessage, Program.window.heigh / 2 + 50, Program.window.heigh / 2, Program.window.width - 700, textSize);
+                textXPosition = (Program.window.width / 2) - (text.Length * 17);
+                textEndPosition = (Program.window.width / 2) - (text.Length * 90);
+                txt.addText(Program.window.renderer, surfaceMessage, textXPosition, Program.window.heigh / 2, textEndPosition, textSize);
 
                
             }
@@ -248,50 +255,68 @@ namespace ShootEmUp
                 text = "Screen: " + Program.window.screenMode;
                 checkSelected(Choices.Screen);
                 surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
-                txt.addText(Program.window.renderer, surfaceMessage, Program.window.heigh / 2, Program.window.heigh / 2 - 50, Program.window.width - 600, textSize);
+                textXPosition = (Program.window.width / 2) - (text.Length * 10);
+                textEndPosition = (Program.window.width / 2) - (text.Length * 12);
+                txt.addText(Program.window.renderer, surfaceMessage, textXPosition, Program.window.heigh / 2 - 50, textEndPosition, textSize);
 
                 text = "FPS limit: " + Program.window.limitedFPS;
                 checkSelected(Choices.FpsLimit);
                 surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
-                txt.addText(Program.window.renderer, surfaceMessage, Program.window.heigh / 2, Program.window.heigh / 2, Program.window.width - 600, textSize);
+                textXPosition = (Program.window.width / 2) - (text.Length * 17);
+                textEndPosition = (Program.window.width / 2) - (text.Length * 12);
+                txt.addText(Program.window.renderer, surfaceMessage, textXPosition, Program.window.heigh / 2, textEndPosition, textSize);
 
-                text = "Screen size: " + Program.window.heigh + " x " + Program.window.width;
+                text = "Screen size: " + Program.window.width + " x " + Program.window.heigh;
                 checkSelected(Choices.ScreenSize);
                 surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
-                txt.addText(Program.window.renderer, surfaceMessage, Program.window.heigh / 2, Program.window.heigh / 2 + 50, Program.window.width - 600, textSize);
+                textXPosition = (Program.window.width / 2) - (text.Length * 11);
+                textEndPosition = (Program.window.width / 2) - (text.Length * 4);
+                txt.addText(Program.window.renderer, surfaceMessage, textXPosition, Program.window.heigh / 2 + 50, textEndPosition, textSize);
 
                 text = "Back";
                 checkSelected(Choices.BackOption);
                 surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
-                txt.addText(Program.window.renderer, surfaceMessage, Program.window.heigh / 2, Program.window.heigh / 2 + 100, Program.window.width - 600, textSize);
+                textXPosition = (Program.window.width / 2) - (text.Length * 40);
+                textEndPosition = (Program.window.width / 2) - (text.Length * 70);
+                txt.addText(Program.window.renderer, surfaceMessage, textXPosition, Program.window.heigh / 2 + 100, textEndPosition, textSize);
             }
             else
             {
                 text = "Start Level 1";
                 checkSelected(Choices.Level1);
                 surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
-                txt.addText(Program.window.renderer, surfaceMessage, Program.window.heigh / 2, Program.window.heigh / 2 - 50, Program.window.width - 600, textSize);
+                textXPosition = (Program.window.width / 2) - (text.Length * 15);
+                textEndPosition = (Program.window.width / 2) - (text.Length * 12);
+                txt.addText(Program.window.renderer, surfaceMessage, textXPosition, Program.window.heigh / 2 - 50 , textEndPosition, textSize);
 
                 text = "Start Level 2";
                 checkSelected(Choices.Level2);
                 surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
-                txt.addText(Program.window.renderer, surfaceMessage, Program.window.heigh / 2, Program.window.heigh / 2, Program.window.width - 600, textSize);
+                textXPosition = (Program.window.width / 2) - (text.Length * 15);
+                textEndPosition = (Program.window.width / 2) - (text.Length * 12);
+                txt.addText(Program.window.renderer, surfaceMessage, textXPosition, Program.window.heigh / 2, textEndPosition, textSize);
 
                 text = "Start Level 3";
                 checkSelected(Choices.Level3);
                 surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
-                txt.addText(Program.window.renderer, surfaceMessage, Program.window.heigh / 2, Program.window.heigh / 2 + 50, Program.window.width - 600, textSize);
+                textXPosition = (Program.window.width / 2) - (text.Length * 15);
+                textEndPosition = (Program.window.width / 2) - (text.Length * 12);
+                txt.addText(Program.window.renderer, surfaceMessage, textXPosition, Program.window.heigh / 2 + 50, textEndPosition, textSize);
 
 
                 text = "Options";
                 checkSelected(Choices.Options);
                 surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
-                txt.addText(Program.window.renderer, surfaceMessage, Program.window.heigh / 2, Program.window.heigh / 2 + 100, Program.window.width - 600, textSize);
+                textXPosition = (Program.window.width / 2) - (text.Length * 20);
+                textEndPosition = (Program.window.width / 2) - (text.Length * 35);
+                txt.addText(Program.window.renderer, surfaceMessage, textXPosition, Program.window.heigh / 2 + 100, textEndPosition, textSize);
 
                 text = "Quit";
                 checkSelected(Choices.Quit);
                 surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
-                txt.addText(Program.window.renderer, surfaceMessage, Program.window.heigh / 2 + 50, Program.window.heigh / 2 + 150, Program.window.width - 700, textSize);
+                textXPosition = (Program.window.width / 2) - (text.Length * 20);
+                textEndPosition = (Program.window.width / 2) - (text.Length * 90);
+                txt.addText(Program.window.renderer, surfaceMessage, textXPosition, Program.window.heigh / 2 + 150, textEndPosition, textSize);
             }
             SDL.SDL_RenderPresent(Program.window.renderer);
         }
