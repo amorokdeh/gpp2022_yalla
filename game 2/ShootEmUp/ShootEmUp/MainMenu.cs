@@ -11,7 +11,7 @@ namespace ShootEmUp
 {
     class MainMenu
     {
-        //public static Sound sound = new Sound();
+        public static Sound sound = new Sound();
         public bool running = true;
         public bool quit = false;
         public Text txt = new Text();

@@ -16,9 +16,6 @@ namespace ShootEmUp
             _aiComponents.Add(rc);
             return rc;
         }
-
-
-
         public void Control()
         {
 

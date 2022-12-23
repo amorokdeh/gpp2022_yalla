@@ -91,6 +91,7 @@
     <Compile Include="RenderingManager.cs" />
     <Compile Include="Ship.cs" />
     <Compile Include="AudioComponent.cs" />
+    <Compile Include="Sound.cs" />
     <Compile Include="Text.cs" />
     <Compile Include="Ufo.cs" />
     <Compile Include="Window.cs" />
