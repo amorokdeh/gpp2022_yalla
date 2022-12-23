@@ -18,7 +18,7 @@ namespace ShootEmUp
         {
             GameObject.PosX += GameObject.CurrentVelX * deltaT;
             GameObject.PosY += GameObject.CurrentVelY * deltaT;
-            if(GameObject.PosY > 64 * 8)
+            if(GameObject.PosY > Program.window.heigh + 64 * 8)
             {
                 GameObject.PosY = GameObject.PosX - 64 * 4;
             }
