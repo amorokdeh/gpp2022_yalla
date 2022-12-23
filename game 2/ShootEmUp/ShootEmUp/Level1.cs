@@ -85,18 +85,19 @@ namespace ShootEmUp
 
         public void produceEnemies(float deltaTime)
         {
+            Random rand = new Random();
             gap += deltaTime;
             if (gap > gapSize)
             {
                 gameObject = Program.game.RequestEnemyShip();
 
                 gameObject.PosY = 0;
-                gameObject.PosX = 0;
+                gameObject.PosX = rand.Next(0, Program.window.width); // Enemy Random Position 
                 gameObject = Program.game.RequestEnemyUfo();
 
                 gameObject.PosY = 0;
-                gameObject.PosX = 300;
-                
+                gameObject.PosX = rand.Next(0, Program.window.width); // Enemy Random Position 
+
                 gap = 0;
             }
         }
