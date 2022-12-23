@@ -1,6 +1,6 @@
 Kritik überarbeiten:
 [] mehr Einstellmöglichkeiten
-[] Fullscreen durch Skalierung (Amr)
+[x] Fullscreen durch Skalierung (Amr)
 [x] Gampeloop angepasst an Refreshrate (delta t)
 [] C# Standards
 [teilweise] Display Werte per Enum
@@ -11,10 +11,10 @@ Spiel:
 [] Sound finden und einbauen (Amr)
 [x] Menü überarbeiten (Amr)
 [] GameOver überarbeiten
-[] Kollision (Majbrit)
-[] Score (Majbrit)
-[] Unterschiedliche Anfangsposition der Gegner (Mohamad)
-[] Bullets werden schneller bei Kollision (Mohamad)
+[x] Kollision (Majbrit)
+[x] Score (Majbrit)
+[x] Unterschiedliche Anfangsposition der Gegner (Mohamad)
+[x] Bullets werden schneller bei Kollision (Mohamad)
 [] Powerups
 [] Zeitlupeneffekt
 [] Mehrere Leben
