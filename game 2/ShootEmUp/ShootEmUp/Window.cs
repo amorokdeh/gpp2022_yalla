@@ -153,13 +153,7 @@ namespace ShootEmUp
 
         public void changeWindowSize() {
 
-            if (width == 1024 && heigh == 512)
-            {
-                width = 1024;
-                heigh = 768;
-                SDL.SDL_SetWindowSize(show, width, heigh);
-            }
-            else if (width == 1024 && heigh == 768)
+            if (width == 1024 && heigh == 768)
             {
                 width = 1920;
                 heigh = 1080;
@@ -167,7 +161,7 @@ namespace ShootEmUp
             }
             else {
                 width = 1024;
-                heigh = 512;
+                heigh = 768;
                 SDL.SDL_SetWindowSize(show, width, heigh);
             }
         }
