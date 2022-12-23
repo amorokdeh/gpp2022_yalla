@@ -9,11 +9,11 @@ Kritik überarbeiten:
 Spiel:
 [x] Bilder finden
 [] Sound finden und einbauen (Amr)
-[] Menü überarbeiten
+[x] Menü überarbeiten (Amr)
 [] GameOver überarbeiten
 [] Kollision (Majbrit)
 [] Score (Majbrit)
-[] Unterschiedliche Anfangsposition der Gegner
+[] Unterschiedliche Anfangsposition der Gegner (Mohamad)
 [] Bullets werden schneller bei Kollision
 [] Powerups
 [] Zeitlupeneffekt
