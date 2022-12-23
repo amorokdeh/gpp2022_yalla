@@ -5,13 +5,14 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using static SDL2.SDL;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace ShootEmUp
 {
     class MainMenu
     {
-        public static Sound sound = new Sound();
         public bool running = true;
         public bool quit = false;
         public Text txt = new Text();
@@ -21,7 +22,12 @@ namespace ShootEmUp
         public SDL.SDL_Color color;
         public int textSize = 30;
         public String menuSelected = "main menu";
-        
+        private GameObjectManager _objects = new GameObjectManager();
+        private PhysicsManager _physics = new PhysicsManager();
+        private RenderingManager _rendering = new RenderingManager();
+        private AIManager _ai = new AIManager();
+        //create a rect
+        SDL_Rect rect;
 
         public enum Choices
         {
@@ -54,13 +60,12 @@ namespace ShootEmUp
             color = txt.White;
 
             SDL.SDL_SetRenderDrawColor(Program.window.renderer, 0, 60, 20, 255);
-
-            // SOUND AND MUSIC
-            //sound.setup();
+            BuildBackground("main menu");
 
         }
         public void run()
         {
+            Program.game._audio.runMusic("Menu music");
             while (running)
             {
                 Program.window.calculateFPS(); //frame limit start calculating here
@@ -102,6 +107,7 @@ namespace ShootEmUp
             }
         }
         public void goTo() {
+            Program.game._audio.runSound("Menu click");
             if (menuSelected.Equals("main menu"))
             {
                 switch (selected)
@@ -164,15 +170,18 @@ namespace ShootEmUp
             if ((menuSelected.Equals("option")) && (selected > Choices.Window))
             {
                 selected--;
+                Program.game._audio.runSound("Menu buttons");
                 return;
             }
             else if ((menuSelected.Equals("window")) && (selected > Choices.Screen))
             {
                 selected--;
+                Program.game._audio.runSound("Menu buttons");
                 return;
             }
             else if ((menuSelected.Equals("main menu")) && selected > Choices.Level1) {
                 selected--;
+                Program.game._audio.runSound("Menu buttons");
                 return;
             }
 
@@ -182,15 +191,18 @@ namespace ShootEmUp
             if ((menuSelected.Equals("option")) && (selected < Choices.BackMainMenu))
             {
                 selected++;
+                Program.game._audio.runSound("Menu buttons");
                 return;
             }
             else if ((menuSelected.Equals("window")) && (selected < Choices.BackOption)) {
                 selected++;
+                Program.game._audio.runSound("Menu buttons");
                 return;
             }
             else if ((menuSelected.Equals("main menu")) && selected < Choices.Quit)
             {
                 selected++;
+                Program.game._audio.runSound("Menu buttons");
                 return;
             }
         }
@@ -230,16 +242,47 @@ namespace ShootEmUp
             surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
             txt.addText(Program.window.renderer, surfaceMessage, Program.window.width / 2 - text.Length * 10, nextTextPos(), text.Length * 20, textSize);
         }
-        public void render()
+        
+        public void BuildBackground(string source)
+        {
+            int winW = Program.window.width;
+            int winH = Program.window.heigh;
+
+            GameObject bg;
+
+
+            for (int i = -1; i < (winH / 128 * 4); i++)
+            {
+                bg = _objects.CreateGameBackground(source, 128 * 4, 64 * 4, 0, 64 * 4 * i);
+                bg.Active = true;
+
+                for (int j = 0; j < winW / (64 * 4); j++)
+                {
+                    bg.AddComponent(_rendering.CreateBGComponent(0, 0, 128, 64, 128 * 4, 64 * 4, 128 * 4 * j));
+                }
+            }
+        }
+            public void render()
         {
             //Clear screen
-            SDL.SDL_SetRenderDrawColor(Program.window.renderer, 5, 5, 5, 255);
+            SDL.SDL_SetRenderDrawColor(Program.window.renderer, 0, 0, 0, 255);
             SDL.SDL_RenderClear(Program.window.renderer);
+            //Background
+            _rendering.Render();
 
+            //Rect position
+            rect.x = (Program.window.width / 2) - 300;
+            rect.y = (Program.window.heigh / 2) - 200;
+            rect.w = 600;
+            rect.h = 400; 
+            //draw and fill rect
+            SDL.SDL_SetRenderDrawColor(Program.window.renderer, 0, 0, 0, 255);
+            SDL.SDL_RenderDrawRect(Program.window.renderer, ref rect);
+            SDL.SDL_RenderFillRect(Program.window.renderer, ref rect);
             //calculate FPS
             Program.window.fpsCalculate();
 
-            
+            //Menu-Texte
             if (menuSelected.Equals("option"))
             {
                 nextText = Program.window.heigh / 3;
@@ -268,13 +311,14 @@ namespace ShootEmUp
                 textPrinter("Options", Choices.Options);
                 textPrinter("Quit", Choices.Quit);
             }
+            
             SDL.SDL_RenderPresent(Program.window.renderer);
         }
 
         public void checkSelected(Choices choice) {
             if (choice == selected)
             {
-                color = txt.Red;
+                color = txt.Green;
                 textSize = 40;
             } else
             {

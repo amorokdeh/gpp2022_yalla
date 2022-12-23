@@ -16,8 +16,12 @@ namespace ShootEmUp
         public IntPtr _Scratch = IntPtr.Zero;
         public IntPtr _High = IntPtr.Zero;
         public IntPtr _Medium = IntPtr.Zero;
-        public IntPtr _Low = IntPtr.Zero;
-        public IntPtr _Portal = IntPtr.Zero;
+        public IntPtr _MenuButtons = IntPtr.Zero;
+        public IntPtr _MenuClick = IntPtr.Zero;
+        public IntPtr _MenuMusic = IntPtr.Zero;
+        public IntPtr _sound = IntPtr.Zero;
+
+        public int volumeMusic = 20;
 
         public AudioComponent() { 
         
@@ -32,12 +36,13 @@ namespace ShootEmUp
             }
             //Load music
             _Music = loadMusic("sound/beat.wav");
+            _MenuMusic = loadMusic("sound/MainMenu Music.wav");
             //Load sound effects
             _Scratch = loadSound("sound/scratch.wav");
             _High = loadSound("sound/high.wav");
             _Medium = loadSound("sound/medium.wav");
-            _Low = loadSound("sound/low.wav");
-            _Portal = loadSound("sound/blinz.wav");
+            _MenuButtons = loadSound("sound/Menu buttons.wav");
+            _MenuClick = loadSound("sound/Menu click.wav");
 
         }
 
@@ -61,6 +66,18 @@ namespace ShootEmUp
             }
             return sound;
         }
+
+        public void runSound(IntPtr soundSource) {
+            SDL_mixer.Mix_PlayChannel(-1, soundSource, 0);
+        }
+
+        public void runMusic(IntPtr soundSource)
+        {
+            SDL_mixer.Mix_VolumeMusic(volumeMusic);
+            SDL_mixer.Mix_PlayMusic(soundSource, -1);
+        }
+
+        /*
         public static void runSound(string path, uint time)
         {
             SDL.SDL_Init(SDL.SDL_INIT_AUDIO);
@@ -77,18 +94,35 @@ namespace ShootEmUp
             SDL.SDL_FreeWAV(audioBuffer);
             SDL.SDL_Quit();
         }
+        */
 
+        public void stopSound(IntPtr sound)
+        {
+            //Free the sound effects
+            SDL_mixer.Mix_FreeChunk(sound);
+            sound = IntPtr.Zero;
+        }
+
+        public void stopMusic(IntPtr music)
+        {
+
+            //Free the music
+            SDL_mixer.Mix_FreeMusic(music);
+            music = IntPtr.Zero;
+        }
         public void cleanUp()
         {
             //Free the sound effects
             SDL_mixer.Mix_FreeChunk(_Scratch);
             SDL_mixer.Mix_FreeChunk(_High);
             SDL_mixer.Mix_FreeChunk(_Medium);
-            SDL_mixer.Mix_FreeChunk(_Low);
+            SDL_mixer.Mix_FreeChunk(_MenuClick);
+            SDL_mixer.Mix_FreeChunk(_MenuButtons);
             _Scratch = IntPtr.Zero;
             _High = IntPtr.Zero;
             _Medium = IntPtr.Zero;
-            _Low = IntPtr.Zero;
+            _MenuClick = IntPtr.Zero;
+            _MenuButtons = IntPtr.Zero;
 
             //Free the music
             SDL_mixer.Mix_FreeMusic(_Music);

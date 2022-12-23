@@ -91,7 +91,6 @@
     <Compile Include="RenderingManager.cs" />
     <Compile Include="Ship.cs" />
     <Compile Include="AudioComponent.cs" />
-    <Compile Include="Sound.cs" />
     <Compile Include="Text.cs" />
     <Compile Include="Ufo.cs" />
     <Compile Include="Window.cs" />
@@ -138,6 +137,9 @@
     <Content Include="image\MiniPixelPack3\Items\Circle_+_Square_+_Missile_pick-ups %2816 x 16%29.png" />
     <Content Include="image\MiniPixelPack3\Items\Power_item %2816 x 16%29.png" />
     <Content Include="image\MiniPixelPack3\LICENSE.txt" />
+    <Content Include="image\MiniPixelPack3\mm.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="image\MiniPixelPack3\PlayerShip\Boosters.png" />
     <Content Include="image\MiniPixelPack3\PlayerShip\Boosters_left.png" />
     <Content Include="image\MiniPixelPack3\PlayerShip\Boosters_right.png" />
@@ -189,13 +191,16 @@
     <Content Include="sound\beat.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\blinz.wav">
+    <Content Include="sound\MainMenu Music.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sound\Menu click.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="sound\high.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="sound\low.wav">
+    <Content Include="sound\Menu buttons.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="sound\medium.wav">

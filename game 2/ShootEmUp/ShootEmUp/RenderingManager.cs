@@ -57,7 +57,10 @@ namespace ShootEmUp
             {
                 rc.Render();
             }*/
-            SDL.SDL_RenderPresent(Program.window.renderer);
+            if (!Program.game._levels.mainMenu.running)
+            {
+                SDL.SDL_RenderPresent(Program.window.renderer);
+            }
         }
 
         //noch machne, wenn es wirklich gebraucht wird

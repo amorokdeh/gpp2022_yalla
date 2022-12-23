@@ -17,6 +17,7 @@ namespace ShootEmUp
         public SDL.SDL_Color LightGray;
         public SDL.SDL_Color White;
         public SDL.SDL_Color Red;
+        public SDL.SDL_Color Green;
         public Text() { 
         
         }
@@ -31,6 +32,7 @@ namespace ShootEmUp
             White = new SDL.SDL_Color() { r = 255, g = 255, b = 255 };
             LightGray = new SDL.SDL_Color() { r = 235, g = 235, b = 240 };
             Red = new SDL.SDL_Color() { r = 255, g = 0, b = 0 };
+            Green = new SDL.SDL_Color() { r = 0, g = 255, b = 0 };
         }
 
         public void loadText(int num) {

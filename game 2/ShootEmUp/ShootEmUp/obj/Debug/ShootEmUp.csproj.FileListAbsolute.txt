@@ -42,9 +42,7 @@ C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Deb
 C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\SDL2_mixer.dll
 C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\SDL2_ttf.dll
 C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\beat.wav
-C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\blinz.wav
 C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\high.wav
-C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\low.wav
 C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\medium.wav
 C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\scratch.wav
 C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\sound.wav
@@ -96,3 +94,7 @@ C:\Users\moham\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\obj\Deb
 C:\Users\moham\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\obj\Debug\ShootEmUp.csproj.CopyComplete
 C:\Users\moham\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\obj\Debug\ShootEmUp.exe
 C:\Users\moham\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\obj\Debug\ShootEmUp.pdb
+C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\Menu click.wav
+C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\Menu buttons.wav
+C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\MainMenu Music.wav
+C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\image\MiniPixelPack3\mm.png

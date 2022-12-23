@@ -10,7 +10,11 @@ namespace ShootEmUp
     {
         public Background(string name,int w, int h, int x = 0, int y = 0) : base(name, w, h)
         {
-            Img.loadImage("image/MiniPixelPack3/SpaceBG.png");
+            switch (name) {
+                case "level 1":  Img.loadImage("image/MiniPixelPack3/SpaceBG.png"); break ;
+                case "main menu": Img.loadImage("image/MiniPixelPack3/mm.png"); break;
+            }
+
             VelX = 0;
             VelY = 10;
             PosX = x;

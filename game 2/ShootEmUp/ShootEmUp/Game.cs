@@ -15,12 +15,12 @@ namespace ShootEmUp
         private GameObjectManager _objects = new GameObjectManager();
         private PhysicsManager _physics = new PhysicsManager();
         private RenderingManager _rendering = new RenderingManager();
-        private AudioManager _audio = new AudioManager();
+        public AudioManager _audio = new AudioManager();
         public LevelManager _levels = new LevelManager();
         private CollisionManager _collisions = new CollisionManager();
         private AIManager _ai = new AIManager();
         public ControlManager _controls = new ControlManager();
-        public bool revolvable = false;
+        public bool bulletReloadable = false;
 
         private PoolManager _pool = new PoolManager();
 
@@ -36,7 +36,6 @@ namespace ShootEmUp
 
         public Game()
         {
-            
             //display = 1;
         }
 
@@ -52,7 +51,7 @@ namespace ShootEmUp
 
         }
 
-        public void BuildBackground()
+        public void BuildBackground(string source)
         {
             int winW = Program.window.width;
             int winH = Program.window.heigh;
@@ -62,7 +61,7 @@ namespace ShootEmUp
 
             for (int i = -1; i < (winH / 128 * 4); i++)
             {
-                bg = _objects.CreateGameBackground("background", 128 * 4, 64 * 4, 0, 64 * 4 * i);
+                bg = _objects.CreateGameBackground(source, 128 * 4, 64 * 4, 0, 64 * 4 * i);
                 bg.Active = true;
                 bg.AddComponent(_physics.CreateBGComponent());
 
@@ -212,7 +211,7 @@ namespace ShootEmUp
         
         //Game loop
         public void run() {
-            BuildBackground();
+            BuildBackground("level 1");
             Player = (Player)BuildPlayer();
             _levels.run();    
         }
