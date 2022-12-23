@@ -106,7 +106,7 @@ namespace ShootEmUp
         public void produceBullets(float deltaTime)
         {
             bulletGap += deltaTime;
-            if (bulletGap > bulletGapSize)
+            if ((bulletGap > bulletGapSize) || (Program.game.revolvable))
             {
                 bullet = (Bullet)Program.game.RequestPlayerBullet(player);
                 Console.WriteLine(bullet.Active);
@@ -115,6 +115,7 @@ namespace ShootEmUp
                 bullet.PosX = bullet.Gameobject.PosX;
 
                 bulletGap = 0;
+                Program.game.revolvable = false;
             }
         }
 

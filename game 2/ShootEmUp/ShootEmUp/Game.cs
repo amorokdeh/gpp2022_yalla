@@ -20,6 +20,7 @@ namespace ShootEmUp
         private CollisionManager _collisions = new CollisionManager();
         private AIManager _ai = new AIManager();
         public ControlManager _controls = new ControlManager();
+        public bool revolvable = false;
 
         private PoolManager _pool = new PoolManager();
 

@@ -28,7 +28,8 @@ namespace ShootEmUp
                     Console.WriteLine("collision");
                     if(colObject is Bullet)
                         Program.game.DespawnPlayerBullet(colObject);
-                    
+                        Program.game.revolvable = true;
+
                     if (colObject is Player)
                     {
                         Console.WriteLine("player hit");

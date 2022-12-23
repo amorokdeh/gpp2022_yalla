@@ -14,8 +14,9 @@ namespace ShootEmUp
             Gameobject = player;
 
             //VelY = -10;
-            VelY = -100;
+            VelY = -150;
             Img.loadImage("image/MiniPixelPack3/Projectiles/PlayerBeam.png");
+
         }
     }
 }
