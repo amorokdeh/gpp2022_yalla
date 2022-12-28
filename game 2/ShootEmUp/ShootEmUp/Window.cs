@@ -125,6 +125,7 @@ namespace ShootEmUp
             if (delta < desiredDelta)
             {
                 uint deltaFPS = desiredDelta - delta;
+                if (Program.game._levels.mainMenu.running) { deltaFPS *= 2; } //Because we have in main menu x2 Render (we want to fix this problem later)
                 SDL.SDL_Delay(deltaFPS);
             }
         }

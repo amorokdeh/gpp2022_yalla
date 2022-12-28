@@ -62,6 +62,7 @@ namespace ShootEmUp
                 if(player.Lives <= 0) 
                 { 
                     LevelManager.display = LevelManager.GameState.GameOver;
+                    Program.game._audio.stopMusic();
                     Program.game._audio.runSound("Game Over");
                     Program.game.SetInactive();
                     return; 
@@ -72,10 +73,13 @@ namespace ShootEmUp
                     LevelManager.display = LevelManager.GameState.Quit; 
                     LevelManager.ControlQuitRequest = true;
                     Program.game.SetInactive();
+                    Program.game._audio.stopMusic();
+
                 }
                 if (LevelManager.ControlQuitRequest) 
                 {
                     Program.game.SetInactive();
+                    Program.game._audio.stopMusic();
                     return; 
                 }  // press escape to quit
                 Program.window.deltaFPS(); //frame limit end calculating here

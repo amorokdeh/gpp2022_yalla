@@ -31,13 +31,28 @@ namespace ShootEmUp
 
         public enum Choices
         {
+            Start_game,
+            Options,
+            Quit,
+
             Level1,
             Level2,
             Level3,
-            Options,
-            Quit,
+            BackToMainMenu,
+
             Window,
+            soundsVolume,
+            musicVolume,
             BackMainMenu,
+
+            soundUp,
+            soundDown,
+            BackToOption,
+
+            musicUp,
+            musicDown,
+            BackToTheOption,
+
             Screen,
             FpsLimit,
             showFPS,
@@ -45,7 +60,7 @@ namespace ShootEmUp
             BackOption
 
         }
-        private Choices selected = Choices.Level1;
+        private Choices selected = Choices.Start_game;
 
         public MainMenu()
         {
@@ -74,7 +89,6 @@ namespace ShootEmUp
                 Program.window.deltaFPS(); //frame limit end calculating here
 
             }
-                Program.game._audio.stopMusic("Menu music");
 
             if (quit) { closeAndGoTo(LevelManager.GameState.Quit); } //close the game
         }
@@ -113,14 +127,9 @@ namespace ShootEmUp
             {
                 switch (selected)
                 {
-                    case Choices.Level1:
-                        startLevel1();
-                        return;
-                    case Choices.Level2:
-                        startLevel2();
-                        return;
-                    case Choices.Level3:
-                        startLevel3();
+                    case Choices.Start_game:
+                        menuSelected = "levels";
+                        selected = Choices.Level1;
                         return;
                     case Choices.Options:
                         menuSelected = "option";
@@ -130,7 +139,27 @@ namespace ShootEmUp
                         endGame();
                         return;
                 }
-            } else if (menuSelected.Equals("option"))
+            }
+            else if (menuSelected.Equals("levels"))
+            {
+                switch (selected)
+                {
+                    case Choices.Level1:
+                        startLevel1();
+                        return;
+                    case Choices.Level2:
+                        startLevel2();
+                        return;
+                    case Choices.Level3:
+                        startLevel3();
+                        return;
+                    case Choices.BackToMainMenu:
+                        menuSelected = "main menu";
+                        selected = Choices.Start_game;
+                        return;
+                }
+            }
+            else if (menuSelected.Equals("option"))
             {
                 switch (selected)
                 {
@@ -138,12 +167,55 @@ namespace ShootEmUp
                         menuSelected = "window";
                         selected = Choices.Screen;
                         return;
+                    case Choices.soundsVolume:
+                        menuSelected = "soundUpDown";
+                        selected = Choices.soundUp;
+                        return;
+                    case Choices.musicVolume:
+                        menuSelected = "MusicUpDown";
+                        selected = Choices.musicUp;
+                        return;
                     case Choices.BackMainMenu:
                         menuSelected = "main menu";
-                        selected = Choices.Level1;
+                        selected = Choices.Start_game;
                         return;
                 }
-            } else if (menuSelected.Equals("window"))
+            }
+            else if (menuSelected.Equals("soundUpDown"))
+            {
+                switch (selected)
+                {
+                    
+                    case Choices.soundUp:
+                        Program.game._audio.changeVolumeSound(Program.game._audio.getVolumeSound() + 10);
+                        return;
+                    case Choices.soundDown:
+                        Program.game._audio.changeVolumeSound(Program.game._audio.getVolumeSound() - 10);
+                        return;
+                    case Choices.BackToOption:
+                        menuSelected = "option";
+                        selected = Choices.Window;
+                        return;
+                }
+            }
+            else if (menuSelected.Equals("MusicUpDown"))
+            {
+                switch (selected)
+                {
+
+                    case Choices.musicUp:
+                        Program.game._audio.changeVolumeMusic(Program.game._audio.getVolumeMusic() + 10);
+                        return;
+                    case Choices.musicDown:
+                        Program.game._audio.changeVolumeMusic(Program.game._audio.getVolumeMusic() - 10);
+                        return;
+                    case Choices.BackToTheOption:
+                        menuSelected = "option";
+                        selected = Choices.Window;
+                        return;
+                }
+            }
+            else if (menuSelected.Equals("window"))
             {
                 switch (selected)
                 {
@@ -180,7 +252,25 @@ namespace ShootEmUp
                 Program.game._audio.runSound("Menu buttons");
                 return;
             }
-            else if ((menuSelected.Equals("main menu")) && selected > Choices.Level1) {
+            else if ((menuSelected.Equals("levels")) && (selected > Choices.Level1))
+            {
+                selected--;
+                Program.game._audio.runSound("Menu buttons");
+                return;
+            }
+            else if ((menuSelected.Equals("soundUpDown")) && selected > Choices.soundUp)
+            {
+                selected--;
+                Program.game._audio.runSound("Menu buttons");
+                return;
+            }
+            else if ((menuSelected.Equals("MusicUpDown")) && selected > Choices.musicUp)
+            {
+                selected--;
+                Program.game._audio.runSound("Menu buttons");
+                return;
+            }
+            else if ((menuSelected.Equals("main menu")) && selected > Choices.Start_game) {
                 selected--;
                 Program.game._audio.runSound("Menu buttons");
                 return;
@@ -196,6 +286,24 @@ namespace ShootEmUp
                 return;
             }
             else if ((menuSelected.Equals("window")) && (selected < Choices.BackOption)) {
+                selected++;
+                Program.game._audio.runSound("Menu buttons");
+                return;
+            }
+            else if ((menuSelected.Equals("levels")) && (selected < Choices.BackToMainMenu))
+            {
+                selected++;
+                Program.game._audio.runSound("Menu buttons");
+                return;
+            }
+            else if ((menuSelected.Equals("soundUpDown")) && (selected < Choices.BackToOption))
+            {
+                selected++;
+                Program.game._audio.runSound("Menu buttons");
+                return;
+            }
+            else if ((menuSelected.Equals("MusicUpDown")) && (selected < Choices.BackToTheOption))
+            {
                 selected++;
                 Program.game._audio.runSound("Menu buttons");
                 return;
@@ -218,18 +326,25 @@ namespace ShootEmUp
         {
             running = false;
             closeAndGoTo(LevelManager.GameState.Level1);
+            Program.game._audio.stopMusic();
+            Program.game._audio.runMusic("Level1 music");
+
 
         }
         public void startLevel2()
         {
             running = false;
             closeAndGoTo(LevelManager.GameState.Level2);
+            Program.game._audio.stopMusic();
+            Program.game._audio.runMusic("Level2 music");
 
         }
         public void startLevel3()
         {
             running = false;
             closeAndGoTo(LevelManager.GameState.Level3);
+            Program.game._audio.stopMusic();
+            Program.game._audio.runMusic("Level3 music");
 
         }
         public int nextTextPos() {
@@ -289,6 +404,8 @@ namespace ShootEmUp
                 nextText = Program.window.heigh / 3;
 
                 textPrinter("Window", Choices.Window);
+                textPrinter("Sounds volume", Choices.soundsVolume);
+                textPrinter("Music volume", Choices.musicVolume);
                 textPrinter("Back", Choices.BackMainMenu);
 
             }
@@ -302,17 +419,42 @@ namespace ShootEmUp
                 textPrinter("Screen size: " + Program.window.width + " x " + Program.window.heigh, Choices.ScreenSize);
                 textPrinter("Back", Choices.BackOption);
             }
-            else
+            else if(menuSelected.Equals("main menu"))
             {
                 nextText = Program.window.heigh / 3;
 
-                textPrinter("Start Level 1", Choices.Level1);
-                textPrinter("Start Level 2", Choices.Level2);
-                textPrinter("Start Level 3", Choices.Level3);
+                textPrinter("Start game", Choices.Start_game);
                 textPrinter("Options", Choices.Options);
                 textPrinter("Quit", Choices.Quit);
             }
-            
+            else if (menuSelected.Equals("levels"))
+            {
+                nextText = Program.window.heigh / 3;
+
+                textPrinter("Level 1", Choices.Level1);
+                textPrinter("Level 2", Choices.Level2);
+                textPrinter("Level 3", Choices.Level3);
+                textPrinter("Back", Choices.BackToMainMenu);
+            }
+            else if (menuSelected.Equals("soundUpDown"))
+            {
+                nextText = Program.window.heigh / 3;
+
+                textPrinter(Program.game._audio.getVolumeSound().ToString(), Choices.Start_game);
+                textPrinter("+", Choices.soundUp);
+                textPrinter("-", Choices.soundDown);
+                textPrinter("Back", Choices.BackToOption);
+            }
+            else if (menuSelected.Equals("MusicUpDown"))
+            {
+                nextText = Program.window.heigh / 3;
+
+                textPrinter(Program.game._audio.getVolumeMusic().ToString(), Choices.Start_game);
+                textPrinter("+", Choices.musicUp);
+                textPrinter("-", Choices.musicDown);
+                textPrinter("Back", Choices.BackToTheOption);
+            }
+
             SDL.SDL_RenderPresent(Program.window.renderer);
         }
 

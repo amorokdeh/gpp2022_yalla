@@ -102,3 +102,8 @@ C:\Users\moham\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Deb
 C:\Users\moham\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\Menu click.wav
 C:\Users\moham\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\Menu buttons.wav
 C:\Users\moham\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\shooting.wav
+C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\game_over.wav
+C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\shooting.wav
+C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\Level1 Music.wav
+C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\Level2 Music.wav
+C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\Level3 Music.wav
