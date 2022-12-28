@@ -20,6 +20,8 @@ namespace ShootEmUp
         public IntPtr _MenuClick = IntPtr.Zero;
         public IntPtr _MenuMusic = IntPtr.Zero;
         public IntPtr _sound = IntPtr.Zero;
+        public IntPtr _GameOver = IntPtr.Zero;
+        public IntPtr _Shooting = IntPtr.Zero;
 
         public int volumeMusic = 20;
 
@@ -43,6 +45,8 @@ namespace ShootEmUp
             _Medium = loadSound("sound/medium.wav");
             _MenuButtons = loadSound("sound/Menu buttons.wav");
             _MenuClick = loadSound("sound/Menu click.wav");
+            _GameOver = loadSound("sound/game_over.wav");
+            _Shooting = loadSound("sound/shooting.wav");
 
         }
 
@@ -118,11 +122,15 @@ namespace ShootEmUp
             SDL_mixer.Mix_FreeChunk(_Medium);
             SDL_mixer.Mix_FreeChunk(_MenuClick);
             SDL_mixer.Mix_FreeChunk(_MenuButtons);
+            SDL_mixer.Mix_FreeChunk(_GameOver);
+            SDL_mixer.Mix_FreeChunk(_Shooting);
             _Scratch = IntPtr.Zero;
             _High = IntPtr.Zero;
             _Medium = IntPtr.Zero;
             _MenuClick = IntPtr.Zero;
             _MenuButtons = IntPtr.Zero;
+            _GameOver = IntPtr.Zero;
+            _Shooting = IntPtr.Zero;
 
             //Free the music
             SDL_mixer.Mix_FreeMusic(_Music);

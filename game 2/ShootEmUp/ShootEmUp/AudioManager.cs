@@ -38,6 +38,9 @@ namespace ShootEmUp
                 case "Menu buttons": return audioC._MenuButtons;
                 case "Menu click": return audioC._MenuClick;
                 case "Menu music": return audioC._MenuMusic;
+                case "Game Over": return audioC._GameOver;
+                case "Shooting": return audioC._Shooting;
+
             }
             return audioC._sound;
         }

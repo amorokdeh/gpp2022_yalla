@@ -74,6 +74,7 @@ namespace ShootEmUp
                 Program.window.deltaFPS(); //frame limit end calculating here
 
             }
+                Program.game._audio.stopMusic("Menu music");
 
             if (quit) { closeAndGoTo(LevelManager.GameState.Quit); } //close the game
         }

@@ -62,6 +62,7 @@ namespace ShootEmUp
                 if(player.Lives <= 0) 
                 { 
                     LevelManager.display = LevelManager.GameState.GameOver;
+                    Program.game._audio.runSound("Game Over");
                     Program.game.SetInactive();
                     return; 
                 }
@@ -110,6 +111,8 @@ namespace ShootEmUp
             {
                 bullet = (Bullet)Program.game.RequestPlayerBullet(player);
                 Console.WriteLine(bullet.Active);
+
+                Program.game._audio.runSound("Shooting");
 
                 bullet.PosY = bullet.Gameobject.PosY;
                 bullet.PosX = bullet.Gameobject.PosX;
