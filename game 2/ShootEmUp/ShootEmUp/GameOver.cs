@@ -96,16 +96,17 @@ namespace ShootEmUp
             //Clear screen
             SDL.SDL_SetRenderDrawColor(renderer, 5, 5, 5, 255);
             SDL.SDL_RenderClear(renderer);
+            int nextPos = Program.window.heigh / 3;
             IntPtr surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, winnerText, txt.White);
-            txt.addText(renderer, surfaceMessage, 40, Program.window.heigh / 2 - 100, Program.window.width - 80, 100);
+            txt.addText(Program.window.renderer, surfaceMessage, Program.window.width / 2 - winnerText.Length * 10, nextPos, winnerText.Length * 20, 100);
 
             string text = "DRUECKE ENTER, UM NOCHMAL ZU SPIELEN";
             surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, txt.LightGray);
-            txt.addText(renderer, surfaceMessage, 100, Program.window.heigh / 2 + 120, Program.window.width - 200, 30);
+            txt.addText(Program.window.renderer, surfaceMessage, Program.window.width / 2 - text.Length * 10, nextPos + 200, text.Length * 20, 30);
 
             text = "DRUECKE SPACE, UM MAIN MENU ZU ZEIGEN";
             surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, txt.LightGray);
-            txt.addText(renderer, surfaceMessage, 100, Program.window.heigh / 2 + 170, Program.window.width - 200, 30);
+            txt.addText(Program.window.renderer, surfaceMessage, Program.window.width / 2 - text.Length * 10, nextPos + 250, text.Length * 20, 30);
 
             SDL.SDL_RenderPresent(renderer);
         }
