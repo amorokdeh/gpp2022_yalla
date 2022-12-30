@@ -10,7 +10,7 @@ namespace ShootEmUp
     class Game
     {
 
-        
+
 
         private GameObjectManager _objects = new GameObjectManager();
         private PhysicsManager _physics = new PhysicsManager();
@@ -20,9 +20,13 @@ namespace ShootEmUp
         private CollisionManager _collisions = new CollisionManager();
         private AIManager _ai = new AIManager();
         public ControlManager _controls = new ControlManager();
+        private AnimationManager _animations = new AnimationManager();
+        private PoolManager _pool = new PoolManager();
+
+
         public bool bulletReloadable = false;
 
-        private PoolManager _pool = new PoolManager();
+        
 
         public static bool Quit;
 
@@ -57,7 +61,7 @@ namespace ShootEmUp
             int winH = Program.window.heigh;
 
             GameObject bg;
-            
+
 
             for (int i = -1; i < (winH / 128 * 4); i++)
             {
@@ -76,10 +80,10 @@ namespace ShootEmUp
 
         public GameObject BuildPlayer()
         {
-            Player player = _objects.CreateGamePlayer("player", 16*2, 16*2);
+            Player player = _objects.CreateGamePlayer("player", 16 * 2, 16 * 2);
             player.Active = true;
             player.AddComponent(_physics.CreateComponent());
-            player.AddComponent(_rendering.CreateComponent(16*2, 16*2));
+            player.AddComponent(_rendering.CreateComponent(16 * 2, 16 * 2));
             player.AddComponent(_rendering.CreateInfoComponent());
             player.AddComponent(_controls.CreateComponent());
             player.AddComponent(_collisions.CreateComponent());
@@ -90,11 +94,12 @@ namespace ShootEmUp
         //Enemy
         public GameObject BuildShip(GameObject ship)
         {
-            ship = _objects.CreateGameShip("ship", 16*2, 16*2);
+            ship = _objects.CreateGameShip("ship", 16 * 2, 16 * 2);
             ship.AddComponent(_physics.CreateComponent());
-            ship.AddComponent(_rendering.CreateComponent(16*2, 16*2));
+            ship.AddComponent(_rendering.CreateComponent(16 * 2, 16 * 2));
             ship.AddComponent(_ai.CreateComponent());
             ship.AddComponent(_collisions.CreateComponent());
+            ship.AddComponent(_animations.CreateComponent());
 
             return ship;
 
@@ -103,11 +108,12 @@ namespace ShootEmUp
         //Enemy
         public GameObject BuildUfo(GameObject ufo)
         {
-            ufo = _objects.CreateGameUfo("ufo", 16*2, 16*2);
+            ufo = _objects.CreateGameUfo("ufo", 16 * 2, 16 * 2);
             ufo.AddComponent(_physics.CreateComponent());
-            ufo.AddComponent(_rendering.CreateComponent(16*2, 16*2));
+            ufo.AddComponent(_rendering.CreateComponent(16 * 2, 16 * 2));
             ufo.AddComponent(_ai.CreateComponent());
             ufo.AddComponent(_collisions.CreateComponent());
+            //ufo.AddComponent(_animations.CreateComponent());
 
             return ufo;
 
@@ -115,7 +121,7 @@ namespace ShootEmUp
 
         public GameObject BuildPlayerBullet(GameObject bullet, GameObject player)
         {
-            bullet = _objects.CreatePlayerBullet("bullet",player, 16 * 2, 16 * 2);
+            bullet = _objects.CreatePlayerBullet("bullet", player, 16 * 2, 16 * 2);
             bullet.AddComponent(_physics.CreateComponent());
             bullet.AddComponent(_rendering.CreateComponent(16 * 2, 16 * 2));
             bullet.AddComponent(_ai.CreateComponent());
@@ -179,14 +185,19 @@ namespace ShootEmUp
         public void SetInactive()
         {
             _pool.SetInactive();
-            
+
+        }
+
+        public void Animate(float deltaT)
+        {
+            _animations.Animate(deltaT);
         }
 
 
 
 
-        
-        
+
+
         //Game loop
         public void run() {
             BuildBackground("level 1");

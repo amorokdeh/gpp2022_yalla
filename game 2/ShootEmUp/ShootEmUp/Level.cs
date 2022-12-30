@@ -58,6 +58,7 @@ namespace ShootEmUp
                 Program.game.ControlEnemy();
                 Program.game.ControlPlayer();
                 Program.game.Move(avDeltaTime);
+                Program.game.Animate(avDeltaTime);
                 Program.game.Collide();
                 if (player.Lives <= 0)
                 {
