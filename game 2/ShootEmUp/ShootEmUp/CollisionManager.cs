@@ -17,6 +17,7 @@ namespace ShootEmUp
             return cc;
         }
 
+
         public void Collide()
         {
             foreach (var component in _collisionComponents)
@@ -29,13 +30,6 @@ namespace ShootEmUp
                             component.Collide(colObject.GameObject);
 
                 } 
-                /*else if (component.GameObject is Player && component.GameObject.Active)
-                {
-                    foreach (var bullet in _collisionComponents)
-
-                        if (bullet.GameObject is Enemy && bullet.GameObject.Active)
-                            component.Collide(bullet.GameObject);
-                }*/
 
 
                     

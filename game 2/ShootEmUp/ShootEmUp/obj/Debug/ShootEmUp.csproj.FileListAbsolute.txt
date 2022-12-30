@@ -19,9 +19,7 @@ C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\font\lazy.ttf
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\SDL2_ttf.dll
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\beat.wav
-C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\blinz.wav
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\high.wav
-C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\low.wav
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\medium.wav
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\scratch.wav
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\sound.wav
@@ -107,3 +105,12 @@ C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Deb
 C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\Level1 Music.wav
 C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\Level2 Music.wav
 C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\Level3 Music.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\image\MiniPixelPack3\mm.png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\game_over.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\Level1 Music.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\Level2 Music.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\Level3 Music.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\MainMenu Music.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\Menu click.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\Menu buttons.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\shooting.wav

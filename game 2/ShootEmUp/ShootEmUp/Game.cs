@@ -72,28 +72,6 @@ namespace ShootEmUp
 
                 bg.AddComponent(_ai.CreateComponent());
             }
-            /*
-            GameObject bg = _objects.CreateGameBackground("background", 128 * 4, 64 * 4, 0, 0);
-            bg.Active = true;
-            bg.AddComponent(_physics.CreateBGComponent());
-            bg.AddComponent(_rendering.CreateBGComponent(0, 0, 128, 64, 128 * 4, 64 * 4));
-            bg.AddComponent(_rendering.CreateBGComponent(0, 0, 128, 64, 128 * 4, 64 * 4, 128 *4));
-            bg.AddComponent(_ai.CreateComponent());
-            
-            GameObject bg2 = _objects.CreateGameBackground("background", 128 * 4, 64 * 4, 0, -64 * 4);
-            bg2.Active = true;
-            bg2.AddComponent(_physics.CreateBGComponent());
-            bg2.AddComponent(_rendering.CreateBGComponent(0, 0, 128, 64, 128 * 4, 64 * 4));
-            bg2.AddComponent(_rendering.CreateBGComponent(0, 0, 128, 64, 128 * 4, 64 * 4, 128 * 4));
-            bg2.AddComponent(_ai.CreateComponent());
-
-            GameObject bg3 = _objects.CreateGameBackground("background", 128 * 4, 64 * 4, 0, 64 * 4);
-            bg3.Active = true;
-            bg3.AddComponent(_physics.CreateBGComponent());
-            bg3.AddComponent(_rendering.CreateBGComponent(0, 0, 128, 64, 128 * 4, 64 * 4));
-            bg3.AddComponent(_rendering.CreateBGComponent(0, 0, 128, 64, 128 * 4, 64 * 4, 128 * 4));
-            bg3.AddComponent(_ai.CreateComponent());
-            */
         }
 
         public GameObject BuildPlayer()

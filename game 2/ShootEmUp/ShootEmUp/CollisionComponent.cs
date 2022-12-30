@@ -14,6 +14,8 @@ namespace ShootEmUp
             this.CollisionManager = cm;
         }
 
+ 
+
         public void Collide(GameObject colObject)
         {
             //TODO genauere Kollision
@@ -21,14 +23,11 @@ namespace ShootEmUp
             {
                 if(colObject.PosX+(colObject.Width-6) > GameObject.PosX && colObject.PosX < GameObject.PosX+(GameObject.Width-6))
                 {
-                    /*
-                    Console.WriteLine("colObject, Enemy " + colObject.PosY.ToString(".0##")+ GameObject.PosY.ToString(".0##"));
-                    Console.WriteLine("Width " + colObject.Width + GameObject.Width);
-                    Console.WriteLine("Height " + colObject.Height + GameObject.Height);*/
-                    Console.WriteLine("collision");
-                    if(colObject is Bullet)
+                    if (colObject is Bullet)
+                    {
                         Program.game.DespawnPlayerBullet(colObject);
                         Program.game.bulletReloadable = true;
+                    }
 
                     if (colObject is Player)
                     {
@@ -37,13 +36,13 @@ namespace ShootEmUp
                         player.Lives--;
                     }
 
-                    Program.game.Player.Score++;
-
                     if (GameObject is Ufo)
                         Program.game.DespawnEnemyUfo(GameObject);
-                    if(GameObject is Ship)
+                    if (GameObject is Ship)
                         Program.game.DespawnEnemyShip(GameObject);
-                    
+
+                    Program.game.Player.Score++;
+
                 }
             }
 
