@@ -19,7 +19,7 @@ Spiel:
 [] Zeitlupeneffekt
 [] Mehrere Leben
 [] Animation
-    [] Bewegung der Gegner (Majbrit)
+    [x] Bewegung der Gegner (Majbrit)
     [] Zerstörung der Gegner
     [] ...
 [] Gegner die schießen
