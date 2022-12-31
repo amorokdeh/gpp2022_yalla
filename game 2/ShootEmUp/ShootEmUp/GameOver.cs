@@ -68,18 +68,18 @@ namespace ShootEmUp
                     {
                         case SDL.SDL_Keycode.SDLK_RETURN: 
                             running = false;
-                          /*  if(Program.game.mainMenu.level == 1)
-                            {*/
+                          if(LevelManager.CurrentLevel == 1)
+                            {
                                 closeAndGoTo(LevelManager.GameState.Level1); 
-                          /*  }
-                            else if (Program.game.mainMenu.level == 2)
-                            {
-                                closeAndGoTo(3);
                             }
-                            else if (Program.game.mainMenu.level == 3)
+                            else if (LevelManager.CurrentLevel == 2)
                             {
-                                closeAndGoTo(4);
-                            }*/
+                                closeAndGoTo(LevelManager.GameState.Level2);
+                            }
+                            else if (LevelManager.CurrentLevel == 3)
+                            {
+                                closeAndGoTo(LevelManager.GameState.Level3);
+                            }
 
                             break;
                         case SDL.SDL_Keycode.SDLK_SPACE: 

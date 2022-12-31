@@ -15,5 +15,10 @@ namespace ShootEmUp
 
             Img.loadImage("image/MiniPixelPack3/Enemies/Alan.png");
         }
+
+        public override void ChangeImage()
+        {
+            base.ChangeImage(3);
+        }
     }
 }

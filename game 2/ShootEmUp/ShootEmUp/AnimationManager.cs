@@ -17,6 +17,7 @@ namespace ShootEmUp
             return ac;
         }
 
+
         public void Animate(float deltaT)
         {
             foreach (var component in _animationComponents)

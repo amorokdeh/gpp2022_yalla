@@ -44,7 +44,7 @@ namespace ShootEmUp
             return newEnemy;
         }
 
-        public void DespawnEnemyUfo(GameObject enemy)
+        public void DespawnEnemy(GameObject enemy)
         {
             enemy.Active = false;
         }
@@ -68,10 +68,6 @@ namespace ShootEmUp
             return newEnemy;
         }
 
-        public void DespawnEnemyShip(GameObject enemy)
-        {
-            enemy.Active = false;
-        }
 
         public GameObject RequestPlayerBullet(GameObject player)
         {

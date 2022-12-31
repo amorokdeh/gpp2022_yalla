@@ -24,6 +24,40 @@ namespace ShootEmUp
         public Image Img = new Image();
 
         public int ImgChange = 0;
+        public int ImgStep = 0;
+
+
+        public virtual void ChangeImage() { }
+
+
+        private int pause = 5;
+        public void ChangeImage(int imgAmount)
+        {
+            
+            
+            if(pause > 0)
+            {
+                pause--;
+            }
+            else {
+                ImgStep++;
+                if (ImgStep < imgAmount)
+                {
+                    ImgChange = 16 * ImgStep;
+                }
+                else
+                {
+                    ImgChange = 16 * (imgAmount * 2 - 2 - ImgStep);
+                }
+
+                if (ImgStep > imgAmount * 2 - 3)
+                {
+                    ImgStep = 0;
+                    pause = 5;
+                }
+            }
+
+        }
 
 
 

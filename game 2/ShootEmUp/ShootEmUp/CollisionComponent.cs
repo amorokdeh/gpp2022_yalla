@@ -36,10 +36,13 @@ namespace ShootEmUp
                         player.Lives--;
                     }
 
-                    if (GameObject is Ufo)
-                        Program.game.DespawnEnemyUfo(GameObject);
-                    if (GameObject is Ship)
-                        Program.game.DespawnEnemyShip(GameObject);
+                    if (colObject is Enemy)
+                        Program.game.DespawnEnemy(GameObject);
+
+
+                    if (GameObject is Enemy)
+                        Program.game.DespawnEnemy(GameObject);
+
 
                     Program.game.Player.Score++;
 

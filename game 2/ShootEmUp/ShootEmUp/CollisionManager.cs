@@ -26,7 +26,7 @@ namespace ShootEmUp
                 {
                     foreach (var colObject in _collisionComponents)
 
-                        if ((colObject.GameObject is Bullet || colObject.GameObject is Player) && colObject.GameObject.Active)
+                        if (colObject.GameObject.Active && colObject.GameObject!=component.GameObject)
                             component.Collide(colObject.GameObject);
 
                 } 

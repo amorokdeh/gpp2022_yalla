@@ -113,7 +113,7 @@ namespace ShootEmUp
             ufo.AddComponent(_rendering.CreateComponent(16 * 2, 16 * 2));
             ufo.AddComponent(_ai.CreateComponent());
             ufo.AddComponent(_collisions.CreateComponent());
-            //ufo.AddComponent(_animations.CreateComponent());
+            ufo.AddComponent(_animations.CreateComponent());
 
             return ufo;
 
@@ -134,18 +134,15 @@ namespace ShootEmUp
         {
             return _pool.RequestEnemyUfo();
         }
-        public void DespawnEnemyUfo(GameObject enemy)
+        public void DespawnEnemy(GameObject enemy)
         {
-            _pool.DespawnEnemyUfo(enemy);
+            _pool.DespawnEnemy(enemy);
         }
         public GameObject RequestEnemyShip()
         {
             return _pool.RequestEnemyShip();
         }
-        public void DespawnEnemyShip(GameObject enemy)
-        {
-            _pool.DespawnEnemyShip(enemy);
-        }
+
         public GameObject RequestPlayerBullet(GameObject player)
         {
             return _pool.RequestPlayerBullet(player);

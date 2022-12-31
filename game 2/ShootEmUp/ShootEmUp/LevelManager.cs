@@ -14,6 +14,8 @@ namespace ShootEmUp
         public Level2 level2;
         public Level3 level3;
 
+        public static int CurrentLevel;
+
 
 
 
@@ -40,16 +42,19 @@ namespace ShootEmUp
         public void runLevel1()
         {
             level1 = new Level1();
+            CurrentLevel = 1;
             level1.run();
         }
         public void runLevel2()
         {
             level2 = new Level2();
+            CurrentLevel = 2;
             level2.run();
         }
         public void runLevel3()
         {
             level3 = new Level3();
+            CurrentLevel = 3;
             level3.run();
         }
 
