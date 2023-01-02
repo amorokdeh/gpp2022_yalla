@@ -13,12 +13,17 @@ namespace ShootEmUp
             PosX = 500;
             PosY = 0;
 
-            Img.loadImage("image/MiniPixelPack3/Enemies/Alan.png");
+            
+            FlyingImg.loadImage("image/MiniPixelPack3/Enemies/Alan.png");
+            Img = FlyingImg;
         }
 
         public override void ChangeImage()
         {
-            base.ChangeImage(3);
+            if (Died)
+                base.Explode();
+            else
+                base.ChangeImage(3);
         }
     }
 }

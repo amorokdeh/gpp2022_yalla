@@ -27,6 +27,15 @@ namespace ShootEmUp
                     {
                         Program.game.DespawnPlayerBullet(colObject);
                         Program.game.bulletReloadable = true;
+                        Program.game.Player.Score++;
+
+                        if (GameObject is Enemy)
+                        {
+                            GameObject.Died = true;
+                            Enemy enemy = (Enemy)GameObject;
+                            enemy.Img = enemy.ExplodingImg;
+
+                        }
                     }
 
                     if (colObject is Player)
@@ -34,17 +43,31 @@ namespace ShootEmUp
                         Console.WriteLine("player hit");
                         Player player = (Player)colObject;
                         player.Lives--;
+                        Program.game.Player.Score++;
+
+                        if (GameObject is Enemy)
+                        {
+                            GameObject.Died = true;
+                            Enemy enemy = (Enemy)GameObject;
+                            enemy.Img = enemy.ExplodingImg;
+
+                        }
                     }
 
                     if (colObject is Enemy)
-                        Program.game.DespawnEnemy(GameObject);
+                    {
+                        Program.game.DespawnEnemy(colObject);
+
+                    }
+                        
+                    //
 
 
-                    if (GameObject is Enemy)
-                        Program.game.DespawnEnemy(GameObject);
+                    
+                    //Program.game.DespawnEnemy(GameObject);
 
 
-                    Program.game.Player.Score++;
+                    
 
                 }
             }

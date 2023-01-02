@@ -114,3 +114,4 @@ C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\Menu click.wav
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\Menu buttons.wav
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\shooting.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\image\MiniPixelPack3\Effects\Explosion.png

@@ -9,6 +9,7 @@ namespace ShootEmUp
     class GameObject
     {
         public bool Active = false;
+        public bool Died = false;
 
         private string Name { get; set; }
         public float PosX { get; set; }

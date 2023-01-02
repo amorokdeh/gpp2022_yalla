@@ -127,7 +127,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="image\MiniPixelPack3\Effects\Explosion %2816 x 16%29.png" />
+    <Content Include="image\MiniPixelPack3\Effects\Explosion.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="image\MiniPixelPack3\Effects\Sparkle %2816 x 16%29.png" />
     <Content Include="image\MiniPixelPack3\Enemies\Alan.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

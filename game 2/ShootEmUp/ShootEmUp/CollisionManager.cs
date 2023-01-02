@@ -22,11 +22,11 @@ namespace ShootEmUp
         {
             foreach (var component in _collisionComponents)
             {
-                if (component.GameObject is Enemy && component.GameObject.Active)
+                if (component.GameObject is Enemy && (!component.GameObject.Died && component.GameObject.Active))
                 {
                     foreach (var colObject in _collisionComponents)
 
-                        if (colObject.GameObject.Active && colObject.GameObject!=component.GameObject)
+                        if ((!component.GameObject.Died && component.GameObject.Active) && colObject.GameObject!=component.GameObject)
                             component.Collide(colObject.GameObject);
 
                 } 

@@ -33,6 +33,7 @@ namespace ShootEmUp
                 {
                     //Console.WriteLine("Old enemy");
                     enemy.Active = true;
+
                     return enemy;
                 }
             }
@@ -46,7 +47,13 @@ namespace ShootEmUp
 
         public void DespawnEnemy(GameObject enemy)
         {
-            enemy.Active = false;
+            Enemy enemy1 = (Enemy)enemy;
+            enemy1.Active = false;
+            enemy1.Died = false;
+
+            enemy1.ExplosionStep = 0;
+            enemy1.Img = enemy1.FlyingImg;
+
         }
 
         public GameObject RequestEnemyShip()
@@ -98,15 +105,16 @@ namespace ShootEmUp
         {
             foreach (var gameObject in _enemyUfoPool)
             {
-                gameObject.Active = false;
+                DespawnEnemy(gameObject);
             }
             foreach (var gameObject in _enemyShipPool)
             {
-                gameObject.Active = false;
+                DespawnEnemy(gameObject);
             }
             foreach (var gameObject in _playerBulletPool)
             {
                 gameObject.Active = false;
+                gameObject.Died = false;
             }
         }
 

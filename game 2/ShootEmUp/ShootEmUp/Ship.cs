@@ -13,12 +13,16 @@ namespace ShootEmUp
             PosX = 600;
             PosY = 0;
 
-            Img.loadImage("image/MiniPixelPack3/Enemies/Lips.png");
+            FlyingImg.loadImage("image/MiniPixelPack3/Enemies/Lips.png");
+            Img = FlyingImg;
         }
 
         public override void ChangeImage()
         {
-            base.ChangeImage(4);
+            if (Died)
+                base.Explode();
+            else
+                base.ChangeImage(4);
         }
     }
 }
