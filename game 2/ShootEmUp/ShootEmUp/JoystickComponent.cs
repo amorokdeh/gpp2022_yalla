@@ -43,7 +43,7 @@ namespace ShootEmUp
             else
             {
                 //Load joystick
-                gGameController = SDL.SDL_GameControllerOpen(0);
+                gGameController = SDL.SDL_JoystickOpen(0);
                 if (gGameController == null)
                 {
                     Console.WriteLine("Warning: Unable to open game controller! SDL Error: %s\n", SDL.SDL_GetError());
@@ -59,34 +59,55 @@ namespace ShootEmUp
 
         public void HandleEvent(SDL.SDL_Event e)
         {
+            // The joystick was moved
+            int x = SDL.SDL_JoystickGetAxis(gGameController, 0);
+            int y = SDL.SDL_JoystickGetAxis(gGameController, 1);
+            Console.WriteLine(x);
 
             //If a key was pressed
-            if (e.type == SDL.SDL_EventType.SDL_KEYDOWN && e.key.repeat == 0)
+            if (e.type == SDL.SDL_EventType.SDL_JOYAXISMOTION)
             {
+              
 
-                //Adjust the velocity
-                switch (e.key.keysym.sym)
+                // Move the character based on the joystick input
+                if (x < -16384)
                 {
-                    case SDL.SDL_Keycode.SDLK_UP: GameObject.CurrentVelY -= GameObject.VelY; break;
-                    case SDL.SDL_Keycode.SDLK_DOWN: GameObject.CurrentVelY += GameObject.VelY; break;
-                    case SDL.SDL_Keycode.SDLK_LEFT: GameObject.CurrentVelX -= GameObject.VelX; break;
-                    case SDL.SDL_Keycode.SDLK_RIGHT: GameObject.CurrentVelX += GameObject.VelX; break;
-                    case SDL.SDL_Keycode.SDLK_ESCAPE: LevelManager.display = GameState.MainMenu; LevelManager.ControlQuitRequest = true; break; //quit game
-
+                    // Move character left
+                    Console.WriteLine("Left");
+                    GameObject.CurrentVelX -= GameObject.VelX;
                 }
-            }
-            else if (e.type == SDL.SDL_EventType.SDL_KEYUP && e.key.repeat == 0)
-            {
-                //Adjust the velocity
-                switch (e.key.keysym.sym)
+                else if (x > 16384)
                 {
-                    case SDL.SDL_Keycode.SDLK_UP: GameObject.CurrentVelY += GameObject.VelY; break;
-                    case SDL.SDL_Keycode.SDLK_DOWN: GameObject.CurrentVelY -= GameObject.VelY; break;
-                    case SDL.SDL_Keycode.SDLK_LEFT: GameObject.CurrentVelX += GameObject.VelX; break;
-                    case SDL.SDL_Keycode.SDLK_RIGHT: GameObject.CurrentVelX -= GameObject.VelX; break;
-
+                    // Move character right
+                    Console.WriteLine("Right");
+                    GameObject.CurrentVelX += GameObject.VelX;
                 }
+                else {
+                    //stop haracter
+                    GameObject.CurrentVelX *= -1;
+                }
+
+                if (y < -16384)
+                {
+                    // Move character up
+                    Console.WriteLine("up");
+                    GameObject.CurrentVelY -= GameObject.VelY;
+                }
+                else if (y > 16384)
+                {
+                    // Move character down
+                    Console.WriteLine("down");
+                    GameObject.CurrentVelY += GameObject.VelY;
+                }
+                else
+                {
+                    //stop haracter
+                    GameObject.CurrentVelY *= -1;
+                }
+
             }
-        }
+        }  
+            
+        
     }
 }

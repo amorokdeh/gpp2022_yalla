@@ -157,6 +157,7 @@ namespace ShootEmUp
         public void ControlPlayer()
         {
             _controls.Control();
+            _controls.JoystickControl();
         }
         public void ControlEnemy()
         {
