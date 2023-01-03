@@ -140,6 +140,9 @@
     </Content>
     <Content Include="image\MiniPixelPack3\Items\Circle_+_Square_+_Missile_pick-ups %2816 x 16%29.png" />
     <Content Include="image\MiniPixelPack3\Items\Power_item %2816 x 16%29.png" />
+    <Content Include="image\MiniPixelPack3\level_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="image\MiniPixelPack3\LICENSE.txt" />
     <Content Include="image\MiniPixelPack3\mm.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
