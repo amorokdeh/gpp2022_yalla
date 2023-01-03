@@ -58,7 +58,7 @@ namespace ShootEmUp
         public void BuildBackground(string source)
         {
             int winW = Program.window.width;
-            int winH = Program.window.heigh;
+            int winH = Program.window.height;
 
             GameObject bg;
 
@@ -220,6 +220,7 @@ namespace ShootEmUp
 
 
             SDL.SDL_DestroyWindow(Program.window.show);
+            _audio.cleanUp();
             SDL.SDL_Quit();
         }
     }

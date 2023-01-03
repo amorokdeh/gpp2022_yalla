@@ -19,7 +19,7 @@ namespace ShootEmUp
             GameObject.CurrentVelY = GameObject.VelY;
 
             //nur zum Testen
-            if(GameObject is Enemy && GameObject.PosY > Program.window.heigh)
+            if(GameObject is Enemy && GameObject.PosY > Program.window.height)
             {
                 Program.game.DespawnEnemy(GameObject);
             }

@@ -10,7 +10,10 @@ namespace ShootEmUp
     class AudioManager
     {
         AudioComponent audioC = new AudioComponent();
-        public AudioManager() {
+        int volumMin = 0;
+        int volumMax = 250;
+        public AudioManager()
+        {
             audioC.setup();
         }
         public void runSound(string sound)
@@ -25,9 +28,10 @@ namespace ShootEmUp
         {
             SDL_mixer.Mix_HaltMusic();
         }
-        public void changeVolumeMusic(int volume) {
-                if  (volume > 250)   { volume = 0; }
-            else if (volume < 0  )   { volume = 250; }
+        public void changeVolumeMusic(int volume)
+        {
+            if (volume > volumMax) { volume = volumMin; }
+            else if (volume < volumMin) { volume = volumMax; }
 
             audioC.changeVolumeMusic(volume);
         }
@@ -37,20 +41,23 @@ namespace ShootEmUp
         }
         public void changeVolumeSound(int volume)
         {
-                if (volume > 250)   { volume = 0; } 
-            else if(volume < 0  )   { volume = 250; }
+            if (volume > volumMax) { volume = volumMin; }
+            else if (volume < volumMin) { volume = volumMax; }
 
             audioC.changeVolumeSound(volume);
         }
-        public int getVolumeSound() {
+        public int getVolumeSound()
+        {
             return audioC.volumeSound;
         }
         public void cleanUp()
         {
             audioC.cleanUp();
         }
-        public IntPtr search(string sound) {
-            switch (sound) {
+        public IntPtr search(string sound)
+        {
+            switch (sound)
+            {
                 case "Menu buttons": return audioC._MenuButtons;
                 case "Menu click": return audioC._MenuClick;
                 case "Menu music": return audioC._MenuMusic;
@@ -61,7 +68,7 @@ namespace ShootEmUp
                 case "Shooting": return audioC._Shooting;
 
             }
-            return audioC._sound;
+            return IntPtr.Zero;
         }
 
     }
