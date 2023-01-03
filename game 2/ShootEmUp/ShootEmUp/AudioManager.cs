@@ -66,6 +66,8 @@ namespace ShootEmUp
                 case "Level3 music": return audioC._Level3Music;
                 case "Game Over": return audioC._GameOver;
                 case "Shooting": return audioC._Shooting;
+                case "Enemy dead": return audioC._ExplodEnemy;
+                case "Player dead": return audioC._ExplodPlayer;
 
             }
             return IntPtr.Zero;

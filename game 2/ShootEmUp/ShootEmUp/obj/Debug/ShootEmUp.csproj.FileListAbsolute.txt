@@ -116,3 +116,9 @@ C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\shooting.wav
 C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\image\MiniPixelPack3\Effects\Explosion.png
 C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\image\MiniPixelPack3\Effects\Explosion.png
+C:\Users\moham\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\image\MiniPixelPack3\Effects\Explosion.png
+C:\Users\moham\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\Level1 Music.wav
+C:\Users\moham\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\Level2 Music.wav
+C:\Users\moham\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\Level3 Music.wav
+C:\Users\moham\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\explod_1.wav
+C:\Users\moham\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\explod_2.wav
