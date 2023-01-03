@@ -22,7 +22,7 @@ namespace ShootEmUp
         public MainMenu mainMenu;
 
         public GameOver gameOver;
-        public Control gamePad = new Control();
+        //public JoystickComponent gamePad = new JoystickComponent();
         public static bool ControlQuitRequest = false;
 
 
@@ -62,7 +62,7 @@ namespace ShootEmUp
 
         public void runMainMenu()
         {
-            gamePad.setup();
+            //gamePad.setup();
             mainMenu = new MainMenu();
             mainMenu.run();
         }
