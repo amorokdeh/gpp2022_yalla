@@ -26,6 +26,9 @@ namespace ShootEmUp
         private PhysicsManager _physics = new PhysicsManager();
         private RenderingManager _rendering = new RenderingManager();
         private AIManager _ai = new AIManager();
+        IntPtr gGameController = new IntPtr();
+        string axisY = "None";
+        bool movingY = false;
         //create a rect
         SDL_Rect rect;
 
@@ -68,7 +71,7 @@ namespace ShootEmUp
             setup();
         }
 
-        public void setup()
+        public bool setup()
         {
             //text
             txt.setUp();
@@ -77,6 +80,33 @@ namespace ShootEmUp
 
             SDL.SDL_SetRenderDrawColor(Program.window.renderer, 0, 60, 20, 255);
             BuildBackground("main menu");
+
+            //Controller
+            bool success = true;
+            SDL.SDL_Init(SDL.SDL_INIT_JOYSTICK); //Init SDL and Control
+
+
+            //Check for joysticks
+            if (SDL.SDL_NumJoysticks() <= 1)
+            {
+                Console.WriteLine("Warning: No Controller connected!\n");
+                success = false;
+            }
+            else
+            {
+                //Load joystick
+                gGameController = SDL.SDL_JoystickOpen(0);
+                if (gGameController == null)
+                {
+                    Console.WriteLine("Warning: Unable to open game controller! SDL Error: %s\n", SDL.SDL_GetError());
+                    success = false;
+                }
+            }
+            if (success)
+            {
+                Console.WriteLine("Controller connected!");
+            }
+            return success;
 
         }
         public void run()
@@ -120,6 +150,28 @@ namespace ShootEmUp
                     }
                 }
 
+                //Controller
+                int y = SDL.SDL_JoystickGetAxis(gGameController, 1);
+                int movingPoint = 16384; //you can change it (It works perfectly on PS5 controller)
+
+                if (e.type == SDL.SDL_EventType.SDL_JOYAXISMOTION)
+                {
+                    if (y < -movingPoint ) // Moved up
+                    {
+                        axisY = "Up";
+                    }
+                    else if (y > movingPoint ) // Moved down
+                    {
+                        axisY = "Down";
+                    }
+                    else //stoped moving
+                    {
+                        axisY = "None";
+                        movingY = false;
+                    }
+                    if (axisY == "Up" && !movingY)   { goUp(); movingY = true; }
+                    if (axisY == "Down" && !movingY) { goDown(); movingY = true; }
+                }
             }
         }
         public void goTo()

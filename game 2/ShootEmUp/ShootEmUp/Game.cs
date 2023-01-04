@@ -86,7 +86,6 @@ namespace ShootEmUp
             player.AddComponent(_rendering.CreateComponent(16 * 2, 16 * 2));
             player.AddComponent(_rendering.CreateInfoComponent());
             player.AddComponent(_controls.CreateComponent());
-            player.AddComponent(_controls.CreateJoystickComponent());
             player.AddComponent(_collisions.CreateComponent());
             return player;
         }

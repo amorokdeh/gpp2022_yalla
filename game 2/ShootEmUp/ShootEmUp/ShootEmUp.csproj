@@ -57,7 +57,6 @@
     <Compile Include="CollisionComponent.cs" />
     <Compile Include="CollisionManager.cs" />
     <Compile Include="Component.cs" />
-    <Compile Include="JoystickComponent.cs" />
     <Compile Include="ControlComponent.cs" />
     <Compile Include="ControlManager.cs" />
     <Compile Include="Enemy.cs" />
