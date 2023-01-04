@@ -126,3 +126,4 @@ C:\Users\moham\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Deb
 C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\explod_1.wav
 C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\sound\explod_2.wav
 C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\image\MiniPixelPack3\level_2.png
+C:\Users\moham\Documents\GitHub\gpp2022_yalla\game 2\ShootEmUp\ShootEmUp\bin\Debug\image\MiniPixelPack3\Projectiles\enemyBullet.png

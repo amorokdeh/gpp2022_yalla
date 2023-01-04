@@ -28,8 +28,8 @@ namespace ShootEmUp
                         Program.game.DespawnPlayerBullet(colObject);
                         Program.game.bulletReloadable = true;
                         Program.game.Player.Score++;
-
-                        if (GameObject is Enemy)
+                        Bullet currentBullet = (Bullet)colObject;
+                        if (GameObject is Enemy && currentBullet.name == "playerBullet")
                         {
                             GameObject.Died = true;
                             Enemy enemy = (Enemy)GameObject;

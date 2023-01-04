@@ -9,9 +9,13 @@ namespace ShootEmUp
     class Bullet:GameObject
     {
         public GameObject Gameobject;
+
+        public string name;
+       
         public Bullet(string name, GameObject player, int w, int h):base(name, w, h)
         {
             Gameobject = player;
+            this.name = name;
 
             //VelY = -10;
             VelY = -150;

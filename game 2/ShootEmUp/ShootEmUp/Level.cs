@@ -23,6 +23,7 @@ namespace ShootEmUp
         float bulletGap = 0;
         float bulletGapSize = 2f;
         Bullet bullet;
+        Bullet enemyBullet;
 
         public Random rand;
 
@@ -55,6 +56,7 @@ namespace ShootEmUp
 
                 produceEnemies(avDeltaTime);
                 produceBullets(avDeltaTime);
+               // produceBulletEnemy(avDeltaTime);
                 Program.game.ControlEnemy();
                 Program.game.ControlPlayer();
                 Program.game.Move(avDeltaTime);
@@ -125,6 +127,25 @@ namespace ShootEmUp
 
                 bulletGap = 0;
                 Program.game.bulletReloadable = false;
+            }
+        }
+
+
+        public virtual void produceBulletEnemy(float deltaTime)
+        {
+            bulletGap += deltaTime;
+            if ((bulletGap > bulletGapSize))
+            {
+                enemyBullet = (Bullet)Program.game.RequestEnemyBullet(gameObject);
+                Console.WriteLine(enemyBullet.Active);
+
+                Program.game._audio.runSound("Shooting");
+
+                enemyBullet.PosY = enemyBullet.Gameobject.PosY;
+                enemyBullet.PosX = enemyBullet.Gameobject.PosX;
+
+                bulletGap = 0;
+             
             }
         }
     }
