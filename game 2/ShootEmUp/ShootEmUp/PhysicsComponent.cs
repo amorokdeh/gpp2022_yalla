@@ -52,9 +52,9 @@ namespace ShootEmUp
             {
                 GameObject.PosY = 0 - 16;
             }
-            else if (GameObject.PosY > Program.window.heigh - 16)
+            else if (GameObject.PosY > Program.window.height - 16)
             {
-                GameObject.PosY = Program.window.heigh - 16;
+                GameObject.PosY = Program.window.height - 16;
             }
 
 

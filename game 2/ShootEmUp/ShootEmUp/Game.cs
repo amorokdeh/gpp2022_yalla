@@ -21,7 +21,7 @@ namespace ShootEmUp
         private AIManager _ai = new AIManager();
         public ControlManager _controls = new ControlManager();
         private AnimationManager _animations = new AnimationManager();
-        private PoolManager _pool = new PoolManager();
+        public PoolManager _pool = new PoolManager();
 
 
         public bool bulletReloadable = false;
@@ -58,7 +58,7 @@ namespace ShootEmUp
         public void BuildBackground(string source)
         {
             int winW = Program.window.width;
-            int winH = Program.window.heigh;
+            int winH = Program.window.height;
 
             GameObject bg;
 
@@ -121,7 +121,7 @@ namespace ShootEmUp
 
         public GameObject BuildPlayerBullet(GameObject bullet, GameObject player)
         {
-            bullet = _objects.CreatePlayerBullet("bullet", player, 16 * 2, 16 * 2);
+            bullet = _objects.CreatePlayerBullet("playerBullet", player, 16 * 2, 16 * 2);
             bullet.AddComponent(_physics.CreateComponent());
             bullet.AddComponent(_rendering.CreateComponent(16 * 2, 16 * 2));
             bullet.AddComponent(_ai.CreateComponent());
@@ -129,6 +129,20 @@ namespace ShootEmUp
             return bullet;
 
         }
+
+        // Enemy Bullet
+        public GameObject BuildEnemyBullet(GameObject bullet, GameObject enemy)
+        {
+            bullet = _objects.CreatePlayerBullet("enemyBullet", enemy, 16 * 2, 16 * 2);
+            bullet.AddComponent(_physics.CreateComponent());
+            bullet.AddComponent(_rendering.CreateComponent(16 * 2, 16 * 2));
+            bullet.AddComponent(_ai.CreateComponent());
+            bullet.AddComponent(_collisions.CreateComponent());
+            return bullet;
+
+        }
+
+
 
         public GameObject RequestEnemyUfo()
         {
@@ -147,6 +161,12 @@ namespace ShootEmUp
         {
             return _pool.RequestPlayerBullet(player);
         }
+
+        public GameObject RequestEnemyBullet(GameObject enemy)
+        {
+            return _pool.RequestEnemyBullet(enemy);
+        }
+
         public void DespawnPlayerBullet(GameObject bullet)
         {
             _pool.DespawnPlayerBullet(bullet);
@@ -220,6 +240,7 @@ namespace ShootEmUp
 
 
             SDL.SDL_DestroyWindow(Program.window.show);
+            _audio.cleanUp();
             SDL.SDL_Quit();
         }
     }

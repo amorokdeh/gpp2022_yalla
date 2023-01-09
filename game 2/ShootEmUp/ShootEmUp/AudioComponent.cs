@@ -13,9 +13,10 @@ namespace ShootEmUp
         // sound effects
         public IntPtr _MenuButtons = IntPtr.Zero;
         public IntPtr _MenuClick = IntPtr.Zero;
-        public IntPtr _sound = IntPtr.Zero;
         public IntPtr _GameOver = IntPtr.Zero;
         public IntPtr _Shooting = IntPtr.Zero;
+        public IntPtr _ExplodEnemy = IntPtr.Zero;
+        public IntPtr _ExplodPlayer = IntPtr.Zero;
 
         // music effects
         public IntPtr _MenuMusic = IntPtr.Zero;
@@ -26,8 +27,9 @@ namespace ShootEmUp
         public int volumeMusic = 50;
         public int volumeSound = 30;
 
-        public AudioComponent() { 
-        
+        public AudioComponent()
+        {
+
         }
 
         public void setup()
@@ -48,10 +50,13 @@ namespace ShootEmUp
             _MenuClick = loadSound("sound/Menu click.wav");
             _GameOver = loadSound("sound/game_over.wav");
             _Shooting = loadSound("sound/shooting.wav");
+            _ExplodEnemy = loadSound("sound/explod_2.wav");
+            _ExplodPlayer = loadSound("sound/explod_1.wav");
 
         }
 
-        public IntPtr loadMusic(String source) {
+        public IntPtr loadMusic(String source)
+        {
 
             IntPtr music = SDL_mixer.Mix_LoadMUS(source);
             if (music == IntPtr.Zero)
@@ -72,7 +77,8 @@ namespace ShootEmUp
             return sound;
         }
 
-        public void runSound(IntPtr soundSource) {
+        public void runSound(IntPtr soundSource)
+        {
             SDL_mixer.Mix_VolumeChunk(soundSource, volumeSound);
             SDL_mixer.Mix_PlayChannel(-1, soundSource, 0);
         }
@@ -124,10 +130,14 @@ namespace ShootEmUp
             SDL_mixer.Mix_FreeChunk(_MenuButtons);
             SDL_mixer.Mix_FreeChunk(_GameOver);
             SDL_mixer.Mix_FreeChunk(_Shooting);
+            SDL_mixer.Mix_FreeChunk(_ExplodEnemy);
+            SDL_mixer.Mix_FreeChunk(_ExplodPlayer);
             _MenuClick = IntPtr.Zero;
             _MenuButtons = IntPtr.Zero;
             _GameOver = IntPtr.Zero;
             _Shooting = IntPtr.Zero;
+            _ExplodEnemy = IntPtr.Zero;
+            _ExplodPlayer = IntPtr.Zero;
 
             //Free the music
             SDL_mixer.Mix_FreeMusic(_MenuMusic);

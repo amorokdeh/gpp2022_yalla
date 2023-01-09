@@ -19,6 +19,7 @@ namespace ShootEmUp
             _gameObjects.Add(gameObject);
             return gameObject;
         }
+
         public GameObject CreateGameShip(string name, int w, int h)
         {
             GameObject gameObject = new Ship(name, w, h);

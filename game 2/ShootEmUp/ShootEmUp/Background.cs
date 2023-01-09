@@ -13,6 +13,7 @@ namespace ShootEmUp
             switch (name) {
                 case "level 1":  Img.loadImage("image/MiniPixelPack3/SpaceBG.png"); break ;
                 case "main menu": Img.loadImage("image/MiniPixelPack3/mm.png"); break;
+                case "level_2": Img.loadImage("image/MiniPixelPack3/level_2.png"); break;
             }
 
             VelX = 0;

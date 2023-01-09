@@ -11,11 +11,13 @@ namespace ShootEmUp
 
 
         private GameObject _objectPrefab;
-        private List<GameObject> _enemyUfoPool = new List<GameObject>();
+        public List<GameObject> _enemyUfoPool = new List<GameObject>();
 
         private List<GameObject> _enemyShipPool = new List<GameObject>();
 
         private List<GameObject> _playerBulletPool = new List<GameObject>();
+
+        private List<GameObject> _enemyBulletPool = new List<GameObject>();
 
 
 
@@ -94,11 +96,33 @@ namespace ShootEmUp
 
             return newBullet;
         }
+        //############# Enemy Bullet
+        public GameObject RequestEnemyBullet(GameObject enemy)
+        {
+            foreach (GameObject bullet in _enemyBulletPool)
+            {
+                if (bullet.Active == false)
+                {
+                    Console.WriteLine("Old bullet");
+                    bullet.Active = true;
+                    return bullet;
+                }
+            }
+            //Console.WriteLine("New bullet");
+            GameObject newBullet = Program.game.BuildEnemyBullet(_objectPrefab, enemy);
+            newBullet.Active = true;
+            _enemyBulletPool.Add(newBullet);
+
+            return newBullet;
+        }
+
 
         public void DespawnPlayerBullet(GameObject bullet)
         {
             bullet.Active = false;
         }
+
+
 
 
         public void SetInactive()

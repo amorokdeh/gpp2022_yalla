@@ -10,7 +10,7 @@ namespace ShootEmUp
 {
     class Window
     {
-        public int heigh;
+        public int height;
         public int width;
         public SDL.SDL_DisplayMode DM;//real size
         public IntPtr show;
@@ -29,9 +29,9 @@ namespace ShootEmUp
         public uint desiredDelta;
         public uint startFPS;
 
-        public Window(int SCREEN_HEIGH, int SCREEN_WIDTH)
+        public Window(int SCREEN_HEIGHT, int SCREEN_WIDTH)
         {
-            heigh = SCREEN_HEIGH;
+            height = SCREEN_HEIGHT;
             width = SCREEN_WIDTH;
         }
 
@@ -43,7 +43,7 @@ namespace ShootEmUp
                         SDL.SDL_WINDOWPOS_UNDEFINED,
                         SDL.SDL_WINDOWPOS_UNDEFINED,
                         width,
-                        heigh,
+                        height,
                         SDL.SDL_WindowFlags.SDL_WINDOW_SHOWN);
 
             if (show == IntPtr.Zero)
@@ -113,7 +113,7 @@ namespace ShootEmUp
             {
                 String text = "FPS: " + _fps.ToString();
                 IntPtr surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, txt.White);
-                txt.addText(Program.window.renderer, surfaceMessage, width/90, heigh/90, 75, 20);
+                txt.addText(Program.window.renderer, surfaceMessage, width/90, height / 90, 75, 20);
             }
 
         }
@@ -154,16 +154,16 @@ namespace ShootEmUp
 
         public void changeWindowSize() {
 
-            if (width == 1024 && heigh == 768)
+            if (width == 1024 && height == 768)
             {
                 width = 1920;
-                heigh = 1080;
-                SDL.SDL_SetWindowSize(show, width, heigh);
+                height = 1080;
+                SDL.SDL_SetWindowSize(show, width, height);
             }
             else {
                 width = 1024;
-                heigh = 768;
-                SDL.SDL_SetWindowSize(show, width, heigh);
+                height = 768;
+                SDL.SDL_SetWindowSize(show, width, height);
             }
         }
 

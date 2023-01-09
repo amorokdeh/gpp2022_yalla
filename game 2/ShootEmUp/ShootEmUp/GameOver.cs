@@ -96,7 +96,7 @@ namespace ShootEmUp
             //Clear screen
             SDL.SDL_SetRenderDrawColor(renderer, 5, 5, 5, 255);
             SDL.SDL_RenderClear(renderer);
-            int nextPos = Program.window.heigh / 4;
+            int nextPos = Program.window.height / 4;
             IntPtr surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, winnerText, txt.White);
             txt.addText(Program.window.renderer, surfaceMessage, Program.window.width / 2 - winnerText.Length * 10, nextPos, winnerText.Length * 20, 100);
 

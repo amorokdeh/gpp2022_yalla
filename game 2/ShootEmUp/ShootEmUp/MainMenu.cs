@@ -26,9 +26,13 @@ namespace ShootEmUp
         private PhysicsManager _physics = new PhysicsManager();
         private RenderingManager _rendering = new RenderingManager();
         private AIManager _ai = new AIManager();
+        IntPtr gGameController = new IntPtr();
+        string axisY = "None";
+        bool movingY = false;
         //create a rect
         SDL_Rect rect;
 
+        //All menus and topics
         public enum Choices
         {
             Start_game,
@@ -67,7 +71,7 @@ namespace ShootEmUp
             setup();
         }
 
-        public void setup()
+        public bool setup()
         {
             //text
             txt.setUp();
@@ -76,6 +80,33 @@ namespace ShootEmUp
 
             SDL.SDL_SetRenderDrawColor(Program.window.renderer, 0, 60, 20, 255);
             BuildBackground("main menu");
+
+            //Controller
+            bool success = true;
+            SDL.SDL_Init(SDL.SDL_INIT_JOYSTICK); //Init SDL and Control
+
+
+            //Check for joysticks
+            if (SDL.SDL_NumJoysticks() <= 1)
+            {
+                Console.WriteLine("Warning: No Controller connected!\n");
+                success = false;
+            }
+            else
+            {
+                //Load joystick
+                gGameController = SDL.SDL_JoystickOpen(0);
+                if (gGameController == null)
+                {
+                    Console.WriteLine("Warning: Unable to open game controller! SDL Error: %s\n", SDL.SDL_GetError());
+                    success = false;
+                }
+            }
+            if (success)
+            {
+                Console.WriteLine("Controller connected!");
+            }
+            return success;
 
         }
         public void run()
@@ -119,9 +150,32 @@ namespace ShootEmUp
                     }
                 }
 
+                //Controller
+                int y = SDL.SDL_JoystickGetAxis(gGameController, 1);
+                int movingPoint = 16384; //you can change it (It works perfectly on PS5 controller)
+
+                if (e.type == SDL.SDL_EventType.SDL_JOYAXISMOTION)
+                {
+                    if (y < -movingPoint ) // Moved up
+                    {
+                        axisY = "Up";
+                    }
+                    else if (y > movingPoint ) // Moved down
+                    {
+                        axisY = "Down";
+                    }
+                    else //stoped moving
+                    {
+                        axisY = "None";
+                        movingY = false;
+                    }
+                    if (axisY == "Up" && !movingY)   { goUp(); movingY = true; }
+                    if (axisY == "Down" && !movingY) { goDown(); movingY = true; }
+                }
             }
         }
-        public void goTo() {
+        public void goTo()
+        {
             Program.game._audio.runSound("Menu click");
             if (menuSelected.Equals("main menu"))
             {
@@ -185,7 +239,7 @@ namespace ShootEmUp
             {
                 switch (selected)
                 {
-                    
+
                     case Choices.soundUp:
                         Program.game._audio.changeVolumeSound(Program.game._audio.getVolumeSound() + 10);
                         return;
@@ -239,7 +293,8 @@ namespace ShootEmUp
                 }
             }
         }
-        public void goUp() {
+        public void goUp()
+        {
             if ((menuSelected.Equals("option")) && (selected > Choices.Window))
             {
                 selected--;
@@ -270,22 +325,25 @@ namespace ShootEmUp
                 Program.game._audio.runSound("Menu buttons");
                 return;
             }
-            else if ((menuSelected.Equals("main menu")) && selected > Choices.Start_game) {
+            else if ((menuSelected.Equals("main menu")) && selected > Choices.Start_game)
+            {
                 selected--;
                 Program.game._audio.runSound("Menu buttons");
                 return;
             }
 
         }
-        public void goDown() {
-            
+        public void goDown()
+        {
+
             if ((menuSelected.Equals("option")) && (selected < Choices.BackMainMenu))
             {
                 selected++;
                 Program.game._audio.runSound("Menu buttons");
                 return;
             }
-            else if ((menuSelected.Equals("window")) && (selected < Choices.BackOption)) {
+            else if ((menuSelected.Equals("window")) && (selected < Choices.BackOption))
+            {
                 selected++;
                 Program.game._audio.runSound("Menu buttons");
                 return;
@@ -316,8 +374,9 @@ namespace ShootEmUp
             }
         }
 
-        public void endGame() {
-            running = false; 
+        public void endGame()
+        {
+            running = false;
             closeAndGoTo(LevelManager.GameState.Quit);
 
         }
@@ -347,22 +406,24 @@ namespace ShootEmUp
             Program.game._audio.runMusic("Level3 music");
 
         }
-        public int nextTextPos() {
+        public int nextTextPos()
+        {
             nextText += 50;
             return nextText;
         }
 
-        public void textPrinter(String textIndex, Choices menu) {
+        public void textPrinter(String textIndex, Choices menu)
+        {
             text = textIndex;
             checkSelected(menu);
             surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
             txt.addText(Program.window.renderer, surfaceMessage, Program.window.width / 2 - text.Length * 10, nextTextPos(), text.Length * 20, textSize);
         }
-        
+
         public void BuildBackground(string source)
         {
             int winW = Program.window.width;
-            int winH = Program.window.heigh;
+            int winH = Program.window.height;
 
             GameObject bg;
 
@@ -378,7 +439,7 @@ namespace ShootEmUp
                 }
             }
         }
-            public void render()
+        public void render()
         {
             //Clear screen
             SDL.SDL_SetRenderDrawColor(Program.window.renderer, 0, 0, 0, 255);
@@ -388,9 +449,9 @@ namespace ShootEmUp
 
             //Rect position
             rect.x = (Program.window.width / 2) - 300;
-            rect.y = (Program.window.heigh / 2) - 200;
+            rect.y = (Program.window.height / 2) - 200;
             rect.w = 600;
-            rect.h = 400; 
+            rect.h = 400;
             //draw and fill rect
             SDL.SDL_SetRenderDrawColor(Program.window.renderer, 0, 0, 0, 255);
             SDL.SDL_RenderDrawRect(Program.window.renderer, ref rect);
@@ -401,7 +462,7 @@ namespace ShootEmUp
             //Menu-Texte
             if (menuSelected.Equals("option"))
             {
-                nextText = Program.window.heigh / 3;
+                nextText = Program.window.height / 3;
 
                 textPrinter("Window", Choices.Window);
                 textPrinter("Sounds volume", Choices.soundsVolume);
@@ -409,19 +470,19 @@ namespace ShootEmUp
                 textPrinter("Back", Choices.BackMainMenu);
 
             }
-            else if (menuSelected.Equals("window")) 
+            else if (menuSelected.Equals("window"))
             {
-                nextText = Program.window.heigh / 3;
+                nextText = Program.window.height / 3;
 
                 textPrinter("Screen: " + Program.window.screenMode, Choices.Screen);
                 textPrinter("FPS limit: " + Program.window.limitedFPS, Choices.FpsLimit);
                 textPrinter("Show FPS on display: " + Program.window.showFPSRunning, Choices.showFPS);
-                textPrinter("Screen size: " + Program.window.width + " x " + Program.window.heigh, Choices.ScreenSize);
+                textPrinter("Screen size: " + Program.window.width + " x " + Program.window.height, Choices.ScreenSize);
                 textPrinter("Back", Choices.BackOption);
             }
-            else if(menuSelected.Equals("main menu"))
+            else if (menuSelected.Equals("main menu"))
             {
-                nextText = Program.window.heigh / 3;
+                nextText = Program.window.height / 3;
 
                 textPrinter("Start game", Choices.Start_game);
                 textPrinter("Options", Choices.Options);
@@ -429,7 +490,7 @@ namespace ShootEmUp
             }
             else if (menuSelected.Equals("levels"))
             {
-                nextText = Program.window.heigh / 3;
+                nextText = Program.window.height / 3;
 
                 textPrinter("Level 1", Choices.Level1);
                 textPrinter("Level 2", Choices.Level2);
@@ -438,18 +499,18 @@ namespace ShootEmUp
             }
             else if (menuSelected.Equals("soundUpDown"))
             {
-                nextText = Program.window.heigh / 3;
+                nextText = Program.window.height / 3;
 
-                textPrinter(Program.game._audio.getVolumeSound().ToString(), Choices.Start_game);
+                textPrinter("Sound volume: " + Program.game._audio.getVolumeSound().ToString(), Choices.Start_game);
                 textPrinter("+", Choices.soundUp);
                 textPrinter("-", Choices.soundDown);
                 textPrinter("Back", Choices.BackToOption);
             }
             else if (menuSelected.Equals("MusicUpDown"))
             {
-                nextText = Program.window.heigh / 3;
+                nextText = Program.window.height / 3;
 
-                textPrinter(Program.game._audio.getVolumeMusic().ToString(), Choices.Start_game);
+                textPrinter("Music volume: " + Program.game._audio.getVolumeMusic().ToString(), Choices.Start_game);
                 textPrinter("+", Choices.musicUp);
                 textPrinter("-", Choices.musicDown);
                 textPrinter("Back", Choices.BackToTheOption);
@@ -458,12 +519,14 @@ namespace ShootEmUp
             SDL.SDL_RenderPresent(Program.window.renderer);
         }
 
-        public void checkSelected(Choices choice) {
+        public void checkSelected(Choices choice)
+        {
             if (choice == selected)
             {
                 color = txt.Green;
                 textSize = 40;
-            } else
+            }
+            else
             {
                 color = txt.White;
                 textSize = 30;
@@ -473,7 +536,7 @@ namespace ShootEmUp
         public void closeAndGoTo(LevelManager.GameState gs)
         {
             LevelManager.display = gs;
-           
+
         }
     }
 }
