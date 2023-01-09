@@ -2,7 +2,7 @@ Kritik überarbeiten:
 [] mehr Einstellmöglichkeiten
 [x] Fullscreen durch Skalierung (Amr)
 [x] Gampeloop angepasst an Refreshrate (delta t)
-[] C# Standards
+[x] C# Standards
 [teilweise] Display Werte per Enum
 [teilweise] Manager und Components
 
@@ -20,7 +20,7 @@ Spiel:
 [] Mehrere Leben
 [] Animation
     [x] Bewegung der Gegner (Majbrit)
-    [] Zerstörung der Gegner
+    [x] Zerstörung der Gegner
     [] ...
 [] Gegner die schießen
     
