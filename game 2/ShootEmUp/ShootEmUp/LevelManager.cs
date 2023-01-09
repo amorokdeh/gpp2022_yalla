@@ -10,18 +10,15 @@ namespace ShootEmUp
     {
 
 
-        public Level1 level1;
-        public Level2 level2;
-        public Level3 level3;
+        public Level1 Level1;
+        public Level2 Level2;
+        public Level3 Level3;
 
         public static int CurrentLevel;
 
+        public MainMenu MainMenu;
 
-
-
-        public MainMenu mainMenu;
-
-        public GameOver gameOver;
+        public GameOver GameOver;
         //public JoystickComponent gamePad = new JoystickComponent();
         public static bool ControlQuitRequest = false;
 
@@ -39,55 +36,52 @@ namespace ShootEmUp
         public static GameState display;
 
 
-        public void runLevel1()
+        public void RunLevel1()
         {
-            level1 = new Level1();
+            Level1 = new Level1();
             CurrentLevel = 1;
-            level1.run();
+            Level1.Run();
         }
-        public void runLevel2()
+        public void RunLevel2()
         {
-            level2 = new Level2();
+            Level2 = new Level2();
             CurrentLevel = 2;
-            level2.run();
+            Level2.Run();
         }
-        public void runLevel3()
+        public void RunLevel3()
         {
-            level3 = new Level3();
+            Level3 = new Level3();
             CurrentLevel = 3;
-            level3.run();
+            Level3.Run();
         }
 
-
-
-        public void runMainMenu()
+        public void RunMainMenu()
         {
             //gamePad.setup();
-            mainMenu = new MainMenu();
-            mainMenu.run();
+            MainMenu = new MainMenu();
+            MainMenu.Run();
         }
 
-        public void runGameOver()
+        public void RunGameOver()
         {
-            gameOver = new GameOver();
+            GameOver = new GameOver();
             Console.WriteLine("GameOver");
-            gameOver.run();
+            GameOver.Run();
         }
 
-
-        public void run()
+        public void Run()
         {
             display = GameState.MainMenu;
             while (true)
             {
                 switch (display)
                 {
-                    case GameState.Quit: Program.game.quit(); return;
-                    case GameState.MainMenu: runMainMenu(); break;
-                    case GameState.Level1: runLevel1(); break;
-                    case GameState.Level2: runLevel2(); break;
-                    case GameState.Level3: runLevel3(); break;
-                    case GameState.GameOver: runGameOver(); break;
+                    case GameState.Quit: Program.Game.QuitGame(); return;
+                    case GameState.MainMenu: RunMainMenu(); break;
+                    case GameState.Level1: RunLevel1(); break;
+                    case GameState.Level2: RunLevel2(); break;
+                    case GameState.Level3: RunLevel3(); break;
+                    case GameState.GameOver: RunGameOver(); break;
                 }
             }
         }

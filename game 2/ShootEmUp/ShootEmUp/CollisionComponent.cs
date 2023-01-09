@@ -25,17 +25,22 @@ namespace ShootEmUp
                 {
                     if (colObject is Bullet)
                     {
-                        Program.game.DespawnPlayerBullet(colObject);
-                        Program.game.bulletReloadable = true;
-                        Program.game.Player.Score++;
-                        Bullet currentBullet = (Bullet)colObject;
-                        if (GameObject is Enemy && currentBullet.name == "playerBullet")
+                        Program.Game.DespawnPlayerBullet(colObject);
+                        
+
+                        if (GameObject is Enemy)
                         {
+                            Program.Game.BulletReloadable = true;
+                            Program.Game.Player.Score++;
                             GameObject.Died = true;
                             Enemy enemy = (Enemy)GameObject;
                             enemy.Img = enemy.ExplodingImg;
-                            Program.game._audio.runSound("Enemy dead");
+                            Program.Game._audio.RunSound("Enemy dead");
+                        }
 
+                        if (GameObject is EnemyBullet)
+                        {
+                            Program.Game.DespawnEnemyBullet(GameObject);
                         }
                     }
 
@@ -44,31 +49,30 @@ namespace ShootEmUp
                         Console.WriteLine("player hit");
                         Player player = (Player)colObject;
                         player.Lives--;
-                        Program.game._audio.runSound("Player dead");
-                        Program.game.Player.Score++;
+                        Program.Game._audio.RunSound("Player dead");
+                        Program.Game.Player.Score++;
 
                         if (GameObject is Enemy)
                         {
                             GameObject.Died = true;
                             Enemy enemy = (Enemy)GameObject;
                             enemy.Img = enemy.ExplodingImg;
+                            Program.Game._audio.RunSound("Enemy dead");
+                        }
 
+                        if (GameObject is EnemyBullet)
+                        {
+                            Program.Game.DespawnEnemyBullet(GameObject);
                         }
                     }
 
                     if (colObject is Enemy)
                     {
-                        Program.game.DespawnEnemy(colObject);
+                        if (GameObject is Enemy)
+                            Program.Game.DespawnEnemy(colObject);
 
                     }
                         
-                    //
-
-
-                    
-                    //Program.game.DespawnEnemy(GameObject);
-
-
                     
 
                 }

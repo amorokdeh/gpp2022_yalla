@@ -9,65 +9,65 @@ namespace ShootEmUp
 {
     class AudioManager
     {
-        AudioComponent audioC = new AudioComponent();
-        int volumMin = 0;
-        int volumMax = 250;
+        private AudioComponent _audioC = new AudioComponent();
+        private int _volumMin = 0;
+        private int _volumMax = 250;
         public AudioManager()
         {
-            audioC.setup();
+            _audioC.Setup();
         }
-        public void runSound(string sound)
+        public void RunSound(string sound)
         {
-            audioC.runSound(search(sound));
+            _audioC.RunSound(Search(sound));
         }
-        public void runMusic(string music)
+        public void RunMusic(string music)
         {
-            audioC.runMusic(search(music));
+            _audioC.RunMusic(Search(music));
         }
-        public void stopMusic()
+        public void StopMusic()
         {
             SDL_mixer.Mix_HaltMusic();
         }
-        public void changeVolumeMusic(int volume)
+        public void ChangeVolumeMusic(int volume)
         {
-            if (volume > volumMax) { volume = volumMin; }
-            else if (volume < volumMin) { volume = volumMax; }
+            if (volume > _volumMax) { volume = _volumMin; }
+            else if (volume < _volumMin) { volume = _volumMax; }
 
-            audioC.changeVolumeMusic(volume);
+            _audioC.ChangeVolumeMusic(volume);
         }
-        public int getVolumeMusic()
+        public int GetVolumeMusic()
         {
-            return audioC.volumeMusic;
+            return _audioC.volumeMusic;
         }
-        public void changeVolumeSound(int volume)
+        public void ChangeVolumeSound(int volume)
         {
-            if (volume > volumMax) { volume = volumMin; }
-            else if (volume < volumMin) { volume = volumMax; }
+            if (volume > _volumMax) { volume = _volumMin; }
+            else if (volume < _volumMin) { volume = _volumMax; }
 
-            audioC.changeVolumeSound(volume);
+            _audioC.ChangeVolumeSound(volume);
         }
-        public int getVolumeSound()
+        public int GetVolumeSound()
         {
-            return audioC.volumeSound;
+            return _audioC.volumeSound;
         }
-        public void cleanUp()
+        public void CleanUp()
         {
-            audioC.cleanUp();
+            _audioC.cleanUp();
         }
-        public IntPtr search(string sound)
+        public IntPtr Search(string sound)
         {
             switch (sound)
             {
-                case "Menu buttons": return audioC._MenuButtons;
-                case "Menu click": return audioC._MenuClick;
-                case "Menu music": return audioC._MenuMusic;
-                case "Level1 music": return audioC._Level1Music;
-                case "Level2 music": return audioC._Level2Music;
-                case "Level3 music": return audioC._Level3Music;
-                case "Game Over": return audioC._GameOver;
-                case "Shooting": return audioC._Shooting;
-                case "Enemy dead": return audioC._ExplodEnemy;
-                case "Player dead": return audioC._ExplodPlayer;
+                case "Menu buttons": return _audioC.MenuButtons;
+                case "Menu click": return _audioC.MenuClick;
+                case "Menu music": return _audioC.MenuMusic;
+                case "Level1 music": return _audioC.Level1Music;
+                case "Level2 music": return _audioC.Level2Music;
+                case "Level3 music": return _audioC.Level3Music;
+                case "Game Over": return _audioC.GameOver;
+                case "Shooting": return _audioC.Shooting;
+                case "Enemy dead": return _audioC.ExplodEnemy;
+                case "Player dead": return _audioC.ExplodPlayer;
 
             }
             return IntPtr.Zero;

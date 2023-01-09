@@ -13,7 +13,7 @@ namespace ShootEmUp
         public Player(string name, int w, int h): base(name, w, h)
         {
             ImgChange = 16;
-            Img.loadImage("image/MiniPixelPack3/PlayerShip/PlayerShip.png");
+            Img.LoadImage("image/MiniPixelPack3/PlayerShip/PlayerShip.png");
         }
 
         public void FlyLeft()

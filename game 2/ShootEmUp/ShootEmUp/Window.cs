@@ -10,54 +10,55 @@ namespace ShootEmUp
 {
     class Window
     {
-        public int height;
-        public int width;
-        public SDL.SDL_DisplayMode DM;//real size
-        public IntPtr show;
-        public IntPtr renderer;
-        public string screenMode = "Mini screen";
+        public int Height;
+        public int Width;
+        public SDL.SDL_DisplayMode DisplayMode;//real size
+        public IntPtr Show;
+        public IntPtr Renderer;
+        public string ScreenMode = "Mini screen";
 
         //FPS
-        DateTime timeNow;
-        DateTime _lastTime;
-        int _framesRendered;
-        int _fps;
-        Text txt = new Text();
-        public String showFPSRunning = "Yes";
+        private DateTime _timeNow;
+        private DateTime _lastTime;
+        private int _framesRendered;
+        private int _fps;
+        private Text _txt = new Text();
 
-        public uint limitedFPS;
-        public uint desiredDelta;
-        public uint startFPS;
+        public String ShowFPSRunning = "Yes";
+
+        public uint LimitedFPS;
+        public uint DesiredDelta;
+        public uint StartFPS;
 
         public Window(int SCREEN_HEIGHT, int SCREEN_WIDTH)
         {
-            height = SCREEN_HEIGHT;
-            width = SCREEN_WIDTH;
+            Height = SCREEN_HEIGHT;
+            Width = SCREEN_WIDTH;
         }
 
-        public void setup()
+        public void Setup()
         {
             // Create a new window given a title, size, and passes it a flag indicating it should be shown.
-            show = SDL.SDL_CreateWindow(
+            Show = SDL.SDL_CreateWindow(
                         "Yalla Shoot Em Up",
                         SDL.SDL_WINDOWPOS_UNDEFINED,
                         SDL.SDL_WINDOWPOS_UNDEFINED,
-                        width,
-                        height,
+                        Width,
+                        Height,
                         SDL.SDL_WindowFlags.SDL_WINDOW_SHOWN);
 
-            if (show == IntPtr.Zero)
+            if (Show == IntPtr.Zero)
             {
                 Console.WriteLine($"There was an issue creating the window. {SDL.SDL_GetError()}");
             }
 
-            renderer = SDL.SDL_CreateRenderer(
-                Program.window.show,
+            Renderer = SDL.SDL_CreateRenderer(
+                Program.Window.Show,
                 -1,
                 SDL.SDL_RendererFlags.SDL_RENDERER_ACCELERATED |
                 SDL.SDL_RendererFlags.SDL_RENDERER_PRESENTVSYNC);
 
-            if (renderer == IntPtr.Zero)
+            if (Renderer == IntPtr.Zero)
             {
                 Console.WriteLine($"There was an issue creating the renderer. {SDL.SDL_GetError()}");
             }
@@ -65,105 +66,105 @@ namespace ShootEmUp
             //SDL.SDL_GetRendererOutputSize(renderer, w, h);
 
             //fps text
-            txt.setUp();
-            txt.loadText(1);
+            _txt.SetUp();
+            _txt.LoadText(1);
             //limit fps
-            limitedFPS = 30;
-            desiredDelta = 1000 / limitedFPS;
+            LimitedFPS = 30;
+            DesiredDelta = 1000 / LimitedFPS;
 
         }
-        public void fullScreen()
+        public void FullScreen()
         {
-            SDL.SDL_SetWindowFullscreen(show, 0x1u);
-            screenMode = "Full screen";
+            SDL.SDL_SetWindowFullscreen(Show, 0x1u);
+            ScreenMode = "Full screen";
 
         }
-        public void miniScreen()
+        public void MiniScreen()
         {
-            SDL.SDL_SetWindowFullscreen(show, 0);
-            screenMode = "Mini screen";
+            SDL.SDL_SetWindowFullscreen(Show, 0);
+            ScreenMode = "Mini screen";
         }
 
-        public void changeScreenMode()
+        public void ChangeScreenMode()
         {
-            if (screenMode.Equals("Full screen"))
+            if (ScreenMode.Equals("Full screen"))
             {
-                miniScreen();
+                MiniScreen();
 
             }
             else
             {
-                fullScreen();
+                FullScreen();
                 
             }
         }
-        public void fpsCalculate()
+        public void FPSCalculate()
         {
-            timeNow = DateTime.Now;
+            _timeNow = DateTime.Now;
             _framesRendered++;
-            if ((timeNow - _lastTime).TotalSeconds >= 1)
+            if ((_timeNow - _lastTime).TotalSeconds >= 1)
             {
                 _fps = _framesRendered;
                 _framesRendered = 0;
-                _lastTime = timeNow;
+                _lastTime = _timeNow;
             }
 
             //FPS Render
-            if (showFPSRunning.Equals("Yes"))
+            if (ShowFPSRunning.Equals("Yes"))
             {
                 String text = "FPS: " + _fps.ToString();
-                IntPtr surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, txt.White);
-                txt.addText(Program.window.renderer, surfaceMessage, width/90, height / 90, 75, 20);
+                IntPtr surfaceMessage = SDL_ttf.TTF_RenderText_Solid(_txt.Font, text, _txt.White);
+                _txt.AddText(Program.Window.Renderer, surfaceMessage, Width/90, Height / 90, 75, 20);
             }
 
         }
 
         //limit Fps
-        public void deltaFPS()
+        public void DeltaFPS()
         {
-            uint delta = SDL.SDL_GetTicks() - startFPS;
-            if (delta < desiredDelta)
+            uint delta = SDL.SDL_GetTicks() - StartFPS;
+            if (delta < DesiredDelta)
             {
-                uint deltaFPS = desiredDelta - delta;
-                if (Program.game._levels.mainMenu.running) { deltaFPS *= 2; } //Because we have in main menu x2 Render (we want to fix this problem later)
+                uint deltaFPS = DesiredDelta - delta;
+                if (Program.Game._levels.MainMenu.Running) { deltaFPS *= 2; } //Because we have in main menu x2 Render (we want to fix this problem later)
                 SDL.SDL_Delay(deltaFPS);
             }
         }
 
-        public void calculateFPS()
+        public void CalculateFPS()
         {
-            startFPS = SDL.SDL_GetTicks();
+            StartFPS = SDL.SDL_GetTicks();
         }
-        public void changeFPSLimit() {
-            limitedFPS = limitedFPS * 2;
-            if (limitedFPS > 120) {
-                limitedFPS = 15;
+        public void ChangeFPSLimit() {
+            LimitedFPS = LimitedFPS * 2;
+            if (LimitedFPS > 120) {
+                LimitedFPS = 15;
             }
-            desiredDelta = 1000 / limitedFPS;
+            DesiredDelta = 1000 / LimitedFPS;
         }
 
-        public void showHideFPS() {
-            if (showFPSRunning.Equals("Yes"))
+        public void ShowHideFPS() {
+            if (ShowFPSRunning.Equals("Yes"))
             {
-                showFPSRunning = "No";
+                ShowFPSRunning = "No";
             }
             else {
-                showFPSRunning = "Yes";
+                ShowFPSRunning = "Yes";
             }
         }
 
-        public void changeWindowSize() {
+        public void ChangeWindowSize() {
 
-            if (width == 1024 && height == 768)
+            if (Width == 1024 && Height == 768)
             {
-                width = 1920;
-                height = 1080;
-                SDL.SDL_SetWindowSize(show, width, height);
+                Width = 1920;
+                Height = 1080;
+                SDL.SDL_SetWindowSize(Show, Width, Height);
             }
             else {
-                width = 1024;
-                height = 768;
-                SDL.SDL_SetWindowSize(show, width, height);
+                Width = 1024;
+                Height = 768;
+                SDL.SDL_SetWindowSize(Show, Width, Height);
             }
         }
 

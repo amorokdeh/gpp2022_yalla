@@ -19,30 +19,23 @@ namespace ShootEmUp
         public LevelManager _levels = new LevelManager();
         private CollisionManager _collisions = new CollisionManager();
         private AIManager _ai = new AIManager();
-        public ControlManager _controls = new ControlManager();
+        private ControlManager _controls = new ControlManager();
         private AnimationManager _animations = new AnimationManager();
-        public PoolManager _pool = new PoolManager();
+        private PoolManager _pool = new PoolManager();
+        private ShootingManager _shootings = new ShootingManager();
 
 
-        public bool bulletReloadable = false;
-
-        
-
+        public bool BulletReloadable = false;
         public static bool Quit;
-
-        public uint ticks = SDL.SDL_GetTicks();
-
-
-
+        public uint Ticks = SDL.SDL_GetTicks();
         public Player Player;
-        //public int display;
-
 
         public Game()
         {
-            //display = 1;
         }
 
+        /*
+         //for testing Observer and Observable
         public void tryHeroStuff()
         {
             Hero hero = new Hero();
@@ -54,11 +47,12 @@ namespace ShootEmUp
             }
 
         }
+        */
 
         public void BuildBackground(string source)
         {
-            int winW = Program.window.width;
-            int winH = Program.window.height;
+            int winW = Program.Window.Width;
+            int winH = Program.Window.Height;
 
             GameObject bg;
 
@@ -87,6 +81,7 @@ namespace ShootEmUp
             player.AddComponent(_rendering.CreateInfoComponent());
             player.AddComponent(_controls.CreateComponent());
             player.AddComponent(_collisions.CreateComponent());
+            player.AddComponent(_shootings.CreatePlayerComponent());
             return player;
         }
 
@@ -100,6 +95,7 @@ namespace ShootEmUp
             ship.AddComponent(_ai.CreateComponent());
             ship.AddComponent(_collisions.CreateComponent());
             ship.AddComponent(_animations.CreateComponent());
+            ship.AddComponent(_shootings.CreateEnemyComponent());
 
             return ship;
 
@@ -133,11 +129,12 @@ namespace ShootEmUp
         // Enemy Bullet
         public GameObject BuildEnemyBullet(GameObject bullet, GameObject enemy)
         {
-            bullet = _objects.CreatePlayerBullet("enemyBullet", enemy, 16 * 2, 16 * 2);
+            bullet = _objects.CreateEnemyBullet("enemyBullet", enemy, 16 * 2, 16 * 2);
             bullet.AddComponent(_physics.CreateComponent());
             bullet.AddComponent(_rendering.CreateComponent(16 * 2, 16 * 2));
             bullet.AddComponent(_ai.CreateComponent());
             bullet.AddComponent(_collisions.CreateComponent());
+            bullet.AddComponent(_animations.CreateComponent());
             return bullet;
 
         }
@@ -170,6 +167,11 @@ namespace ShootEmUp
         public void DespawnPlayerBullet(GameObject bullet)
         {
             _pool.DespawnPlayerBullet(bullet);
+        }
+
+        public void DespawnEnemyBullet(GameObject bullet)
+        {
+            _pool.DespawnEnemyBullet(bullet);
         }
 
 
@@ -210,23 +212,28 @@ namespace ShootEmUp
             _animations.Animate(deltaT);
         }
 
+        public void Shoot(float deltaT)
+        {
+            _shootings.Shoot(deltaT);
+        }
+
 
 
 
 
 
         //Game loop
-        public void run() {
+        public void Run() {
             BuildBackground("level 1");
             Player = (Player)BuildPlayer();
-            _levels.run();    
+            _levels.Run();    
         }
 
 
  
 
 
-        public void quit()
+        public void QuitGame()
         {
             /*
             _levels = null;
@@ -239,8 +246,8 @@ namespace ShootEmUp
             _controls = null;*/
 
 
-            SDL.SDL_DestroyWindow(Program.window.show);
-            _audio.cleanUp();
+            SDL.SDL_DestroyWindow(Program.Window.Show);
+            _audio.CleanUp();
             SDL.SDL_Quit();
         }
     }

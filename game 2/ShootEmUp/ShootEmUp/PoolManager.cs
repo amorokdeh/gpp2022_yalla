@@ -11,21 +11,15 @@ namespace ShootEmUp
 
 
         private GameObject _objectPrefab;
-        public List<GameObject> _enemyUfoPool = new List<GameObject>();
-
+        private List<GameObject> _enemyUfoPool = new List<GameObject>();
         private List<GameObject> _enemyShipPool = new List<GameObject>();
-
         private List<GameObject> _playerBulletPool = new List<GameObject>();
-
         private List<GameObject> _enemyBulletPool = new List<GameObject>();
-
-
 
         public PoolManager()
         {
             
         }
-
 
         public GameObject RequestEnemyUfo()
         {
@@ -40,7 +34,7 @@ namespace ShootEmUp
                 }
             }
             //Console.WriteLine("New enemy");
-            GameObject newEnemy = Program.game.BuildUfo(_objectPrefab);
+            GameObject newEnemy = Program.Game.BuildUfo(_objectPrefab);
             newEnemy.Active = true;
             _enemyUfoPool.Add(newEnemy);
 
@@ -70,7 +64,7 @@ namespace ShootEmUp
                 }
             }
             //Console.WriteLine("New enemy");
-            GameObject newEnemy = Program.game.BuildShip(_objectPrefab);
+            GameObject newEnemy = Program.Game.BuildShip(_objectPrefab);
             newEnemy.Active = true;
             _enemyShipPool.Add(newEnemy);
 
@@ -90,7 +84,7 @@ namespace ShootEmUp
                 }
             }
             //Console.WriteLine("New bullet");
-            GameObject newBullet = Program.game.BuildPlayerBullet(_objectPrefab, player);
+            GameObject newBullet = Program.Game.BuildPlayerBullet(_objectPrefab, player);
             newBullet.Active = true;
             _playerBulletPool.Add(newBullet);
 
@@ -109,7 +103,7 @@ namespace ShootEmUp
                 }
             }
             //Console.WriteLine("New bullet");
-            GameObject newBullet = Program.game.BuildEnemyBullet(_objectPrefab, enemy);
+            GameObject newBullet = Program.Game.BuildEnemyBullet(_objectPrefab, enemy);
             newBullet.Active = true;
             _enemyBulletPool.Add(newBullet);
 
@@ -118,6 +112,11 @@ namespace ShootEmUp
 
 
         public void DespawnPlayerBullet(GameObject bullet)
+        {
+            bullet.Active = false;
+        }
+
+        public void DespawnEnemyBullet(GameObject bullet)
         {
             bullet.Active = false;
         }
@@ -136,6 +135,11 @@ namespace ShootEmUp
                 DespawnEnemy(gameObject);
             }
             foreach (var gameObject in _playerBulletPool)
+            {
+                gameObject.Active = false;
+                gameObject.Died = false;
+            }
+            foreach (var gameObject in _enemyBulletPool)
             {
                 gameObject.Active = false;
                 gameObject.Died = false;

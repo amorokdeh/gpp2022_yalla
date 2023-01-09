@@ -10,7 +10,7 @@ namespace ShootEmUp
     class ControlManager
     {
 
-        List<ControlComponent> _controlComponents = new List<ControlComponent>();
+        private List<ControlComponent> _controlComponents = new List<ControlComponent>();
 
         internal Component CreateComponent()
         {

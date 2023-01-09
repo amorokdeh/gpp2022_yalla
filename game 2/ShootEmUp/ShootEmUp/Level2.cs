@@ -8,32 +8,32 @@ namespace ShootEmUp
 {
     class Level2:Level
     {
-        private float sinGap = 0;
+        private float _sinGap = 0;
 
         public Level2()
         {
-            gapSize = 0.3f;
+            GapSize = 0.3f;
         }
-        public override void produceEnemies(float deltaTime)
+        public override void ProduceEnemies(float deltaTime)
         {
-            gap += deltaTime;
-            sinGap += deltaTime;
-            if (gap > gapSize)
+            Gap += deltaTime;
+            _sinGap += deltaTime;
+            if (Gap > GapSize)
             {
-                gameObject = Program.game.RequestEnemyShip();
+                GameObject = Program.Game.RequestEnemyShip();
 
-                gameObject.PosY = 0;
-                gameObject.PosX = (float)(Math.Sin(sinGap) * (Program.window.width/2 - gameObject.Width / 2) + Program.window.width/2 - gameObject.Width/2);
+                GameObject.PosY = 0;
+                GameObject.PosX = (float)(Math.Sin(_sinGap) * (Program.Window.Width/2 - GameObject.Width / 2) + Program.Window.Width/2 - GameObject.Width/2);
 
-                Console.WriteLine(gameObject.PosX);
+                Console.WriteLine(GameObject.PosX);
 
 
-                gameObject = Program.game.RequestEnemyUfo();
+                GameObject = Program.Game.RequestEnemyUfo();
 
-                gameObject.PosY = 0;
-                gameObject.PosX = (float)(Math.Sin(sinGap + Math.PI) * (Program.window.width / 2 - gameObject.Width / 2) + Program.window.width / 2 - gameObject.Width / 2);
+                GameObject.PosY = 0;
+                GameObject.PosX = (float)(Math.Sin(_sinGap + Math.PI) * (Program.Window.Width / 2 - GameObject.Width / 2) + Program.Window.Width / 2 - GameObject.Width / 2);
 
-                gap = 0;
+                Gap = 0;
             }
         }
     }

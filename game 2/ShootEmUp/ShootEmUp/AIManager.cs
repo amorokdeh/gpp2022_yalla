@@ -8,7 +8,7 @@ namespace ShootEmUp
 {
     class AIManager
     {
-        List<AIComponent> _aiComponents = new List<AIComponent>();
+        private List<AIComponent> _aiComponents = new List<AIComponent>();
 
         internal Component CreateComponent()
         {

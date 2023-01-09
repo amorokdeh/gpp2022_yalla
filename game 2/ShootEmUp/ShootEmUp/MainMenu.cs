@@ -13,29 +13,33 @@ namespace ShootEmUp
 {
     class MainMenu
     {
-        public bool running = true;
-        public bool quit = false;
-        public Text txt = new Text();
-        public string text;
-        public int nextText = 0;
-        public IntPtr surfaceMessage;
-        public SDL.SDL_Color color;
-        public int textSize = 30;
-        public String menuSelected = "main menu";
+        public bool Running = true;
+        public bool Quit = false;
+        public Text Txt = new Text();
+        public string Text;
+        public int NextText = 0;
+        public IntPtr SurfaceMessage;
+        public SDL.SDL_Color Color;
+        public int TextSize = 30;
+        public String MenuSelected = "main menu";
+
         private GameObjectManager _objects = new GameObjectManager();
         private PhysicsManager _physics = new PhysicsManager();
         private RenderingManager _rendering = new RenderingManager();
         private AIManager _ai = new AIManager();
-        IntPtr gGameController = new IntPtr();
-        string axisY = "None";
-        bool movingY = false;
+
+        private IntPtr _gGameController = new IntPtr();
+        private string _axisY = "None";
+        private bool _movingY = false;
         //create a rect
-        SDL_Rect rect;
+        private SDL_Rect _rect;
+
+        private Choices _selected = Choices.StartGame;
 
         //All menus and topics
         public enum Choices
         {
-            Start_game,
+            StartGame,
             Options,
             Quit,
 
@@ -45,40 +49,40 @@ namespace ShootEmUp
             BackToMainMenu,
 
             Window,
-            soundsVolume,
-            musicVolume,
+            SoundsVolume,
+            MusicVolume,
             BackMainMenu,
 
-            soundUp,
-            soundDown,
+            SoundUp,
+            SoundDown,
             BackToOption,
 
-            musicUp,
-            musicDown,
+            MusicUp,
+            MusicDown,
             BackToTheOption,
 
             Screen,
             FpsLimit,
-            showFPS,
+            ShowFPS,
             ScreenSize,
             BackOption
 
         }
-        private Choices selected = Choices.Start_game;
+        
 
         public MainMenu()
         {
-            setup();
+            Setup();
         }
 
-        public bool setup()
+        public bool Setup()
         {
             //text
-            txt.setUp();
-            txt.loadText(1);
-            color = txt.White;
+            Txt.SetUp();
+            Txt.LoadText(1);
+            Color = Txt.White;
 
-            SDL.SDL_SetRenderDrawColor(Program.window.renderer, 0, 60, 20, 255);
+            SDL.SDL_SetRenderDrawColor(Program.Window.Renderer, 0, 60, 20, 255);
             BuildBackground("main menu");
 
             //Controller
@@ -95,8 +99,8 @@ namespace ShootEmUp
             else
             {
                 //Load joystick
-                gGameController = SDL.SDL_JoystickOpen(0);
-                if (gGameController == null)
+                _gGameController = SDL.SDL_JoystickOpen(0);
+                if (_gGameController == null)
                 {
                     Console.WriteLine("Warning: Unable to open game controller! SDL Error: %s\n", SDL.SDL_GetError());
                     success = false;
@@ -109,24 +113,24 @@ namespace ShootEmUp
             return success;
 
         }
-        public void run()
+        public void Run()
         {
-            Program.game._audio.runMusic("Menu music");
-            while (running)
+            Program.Game._audio.RunMusic("Menu music");
+            while (Running)
             {
-                Program.window.calculateFPS(); //frame limit start calculating here
-                render();
-                controll();
-                Program.window.deltaFPS(); //frame limit end calculating here
+                Program.Window.CalculateFPS(); //frame limit start calculating here
+                Render();
+                Control();
+                Program.Window.DeltaFPS(); //frame limit end calculating here
 
             }
 
-            if (quit) { closeAndGoTo(LevelManager.GameState.Quit); } //close the game
+            if (Quit) { CloseAndGoTo(LevelManager.GameState.Quit); } //close the game
         }
 
 
 
-        public void controll()
+        public void Control()
         {
             //Key
             SDL.SDL_Event e;
@@ -136,294 +140,294 @@ namespace ShootEmUp
                 //User requests quit
                 if (e.type == SDL.SDL_EventType.SDL_QUIT)
                 {
-                    running = false;
-                    quit = true;
+                    Running = false;
+                    Quit = true;
                 }
                 else if (e.type == SDL.SDL_EventType.SDL_KEYDOWN)
                 {
 
                     switch (e.key.keysym.sym)
                     {
-                        case SDL.SDL_Keycode.SDLK_RETURN: goTo(); break;
-                        case SDL.SDL_Keycode.SDLK_UP: goUp(); break;
-                        case SDL.SDL_Keycode.SDLK_DOWN: goDown(); break;
+                        case SDL.SDL_Keycode.SDLK_RETURN: GoTo(); break;
+                        case SDL.SDL_Keycode.SDLK_UP: GoUp(); break;
+                        case SDL.SDL_Keycode.SDLK_DOWN: GoDown(); break;
                     }
                 }
 
                 //Controller
-                int y = SDL.SDL_JoystickGetAxis(gGameController, 1);
+                int y = SDL.SDL_JoystickGetAxis(_gGameController, 1);
                 int movingPoint = 16384; //you can change it (It works perfectly on PS5 controller)
 
                 if (e.type == SDL.SDL_EventType.SDL_JOYAXISMOTION)
                 {
                     if (y < -movingPoint ) // Moved up
                     {
-                        axisY = "Up";
+                        _axisY = "Up";
                     }
                     else if (y > movingPoint ) // Moved down
                     {
-                        axisY = "Down";
+                        _axisY = "Down";
                     }
                     else //stoped moving
                     {
-                        axisY = "None";
-                        movingY = false;
+                        _axisY = "None";
+                        _movingY = false;
                     }
-                    if (axisY == "Up" && !movingY)   { goUp(); movingY = true; }
-                    if (axisY == "Down" && !movingY) { goDown(); movingY = true; }
+                    if (_axisY == "Up" && !_movingY)   { GoUp(); _movingY = true; }
+                    if (_axisY == "Down" && !_movingY) { GoDown(); _movingY = true; }
                 }
             }
         }
-        public void goTo()
+        public void GoTo()
         {
-            Program.game._audio.runSound("Menu click");
-            if (menuSelected.Equals("main menu"))
+            Program.Game._audio.RunSound("Menu click");
+            if (MenuSelected.Equals("main menu"))
             {
-                switch (selected)
+                switch (_selected)
                 {
-                    case Choices.Start_game:
-                        menuSelected = "levels";
-                        selected = Choices.Level1;
+                    case Choices.StartGame:
+                        MenuSelected = "levels";
+                        _selected = Choices.Level1;
                         return;
                     case Choices.Options:
-                        menuSelected = "option";
-                        selected = Choices.Window;
+                        MenuSelected = "option";
+                        _selected = Choices.Window;
                         return;
                     case Choices.Quit:
-                        endGame();
+                        EndGame();
                         return;
                 }
             }
-            else if (menuSelected.Equals("levels"))
+            else if (MenuSelected.Equals("levels"))
             {
-                switch (selected)
+                switch (_selected)
                 {
                     case Choices.Level1:
-                        startLevel1();
+                        StartLevel1();
                         return;
                     case Choices.Level2:
-                        startLevel2();
+                        StartLevel2();
                         return;
                     case Choices.Level3:
-                        startLevel3();
+                        StartLevel3();
                         return;
                     case Choices.BackToMainMenu:
-                        menuSelected = "main menu";
-                        selected = Choices.Start_game;
+                        MenuSelected = "main menu";
+                        _selected = Choices.StartGame;
                         return;
                 }
             }
-            else if (menuSelected.Equals("option"))
+            else if (MenuSelected.Equals("option"))
             {
-                switch (selected)
+                switch (_selected)
                 {
                     case Choices.Window:
-                        menuSelected = "window";
-                        selected = Choices.Screen;
+                        MenuSelected = "window";
+                        _selected = Choices.Screen;
                         return;
-                    case Choices.soundsVolume:
-                        menuSelected = "soundUpDown";
-                        selected = Choices.soundUp;
+                    case Choices.SoundsVolume:
+                        MenuSelected = "soundUpDown";
+                        _selected = Choices.SoundUp;
                         return;
-                    case Choices.musicVolume:
-                        menuSelected = "MusicUpDown";
-                        selected = Choices.musicUp;
+                    case Choices.MusicVolume:
+                        MenuSelected = "MusicUpDown";
+                        _selected = Choices.MusicUp;
                         return;
                     case Choices.BackMainMenu:
-                        menuSelected = "main menu";
-                        selected = Choices.Start_game;
+                        MenuSelected = "main menu";
+                        _selected = Choices.StartGame;
                         return;
                 }
             }
-            else if (menuSelected.Equals("soundUpDown"))
+            else if (MenuSelected.Equals("soundUpDown"))
             {
-                switch (selected)
+                switch (_selected)
                 {
 
-                    case Choices.soundUp:
-                        Program.game._audio.changeVolumeSound(Program.game._audio.getVolumeSound() + 10);
+                    case Choices.SoundUp:
+                        Program.Game._audio.ChangeVolumeSound(Program.Game._audio.GetVolumeSound() + 10);
                         return;
-                    case Choices.soundDown:
-                        Program.game._audio.changeVolumeSound(Program.game._audio.getVolumeSound() - 10);
+                    case Choices.SoundDown:
+                        Program.Game._audio.ChangeVolumeSound(Program.Game._audio.GetVolumeSound() - 10);
                         return;
                     case Choices.BackToOption:
-                        menuSelected = "option";
-                        selected = Choices.Window;
+                        MenuSelected = "option";
+                        _selected = Choices.Window;
                         return;
                 }
             }
-            else if (menuSelected.Equals("MusicUpDown"))
+            else if (MenuSelected.Equals("MusicUpDown"))
             {
-                switch (selected)
+                switch (_selected)
                 {
 
-                    case Choices.musicUp:
-                        Program.game._audio.changeVolumeMusic(Program.game._audio.getVolumeMusic() + 10);
+                    case Choices.MusicUp:
+                        Program.Game._audio.ChangeVolumeMusic(Program.Game._audio.GetVolumeMusic() + 10);
                         return;
-                    case Choices.musicDown:
-                        Program.game._audio.changeVolumeMusic(Program.game._audio.getVolumeMusic() - 10);
+                    case Choices.MusicDown:
+                        Program.Game._audio.ChangeVolumeMusic(Program.Game._audio.GetVolumeMusic() - 10);
                         return;
                     case Choices.BackToTheOption:
-                        menuSelected = "option";
-                        selected = Choices.Window;
+                        MenuSelected = "option";
+                        _selected = Choices.Window;
                         return;
                 }
             }
-            else if (menuSelected.Equals("window"))
+            else if (MenuSelected.Equals("window"))
             {
-                switch (selected)
+                switch (_selected)
                 {
                     case Choices.Screen:
-                        Program.window.changeScreenMode();
-                        selected = Choices.Screen;
+                        Program.Window.ChangeScreenMode();
+                        _selected = Choices.Screen;
                         return;
                     case Choices.FpsLimit:
-                        Program.window.changeFPSLimit();
+                        Program.Window.ChangeFPSLimit();
                         return;
-                    case Choices.showFPS:
-                        Program.window.showHideFPS();
+                    case Choices.ShowFPS:
+                        Program.Window.ShowHideFPS();
                         return;
                     case Choices.ScreenSize:
-                        Program.window.changeWindowSize();
+                        Program.Window.ChangeWindowSize();
                         return;
                     case Choices.BackOption:
-                        menuSelected = "option";
-                        selected = Choices.Window;
+                        MenuSelected = "option";
+                        _selected = Choices.Window;
                         return;
                 }
             }
         }
-        public void goUp()
+        public void GoUp()
         {
-            if ((menuSelected.Equals("option")) && (selected > Choices.Window))
+            if ((MenuSelected.Equals("option")) && (_selected > Choices.Window))
             {
-                selected--;
-                Program.game._audio.runSound("Menu buttons");
+                _selected--;
+                Program.Game._audio.RunSound("Menu buttons");
                 return;
             }
-            else if ((menuSelected.Equals("window")) && (selected > Choices.Screen))
+            else if ((MenuSelected.Equals("window")) && (_selected > Choices.Screen))
             {
-                selected--;
-                Program.game._audio.runSound("Menu buttons");
+                _selected--;
+                Program.Game._audio.RunSound("Menu buttons");
                 return;
             }
-            else if ((menuSelected.Equals("levels")) && (selected > Choices.Level1))
+            else if ((MenuSelected.Equals("levels")) && (_selected > Choices.Level1))
             {
-                selected--;
-                Program.game._audio.runSound("Menu buttons");
+                _selected--;
+                Program.Game._audio.RunSound("Menu buttons");
                 return;
             }
-            else if ((menuSelected.Equals("soundUpDown")) && selected > Choices.soundUp)
+            else if ((MenuSelected.Equals("soundUpDown")) && _selected > Choices.SoundUp)
             {
-                selected--;
-                Program.game._audio.runSound("Menu buttons");
+                _selected--;
+                Program.Game._audio.RunSound("Menu buttons");
                 return;
             }
-            else if ((menuSelected.Equals("MusicUpDown")) && selected > Choices.musicUp)
+            else if ((MenuSelected.Equals("MusicUpDown")) && _selected > Choices.MusicUp)
             {
-                selected--;
-                Program.game._audio.runSound("Menu buttons");
+                _selected--;
+                Program.Game._audio.RunSound("Menu buttons");
                 return;
             }
-            else if ((menuSelected.Equals("main menu")) && selected > Choices.Start_game)
+            else if ((MenuSelected.Equals("main menu")) && _selected > Choices.StartGame)
             {
-                selected--;
-                Program.game._audio.runSound("Menu buttons");
+                _selected--;
+                Program.Game._audio.RunSound("Menu buttons");
                 return;
             }
 
         }
-        public void goDown()
+        public void GoDown()
         {
 
-            if ((menuSelected.Equals("option")) && (selected < Choices.BackMainMenu))
+            if ((MenuSelected.Equals("option")) && (_selected < Choices.BackMainMenu))
             {
-                selected++;
-                Program.game._audio.runSound("Menu buttons");
+                _selected++;
+                Program.Game._audio.RunSound("Menu buttons");
                 return;
             }
-            else if ((menuSelected.Equals("window")) && (selected < Choices.BackOption))
+            else if ((MenuSelected.Equals("window")) && (_selected < Choices.BackOption))
             {
-                selected++;
-                Program.game._audio.runSound("Menu buttons");
+                _selected++;
+                Program.Game._audio.RunSound("Menu buttons");
                 return;
             }
-            else if ((menuSelected.Equals("levels")) && (selected < Choices.BackToMainMenu))
+            else if ((MenuSelected.Equals("levels")) && (_selected < Choices.BackToMainMenu))
             {
-                selected++;
-                Program.game._audio.runSound("Menu buttons");
+                _selected++;
+                Program.Game._audio.RunSound("Menu buttons");
                 return;
             }
-            else if ((menuSelected.Equals("soundUpDown")) && (selected < Choices.BackToOption))
+            else if ((MenuSelected.Equals("soundUpDown")) && (_selected < Choices.BackToOption))
             {
-                selected++;
-                Program.game._audio.runSound("Menu buttons");
+                _selected++;
+                Program.Game._audio.RunSound("Menu buttons");
                 return;
             }
-            else if ((menuSelected.Equals("MusicUpDown")) && (selected < Choices.BackToTheOption))
+            else if ((MenuSelected.Equals("MusicUpDown")) && (_selected < Choices.BackToTheOption))
             {
-                selected++;
-                Program.game._audio.runSound("Menu buttons");
+                _selected++;
+                Program.Game._audio.RunSound("Menu buttons");
                 return;
             }
-            else if ((menuSelected.Equals("main menu")) && selected < Choices.Quit)
+            else if ((MenuSelected.Equals("main menu")) && _selected < Choices.Quit)
             {
-                selected++;
-                Program.game._audio.runSound("Menu buttons");
+                _selected++;
+                Program.Game._audio.RunSound("Menu buttons");
                 return;
             }
         }
 
-        public void endGame()
+        public void EndGame()
         {
-            running = false;
-            closeAndGoTo(LevelManager.GameState.Quit);
+            Running = false;
+            CloseAndGoTo(LevelManager.GameState.Quit);
 
         }
 
-        public void startLevel1()
+        public void StartLevel1()
         {
-            running = false;
-            closeAndGoTo(LevelManager.GameState.Level1);
-            Program.game._audio.stopMusic();
-            Program.game._audio.runMusic("Level1 music");
+            Running = false;
+            CloseAndGoTo(LevelManager.GameState.Level1);
+            Program.Game._audio.StopMusic();
+            Program.Game._audio.RunMusic("Level1 music");
 
 
         }
-        public void startLevel2()
+        public void StartLevel2()
         {
-            running = false;
-            closeAndGoTo(LevelManager.GameState.Level2);
-            Program.game._audio.stopMusic();
-            Program.game._audio.runMusic("Level2 music");
+            Running = false;
+            CloseAndGoTo(LevelManager.GameState.Level2);
+            Program.Game._audio.StopMusic();
+            Program.Game._audio.RunMusic("Level2 music");
 
         }
-        public void startLevel3()
+        public void StartLevel3()
         {
-            running = false;
-            closeAndGoTo(LevelManager.GameState.Level3);
-            Program.game._audio.stopMusic();
-            Program.game._audio.runMusic("Level3 music");
+            Running = false;
+            CloseAndGoTo(LevelManager.GameState.Level3);
+            Program.Game._audio.StopMusic();
+            Program.Game._audio.RunMusic("Level3 music");
 
         }
-        public int nextTextPos()
+        public int NextTextPos()
         {
-            nextText += 50;
-            return nextText;
+            NextText += 50;
+            return NextText;
         }
 
-        public void textPrinter(String textIndex, Choices menu)
+        public void TextPrinter(String textIndex, Choices menu)
         {
-            text = textIndex;
-            checkSelected(menu);
-            surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
-            txt.addText(Program.window.renderer, surfaceMessage, Program.window.width / 2 - text.Length * 10, nextTextPos(), text.Length * 20, textSize);
+            Text = textIndex;
+            CheckSelected(menu);
+            SurfaceMessage = SDL_ttf.TTF_RenderText_Solid(Txt.Font, Text, Color);
+            Txt.AddText(Program.Window.Renderer, SurfaceMessage, Program.Window.Width / 2 - Text.Length * 10, NextTextPos(), Text.Length * 20, TextSize);
         }
 
         public void BuildBackground(string source)
         {
-            int winW = Program.window.width;
-            int winH = Program.window.height;
+            int winW = Program.Window.Width;
+            int winH = Program.Window.Height;
 
             GameObject bg;
 
@@ -439,101 +443,101 @@ namespace ShootEmUp
                 }
             }
         }
-        public void render()
+        public void Render()
         {
             //Clear screen
-            SDL.SDL_SetRenderDrawColor(Program.window.renderer, 0, 0, 0, 255);
-            SDL.SDL_RenderClear(Program.window.renderer);
+            SDL.SDL_SetRenderDrawColor(Program.Window.Renderer, 0, 0, 0, 255);
+            SDL.SDL_RenderClear(Program.Window.Renderer);
             //Background
             _rendering.Render();
 
             //Rect position
-            rect.x = (Program.window.width / 2) - 300;
-            rect.y = (Program.window.height / 2) - 200;
-            rect.w = 600;
-            rect.h = 400;
+            _rect.x = (Program.Window.Width / 2) - 300;
+            _rect.y = (Program.Window.Height / 2) - 200;
+            _rect.w = 600;
+            _rect.h = 400;
             //draw and fill rect
-            SDL.SDL_SetRenderDrawColor(Program.window.renderer, 0, 0, 0, 255);
-            SDL.SDL_RenderDrawRect(Program.window.renderer, ref rect);
-            SDL.SDL_RenderFillRect(Program.window.renderer, ref rect);
+            SDL.SDL_SetRenderDrawColor(Program.Window.Renderer, 0, 0, 0, 255);
+            SDL.SDL_RenderDrawRect(Program.Window.Renderer, ref _rect);
+            SDL.SDL_RenderFillRect(Program.Window.Renderer, ref _rect);
             //calculate FPS
-            Program.window.fpsCalculate();
+            Program.Window.FPSCalculate();
 
             //Menu-Texte
-            if (menuSelected.Equals("option"))
+            if (MenuSelected.Equals("option"))
             {
-                nextText = Program.window.height / 3;
+                NextText = Program.Window.Height / 3;
 
-                textPrinter("Window", Choices.Window);
-                textPrinter("Sounds volume", Choices.soundsVolume);
-                textPrinter("Music volume", Choices.musicVolume);
-                textPrinter("Back", Choices.BackMainMenu);
+                TextPrinter("Window", Choices.Window);
+                TextPrinter("Sounds volume", Choices.SoundsVolume);
+                TextPrinter("Music volume", Choices.MusicVolume);
+                TextPrinter("Back", Choices.BackMainMenu);
 
             }
-            else if (menuSelected.Equals("window"))
+            else if (MenuSelected.Equals("window"))
             {
-                nextText = Program.window.height / 3;
+                NextText = Program.Window.Height / 3;
 
-                textPrinter("Screen: " + Program.window.screenMode, Choices.Screen);
-                textPrinter("FPS limit: " + Program.window.limitedFPS, Choices.FpsLimit);
-                textPrinter("Show FPS on display: " + Program.window.showFPSRunning, Choices.showFPS);
-                textPrinter("Screen size: " + Program.window.width + " x " + Program.window.height, Choices.ScreenSize);
-                textPrinter("Back", Choices.BackOption);
+                TextPrinter("Screen: " + Program.Window.ScreenMode, Choices.Screen);
+                TextPrinter("FPS limit: " + Program.Window.LimitedFPS, Choices.FpsLimit);
+                TextPrinter("Show FPS on display: " + Program.Window.ShowFPSRunning, Choices.ShowFPS);
+                TextPrinter("Screen size: " + Program.Window.Width + " x " + Program.Window.Height, Choices.ScreenSize);
+                TextPrinter("Back", Choices.BackOption);
             }
-            else if (menuSelected.Equals("main menu"))
+            else if (MenuSelected.Equals("main menu"))
             {
-                nextText = Program.window.height / 3;
+                NextText = Program.Window.Height / 3;
 
-                textPrinter("Start game", Choices.Start_game);
-                textPrinter("Options", Choices.Options);
-                textPrinter("Quit", Choices.Quit);
+                TextPrinter("Start game", Choices.StartGame);
+                TextPrinter("Options", Choices.Options);
+                TextPrinter("Quit", Choices.Quit);
             }
-            else if (menuSelected.Equals("levels"))
+            else if (MenuSelected.Equals("levels"))
             {
-                nextText = Program.window.height / 3;
+                NextText = Program.Window.Height / 3;
 
-                textPrinter("Level 1", Choices.Level1);
-                textPrinter("Level 2", Choices.Level2);
-                textPrinter("Level 3", Choices.Level3);
-                textPrinter("Back", Choices.BackToMainMenu);
+                TextPrinter("Level 1", Choices.Level1);
+                TextPrinter("Level 2", Choices.Level2);
+                TextPrinter("Level 3", Choices.Level3);
+                TextPrinter("Back", Choices.BackToMainMenu);
             }
-            else if (menuSelected.Equals("soundUpDown"))
+            else if (MenuSelected.Equals("soundUpDown"))
             {
-                nextText = Program.window.height / 3;
+                NextText = Program.Window.Height / 3;
 
-                textPrinter("Sound volume: " + Program.game._audio.getVolumeSound().ToString(), Choices.Start_game);
-                textPrinter("+", Choices.soundUp);
-                textPrinter("-", Choices.soundDown);
-                textPrinter("Back", Choices.BackToOption);
+                TextPrinter("Sound volume: " + Program.Game._audio.GetVolumeSound().ToString(), Choices.StartGame);
+                TextPrinter("+", Choices.SoundUp);
+                TextPrinter("-", Choices.SoundDown);
+                TextPrinter("Back", Choices.BackToOption);
             }
-            else if (menuSelected.Equals("MusicUpDown"))
+            else if (MenuSelected.Equals("MusicUpDown"))
             {
-                nextText = Program.window.height / 3;
+                NextText = Program.Window.Height / 3;
 
-                textPrinter("Music volume: " + Program.game._audio.getVolumeMusic().ToString(), Choices.Start_game);
-                textPrinter("+", Choices.musicUp);
-                textPrinter("-", Choices.musicDown);
-                textPrinter("Back", Choices.BackToTheOption);
+                TextPrinter("Music volume: " + Program.Game._audio.GetVolumeMusic().ToString(), Choices.StartGame);
+                TextPrinter("+", Choices.MusicUp);
+                TextPrinter("-", Choices.MusicDown);
+                TextPrinter("Back", Choices.BackToTheOption);
             }
 
-            SDL.SDL_RenderPresent(Program.window.renderer);
+            SDL.SDL_RenderPresent(Program.Window.Renderer);
         }
 
-        public void checkSelected(Choices choice)
+        public void CheckSelected(Choices choice)
         {
-            if (choice == selected)
+            if (choice == _selected)
             {
-                color = txt.Green;
-                textSize = 40;
+                Color = Txt.Green;
+                TextSize = 40;
             }
             else
             {
-                color = txt.White;
-                textSize = 30;
+                Color = Txt.White;
+                TextSize = 30;
             }
         }
 
-        public void closeAndGoTo(LevelManager.GameState gs)
+        public void CloseAndGoTo(LevelManager.GameState gs)
         {
             LevelManager.display = gs;
 

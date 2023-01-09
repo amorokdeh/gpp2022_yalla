@@ -10,10 +10,10 @@ namespace ShootEmUp
     class Image
     {
         
-        public IntPtr imageTexture;
-        public IntPtr imageSurface;
-        public SDL.SDL_Rect sRect;
-        public SDL.SDL_Rect tRect;
+        public IntPtr ImageTexture;
+        public IntPtr ImageSurface;
+        public SDL.SDL_Rect SRect;
+        public SDL.SDL_Rect TRect;
 
         uint format;
         int access;
@@ -21,7 +21,7 @@ namespace ShootEmUp
             
         }
 
-        public void setUp() {
+        public void SetUp() {
 
             var imgFlags = SDL_image.IMG_InitFlags.IMG_INIT_PNG;
             if ((SDL_image.IMG_Init(imgFlags) > 0 & imgFlags > 0) == false)
@@ -31,15 +31,13 @@ namespace ShootEmUp
 
         }
 
-
-
-        public void loadImage(String source) {
+        public void LoadImage(String source) {
             //image
-            imageSurface = SDL_image.IMG_Load(source);
-            imageTexture = SDL.SDL_CreateTextureFromSurface(Program.window.renderer, imageSurface);
-            sRect.x = 0;
-            sRect.y = 0;
-            SDL.SDL_QueryTexture(imageTexture, out format, out access, out sRect.w, out sRect.h);
+            ImageSurface = SDL_image.IMG_Load(source);
+            ImageTexture = SDL.SDL_CreateTextureFromSurface(Program.Window.Renderer, ImageSurface);
+            SRect.x = 0;
+            SRect.y = 0;
+            SDL.SDL_QueryTexture(ImageTexture, out format, out access, out SRect.w, out SRect.h);
         }
     }
 }

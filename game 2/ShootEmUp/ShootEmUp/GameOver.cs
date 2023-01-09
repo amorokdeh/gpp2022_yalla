@@ -8,47 +8,44 @@ using System.Threading.Tasks;
 namespace ShootEmUp
 {
     class GameOver
-    {
-        
-        public bool running = true;
-        public bool quit = false;
-        public IntPtr renderer;
-        public string winnerText = "hallo";
-        public Text txt = new Text();
+    {   
+        public bool Running = true;
+        public bool Quit = false;
+        public IntPtr Renderer;
+        public string WinnerText = "hallo";
+        public Text Txt = new Text();
         public GameOver() {
-            setup();
+            Setup();
         }
-        public void setup()
+        public void Setup()
         {
-            renderer = Program.window.renderer;
+            Renderer = Program.Window.Renderer;
 
 
-            if (renderer == IntPtr.Zero)
+            if (Renderer == IntPtr.Zero)
             {
                 Console.WriteLine($"There was an issue creating the renderer. {SDL.SDL_GetError()}");
             }
             //text
-            txt.setUp();
-            txt.loadText(1);
+            Txt.SetUp();
+            Txt.LoadText(1);
             //winner
 
-                SDL.SDL_SetRenderDrawColor(renderer, 0, 60, 20, 255);
-                winnerText = "GAME OVER";
+                SDL.SDL_SetRenderDrawColor(Renderer, 0, 60, 20, 255);
+                WinnerText = "GAME OVER";
 
         }
-        public void run()
+        public void Run()
         {
-            while (running)
+            while (Running)
             {
-                render();
-                controll();
-
+                Render();
+                Control();
             }
-
-            if (quit) { closeAndGoTo(LevelManager.GameState.Quit); } //close the game
+            if (Quit) { CloseAndGoTo(LevelManager.GameState.Quit); } //close the game
         }
 
-        public void controll()
+        public void Control()
         {
             //Key
             SDL.SDL_Event e;
@@ -58,8 +55,8 @@ namespace ShootEmUp
                 //User requests quit
                 if (e.type == SDL.SDL_EventType.SDL_QUIT)
                 {
-                    running = false;
-                    quit = true;
+                    Running = false;
+                    Quit = true;
                 }
                 else if (e.type == SDL.SDL_EventType.SDL_KEYUP)
                 {
@@ -67,24 +64,24 @@ namespace ShootEmUp
                     switch (e.key.keysym.sym)
                     {
                         case SDL.SDL_Keycode.SDLK_RETURN: 
-                            running = false;
+                            Running = false;
                           if(LevelManager.CurrentLevel == 1)
                             {
-                                closeAndGoTo(LevelManager.GameState.Level1); 
+                                CloseAndGoTo(LevelManager.GameState.Level1); 
                             }
                             else if (LevelManager.CurrentLevel == 2)
                             {
-                                closeAndGoTo(LevelManager.GameState.Level2);
+                                CloseAndGoTo(LevelManager.GameState.Level2);
                             }
                             else if (LevelManager.CurrentLevel == 3)
                             {
-                                closeAndGoTo(LevelManager.GameState.Level3);
+                                CloseAndGoTo(LevelManager.GameState.Level3);
                             }
 
                             break;
                         case SDL.SDL_Keycode.SDLK_SPACE: 
-                            running = false; 
-                            closeAndGoTo(LevelManager.GameState.MainMenu); 
+                            Running = false; 
+                            CloseAndGoTo(LevelManager.GameState.MainMenu); 
                             break;
                     }
                 }
@@ -92,31 +89,31 @@ namespace ShootEmUp
             }
         }
 
-        public void render() {
+        public void Render() {
             //Clear screen
-            SDL.SDL_SetRenderDrawColor(renderer, 5, 5, 5, 255);
-            SDL.SDL_RenderClear(renderer);
-            int nextPos = Program.window.height / 4;
-            IntPtr surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, winnerText, txt.White);
-            txt.addText(Program.window.renderer, surfaceMessage, Program.window.width / 2 - winnerText.Length * 10, nextPos, winnerText.Length * 20, 100);
+            SDL.SDL_SetRenderDrawColor(Renderer, 5, 5, 5, 255);
+            SDL.SDL_RenderClear(Renderer);
+            int nextPos = Program.Window.Height / 4;
+            IntPtr surfaceMessage = SDL_ttf.TTF_RenderText_Solid(Txt.Font, WinnerText, Txt.White);
+            Txt.AddText(Program.Window.Renderer, surfaceMessage, Program.Window.Width / 2 - WinnerText.Length * 10, nextPos, WinnerText.Length * 20, 100);
 
-            string text = "Score: " + Program.game.Player.Score;
-            surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, txt.Green);
-            txt.addText(Program.window.renderer, surfaceMessage, Program.window.width / 2 - text.Length * 10, nextPos + 150, text.Length * 20, 30);
+            string text = "Score: " + Program.Game.Player.Score;
+            surfaceMessage = SDL_ttf.TTF_RenderText_Solid(Txt.Font, text, Txt.Green);
+            Txt.AddText(Program.Window.Renderer, surfaceMessage, Program.Window.Width / 2 - text.Length * 10, nextPos + 150, text.Length * 20, 30);
 
 
             text = "DRUECKE ENTER, UM NOCHMAL ZU SPIELEN";
-            surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, txt.LightGray);
-            txt.addText(Program.window.renderer, surfaceMessage, Program.window.width / 2 - text.Length * 10, nextPos + 300, text.Length * 20, 30);
+            surfaceMessage = SDL_ttf.TTF_RenderText_Solid(Txt.Font, text, Txt.LightGray);
+            Txt.AddText(Program.Window.Renderer, surfaceMessage, Program.Window.Width / 2 - text.Length * 10, nextPos + 300, text.Length * 20, 30);
 
             text = "DRUECKE SPACE, UM MAIN MENU ZU ZEIGEN";
-            surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, txt.LightGray);
-            txt.addText(Program.window.renderer, surfaceMessage, Program.window.width / 2 - text.Length * 10, nextPos + 350, text.Length * 20, 30);
+            surfaceMessage = SDL_ttf.TTF_RenderText_Solid(Txt.Font, text, Txt.LightGray);
+            Txt.AddText(Program.Window.Renderer, surfaceMessage, Program.Window.Width / 2 - text.Length * 10, nextPos + 350, text.Length * 20, 30);
 
-            SDL.SDL_RenderPresent(renderer);
+            SDL.SDL_RenderPresent(Renderer);
         }
 
-        public void closeAndGoTo(LevelManager.GameState gs)
+        public void CloseAndGoTo(LevelManager.GameState gs)
         {
             
             //clear renderer

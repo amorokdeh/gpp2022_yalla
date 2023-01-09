@@ -11,19 +11,19 @@ namespace ShootEmUp
     {
 
         //als Test
-        private Text txt = new Text();
-        private string text;
-        private string lives;
-        private string score;
-        private IntPtr surfaceMessage;
-        private SDL.SDL_Color color;
-        private int textSize = 20;
+        private Text _txt = new Text();
+        private string _text;
+        private string _lives;
+        private string _score;
+        private IntPtr _surfaceMessage;
+        private SDL.SDL_Color _color;
+        private int _textSize = 20;
         public InfoRenderingComponent(RenderingManager rm)
         {
             this.RenderingManager = rm;
-            txt.setUp();
-            txt.loadText(1);
-            color = txt.White;
+            _txt.SetUp();
+            _txt.LoadText(1);
+            _color = _txt.White;
         }
 
         override public void Render()
@@ -31,12 +31,12 @@ namespace ShootEmUp
             if (this.GameObject is Player)
             {
                 Player player = (Player)this.GameObject;
-                lives = Convert.ToString(player.Lives);
-                score = Convert.ToString(player.Score);
+                _lives = Convert.ToString(player.Lives);
+                _score = Convert.ToString(player.Score);
             }
-            text = "Lives: " + lives + " Score: " + score;
-            surfaceMessage = SDL_ttf.TTF_RenderText_Solid(txt.Font, text, color);
-            txt.addText(Program.window.renderer, surfaceMessage, Program.window.width/2 - textSize/2, 10, 100, textSize);
+            _text = "Lives: " + _lives + " Score: " + _score;
+            _surfaceMessage = SDL_ttf.TTF_RenderText_Solid(_txt.Font, _text, _color);
+            _txt.AddText(Program.Window.Renderer, _surfaceMessage, Program.Window.Width/2 - _textSize/2, 10, 100, _textSize);
 
 
         }

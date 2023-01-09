@@ -10,8 +10,8 @@ namespace ShootEmUp
     {
         AnimationManager AnimationManager;
 
-        protected float gap = 0;
-        protected float gapsize = 0.15f;
+        private float _gap = 0;
+        private float _gapSize = 0.15f;
         
         public AnimationComponent(AnimationManager am)
         {
@@ -20,13 +20,13 @@ namespace ShootEmUp
 
         public void Animate(float deltaT)
         {
-            gap += deltaT;
+            _gap += deltaT;
             //Console.WriteLine("Animation");
 
-            if (gap > gapsize)
+            if (_gap > _gapSize)
             {
                 GameObject.ChangeImage();
-                gap = 0;
+                _gap = 0;
             }
 
         }

@@ -9,143 +9,101 @@ namespace ShootEmUp
     class Level
     {
         
-        DateTime timeBefore = DateTime.Now;
-        DateTime timeNow = DateTime.Now;
-        float deltaTime;
-        float avDeltaTime = -1;
-        Player player;
+        private DateTime _timeBefore = DateTime.Now;
+        private DateTime _timeNow = DateTime.Now;
+        private float _deltaTime;
+        private float _avDeltaTime = -1;
+        private Player _player;
 
-        public float gap = 0;
-        public float gapSize = 1f;
-        public GameObject gameObject;
+        public float Gap = 0;
+        public float GapSize = 1f;
+        public GameObject GameObject;
 
+        public Random Rand;
 
-        float bulletGap = 0;
-        float bulletGapSize = 2f;
-        Bullet bullet;
-        Bullet enemyBullet;
-
-        public Random rand;
-
-        public virtual void run()
+        public virtual void Run()
         {
-            this.player = Program.game.Player;
-            player.Reset();
+            this._player = Program.Game.Player;
+            _player.Reset();
 
             LevelManager.ControlQuitRequest = false;
-            rand = new Random();
+            Rand = new Random();
 
 
 
             while (true)
             {
-                Program.window.calculateFPS(); //frame limit start calculating here
-                timeNow = DateTime.Now;
-                deltaTime = (timeNow.Ticks - timeBefore.Ticks) / 10000000f;
-                if (avDeltaTime == -1)
+                Program.Window.CalculateFPS(); //frame limit start calculating here
+                _timeNow = DateTime.Now;
+                _deltaTime = (_timeNow.Ticks - _timeBefore.Ticks) / 10000000f;
+                if (_avDeltaTime == -1)
                 {
-                    avDeltaTime = deltaTime;
+                    _avDeltaTime = _deltaTime;
                 }
                 else
                 {
-                    avDeltaTime = (deltaTime + avDeltaTime) / 2f;
+                    _avDeltaTime = (_deltaTime + _avDeltaTime) / 2f;
                 }
-                timeBefore = timeNow;
+                _timeBefore = _timeNow;
                 //Console.WriteLine(deltaTime);
                 //Console.WriteLine(avDeltaTime);
 
-                produceEnemies(avDeltaTime);
-                produceBullets(avDeltaTime);
-               // produceBulletEnemy(avDeltaTime);
-                Program.game.ControlEnemy();
-                Program.game.ControlPlayer();
-                Program.game.Move(avDeltaTime);
-                Program.game.Animate(avDeltaTime);
-                Program.game.Collide();
-                if (player.Lives <= 0)
+                ProduceEnemies(_avDeltaTime);
+                //produceBullets(avDeltaTime);
+                // produceBulletEnemy(avDeltaTime);
+
+                Program.Game.Shoot(_avDeltaTime);
+                Program.Game.ControlEnemy();
+                Program.Game.ControlPlayer();
+                Program.Game.Move(_avDeltaTime);
+                Program.Game.Animate(_avDeltaTime);
+                Program.Game.Collide();
+                if (_player.Lives <= 0)
                 {
                     LevelManager.display = LevelManager.GameState.GameOver;
-                    Program.game._audio.stopMusic();
-                    Program.game._audio.runSound("Game Over");
-                    Program.game.SetInactive();
+                    Program.Game._audio.StopMusic();
+                    Program.Game._audio.RunSound("Game Over");
+                    Program.Game.SetInactive();
                     return;
                 }
-                Program.game.Render();
+                Program.Game.Render();
 
                 if (Game.Quit)
                 {
                     LevelManager.display = LevelManager.GameState.Quit;
                     LevelManager.ControlQuitRequest = true;
-                    Program.game.SetInactive();
-                    Program.game._audio.stopMusic();
+                    Program.Game.SetInactive();
+                    Program.Game._audio.StopMusic();
 
                 }
                 if (LevelManager.ControlQuitRequest)
                 {
-                    Program.game.SetInactive();
-                    Program.game._audio.stopMusic();
+                    Program.Game.SetInactive();
+                    Program.Game._audio.StopMusic();
                     return;
                 }  // press escape to quit
-                Program.window.deltaFPS(); //frame limit end calculating here
+                Program.Window.DeltaFPS(); //frame limit end calculating here
 
             }
         }
 
 
-        public virtual void produceEnemies(float deltaTime)
+        public virtual void ProduceEnemies(float deltaTime)
         {
             
-            gap += deltaTime;
-            if (gap > gapSize)
+            Gap += deltaTime;
+            if (Gap > GapSize)
             {
-                gameObject = Program.game.RequestEnemyShip();
+                GameObject = Program.Game.RequestEnemyShip();
 
-                gameObject.PosY = 0;
-                gameObject.PosX = rand.Next(0, Program.window.width); // Enemy Random Position 
-                gameObject = Program.game.RequestEnemyUfo();
+                GameObject.PosY = 0;
+                GameObject.PosX = Rand.Next(0, Program.Window.Width); // Enemy Random Position 
+                GameObject = Program.Game.RequestEnemyUfo();
 
-                gameObject.PosY = 0;
-                gameObject.PosX = rand.Next(0, Program.window.width); // Enemy Random Position 
+                GameObject.PosY = 0;
+                GameObject.PosX = Rand.Next(0, Program.Window.Width); // Enemy Random Position 
 
-                gap = 0;
-            }
-        }
-
-
-        public virtual void produceBullets(float deltaTime)
-        {
-            bulletGap += deltaTime;
-            if ((bulletGap > bulletGapSize) || (Program.game.bulletReloadable))
-            {
-                bullet = (Bullet)Program.game.RequestPlayerBullet(player);
-                Console.WriteLine(bullet.Active);
-
-                Program.game._audio.runSound("Shooting");
-
-                bullet.PosY = bullet.Gameobject.PosY;
-                bullet.PosX = bullet.Gameobject.PosX;
-
-                bulletGap = 0;
-                Program.game.bulletReloadable = false;
-            }
-        }
-
-
-        public virtual void produceBulletEnemy(float deltaTime)
-        {
-            bulletGap += deltaTime;
-            if ((bulletGap > bulletGapSize))
-            {
-                enemyBullet = (Bullet)Program.game.RequestEnemyBullet(gameObject);
-                Console.WriteLine(enemyBullet.Active);
-
-                Program.game._audio.runSound("Shooting");
-
-                enemyBullet.PosY = enemyBullet.Gameobject.PosY;
-                enemyBullet.PosX = enemyBullet.Gameobject.PosX;
-
-                bulletGap = 0;
-             
+                Gap = 0;
             }
         }
     }

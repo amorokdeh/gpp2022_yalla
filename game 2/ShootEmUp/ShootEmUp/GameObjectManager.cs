@@ -9,9 +9,7 @@ namespace ShootEmUp
 
     class GameObjectManager
     {
-        List<GameObject> _gameObjects = new List<GameObject>();
-
-
+        private List<GameObject> _gameObjects = new List<GameObject>();
 
         public GameObject CreateGameBackground(string name, int w, int h, int x=0, int y=0)
         {
@@ -48,9 +46,12 @@ namespace ShootEmUp
             return gameObject;
         }
 
-
-        
-
+        public GameObject CreateEnemyBullet(string name, GameObject enemy, int w, int h)
+        {
+            GameObject gameObject = new EnemyBullet(name, enemy, w, h);
+            _gameObjects.Add(gameObject);
+            return gameObject;
+        }
 
 
     }

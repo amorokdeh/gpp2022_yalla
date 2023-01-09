@@ -18,11 +18,13 @@ namespace ShootEmUp
         public SDL.SDL_Color White;
         public SDL.SDL_Color Red;
         public SDL.SDL_Color Green;
-        public Text() { 
+        public Text() 
+        { 
         
         }
 
-        public void setUp() {
+        public void SetUp() 
+        {
             // Initialize SDL_ttf
             if (SDL_ttf.TTF_Init() == -1)
             {
@@ -35,7 +37,8 @@ namespace ShootEmUp
             Green = new SDL.SDL_Color() { r = 0, g = 255, b = 0 };
         }
 
-        public void loadText(int num) {
+        public void LoadText(int num) 
+        {
             switch (num)
             {
                 case 1: Font = SDL_ttf.TTF_OpenFont("font/automati.ttf", 16); break;
@@ -45,7 +48,8 @@ namespace ShootEmUp
             }
         }
 
-        public void addText(IntPtr renderer, IntPtr surfaceMessage, int x, int y, int w, int h) {
+        public void AddText(IntPtr renderer, IntPtr surfaceMessage, int x, int y, int w, int h) 
+        {
             Message = SDL.SDL_CreateTextureFromSurface(renderer, surfaceMessage);
 
             SDL.SDL_Rect Message_rect;

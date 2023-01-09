@@ -8,13 +8,13 @@ namespace ShootEmUp
 {
     class Program
     {
-        public static Window window = new Window(768, 1024); //window size
-        public static Game game = new Game(); //create the game
+        public static Window Window = new Window(768, 1024); //window size
+        public static Game Game = new Game(); //create the game
         static void Main(string[] args)
         {
 
-            window.setup(); //setup the window
-            game.run(); //run the game loop
+            Window.Setup(); //setup the window
+            Game.Run(); //run the game loop
 
 
             //Observable und Observer aus der Vorlesung

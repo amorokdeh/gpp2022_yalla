@@ -13,7 +13,7 @@ namespace ShootEmUp
 
         public Enemy(string name, int w, int h) : base(name, w, h)
         {
-            ExplodingImg.loadImage("image/MiniPixelPack3/Effects/Explosion.png");
+            ExplodingImg.LoadImage("image/MiniPixelPack3/Effects/Explosion.png");
             VelY = 100;
         }
 
@@ -30,7 +30,7 @@ namespace ShootEmUp
                 ExplosionStep = 0;
                 Img = FlyingImg;
                 Died = false;
-                Program.game.DespawnEnemy(this);
+                Program.Game.DespawnEnemy(this);
             }
 
             ExplosionStep++;

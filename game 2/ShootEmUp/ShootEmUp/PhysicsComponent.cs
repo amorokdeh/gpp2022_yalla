@@ -44,17 +44,17 @@ namespace ShootEmUp
             if(GameObject.PosX < 0 - 16)
             {
                 GameObject.PosX = 0 - 16;
-            } else if(GameObject.PosX > Program.window.width - 16)
+            } else if(GameObject.PosX > Program.Window.Width - 16)
             {
-                GameObject.PosX = Program.window.width - 16;
+                GameObject.PosX = Program.Window.Width - 16;
             }
             if (GameObject.PosY < 0 - 16)
             {
                 GameObject.PosY = 0 - 16;
             }
-            else if (GameObject.PosY > Program.window.height - 16)
+            else if (GameObject.PosY > Program.Window.Height - 16)
             {
-                GameObject.PosY = Program.window.height - 16;
+                GameObject.PosY = Program.Window.Height - 16;
             }
 
 

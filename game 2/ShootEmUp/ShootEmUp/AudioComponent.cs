@@ -11,18 +11,18 @@ namespace ShootEmUp
     {
 
         // sound effects
-        public IntPtr _MenuButtons = IntPtr.Zero;
-        public IntPtr _MenuClick = IntPtr.Zero;
-        public IntPtr _GameOver = IntPtr.Zero;
-        public IntPtr _Shooting = IntPtr.Zero;
-        public IntPtr _ExplodEnemy = IntPtr.Zero;
-        public IntPtr _ExplodPlayer = IntPtr.Zero;
+        public IntPtr MenuButtons = IntPtr.Zero;
+        public IntPtr MenuClick = IntPtr.Zero;
+        public IntPtr GameOver = IntPtr.Zero;
+        public IntPtr Shooting = IntPtr.Zero;
+        public IntPtr ExplodEnemy = IntPtr.Zero;
+        public IntPtr ExplodPlayer = IntPtr.Zero;
 
         // music effects
-        public IntPtr _MenuMusic = IntPtr.Zero;
-        public IntPtr _Level1Music = IntPtr.Zero;
-        public IntPtr _Level2Music = IntPtr.Zero;
-        public IntPtr _Level3Music = IntPtr.Zero;
+        public IntPtr MenuMusic = IntPtr.Zero;
+        public IntPtr Level1Music = IntPtr.Zero;
+        public IntPtr Level2Music = IntPtr.Zero;
+        public IntPtr Level3Music = IntPtr.Zero;
 
         public int volumeMusic = 50;
         public int volumeSound = 30;
@@ -32,7 +32,7 @@ namespace ShootEmUp
 
         }
 
-        public void setup()
+        public void Setup()
         {
             // Initialize SDL_mixer
             if (SDL_mixer.Mix_OpenAudio(44100, SDL_mixer.MIX_DEFAULT_FORMAT, 2, 2048) < 0)
@@ -40,22 +40,22 @@ namespace ShootEmUp
                 Console.WriteLine("SDL_mixer could not initialize! SDL_mixer Error: {0}", SDL.SDL_GetError());
             }
             //Load music
-            _MenuMusic = loadMusic("sound/MainMenu Music.wav");
-            _Level1Music = loadMusic("sound/Level1 Music.wav");
-            _Level2Music = loadMusic("sound/Level2 Music.wav");
-            _Level3Music = loadMusic("sound/Level3 Music.wav");
+            MenuMusic = LoadMusic("sound/MainMenu Music.wav");
+            Level1Music = LoadMusic("sound/Level1 Music.wav");
+            Level2Music = LoadMusic("sound/Level2 Music.wav");
+            Level3Music = LoadMusic("sound/Level3 Music.wav");
 
             //Load sound effects
-            _MenuButtons = loadSound("sound/Menu buttons.wav");
-            _MenuClick = loadSound("sound/Menu click.wav");
-            _GameOver = loadSound("sound/game_over.wav");
-            _Shooting = loadSound("sound/shooting.wav");
-            _ExplodEnemy = loadSound("sound/explod_2.wav");
-            _ExplodPlayer = loadSound("sound/explod_1.wav");
+            MenuButtons = LoadSound("sound/Menu buttons.wav");
+            MenuClick = LoadSound("sound/Menu click.wav");
+            GameOver = LoadSound("sound/game_over.wav");
+            Shooting = LoadSound("sound/shooting.wav");
+            ExplodEnemy = LoadSound("sound/explod_2.wav");
+            ExplodPlayer = LoadSound("sound/explod_1.wav");
 
         }
 
-        public IntPtr loadMusic(String source)
+        public IntPtr LoadMusic(String source)
         {
 
             IntPtr music = SDL_mixer.Mix_LoadMUS(source);
@@ -66,7 +66,7 @@ namespace ShootEmUp
             return music;
         }
 
-        private IntPtr loadSound(String source)
+        private IntPtr LoadSound(String source)
         {
 
             IntPtr sound = SDL_mixer.Mix_LoadWAV(source);
@@ -77,23 +77,23 @@ namespace ShootEmUp
             return sound;
         }
 
-        public void runSound(IntPtr soundSource)
+        public void RunSound(IntPtr soundSource)
         {
             SDL_mixer.Mix_VolumeChunk(soundSource, volumeSound);
             SDL_mixer.Mix_PlayChannel(-1, soundSource, 0);
         }
 
-        public void runMusic(IntPtr soundSource)
+        public void RunMusic(IntPtr soundSource)
         {
             SDL_mixer.Mix_VolumeMusic(volumeMusic);
             SDL_mixer.Mix_PlayMusic(soundSource, -1);
         }
-        public void changeVolumeMusic(int volume)
+        public void ChangeVolumeMusic(int volume)
         {
             volumeMusic = volume;
             SDL_mixer.Mix_VolumeMusic(volumeMusic);
         }
-        public void changeVolumeSound(int volume)
+        public void ChangeVolumeSound(int volume)
         {
             volumeSound = volume;
         }
@@ -126,28 +126,28 @@ namespace ShootEmUp
         public void cleanUp()
         {
             //Free the sound effects
-            SDL_mixer.Mix_FreeChunk(_MenuClick);
-            SDL_mixer.Mix_FreeChunk(_MenuButtons);
-            SDL_mixer.Mix_FreeChunk(_GameOver);
-            SDL_mixer.Mix_FreeChunk(_Shooting);
-            SDL_mixer.Mix_FreeChunk(_ExplodEnemy);
-            SDL_mixer.Mix_FreeChunk(_ExplodPlayer);
-            _MenuClick = IntPtr.Zero;
-            _MenuButtons = IntPtr.Zero;
-            _GameOver = IntPtr.Zero;
-            _Shooting = IntPtr.Zero;
-            _ExplodEnemy = IntPtr.Zero;
-            _ExplodPlayer = IntPtr.Zero;
+            SDL_mixer.Mix_FreeChunk(MenuClick);
+            SDL_mixer.Mix_FreeChunk(MenuButtons);
+            SDL_mixer.Mix_FreeChunk(GameOver);
+            SDL_mixer.Mix_FreeChunk(Shooting);
+            SDL_mixer.Mix_FreeChunk(ExplodEnemy);
+            SDL_mixer.Mix_FreeChunk(ExplodPlayer);
+            MenuClick = IntPtr.Zero;
+            MenuButtons = IntPtr.Zero;
+            GameOver = IntPtr.Zero;
+            Shooting = IntPtr.Zero;
+            ExplodEnemy = IntPtr.Zero;
+            ExplodPlayer = IntPtr.Zero;
 
             //Free the music
-            SDL_mixer.Mix_FreeMusic(_MenuMusic);
-            SDL_mixer.Mix_FreeMusic(_Level1Music);
-            SDL_mixer.Mix_FreeMusic(_Level2Music);
-            SDL_mixer.Mix_FreeMusic(_Level3Music);
-            _MenuMusic = IntPtr.Zero;
-            _Level1Music = IntPtr.Zero;
-            _Level2Music = IntPtr.Zero;
-            _Level3Music = IntPtr.Zero;
+            SDL_mixer.Mix_FreeMusic(MenuMusic);
+            SDL_mixer.Mix_FreeMusic(Level1Music);
+            SDL_mixer.Mix_FreeMusic(Level2Music);
+            SDL_mixer.Mix_FreeMusic(Level3Music);
+            MenuMusic = IntPtr.Zero;
+            Level1Music = IntPtr.Zero;
+            Level2Music = IntPtr.Zero;
+            Level3Music = IntPtr.Zero;
 
             SDL_mixer.Mix_CloseAudio();
         }

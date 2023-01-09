@@ -9,8 +9,6 @@ namespace ShootEmUp
     class Component
     {
         public GameObject GameObject;
-        
-
 
     }
 }

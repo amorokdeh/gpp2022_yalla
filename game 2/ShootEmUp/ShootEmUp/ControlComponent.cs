@@ -13,20 +13,20 @@ namespace ShootEmUp
         ControlManager ControlManager;
 
         //Controller
-        public IntPtr gGameController = new IntPtr();
-        string axisX = "None";
-        string axisY = "None";
-        bool movingX = false;
-        bool movingY = false;
+        public IntPtr GGameController = new IntPtr();
+        private string _axisX = "None";
+        private string _axisY = "None";
+        private bool _movingX = false;
+        private bool _movingY = false;
 
         //to avoid some bugs with the velocity
-        bool pressedOnKeyboard = false;
-        bool pressedOnJoystick = false;
+        private bool _pressedOnKeyboard = false;
+        private bool _pressedOnJoystick = false;
 
         public ControlComponent(ControlManager cm)
         {
             this.ControlManager = cm;
-            setupController();
+            SetupController();
         }
 
         public void Control()
@@ -34,7 +34,7 @@ namespace ShootEmUp
 
         }
 
-        public bool setupController()
+        public bool SetupController()
         {
             //Initialization flag
             bool success = true;
@@ -50,8 +50,8 @@ namespace ShootEmUp
             else
             {
                 //Load joystick
-                gGameController = SDL.SDL_JoystickOpen(0);
-                if (gGameController == null)
+                GGameController = SDL.SDL_JoystickOpen(0);
+                if (GGameController == null)
                 {
                     Console.WriteLine("Warning: Unable to open game controller! SDL Error: %s\n", SDL.SDL_GetError());
                     success = false;
@@ -68,9 +68,9 @@ namespace ShootEmUp
         {
             
             //If a key was pressed
-            if (e.type == SDL.SDL_EventType.SDL_KEYDOWN && e.key.repeat == 0 && !pressedOnJoystick)
+            if (e.type == SDL.SDL_EventType.SDL_KEYDOWN && e.key.repeat == 0 && !_pressedOnJoystick)
             {
-                pressedOnKeyboard = true;
+                _pressedOnKeyboard = true;
                 //Adjust the velocity
                 switch (e.key.keysym.sym)
                 {
@@ -82,23 +82,23 @@ namespace ShootEmUp
 
                 }
             }
-            else if (e.type == SDL.SDL_EventType.SDL_KEYUP && e.key.repeat == 0 && !pressedOnJoystick)
+            else if (e.type == SDL.SDL_EventType.SDL_KEYUP && e.key.repeat == 0 && !_pressedOnJoystick)
             {
                 //Adjust the velocity
                 switch (e.key.keysym.sym)
                 {
-                    case SDL.SDL_Keycode.SDLK_UP: GameObject.CurrentVelY += GameObject.VelY; pressedOnKeyboard = false; break;
-                    case SDL.SDL_Keycode.SDLK_DOWN: GameObject.CurrentVelY -= GameObject.VelY; pressedOnKeyboard = false; break;
-                    case SDL.SDL_Keycode.SDLK_LEFT: GameObject.CurrentVelX += GameObject.VelX; pressedOnKeyboard = false; break;
-                    case SDL.SDL_Keycode.SDLK_RIGHT: GameObject.CurrentVelX -= GameObject.VelX; pressedOnKeyboard = false; break;
+                    case SDL.SDL_Keycode.SDLK_UP: GameObject.CurrentVelY += GameObject.VelY; _pressedOnKeyboard = false; break;
+                    case SDL.SDL_Keycode.SDLK_DOWN: GameObject.CurrentVelY -= GameObject.VelY; _pressedOnKeyboard = false; break;
+                    case SDL.SDL_Keycode.SDLK_LEFT: GameObject.CurrentVelX += GameObject.VelX; _pressedOnKeyboard = false; break;
+                    case SDL.SDL_Keycode.SDLK_RIGHT: GameObject.CurrentVelX -= GameObject.VelX; _pressedOnKeyboard = false; break;
 
                 }
             }
-            else if(!pressedOnKeyboard)
+            else if(!_pressedOnKeyboard)
             {
                 //Controller
-                int x = SDL.SDL_JoystickGetAxis(gGameController, 0);
-                int y = SDL.SDL_JoystickGetAxis(gGameController, 1);
+                int x = SDL.SDL_JoystickGetAxis(GGameController, 0);
+                int y = SDL.SDL_JoystickGetAxis(GGameController, 1);
                 int movingPoint = 16384; //you can change it (It works perfectly on PS5 controller)
 
                 if (e.type == SDL.SDL_EventType.SDL_JOYAXISMOTION)
@@ -106,43 +106,43 @@ namespace ShootEmUp
 
                     if (x < -movingPoint) // Move character left
                     {
-                        axisX = "Left";
+                        _axisX = "Left";
                     }
                     else if (x > movingPoint) // Move character right
                     {
-                        axisX = "Right";
+                        _axisX = "Right";
                     }
                     else //stop caracter
                     {
-                        if (axisX == "Left") { GameObject.CurrentVelX += GameObject.VelX; }
-                        if (axisX == "Right") { GameObject.CurrentVelX -= GameObject.VelX; }
-                        axisX = "None";
-                        movingX = false;
+                        if (_axisX == "Left") { GameObject.CurrentVelX += GameObject.VelX; }
+                        if (_axisX == "Right") { GameObject.CurrentVelX -= GameObject.VelX; }
+                        _axisX = "None";
+                        _movingX = false;
                     }
 
                     if (y < -movingPoint) // Move character up
                     {
-                        axisY = "Up";
+                        _axisY = "Up";
                     }
                     else if (y > movingPoint) // Move character down
                     {
-                        axisY = "Down";
+                        _axisY = "Down";
                     }
                     else //stop caracter
                     {
-                        if (axisY == "Up") { GameObject.CurrentVelY += GameObject.VelY; }
-                        if (axisY == "Down") { GameObject.CurrentVelY -= GameObject.VelY; }
-                        axisY = "None";
-                        movingY = false;
+                        if (_axisY == "Up") { GameObject.CurrentVelY += GameObject.VelY; }
+                        if (_axisY == "Down") { GameObject.CurrentVelY -= GameObject.VelY; }
+                        _axisY = "None";
+                        _movingY = false;
                     }
                 }
 
                 //Move using controller
-                if (axisX == "Left" && !movingX) { GameObject.CurrentVelX -= GameObject.VelX; movingX = true; pressedOnJoystick = true; }
-                if (axisX == "Right" && !movingX) { GameObject.CurrentVelX += GameObject.VelX; movingX = true; pressedOnJoystick = true; }
-                if (axisY == "Up" && !movingY) { GameObject.CurrentVelY -= GameObject.VelY; movingY = true; pressedOnJoystick = true; }
-                if (axisY == "Down" && !movingY) { GameObject.CurrentVelY += GameObject.VelY; movingY = true; pressedOnJoystick = true; }
-                if (!movingX && !movingY) { pressedOnJoystick = false; }
+                if (_axisX == "Left" && !_movingX) { GameObject.CurrentVelX -= GameObject.VelX; _movingX = true; _pressedOnJoystick = true; }
+                if (_axisX == "Right" && !_movingX) { GameObject.CurrentVelX += GameObject.VelX; _movingX = true; _pressedOnJoystick = true; }
+                if (_axisY == "Up" && !_movingY) { GameObject.CurrentVelY -= GameObject.VelY; _movingY = true; _pressedOnJoystick = true; }
+                if (_axisY == "Down" && !_movingY) { GameObject.CurrentVelY += GameObject.VelY; _movingY = true; _pressedOnJoystick = true; }
+                if (!_movingX && !_movingY) { _pressedOnJoystick = false; }
 
             }
         }

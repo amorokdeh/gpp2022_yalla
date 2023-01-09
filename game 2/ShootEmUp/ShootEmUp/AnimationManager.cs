@@ -8,7 +8,7 @@ namespace ShootEmUp
 {
     class AnimationManager
     {
-        List<AnimationComponent> _animationComponents = new List<AnimationComponent>();
+        private List<AnimationComponent> _animationComponents = new List<AnimationComponent>();
 
         internal Component CreateComponent()
         {

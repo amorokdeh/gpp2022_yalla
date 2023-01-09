@@ -9,13 +9,8 @@ namespace ShootEmUp
 {
     class RenderingManager
     {
-        List<RenderingComponent> _renderingComponents = new List<RenderingComponent>();
-
-
+        private List<RenderingComponent> _renderingComponents = new List<RenderingComponent>();
         
-
-        
-
         internal Component CreateComponent(int w, int h)
         {
 
@@ -39,8 +34,8 @@ namespace ShootEmUp
 
         public void Render()
         {
-            SDL.SDL_SetRenderDrawColor(Program.window.renderer, 5, 5, 5, 255);
-            SDL.SDL_RenderClear(Program.window.renderer);
+            SDL.SDL_SetRenderDrawColor(Program.Window.Renderer, 5, 5, 5, 255);
+            SDL.SDL_RenderClear(Program.Window.Renderer);
             foreach (var component in _renderingComponents)
             {
                 if(component.GameObject.Active)
@@ -48,7 +43,7 @@ namespace ShootEmUp
 
                 
             }
-            Program.window.fpsCalculate();
+            Program.Window.FPSCalculate();
 
 
             // _renderingComponents[0].Render();
@@ -57,13 +52,13 @@ namespace ShootEmUp
             {
                 rc.Render();
             }*/
-            if (!Program.game._levels.mainMenu.running)
+            if (!Program.Game._levels.MainMenu.Running)
             {
-                SDL.SDL_RenderPresent(Program.window.renderer);
+                SDL.SDL_RenderPresent(Program.Window.Renderer);
             }
         }
 
-        //noch machne, wenn es wirklich gebraucht wird
+        //noch machen, wenn es wirklich gebraucht wird
         public IEnumerable<RenderingComponent> SubsetThatNeedsRendering()
         {
             yield break;

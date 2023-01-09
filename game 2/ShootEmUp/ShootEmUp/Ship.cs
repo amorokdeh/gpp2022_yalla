@@ -13,7 +13,7 @@ namespace ShootEmUp
             PosX = 600;
             PosY = 0;
 
-            FlyingImg.loadImage("image/MiniPixelPack3/Enemies/Lips.png");
+            FlyingImg.LoadImage("image/MiniPixelPack3/Enemies/Lips.png");
             Img = FlyingImg;
         }
 

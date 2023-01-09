@@ -11,34 +11,52 @@ namespace ShootEmUp
         public bool Active = false;
         public bool Died = false;
 
-        private string Name { get; set; }
-        public float PosX { get; set; }
-        public float PosY { get; set; }
-        public int Width { get; set; }
-        public int Height { get; set; }
-        public float VelX { get; set; }
-        public float CurrentVelX { get; set; }
-        public float VelY { get; set; }
-        public float CurrentVelY { get; set; }
+        private string _name;
 
+        public float PosX;
+        public float PosY;
+        public int Width;
+        public int Height;
+        public float VelX;
+        public float CurrentVelX;
+        public float VelY;
+        public float CurrentVelY;
 
         public Image Img = new Image();
 
         public int ImgChange = 0;
         public int ImgStep = 0;
 
+        protected int Pause = 5;
+        private int _usedPause = 0;
+
+
+        public GameObject(string name, int w, int h)
+        {
+            //for testing
+            PosX = 200;
+            PosY = 200;
+            Width = w;
+            Height = h;
+            VelX = 100;
+            VelY = 100;
+            CurrentVelX = 0;
+            CurrentVelY = 0;
+
+            Img.SetUp();
+
+            this._name = name;
+        }
 
         public virtual void ChangeImage() { }
 
-
-        private int pause = 5;
         public void ChangeImage(int imgAmount)
         {
             
             
-            if(pause > 0)
+            if(_usedPause > 0)
             {
-                pause--;
+                _usedPause--;
             }
             else {
                 ImgStep++;
@@ -54,33 +72,9 @@ namespace ShootEmUp
                 if (ImgStep > imgAmount * 2 - 3)
                 {
                     ImgStep = 0;
-                    pause = 5;
+                    _usedPause = Pause;
                 }
             }
-
-        }
-
-
-
-        public GameObject(string name, int w, int h)
-        {
-            //for testing
-            PosX = 200;
-            PosY = 200;
-            Width = w;
-            Height = h;
-            VelX = 100;
-            VelY = 100;
-            CurrentVelX = 0;
-            CurrentVelY = 0;
-
-
-            Img.setUp();
-
-            
-
-
-            this.Name = name;
 
         }
 

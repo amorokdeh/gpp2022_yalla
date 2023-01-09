@@ -9,34 +9,34 @@ namespace ShootEmUp
 {
     class ImageRenderingComponent : RenderingComponent
     {
-        private SDL.SDL_Rect rect;
-        private SDL.SDL_Rect srcRect;
-        int dstX = 0;
+        private SDL.SDL_Rect _rect;
+        private SDL.SDL_Rect _srcRect;
+        private int _dstX = 0;
 
         public ImageRenderingComponent(RenderingManager rm, int x, int y, int w, int h, int dstW, int dstH, int dstX = 0)
         {
             this.RenderingManager = rm;
-            srcRect.x = x;
-            srcRect.y = y;
-            srcRect.w = w;
-            srcRect.h = h;
-            rect.w = dstW;
-            rect.h = dstH;
-            this.dstX = dstX;
+            _srcRect.x = x;
+            _srcRect.y = y;
+            _srcRect.w = w;
+            _srcRect.h = h;
+            _rect.w = dstW;
+            _rect.h = dstH;
+            this._dstX = dstX;
         }
 
         override public void Render()
         {
-            rect.x = (int)GameObject.PosX + dstX;
-            rect.y = (int)GameObject.PosY;
+            _rect.x = (int)GameObject.PosX + _dstX;
+            _rect.y = (int)GameObject.PosY;
 
             //zum testen
-            srcRect.x = GameObject.ImgChange;
+            _srcRect.x = GameObject.ImgChange;
 
 
-            SDL.SDL_RenderCopy(Program.window.renderer, GameObject.Img.imageTexture, ref srcRect, ref rect);
+            SDL.SDL_RenderCopy(Program.Window.Renderer, GameObject.Img.ImageTexture, ref _srcRect, ref _rect);
 
-            SDL.SDL_SetRenderDrawColor(Program.window.renderer, 255, 255, 255, 255);
+            SDL.SDL_SetRenderDrawColor(Program.Window.Renderer, 255, 255, 255, 255);
             //SDL.SDL_RenderDrawLine(Program.window.renderer, 0, 0, (int)GameObject.PosX, (int)GameObject.PosY);
         }
     }

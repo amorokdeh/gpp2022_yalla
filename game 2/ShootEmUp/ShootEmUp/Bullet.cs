@@ -8,18 +8,18 @@ namespace ShootEmUp
 {
     class Bullet:GameObject
     {
-        public GameObject Gameobject;
+        public GameObject GameObject;
 
-        public string name;
+        public string Name;
        
         public Bullet(string name, GameObject player, int w, int h):base(name, w, h)
         {
-            Gameobject = player;
-            this.name = name;
+            GameObject = player;
+            this.Name = name;
 
             //VelY = -10;
             VelY = -150;
-            Img.loadImage("image/MiniPixelPack3/Projectiles/PlayerBeam.png");
+            Img.LoadImage("image/MiniPixelPack3/Projectiles/PlayerBeam.png");
 
         }
     }

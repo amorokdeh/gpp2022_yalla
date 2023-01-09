@@ -9,7 +9,7 @@ namespace ShootEmUp
     
     class PhysicsManager
     {
-        List<PhysicsComponent> _physicsComponents = new List<PhysicsComponent>();
+        private List<PhysicsComponent> _physicsComponents = new List<PhysicsComponent>();
         
 
         internal Component CreateComponent()
