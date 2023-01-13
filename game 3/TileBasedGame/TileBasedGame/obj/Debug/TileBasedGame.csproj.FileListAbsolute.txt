@@ -1,0 +1,65 @@
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\TileBasedGame.exe.config
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\TileBasedGame.exe
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\TileBasedGame.pdb
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\SDL2-CS.dll
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\obj\Debug\TileBasedGame.csproj.AssemblyReference.cache
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\obj\Debug\TileBasedGame.csproj.CoreCompileInputs.cache
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\obj\Debug\TileBasedGame.csproj.CopyComplete
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\obj\Debug\TileBasedGame.exe
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\obj\Debug\TileBasedGame.pdb
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\Effects\Explosion.png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\Effects\Sparkle (16 x 16).png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\Enemies\Alan.png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\Enemies\Bon_Bon (16 x 16).png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\Enemies\Lips.png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\Items\Circle_+_Square_+_Missile_pick-ups (16 x 16).png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\Items\Power_item (16 x 16).png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\level_2.png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\LICENSE.txt
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\mm.png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\PlayerShip\Boosters.png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\PlayerShip\Boosters_left.png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\PlayerShip\Boosters_right.png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\PlayerShip\PlayerShip.png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\Projectiles\enemyBullet.png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\Projectiles\Enemy_projectile (16 x 16).png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\Projectiles\PlayerBeam.png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\Projectiles\Player_charged_beam (16 x 16).png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\Projectiles\Player_charged_donut_shot (16 x 16).png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\Projectiles\Player_charged_square_shot (16 x 16).png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\Projectiles\Player_donut_shot (16 x 16).png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\Projectiles\Player_missile_shots (16 x 16).png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\Projectiles\Player_square_shot (16 x 16).png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\SpaceBG.png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\UIobjects\GAME_OVER (72 x 8).png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\UIobjects\Item_held_box (16 x 16).png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\UIobjects\Number_font (8 x 8).png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\UIobjects\Player_life_icon (16 x 16).png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\UIobjects\Power_+_charge_bars (full + empty) (32 x 16).png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\UIobjects\START (48 x 8).png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\libfreetype-6.dll
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\libpng16-16.dll
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\SDL2.dll
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\SDL2_image.dll
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\SDL2_mixer.dll
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\SDL2_ttf.dll
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\sound\beat.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\sound\explod_1.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\sound\explod_2.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\sound\game_over.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\sound\high.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\sound\Level1 Music.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\sound\Level2 Music.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\sound\Level3 Music.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\sound\MainMenu Music.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\sound\medium.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\sound\Menu buttons.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\sound\Menu click.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\sound\scratch.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\sound\shooting.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\sound\sound.wav
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\zlib1.dll
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\font\Adequate-ExtraLight.ttf
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\font\aerial.ttf
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\font\automati.ttf
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\font\lazy.ttf
