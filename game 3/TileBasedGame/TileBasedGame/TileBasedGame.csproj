@@ -55,6 +55,7 @@
     <Compile Include="AudioManager.cs" />
     <Compile Include="Background.cs" />
     <Compile Include="Bullet.cs" />
+    <Compile Include="Camera.cs" />
     <Compile Include="CollisionComponent.cs" />
     <Compile Include="CollisionManager.cs" />
     <Compile Include="Component.cs" />

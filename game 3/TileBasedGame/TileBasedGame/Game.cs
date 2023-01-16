@@ -29,6 +29,7 @@ namespace TileBasedGame
         public static bool Quit;
         public uint Ticks = SDL.SDL_GetTicks();
         public Player Player;
+        public Camera Camera;
 
         public Game()
         {
@@ -74,15 +75,17 @@ namespace TileBasedGame
 
         public GameObject BuildPlayer()
         {
-            Player player = _objects.CreateGamePlayer("player", 16 * 2, 16 * 2);
-            player.Active = true;
-            player.AddComponent(_physics.CreateComponent());
-            player.AddComponent(_rendering.CreateComponent(16 * 2, 16 * 2));
-            player.AddComponent(_rendering.CreateInfoComponent());
-            player.AddComponent(_controls.CreateComponent());
-            player.AddComponent(_collisions.CreateComponent());
-            player.AddComponent(_shootings.CreatePlayerComponent());
-            return player;
+            Player = _objects.CreateGamePlayer("player", 16 * 2, 16 * 2);
+            Player.Active = true;
+            Player.AddComponent(_physics.CreateComponent());
+            Player.AddComponent(_rendering.CreateComponent(16 * 2, 16 * 2));
+            Player.AddComponent(_rendering.CreateInfoComponent());
+            Player.AddComponent(_controls.CreateComponent());
+            Player.AddComponent(_collisions.CreateComponent());
+            Player.AddComponent(_shootings.CreatePlayerComponent());
+
+            Camera = new Camera(Player);
+            return Player;
         }
 
 
@@ -215,6 +218,11 @@ namespace TileBasedGame
         public void Shoot(float deltaT)
         {
             _shootings.Shoot(deltaT);
+        }
+
+        public void UpdateCamera(Player player)
+        {
+            Camera.UpdateCamera(player);
         }
 
 

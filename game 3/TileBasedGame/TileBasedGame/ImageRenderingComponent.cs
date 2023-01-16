@@ -27,8 +27,8 @@ namespace TileBasedGame
 
         override public void Render()
         {
-            _rect.x = (int)GameObject.PosX + _dstX;
-            _rect.y = (int)GameObject.PosY;
+            _rect.x = (int)(GameObject.PosX + _dstX - Program.Game.Camera.PosX + Program.Window.Width / 2);
+            _rect.y = (int)(GameObject.PosY - Program.Game.Camera.PosY + Program.Window.Height / 2);
 
             //zum testen
             _srcRect.x = GameObject.ImgChange;

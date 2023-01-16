@@ -66,6 +66,8 @@ namespace TileBasedGame
                     Program.Game.SetInactive();
                     return;
                 }
+
+                Program.Game.UpdateCamera(_player);
                 Program.Game.Render();
 
                 if (Game.Quit)

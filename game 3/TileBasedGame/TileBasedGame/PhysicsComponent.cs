@@ -20,7 +20,7 @@ namespace TileBasedGame
             GameObject.PosX += GameObject.CurrentVelX * deltaT;
             GameObject.PosY += GameObject.CurrentVelY * deltaT;
 
-            if(GameObject is Player)
+            if (GameObject is Player)
             {
                 Player p = (Player)GameObject;
                 if (GameObject.CurrentVelX > 0)

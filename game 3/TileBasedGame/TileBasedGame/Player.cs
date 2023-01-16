@@ -14,6 +14,8 @@ namespace TileBasedGame
         {
             ImgChange = 16;
             Img.LoadImage("image/MiniPixelPack3/PlayerShip/PlayerShip.png");
+            PosX = Program.Window.Width / 2;
+            PosY = Program.Window.Height / 2;
         }
 
         public void FlyLeft()
@@ -33,8 +35,8 @@ namespace TileBasedGame
         {
             Lives = 3;
             Score = 0;
-            PosX = 200;
-            PosY = 200;
+            PosX = Program.Window.Width/2;
+            PosY = Program.Window.Height/2;
             VelX = 100;
             VelY = 100;
             CurrentVelX = 0;
