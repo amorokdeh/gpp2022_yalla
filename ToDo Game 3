@@ -9,7 +9,7 @@ Kritik und Tipps umsetzen:
 [] Auflösung für fullscreen überarbeiten
 [] Weltklasse und Kameraklasse
 [] Konstanten statt magical numbers
-[] Imageklasse überarbeiten
+[x] Imageklasse überarbeiten
   - nicht genutzte out-Parameter durch out _ ersetzen
   - SRect x und y nicht auf 0 setzen
 [] Gameobject soll seine Components kennen
