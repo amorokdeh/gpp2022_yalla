@@ -8,7 +8,7 @@ Kritik und Tipps umsetzen:
 [x] .gitignore erstellen
 [] Auflösung für fullscreen überarbeiten
 [] Weltklasse und Kameraklasse
-[] Konstanten statt magical numbers
+[x] Konstanten statt magical numbers
 [x] Imageklasse überarbeiten
   - nicht genutzte out-Parameter durch out _ ersetzen
   - SRect x und y nicht auf 0 setzen
