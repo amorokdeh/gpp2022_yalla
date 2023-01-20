@@ -53,6 +53,13 @@ namespace TileBasedGame
             return gameObject;
         }
 
+        public Block CreateBlock(string name, int w, int h)
+        {
+            Block gameObject = new Block(name, w, h);
+            _gameObjects.Add(gameObject);
+            return gameObject;
+        }
+
 
     }
 

@@ -17,6 +17,17 @@ namespace TileBasedGame
             Game.Run(); //run the game loop
 
 
+            //Test
+            /*
+            TiledMap tiledMap = new TiledMap();
+            tiledMap.load("image/MiniPixelPack3/Maps/Level1.json", "PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.png");
+            tiledMap.build();
+            while (true)
+            {
+            }
+            */
+
+
             //Observable und Observer aus der Vorlesung
             //game.tryHeroStuff();
         }
