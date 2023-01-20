@@ -5,7 +5,7 @@ Camera Position an Player
 
 Kritik und Tipps umsetzen:
 ([] Trefferfeedback)
-[] .gitignore erstellen
+[x] .gitignore erstellen
 [] Auflösung für fullscreen überarbeiten
 [] Weltklasse und Kameraklasse
 [] Konstanten statt magical numbers
