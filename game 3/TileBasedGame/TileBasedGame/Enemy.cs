@@ -24,7 +24,7 @@ namespace TileBasedGame
             
             if (ExplosionStep < 5)
             {
-                ImgChange = 16 * ExplosionStep;
+                ImgChange = Globals.NormalImageSize * ExplosionStep;
             } else
             {
                 ExplosionStep = 0;

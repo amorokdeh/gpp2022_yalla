@@ -10,9 +10,6 @@ namespace TileBasedGame
     {
         public Ship(string name, int w, int h) : base(name, w, h)
         {
-            PosX = 600;
-            PosY = 0;
-
             FlyingImg.LoadImage("image/MiniPixelPack3/Enemies/Lips.png");
             Img = FlyingImg;
         }

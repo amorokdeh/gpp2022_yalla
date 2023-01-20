@@ -24,11 +24,11 @@ namespace TileBasedGame
         }
         public void FlyStraight()
         {
-            ImgChange = 16;
+            ImgChange = Globals.NormalImageSize;
         }
         public void FlyRight()
         {
-            ImgChange = 16*2;
+            ImgChange = Globals.NormalImageSize*2;
         }
 
         public void Reset()
@@ -37,10 +37,10 @@ namespace TileBasedGame
             Score = 0;
             PosX = Program.Window.Width/2;
             PosY = Program.Window.Height/2;
-            VelX = 100;
-            VelY = 100;
-            CurrentVelX = 0;
-            CurrentVelY = 0;
+            VelX = Globals.Velocity;
+            VelY = Globals.Velocity;
+            CurrentVelX = Globals.Reset;
+            CurrentVelY = Globals.Reset;
         }
     }
 }

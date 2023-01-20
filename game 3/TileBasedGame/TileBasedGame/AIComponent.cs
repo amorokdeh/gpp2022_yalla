@@ -23,7 +23,7 @@ namespace TileBasedGame
             {
                 Program.Game.DespawnEnemy(GameObject);
             }
-            if (GameObject is Bullet && GameObject.PosY < 0)
+            if (GameObject is Bullet && GameObject.PosY < Globals.LeftBoundary)
             {
                 Program.Game.DespawnPlayerBullet(GameObject);
             }

@@ -8,6 +8,8 @@ namespace TileBasedGame
 {
     class GameObject
     {
+        public List<Component> Components = new List<Component>();
+
         public bool Active = false;
         public bool Died = false;
 
@@ -24,24 +26,21 @@ namespace TileBasedGame
 
         public Image Img = new Image();
 
-        public int ImgChange = 0;
-        public int ImgStep = 0;
+        public int ImgChange = Globals.Reset;
+        public int ImgStep = Globals.Reset;
 
-        protected int Pause = 5;
-        private int _usedPause = 0;
+        protected int Pause = Globals.AnimationPause;
+        private int _usedPause = Globals.Reset;
 
 
         public GameObject(string name, int w, int h)
         {
-            //for testing
-            PosX = 200;
-            PosY = 200;
             Width = w;
             Height = h;
-            VelX = 100;
-            VelY = 100;
-            CurrentVelX = 0;
-            CurrentVelY = 0;
+            VelX = Globals.Velocity;
+            VelY = Globals.Velocity;
+            CurrentVelX = Globals.Reset;
+            CurrentVelY = Globals.Reset;
 
             Img.SetUp();
 
@@ -54,7 +53,7 @@ namespace TileBasedGame
         {
             
             
-            if(_usedPause > 0)
+            if(_usedPause > Globals.Reset)
             {
                 _usedPause--;
             }
@@ -62,16 +61,16 @@ namespace TileBasedGame
                 ImgStep++;
                 if (ImgStep < imgAmount)
                 {
-                    ImgChange = 16 * ImgStep;
+                    ImgChange = Globals.NormalImageSize * ImgStep;
                 }
                 else
                 {
-                    ImgChange = 16 * (imgAmount * 2 - 2 - ImgStep);
+                    ImgChange = Globals.NormalImageSize * (imgAmount * Globals.Multiplier - 2 - ImgStep);
                 }
 
-                if (ImgStep > imgAmount * 2 - 3)
+                if (ImgStep > imgAmount * Globals.Multiplier - 3)
                 {
-                    ImgStep = 0;
+                    ImgStep = Globals.Reset;
                     _usedPause = Pause;
                 }
             }
@@ -80,6 +79,7 @@ namespace TileBasedGame
 
         internal void AddComponent(Component component)
         {
+            Components.Add(component);
             component.GameObject = this;
         }
 

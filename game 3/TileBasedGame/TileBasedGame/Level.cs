@@ -15,8 +15,8 @@ namespace TileBasedGame
         private float _avDeltaTime = -1;
         private Player _player;
 
-        public float Gap = 0;
-        public float GapSize = 1f;
+        public float Gap = Globals.Reset;
+        public float GapSize = Globals.EnemyGap;
         public GameObject GameObject;
 
         public Random Rand;
@@ -98,14 +98,14 @@ namespace TileBasedGame
             {
                 GameObject = Program.Game.RequestEnemyShip();
 
-                GameObject.PosY = 0;
+                GameObject.PosY = Globals.Reset;
                 GameObject.PosX = Rand.Next(0, Program.Window.Width); // Enemy Random Position 
                 GameObject = Program.Game.RequestEnemyUfo();
 
-                GameObject.PosY = 0;
+                GameObject.PosY = Globals.Reset;
                 GameObject.PosX = Rand.Next(0, Program.Window.Width); // Enemy Random Position 
 
-                Gap = 0;
+                Gap = Globals.Reset;
             }
         }
     }

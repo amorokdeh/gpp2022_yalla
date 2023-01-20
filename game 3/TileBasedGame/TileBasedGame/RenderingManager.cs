@@ -14,7 +14,7 @@ namespace TileBasedGame
         internal Component CreateComponent(int w, int h)
         {
 
-            RenderingComponent rc = new ImageRenderingComponent(this, 0, 0, 16, 16, w, h);
+            RenderingComponent rc = new ImageRenderingComponent(this, 0, 0, Globals.NormalImageSize, Globals.NormalImageSize, w, h);
             _renderingComponents.Add(rc);
             return rc;
         }

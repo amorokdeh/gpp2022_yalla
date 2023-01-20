@@ -18,9 +18,9 @@ namespace TileBasedGame
         {
             GameObject.PosX += GameObject.CurrentVelX * deltaT;
             GameObject.PosY += GameObject.CurrentVelY * deltaT;
-            if(GameObject.PosY > Program.Window.Height + 64 * 8)
+            if(GameObject.PosY > Program.Window.Height + Globals.BigImageSize * 8)
             {
-                GameObject.PosY = GameObject.PosX - 64 * 4;
+                GameObject.PosY = GameObject.PosX - Globals.BigImageSize * Globals.BigMultiplier;
             }
         }
     }

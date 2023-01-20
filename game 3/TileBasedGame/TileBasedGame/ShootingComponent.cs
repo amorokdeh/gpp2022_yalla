@@ -10,8 +10,8 @@ namespace TileBasedGame
     {
         ShootingManager ShootingManager;
 
-        protected float BulletGap = 0;
-        protected float BulletGapSize = 2f;
+        protected float BulletGap = Globals.Reset;
+        protected int BulletGapSize = Globals.BulletGap;
         
         public ShootingComponent(ShootingManager sm)
         {

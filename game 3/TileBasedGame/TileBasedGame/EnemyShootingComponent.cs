@@ -28,7 +28,7 @@ namespace TileBasedGame
                 Bullet.PosY = Bullet.GameObject.PosY;
                 Bullet.PosX = Bullet.GameObject.PosX;
 
-                BulletGap = 0;
+                BulletGap = Globals.Reset;
 
             }
         }

@@ -47,7 +47,7 @@ namespace TileBasedGame
             enemy1.Active = false;
             enemy1.Died = false;
 
-            enemy1.ExplosionStep = 0;
+            enemy1.ExplosionStep = Globals.Reset;
             enemy1.Img = enemy1.FlyingImg;
 
         }
@@ -70,8 +70,6 @@ namespace TileBasedGame
 
             return newEnemy;
         }
-
-
         public GameObject RequestPlayerBullet(GameObject player)
         {
             foreach (GameObject bullet in _playerBulletPool)
@@ -110,7 +108,6 @@ namespace TileBasedGame
             return newBullet;
         }
 
-
         public void DespawnPlayerBullet(GameObject bullet)
         {
             bullet.Active = false;
@@ -120,9 +117,6 @@ namespace TileBasedGame
         {
             bullet.Active = false;
         }
-
-
-
 
         public void SetInactive()
         {

@@ -11,7 +11,7 @@ namespace TileBasedGame
         AnimationManager AnimationManager;
 
         private float _gap = 0;
-        private float _gapSize = 0.15f;
+        private float _gapSize = Globals.AnimationGap;
         
         public AnimationComponent(AnimationManager am)
         {

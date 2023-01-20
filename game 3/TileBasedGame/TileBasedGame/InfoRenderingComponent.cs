@@ -10,14 +10,13 @@ namespace TileBasedGame
     class InfoRenderingComponent : RenderingComponent
     {
 
-        //als Test
         private Text _txt = new Text();
         private string _text;
         private string _lives;
         private string _score;
         private IntPtr _surfaceMessage;
         private SDL.SDL_Color _color;
-        private int _textSize = 20;
+        private int _textSize = Globals.SmallTextSize;
         public InfoRenderingComponent(RenderingManager rm)
         {
             this.RenderingManager = rm;

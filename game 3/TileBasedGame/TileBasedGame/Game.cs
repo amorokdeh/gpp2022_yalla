@@ -9,9 +9,6 @@ namespace TileBasedGame
 {
     class Game
     {
-
-
-
         private GameObjectManager _objects = new GameObjectManager();
         private PhysicsManager _physics = new PhysicsManager();
         private RenderingManager _rendering = new RenderingManager();
@@ -59,15 +56,15 @@ namespace TileBasedGame
             GameObject bg;
 
 
-            for (int i = -1; i < (winH / 128 * 4); i++)
+            for (int i = -1; i < (winH / Globals.VeryBigImageSize * Globals.BigMultiplier); i++)
             {
-                bg = _objects.CreateGameBackground(source, 128 * 4, 64 * 4, 0, 64 * 4 * i);
+                bg = _objects.CreateGameBackground(source, Globals.VeryBigImageSize * Globals.BigMultiplier, Globals.BigImageSize * Globals.BigMultiplier, 0, Globals.BigImageSize * Globals.BigMultiplier * i);
                 bg.Active = true;
                 bg.AddComponent(_physics.CreateBGComponent());
 
-                for (int j = 0; j < winW / (64 * 4); j++)
+                for (int j = 0; j < winW / (Globals.BigImageSize * Globals.BigMultiplier); j++)
                 {
-                    bg.AddComponent(_rendering.CreateBGComponent(0, 0, 128, 64, 128 * 4, 64 * 4, 128 * 4 * j));
+                    bg.AddComponent(_rendering.CreateBGComponent(0, 0, Globals.VeryBigImageSize, Globals.BigImageSize, Globals.VeryBigImageSize * Globals.BigMultiplier, 64 * Globals.BigMultiplier, 128 * Globals.BigMultiplier * j));
                 }
 
                 bg.AddComponent(_ai.CreateComponent());
@@ -76,10 +73,10 @@ namespace TileBasedGame
 
         public GameObject BuildPlayer()
         {
-            Player = _objects.CreateGamePlayer("player", 16 * 2, 16 * 2);
+            Player = _objects.CreateGamePlayer("player", Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier);
             Player.Active = true;
             Player.AddComponent(_physics.CreateComponent());
-            Player.AddComponent(_rendering.CreateComponent(16 * 2, 16 * 2));
+            Player.AddComponent(_rendering.CreateComponent(Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
             Player.AddComponent(_rendering.CreateInfoComponent());
             Player.AddComponent(_controls.CreateComponent());
             Player.AddComponent(_collisions.CreateComponent());
@@ -93,9 +90,9 @@ namespace TileBasedGame
         //Enemy
         public GameObject BuildShip(GameObject ship)
         {
-            ship = _objects.CreateGameShip("ship", 16 * 2, 16 * 2);
+            ship = _objects.CreateGameShip("ship", Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier);
             ship.AddComponent(_physics.CreateComponent());
-            ship.AddComponent(_rendering.CreateComponent(16 * 2, 16 * 2));
+            ship.AddComponent(_rendering.CreateComponent(Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
             ship.AddComponent(_ai.CreateComponent());
             ship.AddComponent(_collisions.CreateComponent());
             ship.AddComponent(_animations.CreateComponent());
@@ -108,9 +105,9 @@ namespace TileBasedGame
         //Enemy
         public GameObject BuildUfo(GameObject ufo)
         {
-            ufo = _objects.CreateGameUfo("ufo", 16 * 2, 16 * 2);
+            ufo = _objects.CreateGameUfo("ufo", Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier);
             ufo.AddComponent(_physics.CreateComponent());
-            ufo.AddComponent(_rendering.CreateComponent(16 * 2, 16 * 2));
+            ufo.AddComponent(_rendering.CreateComponent(Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
             ufo.AddComponent(_ai.CreateComponent());
             ufo.AddComponent(_collisions.CreateComponent());
             ufo.AddComponent(_animations.CreateComponent());
@@ -121,9 +118,9 @@ namespace TileBasedGame
 
         public GameObject BuildPlayerBullet(GameObject bullet, GameObject player)
         {
-            bullet = _objects.CreatePlayerBullet("playerBullet", player, 16 * 2, 16 * 2);
+            bullet = _objects.CreatePlayerBullet("playerBullet", player, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier);
             bullet.AddComponent(_physics.CreateComponent());
-            bullet.AddComponent(_rendering.CreateComponent(16 * 2, 16 * 2));
+            bullet.AddComponent(_rendering.CreateComponent(Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
             bullet.AddComponent(_ai.CreateComponent());
             bullet.AddComponent(_collisions.CreateComponent());
             return bullet;
@@ -133,9 +130,9 @@ namespace TileBasedGame
         // Enemy Bullet
         public GameObject BuildEnemyBullet(GameObject bullet, GameObject enemy)
         {
-            bullet = _objects.CreateEnemyBullet("enemyBullet", enemy, 16 * 2, 16 * 2);
+            bullet = _objects.CreateEnemyBullet("enemyBullet", enemy, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier);
             bullet.AddComponent(_physics.CreateComponent());
-            bullet.AddComponent(_rendering.CreateComponent(16 * 2, 16 * 2));
+            bullet.AddComponent(_rendering.CreateComponent(Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
             bullet.AddComponent(_ai.CreateComponent());
             bullet.AddComponent(_collisions.CreateComponent());
             bullet.AddComponent(_animations.CreateComponent());
@@ -146,8 +143,8 @@ namespace TileBasedGame
         // Blocks 
         public GameObject BuildBlocks(Block block)
         {
-            block = _objects.CreateBlock("Block", 16 * 2, 16 * 2);
-            block.AddComponent(_rendering.CreateComponent(16 * 2, 16 * 2));
+            block = _objects.CreateBlock("Block", Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier);
+            block.AddComponent(_rendering.CreateComponent(Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
             block.AddComponent(_collisions.CreateComponent());
             block.Active = true;
             block.Died = false;

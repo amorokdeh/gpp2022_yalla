@@ -245,10 +245,10 @@ namespace TileBasedGame
                 {
 
                     case Choices.SoundUp:
-                        Program.Game._audio.ChangeVolumeSound(Program.Game._audio.GetVolumeSound() + 10);
+                        Program.Game._audio.ChangeVolumeSound(Program.Game._audio.GetVolumeSound() + Globals.AudioStep);
                         return;
                     case Choices.SoundDown:
-                        Program.Game._audio.ChangeVolumeSound(Program.Game._audio.GetVolumeSound() - 10);
+                        Program.Game._audio.ChangeVolumeSound(Program.Game._audio.GetVolumeSound() - Globals.AudioStep);
                         return;
                     case Choices.BackToOption:
                         MenuSelected = "option";
@@ -262,10 +262,10 @@ namespace TileBasedGame
                 {
 
                     case Choices.MusicUp:
-                        Program.Game._audio.ChangeVolumeMusic(Program.Game._audio.GetVolumeMusic() + 10);
+                        Program.Game._audio.ChangeVolumeMusic(Program.Game._audio.GetVolumeMusic() + Globals.AudioStep);
                         return;
                     case Choices.MusicDown:
-                        Program.Game._audio.ChangeVolumeMusic(Program.Game._audio.GetVolumeMusic() - 10);
+                        Program.Game._audio.ChangeVolumeMusic(Program.Game._audio.GetVolumeMusic() - Globals.AudioStep);
                         return;
                     case Choices.BackToTheOption:
                         MenuSelected = "option";
@@ -528,12 +528,12 @@ namespace TileBasedGame
             if (choice == _selected)
             {
                 Color = Txt.Green;
-                TextSize = 40;
+                TextSize = Globals.BigTextSize;
             }
             else
             {
                 Color = Txt.White;
-                TextSize = 30;
+                TextSize = Globals.NormalTextSize;
             }
         }
 

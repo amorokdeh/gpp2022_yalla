@@ -8,7 +8,7 @@ namespace TileBasedGame
 {
     class Level2:Level
     {
-        private float _sinGap = 0;
+        private float _sinGap = Globals.Reset;
 
         public Level2()
         {
@@ -22,7 +22,7 @@ namespace TileBasedGame
             {
                 GameObject = Program.Game.RequestEnemyShip();
 
-                GameObject.PosY = 0;
+                GameObject.PosY = Globals.Reset;
                 GameObject.PosX = (float)(Math.Sin(_sinGap) * (Program.Window.Width/2 - GameObject.Width / 2) + Program.Window.Width/2 - GameObject.Width/2);
 
                 Console.WriteLine(GameObject.PosX);
@@ -30,7 +30,7 @@ namespace TileBasedGame
 
                 GameObject = Program.Game.RequestEnemyUfo();
 
-                GameObject.PosY = 0;
+                GameObject.PosY = Globals.Reset;
                 GameObject.PosX = (float)(Math.Sin(_sinGap + Math.PI) * (Program.Window.Width / 2 - GameObject.Width / 2) + Program.Window.Width / 2 - GameObject.Width / 2);
 
                 Gap = 0;
