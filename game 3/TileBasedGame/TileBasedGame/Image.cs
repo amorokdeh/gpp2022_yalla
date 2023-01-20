@@ -35,9 +35,7 @@ namespace TileBasedGame
             //image
             ImageSurface = SDL_image.IMG_Load(source);
             ImageTexture = SDL.SDL_CreateTextureFromSurface(Program.Window.Renderer, ImageSurface);
-            SRect.x = 0;
-            SRect.y = 0;
-            SDL.SDL_QueryTexture(ImageTexture, out format, out access, out SRect.w, out SRect.h);
+            SDL.SDL_QueryTexture(ImageTexture, out _, out _, out SRect.w, out SRect.h);
         }
     }
 }
