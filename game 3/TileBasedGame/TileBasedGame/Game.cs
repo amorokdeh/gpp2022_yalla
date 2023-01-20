@@ -30,6 +30,7 @@ namespace TileBasedGame
         public uint Ticks = SDL.SDL_GetTicks();
         public Player Player;
         public Camera Camera;
+        public TiledMap tiledMap = new TiledMap();
 
         public Game()
         {
@@ -142,6 +143,16 @@ namespace TileBasedGame
 
         }
 
+        // Blocks 
+        public GameObject BuildBlocks(Block block)
+        {
+            block = _objects.CreateBlock("Block", 16 * 2, 16 * 2);
+            block.AddComponent(_rendering.CreateComponent(16 * 2, 16 * 2));
+            block.AddComponent(_collisions.CreateComponent());
+            return block;
+
+        }
+
 
 
         public GameObject RequestEnemyUfo()
@@ -234,6 +245,8 @@ namespace TileBasedGame
         public void Run() {
             BuildBackground("level 1");
             Player = (Player)BuildPlayer();
+            tiledMap.load("image/MiniPixelPack3/Maps/Level1.json");
+            tiledMap.build();
             _levels.Run();    
         }
 
