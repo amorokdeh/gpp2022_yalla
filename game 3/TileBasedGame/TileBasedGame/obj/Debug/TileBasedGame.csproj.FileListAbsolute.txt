@@ -133,3 +133,7 @@ C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame
 C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\Newtonsoft.Json.xml
 C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\Maps\Level1.json
 C:\Users\amrok\Documents\GitHub\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\Maps\Level1.png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\Maps\Level1.png
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\image\MiniPixelPack3\Maps\Level1.json
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\Newtonsoft.Json.dll
+C:\majbrit\Medieninformatik\Semester7\GPP\Projekt\gpp2022_yalla\game 3\TileBasedGame\TileBasedGame\bin\Debug\Newtonsoft.Json.xml

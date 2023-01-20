@@ -149,6 +149,8 @@ namespace TileBasedGame
             block = _objects.CreateBlock("Block", 16 * 2, 16 * 2);
             block.AddComponent(_rendering.CreateComponent(16 * 2, 16 * 2));
             block.AddComponent(_collisions.CreateComponent());
+            block.Active = true;
+            block.Died = false;
             return block;
 
         }
@@ -243,7 +245,7 @@ namespace TileBasedGame
 
         //Game loop
         public void Run() {
-            BuildBackground("level 1");
+            //BuildBackground("level 1");
             Player = (Player)BuildPlayer();
             tiledMap.load("image/MiniPixelPack3/Maps/Level1.json");
             tiledMap.build();
