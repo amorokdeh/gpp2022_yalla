@@ -5,14 +5,14 @@ Camera Position an Player
 
 Kritik und Tipps umsetzen:
 ([] Trefferfeedback)
-[] .gitignore erstellen
+[x] .gitignore erstellen
 [] Auflösung für fullscreen überarbeiten
 [] Weltklasse und Kameraklasse
 [] Konstanten statt magical numbers
 [x] Imageklasse überarbeiten
   - nicht genutzte out-Parameter durch out _ ersetzen
   - SRect x und y nicht auf 0 setzen
-[] Gameobject soll seine Components kennen
+[x] Gameobject soll seine Components kennen
 [] Image-Variable in die RenderComponent und möglich machen, dass andere Components und GameObjects das Image verändern können
 [] CollisionsComponent und Collisionsmanager sollen nur Kollision feststellen
 [] Fallunterscheidung eleganter gestalten, durch z.B. Component oder Interface
