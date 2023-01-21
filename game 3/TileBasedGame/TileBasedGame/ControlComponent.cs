@@ -74,11 +74,22 @@ namespace TileBasedGame
                 //Adjust the velocity
                 switch (e.key.keysym.sym)
                 {
-                    case SDL.SDL_Keycode.SDLK_UP: GameObject.CurrentVelY -= GameObject.VelY; break;
-                    case SDL.SDL_Keycode.SDLK_DOWN: GameObject.CurrentVelY += GameObject.VelY; break;
-                    case SDL.SDL_Keycode.SDLK_LEFT: GameObject.CurrentVelX -= GameObject.VelX; break;
-                    case SDL.SDL_Keycode.SDLK_RIGHT: GameObject.CurrentVelX += GameObject.VelX; break;
-                    case SDL.SDL_Keycode.SDLK_ESCAPE: LevelManager.display = GameState.MainMenu; LevelManager.ControlQuitRequest = true; break; //quit game
+                    case SDL.SDL_Keycode.SDLK_UP:
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoUp));   
+                        break;
+                    case SDL.SDL_Keycode.SDLK_DOWN:
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoDown));
+                        break;
+                    case SDL.SDL_Keycode.SDLK_LEFT:
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoLeft));
+                        break;
+                    case SDL.SDL_Keycode.SDLK_RIGHT:
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoRight));
+                        break;
+                    case SDL.SDL_Keycode.SDLK_ESCAPE: 
+                        LevelManager.display = GameState.MainMenu; 
+                        LevelManager.ControlQuitRequest = true; 
+                        break; //quit game
 
                 }
             }
@@ -87,10 +98,19 @@ namespace TileBasedGame
                 //Adjust the velocity
                 switch (e.key.keysym.sym)
                 {
-                    case SDL.SDL_Keycode.SDLK_UP: GameObject.CurrentVelY += GameObject.VelY; _pressedOnKeyboard = false; break;
-                    case SDL.SDL_Keycode.SDLK_DOWN: GameObject.CurrentVelY -= GameObject.VelY; _pressedOnKeyboard = false; break;
-                    case SDL.SDL_Keycode.SDLK_LEFT: GameObject.CurrentVelX += GameObject.VelX; _pressedOnKeyboard = false; break;
-                    case SDL.SDL_Keycode.SDLK_RIGHT: GameObject.CurrentVelX -= GameObject.VelX; _pressedOnKeyboard = false; break;
+                    case SDL.SDL_Keycode.SDLK_UP:
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoDown));
+                        break;
+                    case SDL.SDL_Keycode.SDLK_DOWN:
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoUp));
+                        break;
+                    case SDL.SDL_Keycode.SDLK_LEFT:
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoRight));
+                        break;
+                    case SDL.SDL_Keycode.SDLK_RIGHT:
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoLeft));
+                        break;
+
 
                 }
             }

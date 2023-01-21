@@ -9,33 +9,18 @@ namespace TileBasedGame
     class PhysicsComponent : Component
     {
         PhysicsManager PhysicsManager;
-        public PhysicsComponent(PhysicsManager pm)
+        public PhysicsComponent(PhysicsManager pm):base()
         {
             this.PhysicsManager = pm;
         }
 
+        
 
         public virtual void Move(float deltaT)
         {
+
             GameObject.PosX += GameObject.CurrentVelX * deltaT;
-            GameObject.PosY += GameObject.CurrentVelY * deltaT;
-
-            if (GameObject is Player)
-            {
-                Player p = (Player)GameObject;
-                if (GameObject.CurrentVelX > 0)
-                {
-                    p.FlyRight();
-                } else if(GameObject.CurrentVelX < 0)
-                {
-                    p.FlyLeft();
-                } else
-                {
-                    p.FlyStraight();
-                }
-
-                
-            }
+            GameObject.PosY += GameObject.CurrentVelY * deltaT;   
 
         }
 

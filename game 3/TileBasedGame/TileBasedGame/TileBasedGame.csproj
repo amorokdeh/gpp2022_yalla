@@ -61,6 +61,7 @@
     <Compile Include="Background.cs" />
     <Compile Include="Block.cs" />
     <Compile Include="Bullet.cs" />
+    <Compile Include="BulletUpdateComponent.cs" />
     <Compile Include="Camera.cs" />
     <Compile Include="CollisionComponent.cs" />
     <Compile Include="CollisionManager.cs" />
@@ -70,13 +71,12 @@
     <Compile Include="Enemy.cs" />
     <Compile Include="EnemyBullet.cs" />
     <Compile Include="EnemyShootingComponent.cs" />
+    <Compile Include="EnemyUpdateComponent.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="GameMaster.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GameObjectManager.cs" />
     <Compile Include="GameOver.cs" />
     <Compile Include="Globals.cs" />
-    <Compile Include="Hero.cs" />
     <Compile Include="HeroEvent.cs" />
     <Compile Include="Image.cs" />
     <Compile Include="ImageRenderingComponent.cs" />
@@ -93,7 +93,9 @@
     <Compile Include="PhysicsComponent.cs" />
     <Compile Include="PhysicsManager.cs" />
     <Compile Include="Player.cs" />
+    <Compile Include="PlayerPhysicsComponent.cs" />
     <Compile Include="PlayerShootingComponent.cs" />
+    <Compile Include="PlayerUpdateComponent.cs" />
     <Compile Include="PoolManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -105,6 +107,8 @@
     <Compile Include="Text.cs" />
     <Compile Include="TiledMap.cs" />
     <Compile Include="Ufo.cs" />
+    <Compile Include="UpdateComponent.cs" />
+    <Compile Include="UpdateManager.cs" />
     <Compile Include="Window.cs" />
   </ItemGroup>
   <ItemGroup>

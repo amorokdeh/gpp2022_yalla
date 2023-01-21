@@ -8,7 +8,7 @@ namespace TileBasedGame
 {
     class Player:GameObject
     {
-        public int Lives = 3;
+        public int Lives = 100;
         public int Score = 0;
         public Player(string name, int w, int h): base(name, w, h)
         {
@@ -33,7 +33,7 @@ namespace TileBasedGame
 
         public void Reset()
         {
-            Lives = 3;
+            Lives = 100;
             Score = 0;
             PosX = Program.Window.Width/2;
             PosY = Program.Window.Height/2;

@@ -21,6 +21,8 @@ namespace TileBasedGame
 
         public Random Rand;
 
+        public static int rounds = 0;
+
         public virtual void Run()
         {
             this._player = Program.Game.Player;
@@ -33,6 +35,8 @@ namespace TileBasedGame
 
             while (true)
             {
+                rounds = 0;
+
                 Program.Window.CalculateFPS(); //frame limit start calculating here
                 _timeNow = DateTime.Now;
                 _deltaTime = (_timeNow.Ticks - _timeBefore.Ticks) / 10000000f;
@@ -58,6 +62,7 @@ namespace TileBasedGame
                 Program.Game.Move(_avDeltaTime);
                 Program.Game.Animate(_avDeltaTime);
                 Program.Game.Collide();
+                Program.Game.DoUpdate();
                 if (_player.Lives <= 0)
                 {
                     LevelManager.display = LevelManager.GameState.GameOver;
@@ -67,6 +72,7 @@ namespace TileBasedGame
                     return;
                 }
 
+                
                 Program.Game.UpdateCamera(_player);
                 Program.Game.Render();
 
@@ -86,6 +92,8 @@ namespace TileBasedGame
                 }  // press escape to quit
                 Program.Window.DeltaFPS(); //frame limit end calculating here
 
+                if(rounds >0)
+                    Console.WriteLine(rounds);
             }
         }
 

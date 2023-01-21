@@ -8,13 +8,21 @@ namespace TileBasedGame
 {
     class HeroEvent : Event
     {
-        public enum Type { MonsterHurt, MonsterKilled}
+        public enum Type { GoUp, GoDown, GoLeft, GoRight, Collision}
         public Type EventType;
         public int Arg0;
+        public GameObject GameObject;
         public HeroEvent(Type t, int arg0 = 0)
         {
             EventType = t;
             Arg0 = arg0;
+        }
+        public HeroEvent(Type t, GameObject gameObject)
+        {
+            EventType = t;
+            GameObject = gameObject;
+
+            
         }
     }
 }

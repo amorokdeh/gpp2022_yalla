@@ -6,11 +6,17 @@ using System.Threading.Tasks;
 
 namespace TileBasedGame
 {
-    
+
     class PhysicsManager
     {
         private List<PhysicsComponent> _physicsComponents = new List<PhysicsComponent>();
-        
+
+        public PhysicsManager()
+        {
+        }
+
+
+
 
         internal Component CreateComponent()
         {
@@ -22,6 +28,13 @@ namespace TileBasedGame
         internal Component CreateBGComponent()
         {
             PhysicsBGComponent pc = new PhysicsBGComponent(this);
+            this._physicsComponents.Add(pc);
+            return pc;
+        }
+
+        internal Component CreatePlayerComponent()
+        {
+            PlayerPhysicsComponent pc = new PlayerPhysicsComponent(this);
             this._physicsComponents.Add(pc);
             return pc;
         }

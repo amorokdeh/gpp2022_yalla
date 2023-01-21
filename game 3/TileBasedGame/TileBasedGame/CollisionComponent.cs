@@ -9,20 +9,34 @@ namespace TileBasedGame
     class CollisionComponent : Component
     {
         CollisionManager CollisionManager;
-        public CollisionComponent(CollisionManager cm)
+
+        public string Role;
+        public CollisionComponent(CollisionManager cm, string role)
         {
+            Role = role;
             this.CollisionManager = cm;
         }
-
  
 
-        public void Collide(GameObject colObject)
+        public void Collide(CollisionComponent colObject)
         {
             //TODO genauere Kollision
-            if(colObject.PosY+(colObject.Height-6) > GameObject.PosY  && colObject.PosY < GameObject.PosY+(GameObject.Height-6))
+            if(colObject.GameObject.PosY+(colObject.GameObject.Height - 6) > GameObject.PosY  && colObject.GameObject.PosY < GameObject.PosY+(GameObject.Height-6))
             {
-                if(colObject.PosX+(colObject.Width-6) > GameObject.PosX && colObject.PosX < GameObject.PosX+(GameObject.Width-6))
+                if(colObject.GameObject.PosX+(colObject.GameObject.Width-6) > GameObject.PosX && colObject.GameObject.PosX < GameObject.PosX+(GameObject.Width-6))
                 {
+                    if(this.Role == "good" && colObject.Role == "bad" || this.Role == "bad" && colObject.Role == "good")
+                    {
+                        //Console.WriteLine("Collision detected");
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Collision, GameObject));
+                        if(GameObject is Player)
+                        {
+                            Console.WriteLine("Player hit");
+                        }
+                    }
+                    
+
+                    /*
                     if (colObject is Bullet)
                     {
                         Program.Game.DespawnPlayerBullet(colObject);
@@ -46,6 +60,8 @@ namespace TileBasedGame
 
                     if (colObject is Player)
                     {
+                        
+
                         Console.WriteLine("player hit");
                         Player player = (Player)colObject;
                         player.Lives--;
@@ -72,7 +88,7 @@ namespace TileBasedGame
                             Program.Game.DespawnEnemy(colObject);
 
                     }
-                        
+                       */ 
                     
 
                 }

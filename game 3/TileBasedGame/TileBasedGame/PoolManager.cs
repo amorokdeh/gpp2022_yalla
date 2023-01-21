@@ -76,7 +76,7 @@ namespace TileBasedGame
             {
                 if (bullet.Active == false)
                 {
-                    Console.WriteLine("Old bullet");
+                    //Console.WriteLine("Old bullet");
                     bullet.Active = true;
                     return bullet;
                 }
@@ -114,6 +114,11 @@ namespace TileBasedGame
         }
 
         public void DespawnEnemyBullet(GameObject bullet)
+        {
+            bullet.Active = false;
+        }
+
+        public void DespawnBullet(GameObject bullet)
         {
             bullet.Active = false;
         }

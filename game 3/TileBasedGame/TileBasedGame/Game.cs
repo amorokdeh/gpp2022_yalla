@@ -20,6 +20,7 @@ namespace TileBasedGame
         private AnimationManager _animations = new AnimationManager();
         private PoolManager _pool = new PoolManager();
         private ShootingManager _shootings = new ShootingManager();
+        private UpdateManager _updates = new UpdateManager();
 
 
         public bool BulletReloadable = false;
@@ -31,22 +32,12 @@ namespace TileBasedGame
 
         public Game()
         {
+            
         }
 
-        /*
-         //for testing Observer and Observable
-        public void tryHeroStuff()
-        {
-            Hero hero = new Hero();
-            GameMaster gm = new GameMaster();
-            hero.AddObserver(gm);
-            while (Console.ReadKey().Key != ConsoleKey.Escape) {
-                hero.SlayMonsters();
-                //gm.DoTurn();
-            }
-
-        }
-        */
+        
+ 
+        
 
         public void BuildBackground(string source)
         {
@@ -75,12 +66,26 @@ namespace TileBasedGame
         {
             Player = _objects.CreateGamePlayer("player", Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier);
             Player.Active = true;
-            Player.AddComponent(_physics.CreateComponent());
+            Component pc = _physics.CreatePlayerComponent();
+            Player.AddComponent(pc);
+
             Player.AddComponent(_rendering.CreateComponent(Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
             Player.AddComponent(_rendering.CreateInfoComponent());
-            Player.AddComponent(_controls.CreateComponent());
-            Player.AddComponent(_collisions.CreateComponent());
+
+            Component cc = _controls.CreateComponent();
+            Player.AddComponent(cc);
+
+            Component coc = _collisions.CreateComponent("good");
+            Player.AddComponent(coc);
+
             Player.AddComponent(_shootings.CreatePlayerComponent());
+
+            Component uc = _updates.CreatePlayerComponent();
+            Player.AddComponent(uc);
+
+            cc.AddObserver(pc);
+            coc.AddObserver(uc);
+
 
             Camera = new Camera(Player);
             return Player;
@@ -94,9 +99,14 @@ namespace TileBasedGame
             ship.AddComponent(_physics.CreateComponent());
             ship.AddComponent(_rendering.CreateComponent(Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
             ship.AddComponent(_ai.CreateComponent());
-            ship.AddComponent(_collisions.CreateComponent());
+            Component coc = _collisions.CreateComponent("bad");
+            ship.AddComponent(coc);
             ship.AddComponent(_animations.CreateComponent());
             ship.AddComponent(_shootings.CreateEnemyComponent());
+            Component uc = _updates.CreateEnemyComponent();
+            ship.AddComponent(uc);
+
+            coc.AddObserver(uc);
 
             return ship;
 
@@ -109,8 +119,13 @@ namespace TileBasedGame
             ufo.AddComponent(_physics.CreateComponent());
             ufo.AddComponent(_rendering.CreateComponent(Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
             ufo.AddComponent(_ai.CreateComponent());
-            ufo.AddComponent(_collisions.CreateComponent());
+            Component coc = _collisions.CreateComponent("bad");
+            ufo.AddComponent(coc);
             ufo.AddComponent(_animations.CreateComponent());
+            Component uc = _updates.CreateEnemyComponent();
+            ufo.AddComponent(uc);
+
+            coc.AddObserver(uc);
 
             return ufo;
 
@@ -122,9 +137,13 @@ namespace TileBasedGame
             bullet.AddComponent(_physics.CreateComponent());
             bullet.AddComponent(_rendering.CreateComponent(Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
             bullet.AddComponent(_ai.CreateComponent());
-            bullet.AddComponent(_collisions.CreateComponent());
-            return bullet;
+            Component coc = _collisions.CreateComponent("good");
+            bullet.AddComponent(coc);
+            Component uc = _updates.CreateBulletComponent();
+            bullet.AddComponent(uc);
 
+            coc.AddObserver(uc);
+            return bullet;
         }
 
         // Enemy Bullet
@@ -134,8 +153,13 @@ namespace TileBasedGame
             bullet.AddComponent(_physics.CreateComponent());
             bullet.AddComponent(_rendering.CreateComponent(Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
             bullet.AddComponent(_ai.CreateComponent());
-            bullet.AddComponent(_collisions.CreateComponent());
+            Component coc = _collisions.CreateComponent("bad");
+            bullet.AddComponent(coc);
             bullet.AddComponent(_animations.CreateComponent());
+            Component uc = _updates.CreateBulletComponent();
+            bullet.AddComponent(uc);
+
+            coc.AddObserver(uc);
             return bullet;
 
         }
@@ -145,7 +169,8 @@ namespace TileBasedGame
         {
             block = _objects.CreateBlock("Block", Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier);
             block.AddComponent(_rendering.CreateComponent(Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
-            block.AddComponent(_collisions.CreateComponent());
+            //Component coc = _collisions.CreateComponent("neutral"); 
+            //block.AddComponent(coc);
             block.Active = true;
             block.Died = false;
             return block;
@@ -185,6 +210,11 @@ namespace TileBasedGame
         public void DespawnEnemyBullet(GameObject bullet)
         {
             _pool.DespawnEnemyBullet(bullet);
+        }
+
+        public void DespawnBullet(GameObject bullet)
+        {
+            _pool.DespawnBullet(bullet);
         }
 
 
@@ -233,6 +263,11 @@ namespace TileBasedGame
         public void UpdateCamera(Player player)
         {
             Camera.UpdateCamera(player);
+        }
+
+        public void DoUpdate()
+        {
+            _updates.DoUpdate();
         }
 
 

@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TileBasedGame
+{
+    class UpdateManager
+    {
+        private List<UpdateComponent> _updateComponents = new List<UpdateComponent>();
+
+        internal Component CreatePlayerComponent()
+        {
+            PlayerUpdateComponent uc = new PlayerUpdateComponent(this);
+            _updateComponents.Add(uc);
+            return uc;
+        }
+        internal Component CreateBulletComponent()
+        {
+            BulletUpdateComponent uc = new BulletUpdateComponent(this);
+            _updateComponents.Add(uc);
+            return uc;
+        }
+        internal Component CreateEnemyComponent()
+        {
+            EnemyUpdateComponent uc = new EnemyUpdateComponent(this);
+            _updateComponents.Add(uc);
+            return uc;
+        }
+
+        public void DoUpdate()
+        {
+            foreach (var component in _updateComponents)
+            {
+                if (component.GameObject.Active && !component.GameObject.Died)
+                    component.DoUpdate();
+            }
+        }
+    }
+}

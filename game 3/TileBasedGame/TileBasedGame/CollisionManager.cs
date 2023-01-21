@@ -10,24 +10,29 @@ namespace TileBasedGame
     {
         private List<CollisionComponent> _collisionComponents = new List<CollisionComponent>();
 
-        internal Component CreateComponent()
+        internal Component CreateComponent(string role)
         {
-            CollisionComponent cc = new CollisionComponent(this);
+            CollisionComponent cc = new CollisionComponent(this, role);
             _collisionComponents.Add(cc);
             return cc;
         }
 
         public void Collide()
         {
+            int pl = 0;
             foreach (var component in _collisionComponents)
             {
-                if ((component.GameObject is Enemy || component.GameObject is EnemyBullet) && (!component.GameObject.Died && component.GameObject.Active))
+                if (!component.GameObject.Died && component.GameObject.Active)
+                //if (component.GameObject.Active)
                 {
                     foreach (var colObject in _collisionComponents)
+                        if ((!colObject.GameObject.Died && colObject.GameObject.Active) && colObject.GameObject != component.GameObject)
+                        //if ((component.GameObject.Active) && colObject.GameObject != component.GameObject)
+                        {
+                            
+                            component.Collide(colObject);
 
-                        if ((!component.GameObject.Died && component.GameObject.Active) && colObject.GameObject!=component.GameObject)
-                            component.Collide(colObject.GameObject);
-
+                        }
                 }               
             }
         }

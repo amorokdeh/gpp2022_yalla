@@ -14,6 +14,7 @@ namespace TileBasedGame
         {
 
             Window.Setup(); //setup the window
+            
             Game.Run(); //run the game loop
 
 
@@ -28,8 +29,7 @@ namespace TileBasedGame
             */
 
 
-            //Observable und Observer aus der Vorlesung
-            //game.tryHeroStuff();
+            
         }
     }
 }
