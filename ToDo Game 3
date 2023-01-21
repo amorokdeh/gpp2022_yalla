@@ -16,5 +16,8 @@ Kritik und Tipps umsetzen:
 [] Image-Variable in die RenderComponent und möglich machen, dass andere Components und GameObjects das Image verändern können
 [x] CollisionsComponent und Collisionsmanager sollen nur Kollision feststellen
 [] Fallunterscheidung eleganter gestalten, durch z.B. Component oder Interface
-[] Observer/Message-Bus für Informationsaustausch
-[] Zwischenschritt beim Input
+[x] Observer/Message-Bus für Informationsaustausch
+[x] Zwischenschritt beim Input
+[] Soundmanager und Auslösen durch Event
+
+[] Zwischenschritt beim Input für Controller
