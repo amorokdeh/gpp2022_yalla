@@ -8,11 +8,14 @@ namespace TileBasedGame
 {
     public static class Globals
     {
+        public static int Lives = 100;
+
         public static int Velocity = 100;
 
         public static int BigImageSize = 64;
         public static int VeryBigImageSize = 128;
         public static int NormalImageSize = 16;
+        public static int MediumImageSize = 32;
         public static int Multiplier = 2;
         public static int BigMultiplier = 4;
 

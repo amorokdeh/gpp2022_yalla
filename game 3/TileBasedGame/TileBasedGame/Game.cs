@@ -167,8 +167,8 @@ namespace TileBasedGame
         // Blocks
         public GameObject BuildBlocks(Block block)
         {
-            block = _objects.CreateBlock("Block", 32, 32, (int)block.PosX, (int)block.PosY, block.Img, block.imgFrame);
-            block.AddComponent(_rendering.CreateComponent(32, 32, 32, 32));
+            block = _objects.CreateBlock("Block", Globals.MediumImageSize, Globals.MediumImageSize, (int)block.PosX, (int)block.PosY, block.Img, block.imgFrame);
+            block.AddComponent(_rendering.CreateComponent(Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize));
             block.Active = true;
             block.Died = false;
             return block;
