@@ -6,15 +6,29 @@ using System.Threading.Tasks;
 
 namespace TileBasedGame
 {
-    class Block:GameObject
+    class Block : GameObject
     {
 
-
-        public Block(string name, int w, int h) : base(name, w, h)
+        public int imgFrame;
+        public Block(string name, int w, int h, int x, int y, int imgNum) : base(name, w, h)
         {
-            Img.LoadImage("image/MiniPixelPack3/Maps/Level1.png");
-            //ImgChange = 32;
+            PosX = x;
+            PosY = y;
+            this.imgFrame = imgNum;
 
+            //set image
+            int line = 0;
+            int col = 0;
+
+            int i = 0;
+            while (i < (imgNum - 10)){
+                i += 10;
+            }
+            line = (i / 10);
+            col = (imgNum - i) - 1;
+
+            ImgChange = 32 * col;
+            ImgChangeY = 32 * line;
         }
     }
 }

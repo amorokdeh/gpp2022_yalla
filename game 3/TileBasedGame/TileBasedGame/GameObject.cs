@@ -27,6 +27,7 @@ namespace TileBasedGame
         public Image Img = new Image();
 
         public int ImgChange = Globals.Reset;
+        public int ImgChangeY = Globals.Reset;
         public int ImgStep = Globals.Reset;
 
         protected int Pause = Globals.AnimationPause;
