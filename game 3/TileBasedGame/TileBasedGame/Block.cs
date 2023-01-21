@@ -15,7 +15,7 @@ namespace TileBasedGame
             PosX = x;
             PosY = y;
             this.imgFrame = imgNum;
-            //Console.WriteLine(imgNum);
+
             //set image
             int line = 0;
             int col = 0;
@@ -26,8 +26,6 @@ namespace TileBasedGame
             }
             line = (i / 10);
             col = (imgNum - i) - 1;
-            //Console.WriteLine(imgNum);
-            Console.WriteLine(line);
 
             ImgChange = 32 * col;
             ImgChangeY = 32 * line;
