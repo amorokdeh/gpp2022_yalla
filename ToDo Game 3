@@ -14,7 +14,7 @@ Kritik und Tipps umsetzen:
   - SRect x und y nicht auf 0 setzen
 [x] Gameobject soll seine Components kennen
 [] Image-Variable in die RenderComponent und möglich machen, dass andere Components und GameObjects das Image verändern können
-[] CollisionsComponent und Collisionsmanager sollen nur Kollision feststellen
+[x] CollisionsComponent und Collisionsmanager sollen nur Kollision feststellen
 [] Fallunterscheidung eleganter gestalten, durch z.B. Component oder Interface
 [] Observer/Message-Bus für Informationsaustausch
 [] Zwischenschritt beim Input
