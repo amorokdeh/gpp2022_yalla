@@ -18,6 +18,15 @@ namespace TileBasedGame
             _renderingComponents.Add(rc);
             return rc;
         }
+
+        internal Component CreateComponent(int w, int h, int imgW, int imgH)
+        {
+
+            RenderingComponent rc = new ImageRenderingComponent(this, 0, 0, imgW, imgH, w, h);
+            _renderingComponents.Add(rc);
+            return rc;
+        }
+
         internal Component CreateInfoComponent()
         {
 

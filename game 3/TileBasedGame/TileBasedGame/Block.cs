@@ -9,13 +9,28 @@ namespace TileBasedGame
     class Block : GameObject
     {
 
-
+        public int imgFrame;
         public Block(string name, int w, int h, int x, int y, int imgNum) : base(name, w, h)
         {
-            //Img.LoadImage("image/MiniPixelPack3/Maps/PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.png");
-            ImgChange = imgNum;
             PosX = x;
             PosY = y;
+            this.imgFrame = imgNum;
+            //Console.WriteLine(imgNum);
+            //set image
+            int line = 0;
+            int col = 0;
+
+            int i = 0;
+            while (i < (imgNum - 10)){
+                i += 10;
+            }
+            line = (i / 10);
+            col = (imgNum - i) - 1;
+            //Console.WriteLine(imgNum);
+            Console.WriteLine(line);
+
+            ImgChange = 32 * col;
+            ImgChangeY = 32 * line;
         }
     }
 }

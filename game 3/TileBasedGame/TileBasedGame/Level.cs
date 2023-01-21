@@ -25,7 +25,7 @@ namespace TileBasedGame
         {
             this._player = Program.Game.Player;
             _player.Reset();
-
+            Program.Game.tiledMap.setPlayerPosition();
             LevelManager.ControlQuitRequest = false;
             Rand = new Random();
 

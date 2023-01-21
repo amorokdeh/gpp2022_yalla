@@ -32,6 +32,7 @@ namespace TileBasedGame
 
             //zum testen
             _srcRect.x = GameObject.ImgChange;
+            _srcRect.y = GameObject.ImgChangeY;
 
 
             SDL.SDL_RenderCopy(Program.Window.Renderer, GameObject.Img.ImageTexture, ref _srcRect, ref _rect);

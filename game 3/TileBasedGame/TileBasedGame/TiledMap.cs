@@ -136,37 +136,37 @@ namespace TileBasedGame
         {
             int line = 0;
             int col = 0;
-
+            
             //build blocks
             foreach (int data in mapData)
             {
-
                 int x = col * tileWidth;
                 int y = line * tileHeight;
 
-                Block block = new Block("Block", tileWidth, tileHeight, x, y, data + 32);
+                Block block = new Block("Block", tileWidth, tileHeight, x, y, data);
                 block.Img = MapImg.Img;
                 Program.Game.BuildBlocks(block);
 
                 col++;
                 //new line
-                if (col == mapWidth / tileWidth)
-                {
+                if (col == mapWidth / tileWidth){
+
                     line++;
                     col = 0;
                 }
 
             }
 
-            //player position
-            Program.Game.Player.PosX = playerXPos;
-            Program.Game.Player.PosY = playerYPos;
-
             //build enemies
             foreach (Enemy enemy in enemiesData)
             {
 
             }
+        }
+
+        public void setPlayerPosition() {
+            Program.Game.Player.PosX = playerXPos;
+            Program.Game.Player.PosY = playerYPos;
         }
     }
 }

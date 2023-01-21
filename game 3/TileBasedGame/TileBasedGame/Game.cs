@@ -143,8 +143,8 @@ namespace TileBasedGame
         // Blocks 
         public GameObject BuildBlocks(Block block)
         {
-            block = _objects.CreateBlock("Block", 32, 32, (int)block.PosX, (int)block.PosY, block.Img, block.ImgChange);
-            block.AddComponent(_rendering.CreateComponent(16 * 2, 16 * 2));
+            block = _objects.CreateBlock("Block", 32, 32, (int)block.PosX, (int)block.PosY, block.Img, block.imgFrame);
+            block.AddComponent(_rendering.CreateComponent(32, 32, 32, 32));
             block.AddComponent(_collisions.CreateComponent());
             block.Active = true;
             block.Died = false;
@@ -243,9 +243,9 @@ namespace TileBasedGame
         //Game loop
         public void Run() {
             //BuildBackground("level 1");
-            Player = (Player)BuildPlayer();
             tiledMap.load("image/MiniPixelPack3/Maps/Level1.json", "image/MiniPixelPack3/Maps/PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.png");
             tiledMap.build();
+            Player = (Player)BuildPlayer();
             _levels.Run();    
         }
 
