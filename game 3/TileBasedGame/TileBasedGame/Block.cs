@@ -6,15 +6,16 @@ using System.Threading.Tasks;
 
 namespace TileBasedGame
 {
-    class Block:GameObject
+    class Block : GameObject
     {
 
 
-        public Block(string name, int w, int h) : base(name, w, h)
+        public Block(string name, int w, int h, int x, int y, int imgNum) : base(name, w, h)
         {
-            Img.LoadImage("image/MiniPixelPack3/Maps/Level1.png");
-            //ImgChange = 32;
-
+            //Img.LoadImage("image/MiniPixelPack3/Maps/PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.png");
+            ImgChange = imgNum;
+            PosX = x;
+            PosY = y;
         }
     }
 }

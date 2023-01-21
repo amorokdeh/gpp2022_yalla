@@ -154,7 +154,7 @@
     <Content Include="image\MiniPixelPack3\LICENSE.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="image\MiniPixelPack3\Maps\Level1.png">
+    <Content Include="image\MiniPixelPack3\Maps\PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="image\MiniPixelPack3\mm.png">
