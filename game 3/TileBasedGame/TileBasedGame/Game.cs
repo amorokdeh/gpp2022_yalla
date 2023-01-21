@@ -169,7 +169,6 @@ namespace TileBasedGame
         {
             block = _objects.CreateBlock("Block", 32, 32, (int)block.PosX, (int)block.PosY, block.Img, block.imgFrame);
             block.AddComponent(_rendering.CreateComponent(32, 32, 32, 32));
-            block.AddComponent(_collisions.CreateComponent());
             block.Active = true;
             block.Died = false;
             return block;
