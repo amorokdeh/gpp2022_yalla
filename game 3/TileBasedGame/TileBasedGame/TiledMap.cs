@@ -22,7 +22,8 @@ namespace TileBasedGame
 
         private List<Dictionary<string, object>> layersData = new List<Dictionary<string, object>>();
 
-        private List<int> mapData = new List<int>();
+        private List<int> backgroundData = new List<int>();
+        private List<int> blocksData = new List<int>();
         public int playerXPos;
         public int playerYPos;
         private List<Enemy> enemiesData = new List<Enemy>();
@@ -64,7 +65,7 @@ namespace TileBasedGame
                     var layerName = layerData["name"];
 
                     //load map data
-                    if (layerName.Equals("Map") && layerData.ContainsKey("data"))
+                    if (layerName.Equals("Background") && layerData.ContainsKey("data"))
                     {
 
                         JArray dataArray = (JArray)layerData["data"];
@@ -72,7 +73,20 @@ namespace TileBasedGame
                         {
 
                             int number = (int)data;
-                            mapData.Add(number);
+                            backgroundData.Add(number);
+                        }
+                    }
+
+                    //load bolcks data
+                    if (layerName.Equals("Blocks") && layerData.ContainsKey("data"))
+                    {
+
+                        JArray dataArray = (JArray)layerData["data"];
+                        foreach (var data in dataArray)
+                        {
+
+                            int number = (int)data;
+                            blocksData.Add(number);
                         }
                     }
 
@@ -132,14 +146,45 @@ namespace TileBasedGame
 
         }
 
-        public void build()
+        public void buildBckground()
         {
             int line = 0;
             int col = 0;
-            
+
             //build blocks
-            foreach (int data in mapData)
+            foreach (int data in backgroundData){
+                if (data != 0){
+
+                    int x = col * tileWidth;
+                    int y = line * tileHeight;
+
+                    Tile tile = new Tile("Tile", tileWidth, tileHeight, x, y, data);
+                    tile.Img = MapImg.Img;
+                    Program.Game.BuildTiles(tile);
+
+                    col++;
+                    //new line
+                    if (col == mapWidth / tileWidth)
+                    {
+
+                        line++;
+                        col = 0;
+                    }
+
+                }
+            }
+
+        }
+
+        public void buildBlocks()
+        {
+            int line = 0;
+            int col = 0;
+
+            //build blocks
+            foreach (int data in blocksData)
             {
+                
                 int x = col * tileWidth;
                 int y = line * tileHeight;
 
@@ -149,19 +194,15 @@ namespace TileBasedGame
 
                 col++;
                 //new line
-                if (col == mapWidth / tileWidth){
+                if (col == mapWidth / tileWidth)
+                {
 
                     line++;
                     col = 0;
                 }
-
+                
             }
 
-            //build enemies
-            foreach (Enemy enemy in enemiesData)
-            {
-
-            }
         }
 
         public void setPlayerPosition() {

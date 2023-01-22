@@ -53,6 +53,14 @@ namespace TileBasedGame
             return gameObject;
         }
 
+        public Tile CreateTile(string name, int w, int h, int x, int y, Image imgSrc, int imgFrame)
+        {
+            Tile gameObject = new Tile(name, w, h, x, y, imgFrame);
+            gameObject.Img = imgSrc;
+            _gameObjects.Add(gameObject);
+            return gameObject;
+        }
+
         public Block CreateBlock(string name, int w, int h, int x, int y, Image imgSrc, int imgFrame)
         {
             Block gameObject = new Block(name, w, h, x, y, imgFrame);
@@ -61,8 +69,7 @@ namespace TileBasedGame
             return gameObject;
         }
 
-
     }
 
-    
+
 }

@@ -105,6 +105,7 @@
     <Compile Include="ShootingComponent.cs" />
     <Compile Include="ShootingManager.cs" />
     <Compile Include="Text.cs" />
+    <Compile Include="Tile.cs" />
     <Compile Include="TiledMap.cs" />
     <Compile Include="Ufo.cs" />
     <Compile Include="UpdateComponent.cs" />
