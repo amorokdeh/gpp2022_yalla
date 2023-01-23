@@ -63,11 +63,13 @@
     <Compile Include="Bullet.cs" />
     <Compile Include="BulletUpdateComponent.cs" />
     <Compile Include="Camera.cs" />
+    <Compile Include="Cleaner.cs" />
     <Compile Include="CollisionComponent.cs" />
     <Compile Include="CollisionManager.cs" />
     <Compile Include="Component.cs" />
     <Compile Include="ControlComponent.cs" />
     <Compile Include="ControlManager.cs" />
+    <Compile Include="EndDoor.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="EnemyBullet.cs" />
     <Compile Include="EnemyShootingComponent.cs" />
@@ -87,6 +89,7 @@
     <Compile Include="Level3.cs" />
     <Compile Include="LevelManager.cs" />
     <Compile Include="MainMenu.cs" />
+    <Compile Include="MapManager.cs" />
     <Compile Include="MessageBus.cs" />
     <Compile Include="Observable.cs" />
     <Compile Include="PhysicsBGComponent.cs" />
@@ -104,6 +107,7 @@
     <Compile Include="Ship.cs" />
     <Compile Include="ShootingComponent.cs" />
     <Compile Include="ShootingManager.cs" />
+    <Compile Include="Spike.cs" />
     <Compile Include="Text.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="TiledMap.cs" />

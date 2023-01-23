@@ -14,6 +14,15 @@ namespace TileBasedGame
         {
             GapSize = 0.3f;
         }
+
+        public override void buildMap()
+        {
+
+            Program.Game._maps.loadMap("Level 2");
+            Program.Game._maps.createMap();
+        }
+
+
         public override void ProduceEnemies(float deltaTime)
         {
             Gap += deltaTime;

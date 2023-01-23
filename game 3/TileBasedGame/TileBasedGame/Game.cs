@@ -9,18 +9,20 @@ namespace TileBasedGame
 {
     class Game
     {
-        private GameObjectManager _objects = new GameObjectManager();
-        private PhysicsManager _physics = new PhysicsManager();
-        private RenderingManager _rendering = new RenderingManager();
+        public GameObjectManager _objects = new GameObjectManager();
+        public PhysicsManager _physics = new PhysicsManager();
+        public RenderingManager _rendering = new RenderingManager();
         public AudioManager _audio = new AudioManager();
         public LevelManager _levels = new LevelManager();
-        private CollisionManager _collisions = new CollisionManager();
-        private AIManager _ai = new AIManager();
-        private ControlManager _controls = new ControlManager();
-        private AnimationManager _animations = new AnimationManager();
-        private PoolManager _pool = new PoolManager();
-        private ShootingManager _shootings = new ShootingManager();
-        private UpdateManager _updates = new UpdateManager();
+        public CollisionManager _collisions = new CollisionManager();
+        public AIManager _ai = new AIManager();
+        public ControlManager _controls = new ControlManager();
+        public AnimationManager _animations = new AnimationManager();
+        public PoolManager _pool = new PoolManager();
+        public ShootingManager _shootings = new ShootingManager();
+        public MapManager _maps = new MapManager();
+        public UpdateManager _updates = new UpdateManager();
+        public Cleaner _cleaner = new Cleaner();
 
 
         public bool BulletReloadable = false;
@@ -28,7 +30,6 @@ namespace TileBasedGame
         public uint Ticks = SDL.SDL_GetTicks();
         public Player Player;
         public Camera Camera;
-        public TiledMap tiledMap = new TiledMap();
 
         public Game()
         {
@@ -83,7 +84,7 @@ namespace TileBasedGame
             Component uc = _updates.CreatePlayerComponent();
             Player.AddComponent(uc);
 
-            cc.AddObserver(pc);
+            //cc.AddObserver(pc);
             coc.AddObserver(uc);
 
 
@@ -178,7 +179,7 @@ namespace TileBasedGame
         // Blocks tiles
         public GameObject BuildBlocks(Block block)
         {
-            block = _objects.CreateBlock("Tile", Globals.MediumImageSize, Globals.MediumImageSize, (int)block.PosX, (int)block.PosY, block.Img, block.imgFrame);
+            block = _objects.CreateBlock("Block", Globals.MediumImageSize, Globals.MediumImageSize, (int)block.PosX, (int)block.PosY, block.Img, block.imgFrame);
             block.AddComponent(_rendering.CreateComponent(Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize));
             block.Active = true;
             block.Died = false;
@@ -186,7 +187,27 @@ namespace TileBasedGame
 
         }
 
+        // Spikes tiles
+        public GameObject BuildSpikes(Spike spike)
+        {
+            spike = _objects.CreateSpike("Spike", Globals.MediumImageSize, Globals.MediumImageSize, (int)spike.PosX, (int)spike.PosY, spike.Img, spike.imgFrame);
+            spike.AddComponent(_rendering.CreateComponent(Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize));
+            spike.Active = true;
+            spike.Died = false;
+            return spike;
 
+        }
+        
+        // End door tiles
+        public GameObject BuildEndDoor(EndDoor endDoor)
+        {
+            endDoor = _objects.CreateEndDoor("End door", Globals.MediumImageSize, Globals.MediumImageSize, (int)endDoor.PosX, (int)endDoor.PosY, endDoor.Img, endDoor.imgFrame);
+            endDoor.AddComponent(_rendering.CreateComponent(Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize));
+            endDoor.Active = true;
+            endDoor.Died = false;
+            return endDoor;
+
+        }
 
         public GameObject RequestEnemyUfo()
         {
@@ -283,10 +304,9 @@ namespace TileBasedGame
         //Game loop
         public void Run() {
             //BuildBackground("level 1");
-            tiledMap.load("image/MiniPixelPack3/Maps/Level1.json", "image/MiniPixelPack3/Maps/PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.png");
-            tiledMap.buildBckground();
-            Player = (Player)BuildPlayer();
-            tiledMap.buildBlocks();
+            Player = (Player) BuildPlayer();
+            //mapManager.loadMap("Level 1");
+            //mapManager.createMap();
             _levels.Run();
         }
 

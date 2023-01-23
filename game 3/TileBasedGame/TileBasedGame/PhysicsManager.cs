@@ -55,5 +55,16 @@ namespace TileBasedGame
 
         }
 
+        public void clearObjects()
+        {
+
+            for (int i = 0; i < _physicsComponents.Count; i++)
+            {
+                _physicsComponents[i] = null;
+            }
+            _physicsComponents.Clear();
+            GC.Collect();
+        }
+
     }
 }

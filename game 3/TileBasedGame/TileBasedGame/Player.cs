@@ -14,8 +14,7 @@ namespace TileBasedGame
         {
             ImgChange = 16;
             Img.LoadImage("image/MiniPixelPack3/PlayerShip/PlayerShip.png");
-            PosX = Program.Window.Width / 2;
-            PosY = Program.Window.Height / 2;
+            Program.Game._maps.currentMap.tiles.Add(this);
         }
 
         public void FlyLeft()

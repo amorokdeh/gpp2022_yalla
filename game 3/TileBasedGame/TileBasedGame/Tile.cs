@@ -29,6 +29,8 @@ namespace TileBasedGame
 
             ImgChange = 32 * col;
             ImgChangeY = 32 * line;
+
+            Program.Game._maps.currentMap.tiles.Add(this);
         }
     }
 }

@@ -69,6 +69,33 @@ namespace TileBasedGame
             return gameObject;
         }
 
+        public Spike CreateSpike(string name, int w, int h, int x, int y, Image imgSrc, int imgFrame)
+        {
+            Spike gameObject = new Spike(name, w, h, x, y, imgFrame);
+            gameObject.Img = imgSrc;
+            _gameObjects.Add(gameObject);
+            return gameObject;
+        }
+        
+        public EndDoor CreateEndDoor(string name, int w, int h, int x, int y, Image imgSrc, int imgFrame)
+        {
+            EndDoor gameObject = new EndDoor(name, w, h, x, y, imgFrame);
+            gameObject.Img = imgSrc;
+            _gameObjects.Add(gameObject);
+            return gameObject;
+        }
+
+        public void clearObjects() {
+
+            for(int i = 0; i < _gameObjects.Count; i++)
+            {
+                _gameObjects[i].Active= false;
+                _gameObjects[i].Died= false;
+                _gameObjects[i] = null;
+            }
+            _gameObjects.Clear();
+            GC.Collect();
+        }
     }
 
 

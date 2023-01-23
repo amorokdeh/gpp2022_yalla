@@ -145,6 +145,39 @@ namespace TileBasedGame
             }
         }
 
+        public void clearObjects()
+        {
+
+            for (int i = 0; i < _enemyUfoPool.Count; i++)
+            {
+                _enemyUfoPool[i] = null;
+            }
+            _enemyUfoPool.Clear();
+
+
+            for (int i = 0; i < _enemyShipPool.Count; i++)
+            {
+                _enemyShipPool[i] = null;
+            }
+            _enemyShipPool.Clear();
+
+
+            for (int i = 0; i < _playerBulletPool.Count; i++)
+            {
+                _playerBulletPool[i] = null;
+            }
+            _playerBulletPool.Clear();
+
+
+            for (int i = 0; i < _enemyBulletPool.Count; i++)
+            {
+                _enemyBulletPool[i] = null;
+            }
+            _enemyBulletPool.Clear();
+
+            GC.Collect();
+        }
+
 
     }
 }

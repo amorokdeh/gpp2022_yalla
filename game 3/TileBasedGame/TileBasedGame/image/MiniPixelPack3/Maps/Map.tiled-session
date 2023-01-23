@@ -11,10 +11,10 @@
     "fileStates": {
         "Level1.tmx": {
             "scale": 0.75,
-            "selectedLayer": 0,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 413.99999999999994,
-                "y": 300.66666666666663
+                "x": 489.99999999999994,
+                "y": 636.6666666666666
             }
         },
         "Level1.tsx": {

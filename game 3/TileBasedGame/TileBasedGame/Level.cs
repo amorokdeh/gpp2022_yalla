@@ -13,7 +13,7 @@ namespace TileBasedGame
         private DateTime _timeNow = DateTime.Now;
         private float _deltaTime;
         private float _avDeltaTime = -1;
-        private Player _player;
+        public Player _player;
 
         public float Gap = Globals.Reset;
         public float GapSize = Globals.EnemyGap;
@@ -25,9 +25,13 @@ namespace TileBasedGame
 
         public virtual void Run()
         {
+
+            Program.Game._cleaner.clean();
+
+            //_player.Reset();
+            buildMap();
+            
             this._player = Program.Game.Player;
-            _player.Reset();
-            Program.Game.tiledMap.setPlayerPosition();
             LevelManager.ControlQuitRequest = false;
             Rand = new Random();
 
@@ -115,6 +119,10 @@ namespace TileBasedGame
 
                 Gap = Globals.Reset;
             }
+        }
+
+        public virtual void buildMap() { 
+        
         }
     }
 }

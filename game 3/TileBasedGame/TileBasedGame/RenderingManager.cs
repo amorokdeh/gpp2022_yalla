@@ -72,5 +72,16 @@ namespace TileBasedGame
         {
             yield break;
         }
+
+        public void clearObjects()
+        {
+
+            for (int i = 0; i < _renderingComponents.Count; i++)
+            {
+                _renderingComponents[i] = null;
+            }
+            _renderingComponents.Clear();
+            GC.Collect();
+        }
     }
 }

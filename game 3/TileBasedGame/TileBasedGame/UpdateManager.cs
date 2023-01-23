@@ -37,5 +37,16 @@ namespace TileBasedGame
                     component.DoUpdate();
             }
         }
+
+        public void clearObjects()
+        {
+
+            for (int i = 0; i < _updateComponents.Count; i++)
+            {
+                _updateComponents[i] = null;
+            }
+            _updateComponents.Clear();
+            GC.Collect();
+        }
     }
 }

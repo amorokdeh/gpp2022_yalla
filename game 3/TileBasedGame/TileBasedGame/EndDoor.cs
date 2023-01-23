@@ -6,14 +6,10 @@ using System.Threading.Tasks;
 
 namespace TileBasedGame
 {
-    class Level1:Level
+    class EndDoor : Tile
     {
-
-        public override void buildMap() {
-
-            Program.Game._maps.loadMap("Level 1");
-            Program.Game._maps.createMap();
+        public EndDoor(string name, int w, int h, int x, int y, int imgNum) : base(name, w, h, x, y, imgNum)
+        {
         }
-
     }
 }

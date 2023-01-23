@@ -32,5 +32,16 @@ namespace TileBasedGame
                     component.Shoot(deltaT);
             }
         }
+
+        public void clearObjects()
+        {
+
+            for (int i = 0; i < _shootingComponents.Count; i++)
+            {
+                _shootingComponents[i] = null;
+            }
+            _shootingComponents.Clear();
+            GC.Collect();
+        }
     }
 }

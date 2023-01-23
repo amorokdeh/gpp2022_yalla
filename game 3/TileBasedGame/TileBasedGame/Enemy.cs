@@ -15,6 +15,7 @@ namespace TileBasedGame
         {
             ExplodingImg.LoadImage("image/MiniPixelPack3/Effects/Explosion.png");
             VelY = 100;
+            Program.Game._maps.currentMap.tiles.Add(this);
         }
 
         public int ExplosionStep = 0;
