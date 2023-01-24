@@ -14,14 +14,9 @@ namespace TileBasedGame
 
         //Controller
         public IntPtr GGameController = new IntPtr();
-        private string _axisX = "None";
-        private string _axisY = "None";
-        private bool _movingX = false;
-        private bool _movingY = false;
+        private string _axisX = "none";
+        private string _axisY = "none";
 
-        //to avoid some bugs with the velocity
-        private bool _pressedOnKeyboard = false;
-        private bool _pressedOnJoystick = false;
 
         public ControlComponent(ControlManager cm)
         {
@@ -68,23 +63,22 @@ namespace TileBasedGame
         {
             
             //If a key was pressed
-            if (e.type == SDL.SDL_EventType.SDL_KEYDOWN && e.key.repeat == 0 && !_pressedOnJoystick)
+            if (e.type == SDL.SDL_EventType.SDL_KEYDOWN && e.key.repeat == 0)
             {
-                _pressedOnKeyboard = true;
                 //Adjust the velocity
                 switch (e.key.keysym.sym)
                 {
                     case SDL.SDL_Keycode.SDLK_UP:
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoUp));   
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoUp)); _axisY = "up";
                         break;
                     case SDL.SDL_Keycode.SDLK_DOWN:
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoDown));
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoDown)); _axisY = "down";
                         break;
                     case SDL.SDL_Keycode.SDLK_LEFT:
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoLeft));
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoLeft)); _axisX = "left";
                         break;
                     case SDL.SDL_Keycode.SDLK_RIGHT:
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoRight));
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoRight)); _axisX = "right";
                         break;
                     case SDL.SDL_Keycode.SDLK_ESCAPE: 
                         LevelManager.display = GameState.MainMenu; 
@@ -93,78 +87,68 @@ namespace TileBasedGame
 
                 }
             }
-            else if (e.type == SDL.SDL_EventType.SDL_KEYUP && e.key.repeat == 0 && !_pressedOnJoystick)
+            else if (e.type == SDL.SDL_EventType.SDL_KEYUP && e.key.repeat == 0)
             {
                 //Adjust the velocity
                 switch (e.key.keysym.sym)
                 {
                     case SDL.SDL_Keycode.SDLK_UP:
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoDown));
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoDown)); _axisY = "none";
                         break;
                     case SDL.SDL_Keycode.SDLK_DOWN:
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoUp));
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoUp)); _axisY = "none";
                         break;
                     case SDL.SDL_Keycode.SDLK_LEFT:
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoRight));
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoRight)); _axisX = "none";
                         break;
                     case SDL.SDL_Keycode.SDLK_RIGHT:
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoLeft));
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoLeft)); _axisX = "none";
                         break;
 
 
                 }
             }
-            else if(!_pressedOnKeyboard)
+            //Controller
+            int x = SDL.SDL_JoystickGetAxis(GGameController, 0);
+            int y = SDL.SDL_JoystickGetAxis(GGameController, 1);
+            int movingPoint = 16384; //you can change it (It works perfectly on PS5 controller)
+
+            if (e.type == SDL.SDL_EventType.SDL_JOYAXISMOTION)
             {
-                //Controller
-                int x = SDL.SDL_JoystickGetAxis(GGameController, 0);
-                int y = SDL.SDL_JoystickGetAxis(GGameController, 1);
-                int movingPoint = 16384; //you can change it (It works perfectly on PS5 controller)
 
-                if (e.type == SDL.SDL_EventType.SDL_JOYAXISMOTION)
+                if (x < -movingPoint) // Move character left
                 {
-
-                    if (x < -movingPoint) // Move character left
-                    {
-                        _axisX = "Left";
-                    }
-                    else if (x > movingPoint) // Move character right
-                    {
-                        _axisX = "Right";
-                    }
-                    else //stop caracter
-                    {
-                        if (_axisX == "Left") { GameObject.CurrentVelX += GameObject.VelX; }
-                        if (_axisX == "Right") { GameObject.CurrentVelX -= GameObject.VelX; }
-                        _axisX = "None";
-                        _movingX = false;
-                    }
-
-                    if (y < -movingPoint) // Move character up
-                    {
-                        _axisY = "Up";
-                    }
-                    else if (y > movingPoint) // Move character down
-                    {
-                        _axisY = "Down";
-                    }
-                    else //stop caracter
-                    {
-                        if (_axisY == "Up") { GameObject.CurrentVelY += GameObject.VelY; }
-                        if (_axisY == "Down") { GameObject.CurrentVelY -= GameObject.VelY; }
-                        _axisY = "None";
-                        _movingY = false;
-                    }
+                    MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoLeft));
+                    _axisX = "left";
                 }
+                else if (x > movingPoint) // Move character right
+                {
+                    MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoRight));
+                    _axisX = "right";
+                }
+                else { //stop
+                    if (_axisX == "left") { MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoRight)); _axisX = "none"; }
+                    if (_axisX == "right") { MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoLeft)); _axisX = "none"; }
+                }
+                    
 
-                //Move using controller
-                if (_axisX == "Left" && !_movingX) { GameObject.CurrentVelX -= GameObject.VelX; _movingX = true; _pressedOnJoystick = true; }
-                if (_axisX == "Right" && !_movingX) { GameObject.CurrentVelX += GameObject.VelX; _movingX = true; _pressedOnJoystick = true; }
-                if (_axisY == "Up" && !_movingY) { GameObject.CurrentVelY -= GameObject.VelY; _movingY = true; _pressedOnJoystick = true; }
-                if (_axisY == "Down" && !_movingY) { GameObject.CurrentVelY += GameObject.VelY; _movingY = true; _pressedOnJoystick = true; }
-                if (!_movingX && !_movingY) { _pressedOnJoystick = false; }
-
+                if (y < -movingPoint) // Move character up
+                {
+                    MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoUp));
+                    _axisY = "up";
+                }
+                else if (y > movingPoint) // Move character down
+                {
+                    MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoDown));
+                    _axisY = "down";
+                }
+                else
+                { //stop
+                    if (_axisY == "up") { MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoDown)); _axisY = "none"; }
+                    if (_axisY == "down") { MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoUp)); _axisY = "none"; }
+                }
             }
+
         }
     }
 }

@@ -18,13 +18,13 @@ namespace TileBasedGame
             if (he == null)
                 return;
             if (he.EventType == HeroEvent.Type.GoUp)
-                GameObject.CurrentVelY -= GameObject.VelY;
+                moveUp();
             if (he.EventType == HeroEvent.Type.GoDown)
-                GameObject.CurrentVelY += GameObject.VelY;
+                moveDown();
             if (he.EventType == HeroEvent.Type.GoLeft)
-                GameObject.CurrentVelX -= GameObject.VelX;
+                moveLeft();
             if (he.EventType == HeroEvent.Type.GoRight)
-                GameObject.CurrentVelX += GameObject.VelX;
+                moveRight();
         }
         public override void Move(float deltaT)
         {
@@ -44,5 +44,36 @@ namespace TileBasedGame
             }
                 
         }
+
+        public void moveUp() {
+            if (GameObject.CurrentVelY >= 0)
+            {
+                GameObject.CurrentVelY -= GameObject.VelY;
+            }
+        }
+        public void moveDown()
+        {
+            if (GameObject.CurrentVelY <= 0)
+            {
+                GameObject.CurrentVelY += GameObject.VelY;
+            }
+        }
+
+        public void moveLeft()
+        {
+            if (GameObject.CurrentVelX >= 0)
+            {
+                GameObject.CurrentVelX -= GameObject.VelX;
+            }
+        }
+
+        public void moveRight()
+        {
+            if (GameObject.CurrentVelX <= 0)
+            {
+                GameObject.CurrentVelX += GameObject.VelX;
+            }
+        }
+
     }
 }
