@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,6 +23,7 @@ namespace TileBasedGame
         public ShootingManager _shootings = new ShootingManager();
         public MapManager _maps = new MapManager();
         public UpdateManager _updates = new UpdateManager();
+        public Loader loader = new Loader();
         public Cleaner _cleaner = new Cleaner();
 
 
@@ -307,6 +309,8 @@ namespace TileBasedGame
             Player = (Player) BuildPlayer();
             //mapManager.loadMap("Level 1");
             //mapManager.createMap();
+            loader.loadImages();
+            loader.loadJson();
             _levels.Run();
         }
 

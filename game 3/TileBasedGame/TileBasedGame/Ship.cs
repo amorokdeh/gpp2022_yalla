@@ -10,7 +10,7 @@ namespace TileBasedGame
     {
         public Ship(string name, int w, int h) : base(name, w, h)
         {
-            FlyingImg.LoadImage("image/MiniPixelPack3/Enemies/Lips.png");
+            FlyingImg = Program.Game.loader.shipImg;
             Img = FlyingImg;
         }
 

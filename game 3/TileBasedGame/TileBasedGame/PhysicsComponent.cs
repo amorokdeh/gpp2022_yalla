@@ -26,20 +26,24 @@ namespace TileBasedGame
 
         public void CheckBorders()
         {
-            if(GameObject.PosX < 0 - 16)
+            int mapWidth = Program.Game._maps.currentMap.mapWidth;
+            int mapHeight = Program.Game._maps.currentMap.mapHeight;
+
+            if (GameObject.PosX < 0)
             {
-                GameObject.PosX = 0 - 16;
-            } else if(GameObject.PosX > Program.Window.Width - 16)
+                GameObject.PosX = 0;
+
+            } else if(GameObject.PosX > mapWidth - GameObject.Width)
             {
-                GameObject.PosX = Program.Window.Width - 16;
+                GameObject.PosX = mapWidth - GameObject.Width;
             }
-            if (GameObject.PosY < 0 - 16)
+            if (GameObject.PosY < 0)
             {
-                GameObject.PosY = 0 - 16;
+                GameObject.PosY = 0;
             }
-            else if (GameObject.PosY > Program.Window.Height - 16)
+            else if (GameObject.PosY > mapHeight - GameObject.Height)
             {
-                GameObject.PosY = Program.Window.Height - 16;
+                GameObject.PosY = mapHeight - GameObject.Height;
             }
 
 

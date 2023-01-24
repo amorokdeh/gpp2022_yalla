@@ -13,7 +13,7 @@ namespace TileBasedGame
         public Player(string name, int w, int h): base(name, w, h)
         {
             ImgChange = 16;
-            Img.LoadImage("image/MiniPixelPack3/PlayerShip/PlayerShip.png");
+            Img = Program.Game.loader.playerImg;
             Program.Game._maps.currentMap.tiles.Add(this);
         }
 

@@ -21,32 +21,21 @@ namespace TileBasedGame
         public int tileWidth;
         public int tileHeight;
 
-        private GameObject MapImg;
+        private GameObject MapImg = new GameObject("MapImg", 32 * 10, 32 * 65);
 
-        private List<Dictionary<string, object>> layersData;
+        private List<Dictionary<string, object>> layersData = new List<Dictionary<string, object>>();
 
         public int playerXPos;
         public int playerYPos;
 
-        private List<int> backgroundData;
-        private List<int> blocksData;
-        private List<int> spikesData;
-        private List<int> endDoorData;
-        private List<Enemy> enemiesData;
+        private List<int> backgroundData = new List<int>();
+        private List<int> blocksData = new List<int>();
+        private List<int> spikesData = new List<int>();
+        private List<int> endDoorData = new List<int>();
+        private List<Enemy> enemiesData = new List<Enemy>();
         public List<GameObject> tiles = new List<GameObject>();
 
-        public void load(string jsonFile, string imgSrc)
-        {
-            layersData = new List<Dictionary<string, object>>();
-            backgroundData = new List<int>();
-            blocksData = new List<int>();
-            spikesData = new List<int>();
-            endDoorData = new List<int>();
-            enemiesData = new List<Enemy>();
-            //load the JSON Tiled map file
-
-            var json = File.ReadAllText(jsonFile);
-            var map = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+        public void load(Dictionary<string, object> map, Image img){
 
             //load tiles size (32 x 32)
             tileWidth = Convert.ToInt32(map["tilewidth"]);
@@ -57,8 +46,8 @@ namespace TileBasedGame
             mapHeight = Convert.ToInt32(map["height"]) * tileHeight;
 
             //load map image
-            MapImg = new GameObject("MapImg", tileWidth * 10, tileHeight * 65);
-            MapImg.Img.LoadImage(imgSrc);
+            
+            MapImg.Img = img;
 
             //load layers data (Map and objects)
 
@@ -311,9 +300,34 @@ namespace TileBasedGame
                 tiles[i].Active = false;
                 tiles[i].Died = false;
                 tiles[i] = null;
+                
             }
+
+            for (int i = 0; i < enemiesData.Count; i++)
+            {
+                enemiesData[i].Active = false;
+                enemiesData[i].Died = false;
+                enemiesData[i] = null;
+            }
+
             tiles.Clear();
+            backgroundData.Clear();
+            blocksData.Clear();
+            spikesData.Clear();
+            endDoorData.Clear();
+            enemiesData.Clear();
+
+            tiles = null;
+            backgroundData = null;
+            blocksData = null;
+            spikesData = null;
+            endDoorData = null;
+            enemiesData = null;
+
+
             GC.Collect();
+
         }
+
     }
 }

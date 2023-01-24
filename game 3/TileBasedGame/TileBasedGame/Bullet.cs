@@ -19,7 +19,7 @@ namespace TileBasedGame
 
             //VelY = -10;
             VelY = -150;
-            Img.LoadImage("image/MiniPixelPack3/Projectiles/PlayerBeam.png");
+            Img = Program.Game.loader.bulletImg;
 
         }
     }

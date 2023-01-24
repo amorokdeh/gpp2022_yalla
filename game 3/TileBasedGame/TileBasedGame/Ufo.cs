@@ -9,8 +9,8 @@ namespace TileBasedGame
     class Ufo:Enemy
     {
         public Ufo(string name, int w, int h) : base(name, w, h)
-        {   
-            FlyingImg.LoadImage("image/MiniPixelPack3/Enemies/Alan.png");
+        {
+            FlyingImg = Program.Game.loader.ufoImg;
             Img = FlyingImg;
         }
 

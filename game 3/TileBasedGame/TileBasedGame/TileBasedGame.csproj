@@ -88,6 +88,7 @@
     <Compile Include="Level2.cs" />
     <Compile Include="Level3.cs" />
     <Compile Include="LevelManager.cs" />
+    <Compile Include="Loader.cs" />
     <Compile Include="MainMenu.cs" />
     <Compile Include="MapManager.cs" />
     <Compile Include="MessageBus.cs" />
