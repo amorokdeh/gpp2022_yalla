@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,21 +17,21 @@ namespace TileBasedGame
             Role = role;
             this.CollisionManager = cm;
         }
- 
+
 
         public void Collide(CollisionComponent colObject)
         {
 
             //TODO genauere Kollision
-            if(colObject.GameObject.PosY+(colObject.GameObject.Height - 6) > GameObject.PosY  && colObject.GameObject.PosY < GameObject.PosY+(GameObject.Height-6))
+            if (colObject.GameObject.PosY + (colObject.GameObject.Height) > GameObject.PosY && colObject.GameObject.PosY < GameObject.PosY + (GameObject.Height))
             {
-                if(colObject.GameObject.PosX+(colObject.GameObject.Width-6) > GameObject.PosX && colObject.GameObject.PosX < GameObject.PosX+(GameObject.Width-6))
+                if (colObject.GameObject.PosX + (colObject.GameObject.Width) > GameObject.PosX && colObject.GameObject.PosX < GameObject.PosX + (GameObject.Width))
                 {
-                    if(this.Role == "good" && colObject.Role == "bad" || this.Role == "bad" && colObject.Role == "good")
+                    if (this.Role == "good" && colObject.Role == "bad" || this.Role == "bad" && colObject.Role == "good")
                     {
                         //Console.WriteLine("Collision detected");
                         MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Collision, GameObject));
-                        if(GameObject is Player)
+                        if (GameObject is Player)
                         {
                             Console.WriteLine(GameObject._name + " with " + colObject.GameObject._name);
                         }
@@ -109,33 +110,42 @@ namespace TileBasedGame
 
         public void collideDirection(CollisionComponent colObject)
         {
-            GameObject go1 = colObject.GameObject;
-            GameObject go2 = GameObject;
+            GameObject block = colObject.GameObject;
+            GameObject ob = GameObject;
 
-            bool up =    go1.PosY + go1.Height > go2.PosY && go1.PosY < go2.PosY && go1.PosX < go2.PosX + go2.Width && go1.PosX + go1.Width > go1.PosX;
-            bool down =  go1.PosY < go2.PosY + go2.Height && go1.PosY + go1.Height > go2.PosY + go2.Height && go1.PosX < go2.PosX + go2.Width && go1.PosX + go1.Width > go1.PosX;
-            bool right = go1.PosX < go2.PosX + go2.Width && go1.PosX + go1.Width > go2.PosX && go1.PosY > go2.PosY + go2.Height && go1.PosY + go1.Height < go1.PosY;
-            bool left =  go1.PosX + go1.Width > go2.PosX && go1.PosX < go2.PosX && go1.PosY > go2.PosY + go2.Height && go1.PosY + go1.Height < go1.PosY;
-            Console.WriteLine("aaa: is " + right);
-            if (up && !down && !left && !right)
+            // Calculate the distance between the player and the object on the x and y axis
+            float xDistance = (ob.PosX + (ob.Width / 2)) - (block.PosX + (block.Width / 2));
+            float yDistance = (ob.PosY + (ob.Height / 2)) - (block.PosY + (block.Height / 2));
+
+            // Check if player is colliding from the left or right
+            if (Math.Abs(xDistance) > Math.Abs(yDistance))
             {
-                Console.WriteLine("Up");
-                GameObject.PosY = colObject.GameObject.PosY + colObject.GameObject.Height;
+                if (xDistance > 0)
+                {
+                    // Colliding from the right
+                    ob.PosX = block.PosX + block.Width;
+                }
+                else
+                {
+                    // Colliding from the left
+                    ob.PosX = block.PosX - ob.Width;
+                }
             }
-            if (down && !up && !left && !right)
+            // Check if player is colliding from the top or bottom
+            else
             {
-                Console.WriteLine("Down");
-                GameObject.PosY = colObject.GameObject.PosY - GameObject.Height;
-            }
-            if (left && !down && !up && !right)
-            {
-                Console.WriteLine("Left");
-                GameObject.PosX = colObject.GameObject.PosX - GameObject.Width;
-            }
-            if (right && !up && !left && !down)
-            {
-                Console.WriteLine("Right");
-                GameObject.PosX = colObject.GameObject.PosX + colObject.GameObject.Width;
+                if (yDistance > 0)
+                {
+                    // Colliding from the bottom
+                    ob.PosY = block.PosY + block.Height;
+                }
+                else
+                {
+                    // Colliding from the top
+                    ob.PosY = block.PosY - ob.Height;
+
+                }
+
             }
 
         }
