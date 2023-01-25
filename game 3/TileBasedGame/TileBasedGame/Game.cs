@@ -183,6 +183,8 @@ namespace TileBasedGame
         {
             block = _objects.CreateBlock("Block", Globals.MediumImageSize, Globals.MediumImageSize, (int)block.PosX, (int)block.PosY, block.Img, block.imgFrame);
             block.AddComponent(_rendering.CreateComponent(Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize));
+            Component coc = _collisions.CreateComponent("block");
+            block.AddComponent(coc);
             block.Active = true;
             block.Died = false;
             return block;
@@ -194,6 +196,8 @@ namespace TileBasedGame
         {
             spike = _objects.CreateSpike("Spike", Globals.MediumImageSize, Globals.MediumImageSize, (int)spike.PosX, (int)spike.PosY, spike.Img, spike.imgFrame);
             spike.AddComponent(_rendering.CreateComponent(Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize));
+            Component coc = _collisions.CreateComponent("bad");
+            spike.AddComponent(coc);
             spike.Active = true;
             spike.Died = false;
             return spike;
@@ -205,6 +209,8 @@ namespace TileBasedGame
         {
             endDoor = _objects.CreateEndDoor("End door", Globals.MediumImageSize, Globals.MediumImageSize, (int)endDoor.PosX, (int)endDoor.PosY, endDoor.Img, endDoor.imgFrame);
             endDoor.AddComponent(_rendering.CreateComponent(Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize));
+            Component coc = _collisions.CreateComponent("door");
+            endDoor.AddComponent(coc);
             endDoor.Active = true;
             endDoor.Died = false;
             return endDoor;

@@ -27,10 +27,10 @@ namespace TileBasedGame
         public void createMap() {
 
             currentMap.buildBckground();
-            currentMap.resetPlayer();
             currentMap.buildBlocks();
             currentMap.buildSpikes();
             currentMap.buildEndDoor();
+            currentMap.resetPlayer();
         }
 
         public void clearObjects(){

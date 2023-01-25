@@ -69,16 +69,16 @@ namespace TileBasedGame
                 switch (e.key.keysym.sym)
                 {
                     case SDL.SDL_Keycode.SDLK_UP:
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoUp)); _axisY = "up";
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoUp));
                         break;
                     case SDL.SDL_Keycode.SDLK_DOWN:
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoDown)); _axisY = "down";
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoDown));
                         break;
                     case SDL.SDL_Keycode.SDLK_LEFT:
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoLeft)); _axisX = "left";
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoLeft));
                         break;
                     case SDL.SDL_Keycode.SDLK_RIGHT:
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoRight)); _axisX = "right";
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoRight));
                         break;
                     case SDL.SDL_Keycode.SDLK_ESCAPE: 
                         LevelManager.display = GameState.MainMenu; 
@@ -93,16 +93,16 @@ namespace TileBasedGame
                 switch (e.key.keysym.sym)
                 {
                     case SDL.SDL_Keycode.SDLK_UP:
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoDown)); _axisY = "none";
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoDown));
                         break;
                     case SDL.SDL_Keycode.SDLK_DOWN:
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoUp)); _axisY = "none";
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoUp));
                         break;
                     case SDL.SDL_Keycode.SDLK_LEFT:
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoRight)); _axisX = "none";
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoRight));
                         break;
                     case SDL.SDL_Keycode.SDLK_RIGHT:
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoLeft)); _axisX = "none";
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoLeft));
                         break;
 
 

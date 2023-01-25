@@ -13,7 +13,7 @@ namespace TileBasedGame
         public bool Active = false;
         public bool Died = false;
 
-        private string _name;
+        public string _name;
 
         public float PosX;
         public float PosY;

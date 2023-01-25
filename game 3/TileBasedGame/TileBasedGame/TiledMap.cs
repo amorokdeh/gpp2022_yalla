@@ -172,11 +172,12 @@ namespace TileBasedGame
 
                     int x = col * tileWidth;
                     int y = line * tileHeight;
-
-                    Tile tile = new Tile("Tile", tileWidth, tileHeight, x, y, data);
-                    tile.Img = MapImg.Img;
-                    Program.Game.BuildTiles(tile);
-
+                    if (data != 0)
+                    {
+                        Tile tile = new Tile("Tile", tileWidth, tileHeight, x, y, data);
+                        tile.Img = MapImg.Img;
+                        Program.Game.BuildTiles(tile);
+                    }
                     col++;
                     //new line
                     if (col == mapWidth / tileWidth)
@@ -202,11 +203,13 @@ namespace TileBasedGame
                 
                 int x = col * tileWidth;
                 int y = line * tileHeight;
+                if (data != 0)
+                {
 
-                Block block = new Block("Block", tileWidth, tileHeight, x, y, data);
-                block.Img = MapImg.Img;
-                Program.Game.BuildBlocks(block);
-
+                    Block block = new Block("Block", tileWidth, tileHeight, x, y, data);
+                    block.Img = MapImg.Img;
+                    Program.Game.BuildBlocks(block);
+                }
                 col++;
                 //new line
                 if (col == mapWidth / tileWidth)
@@ -225,16 +228,18 @@ namespace TileBasedGame
             int line = 0;
             int col = 0;
 
-            //build blocks
+            //build spikes
             foreach (int data in spikesData)
             {
 
                 int x = col * tileWidth;
                 int y = line * tileHeight;
-
-                Spike spike = new Spike("Spike", tileWidth, tileHeight, x, y, data);
-                spike.Img = MapImg.Img;
-                Program.Game.BuildSpikes(spike);
+                if (data != 0)
+                {
+                    Spike spike = new Spike("Spike", tileWidth, tileHeight, x, y, data);
+                    spike.Img = MapImg.Img;
+                    Program.Game.BuildSpikes(spike);
+                }
 
                 col++;
                 //new line
@@ -253,16 +258,17 @@ namespace TileBasedGame
             int line = 0;
             int col = 0;
 
-            //build blocks
+            //build end door
             foreach (int data in endDoorData)
             {
 
                 int x = col * tileWidth;
                 int y = line * tileHeight;
-
-                EndDoor endDoor = new EndDoor("End door", tileWidth, tileHeight, x, y, data);
-                endDoor.Img = MapImg.Img;
-                Program.Game.BuildEndDoor(endDoor);
+                if (data != 0) {
+                    EndDoor endDoor = new EndDoor("End door", tileWidth, tileHeight, x, y, data);
+                    endDoor.Img = MapImg.Img;
+                    Program.Game.BuildEndDoor(endDoor);
+                }
 
                 col++;
                 //new line
@@ -298,7 +304,7 @@ namespace TileBasedGame
             for (int i = 0; i < tiles.Count; i++)
             {
                 tiles[i].Active = false;
-                tiles[i].Died = false;
+                tiles[i].Died = true;
                 tiles[i] = null;
                 
             }
@@ -306,7 +312,7 @@ namespace TileBasedGame
             for (int i = 0; i < enemiesData.Count; i++)
             {
                 enemiesData[i].Active = false;
-                enemiesData[i].Died = false;
+                enemiesData[i].Died = true;
                 enemiesData[i] = null;
             }
 

@@ -13,7 +13,7 @@ namespace TileBasedGame
 
         public Enemy(string name, int w, int h) : base(name, w, h)
         {
-            ExplodingImg.LoadImage("image/MiniPixelPack3/Effects/Explosion.png");
+            ExplodingImg = Program.Game.loader.explodingImg;
             VelY = 100;
             Program.Game._maps.currentMap.tiles.Add(this);
         }

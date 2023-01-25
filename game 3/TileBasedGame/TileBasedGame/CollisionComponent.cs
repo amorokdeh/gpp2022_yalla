@@ -20,6 +20,7 @@ namespace TileBasedGame
 
         public void Collide(CollisionComponent colObject)
         {
+
             //TODO genauere Kollision
             if(colObject.GameObject.PosY+(colObject.GameObject.Height - 6) > GameObject.PosY  && colObject.GameObject.PosY < GameObject.PosY+(GameObject.Height-6))
             {
@@ -31,10 +32,20 @@ namespace TileBasedGame
                         MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Collision, GameObject));
                         if(GameObject is Player)
                         {
-                            Console.WriteLine("Player hit");
+                            Console.WriteLine(GameObject._name + " with " + colObject.GameObject._name);
                         }
                     }
-                    
+
+                    if (colObject.Role == "block")
+                    {
+                        if (GameObject is Player)
+                        {
+                            MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.CollisionWithBlock, GameObject));
+                            Console.WriteLine(colObject.GameObject._name + " is here");
+                            collideDirection(colObject);
+                        }
+                    }
+
 
                     /*
                     if (colObject is Bullet)
@@ -88,10 +99,43 @@ namespace TileBasedGame
                             Program.Game.DespawnEnemy(colObject);
 
                     }
-                       */ 
-                    
+                       */
+
 
                 }
+            }
+
+        }
+
+        public void collideDirection(CollisionComponent colObject)
+        {
+            GameObject go1 = colObject.GameObject;
+            GameObject go2 = GameObject;
+
+            bool up =    go1.PosY + go1.Height > go2.PosY && go1.PosY < go2.PosY && go1.PosX < go2.PosX + go2.Width && go1.PosX + go1.Width > go1.PosX;
+            bool down =  go1.PosY < go2.PosY + go2.Height && go1.PosY + go1.Height > go2.PosY + go2.Height && go1.PosX < go2.PosX + go2.Width && go1.PosX + go1.Width > go1.PosX;
+            bool right = go1.PosX < go2.PosX + go2.Width && go1.PosX + go1.Width > go2.PosX && go1.PosY > go2.PosY + go2.Height && go1.PosY + go1.Height < go1.PosY;
+            bool left =  go1.PosX + go1.Width > go2.PosX && go1.PosX < go2.PosX && go1.PosY > go2.PosY + go2.Height && go1.PosY + go1.Height < go1.PosY;
+            Console.WriteLine("aaa: is " + right);
+            if (up && !down && !left && !right)
+            {
+                Console.WriteLine("Up");
+                GameObject.PosY = colObject.GameObject.PosY + colObject.GameObject.Height;
+            }
+            if (down && !up && !left && !right)
+            {
+                Console.WriteLine("Down");
+                GameObject.PosY = colObject.GameObject.PosY - GameObject.Height;
+            }
+            if (left && !down && !up && !right)
+            {
+                Console.WriteLine("Left");
+                GameObject.PosX = colObject.GameObject.PosX - GameObject.Width;
+            }
+            if (right && !up && !left && !down)
+            {
+                Console.WriteLine("Right");
+                GameObject.PosX = colObject.GameObject.PosX + colObject.GameObject.Width;
             }
 
         }
