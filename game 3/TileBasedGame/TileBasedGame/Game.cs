@@ -67,12 +67,12 @@ namespace TileBasedGame
 
         public GameObject BuildPlayer()
         {
-            Player = _objects.CreateGamePlayer("player", Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier);
+            Player = _objects.CreateGamePlayer("player", Globals.MediumImageSize, Globals.BigImageSize);
             Player.Active = true;
             Component pc = _physics.CreatePlayerComponent();
             Player.AddComponent(pc);
 
-            Player.AddComponent(_rendering.CreateComponent(Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
+            Player.AddComponent(_rendering.CreateComponent(Globals.MediumImageSize, Globals.BigImageSize, Globals.MediumImageSize, Globals.BigImageSize));
             Player.AddComponent(_rendering.CreateInfoComponent());
 
             Component cc = _controls.CreateComponent();

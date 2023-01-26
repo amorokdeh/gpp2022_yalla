@@ -12,18 +12,20 @@ namespace TileBasedGame
         public int Score = 0;
         public Player(string name, int w, int h): base(name, w, h)
         {
-            ImgChange = 16;
+            ImgChange = 0;
             Img = Program.Game.loader.playerImg;
             Program.Game._maps.currentMap.tiles.Add(this);
         }
 
         public void FlyLeft()
         {
-            ImgChange = 0;
+            ImgChange = 50;
+            ImgChangeY = 32;
         }
         public void FlyStraight()
         {
-            ImgChange = Globals.NormalImageSize;
+            ImgChange = 7;
+            ImgChangeY = 12;
         }
         public void FlyRight()
         {

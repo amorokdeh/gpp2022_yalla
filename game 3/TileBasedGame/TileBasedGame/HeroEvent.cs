@@ -8,7 +8,7 @@ namespace TileBasedGame
 {
     class HeroEvent : Event
     {
-        public enum Type { GoUp, GoDown, GoLeft, GoRight, Collision, CollisionWithBlock}
+        public enum Type { GoUp, GoDown, GoLeft, GoRight, Collision}
         public Type EventType;
         public int Arg0;
         public GameObject GameObject;

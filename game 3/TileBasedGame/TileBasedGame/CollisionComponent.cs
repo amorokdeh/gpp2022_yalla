@@ -41,8 +41,8 @@ namespace TileBasedGame
                     {
                         if (GameObject is Player)
                         {
-                            MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.CollisionWithBlock, GameObject));
-                            Console.WriteLine(colObject.GameObject._name + " is here");
+                            //MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.CollisionWithBlock, GameObject));
+                            //Console.WriteLine(colObject.GameObject._name + " is here");
                             collideDirection(colObject);
                         }
                     }
@@ -146,7 +146,6 @@ namespace TileBasedGame
                     // Colliding from the top
                     ob.PosY = block.PosY - ob.Height - dis;
                     ob.CurrentVelY = 0;
-                    Console.WriteLine(ob.CurrentVelY);
                 }
 
             }

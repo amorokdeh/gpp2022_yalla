@@ -31,7 +31,7 @@ namespace TileBasedGame
 
         public void loadImages() {
 
-            playerImg.LoadImage("image/MiniPixelPack3/PlayerShip/PlayerShip.png");
+            playerImg.LoadImage("image/MiniPixelPack3/PlayerShip/player.png");
             shipImg.LoadImage("image/MiniPixelPack3/Enemies/Lips.png");
             ufoImg.LoadImage("image/MiniPixelPack3/Enemies/Alan.png");
             bulletImg.LoadImage("image/MiniPixelPack3/Projectiles/PlayerBeam.png");
