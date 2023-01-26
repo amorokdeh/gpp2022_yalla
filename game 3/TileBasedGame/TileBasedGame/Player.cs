@@ -10,6 +10,9 @@ namespace TileBasedGame
     {
         public int Lives = Globals.Lives;
         public int Score = 0;
+        public int fixImageX = 8;
+        public int fixImageY = 12;
+
         public Player(string name, int w, int h): base(name, w, h)
         {
             ImgChange = 0;
@@ -24,12 +27,12 @@ namespace TileBasedGame
         }
         public void FlyStraight()
         {
-            ImgChange = 7;
-            ImgChangeY = 12;
+            ImgChange = 0 + fixImageX;
+            ImgChangeY = 0 + fixImageY;
         }
         public void FlyRight()
         {
-            ImgChange = Globals.NormalImageSize*2;
+            ImgChange = Globals.NormalImageSize*2 + fixImageX;
         }
 
         public void Reset()

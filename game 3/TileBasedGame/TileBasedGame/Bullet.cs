@@ -19,6 +19,7 @@ namespace TileBasedGame
 
             //VelY = -10;
             VelY = -150;
+           // VelX = -100;
             Img = Program.Game.loader.bulletImg;
 
         }
