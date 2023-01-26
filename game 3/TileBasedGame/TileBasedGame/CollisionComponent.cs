@@ -118,7 +118,7 @@ namespace TileBasedGame
             float yDistance = (ob.PosY + (ob.Height / 2)) - (block.PosY + (block.Height / 2));
 
             // Fix position
-            int dis = 3;
+            int dis = 0;
             // Check if player is colliding from the left or right
             if (Math.Abs(xDistance) > Math.Abs(yDistance))
             {
@@ -145,7 +145,8 @@ namespace TileBasedGame
                 {
                     // Colliding from the top
                     ob.PosY = block.PosY - ob.Height - dis;
-
+                    ob.CurrentVelY = 0;
+                    Console.WriteLine(ob.CurrentVelY);
                 }
 
             }

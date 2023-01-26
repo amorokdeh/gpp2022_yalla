@@ -41,7 +41,7 @@ namespace TileBasedGame
             while (true)
             {
                 rounds = 0;
-                if (this._player.CurrentVelY < 100) {
+                if (this._player.CurrentVelY < 500) {
                     this._player.CurrentVelY += Globals.Gravity;
                 }
                 
