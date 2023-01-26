@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -46,10 +47,9 @@ namespace TileBasedGame
         }
 
         public void moveUp() {
-            if (GameObject.CurrentVelY >= 0)
-            {
-                GameObject.CurrentVelY -= GameObject.VelY;
-            }
+            
+                GameObject.CurrentVelY = Globals.JUMP_VELOCITY;
+            
         }
         public void moveDown()
         {

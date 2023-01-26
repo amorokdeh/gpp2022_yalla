@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,6 +41,10 @@ namespace TileBasedGame
             while (true)
             {
                 rounds = 0;
+                if (this._player.CurrentVelY < 100) {
+                    this._player.CurrentVelY += Globals.Gravity;
+                }
+                
 
                 Program.Window.CalculateFPS(); //frame limit start calculating here
                 _timeNow = DateTime.Now;

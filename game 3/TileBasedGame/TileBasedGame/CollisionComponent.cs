@@ -117,18 +117,20 @@ namespace TileBasedGame
             float xDistance = (ob.PosX + (ob.Width / 2)) - (block.PosX + (block.Width / 2));
             float yDistance = (ob.PosY + (ob.Height / 2)) - (block.PosY + (block.Height / 2));
 
+            // Fix position
+            int dis = 3;
             // Check if player is colliding from the left or right
             if (Math.Abs(xDistance) > Math.Abs(yDistance))
             {
                 if (xDistance > 0)
                 {
                     // Colliding from the right
-                    ob.PosX = block.PosX + block.Width;
+                    ob.PosX = block.PosX + block.Width + dis;
                 }
                 else
                 {
                     // Colliding from the left
-                    ob.PosX = block.PosX - ob.Width;
+                    ob.PosX = block.PosX - ob.Width - dis;
                 }
             }
             // Check if player is colliding from the top or bottom
@@ -137,12 +139,12 @@ namespace TileBasedGame
                 if (yDistance > 0)
                 {
                     // Colliding from the bottom
-                    ob.PosY = block.PosY + block.Height;
+                    ob.PosY = block.PosY + block.Height + dis;
                 }
                 else
                 {
                     // Colliding from the top
-                    ob.PosY = block.PosY - ob.Height;
+                    ob.PosY = block.PosY - ob.Height - dis;
 
                 }
 

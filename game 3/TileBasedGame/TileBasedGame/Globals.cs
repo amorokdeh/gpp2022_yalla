@@ -33,7 +33,10 @@ namespace TileBasedGame
         public static int BigTextSize = 40;
 
         public static int AudioStep = 10;
-        
+
+        public const float Gravity = 10.0f;
+        public const float JUMP_VELOCITY = -300.0f;
+
 
     }
 }
