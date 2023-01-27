@@ -146,10 +146,16 @@
     <Content Include="image\MiniPixelPack3\Enemies\Alan.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="image\MiniPixelPack3\Enemies\Bon_Bon %2816 x 16%29.png">
+    <Content Include="image\MiniPixelPack3\Enemies\Bon_Bon .png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="image\MiniPixelPack3\Enemies\Dude_Monster_Walk_6.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="image\MiniPixelPack3\Enemies\Lips.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="image\MiniPixelPack3\Enemies\Owlet_Monster_Walk_6.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="image\MiniPixelPack3\Items\Circle_+_Square_+_Missile_pick-ups %2816 x 16%29.png">
