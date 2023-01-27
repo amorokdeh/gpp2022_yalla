@@ -26,6 +26,6 @@ Kritik und Tipps umsetzen:
 [] Fallunterscheidung eleganter gestalten, durch z.B. Component oder Interface
 [x] Observer/Message-Bus für Informationsaustausch
 [x] Zwischenschritt beim Input
-[] Soundmanager und Auslösen durch Event
+[x] Soundmanager und Auslösen durch Event
 
 [] Zwischenschritt beim Input für Controller
