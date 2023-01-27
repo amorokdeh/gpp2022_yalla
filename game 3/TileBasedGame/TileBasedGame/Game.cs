@@ -72,7 +72,7 @@ namespace TileBasedGame
             Component pc = _physics.CreatePlayerComponent();
             Player.AddComponent(pc);
 
-            Player.AddComponent(_rendering.CreateComponent(Globals.MediumImageSize, Globals.BigImageSize, Globals.MediumImageSize + 2, Globals.BigImageSize - 10));
+            Player.AddComponent(_rendering.CreateComponent(Globals.MediumImageSize, Globals.BigImageSize, Globals.MediumImageSize, Globals.BigImageSize - 10));
             Player.AddComponent(_rendering.CreateInfoComponent());
 
             Component cc = _controls.CreateComponent();
