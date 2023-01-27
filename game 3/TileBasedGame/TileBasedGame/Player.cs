@@ -14,7 +14,7 @@ namespace TileBasedGame
         public Player(string name, int w, int h): base(name, w, h)
         {
             ImgChange = 0;
-            Img = Program.Game.loader.playerImg;
+            Img = Program.Game._loader.playerImg;
             Program.Game._maps.currentMap.tiles.Add(this);
         }
 

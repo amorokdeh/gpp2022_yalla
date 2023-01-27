@@ -23,7 +23,8 @@ namespace TileBasedGame
             //TODO überarbeiten
             Enemy enemy = (Enemy)GameObject;
             enemy.Img = enemy.ExplodingImg;
-            Program.Game._audio.RunSound("Enemy dead");
+
+            MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.EnemyDead));         
         }
     }
 }

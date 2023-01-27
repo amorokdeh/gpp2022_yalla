@@ -21,7 +21,7 @@ namespace TileBasedGame
                 Bullet = (Bullet)Program.Game.RequestPlayerBullet(GameObject);
                 Console.WriteLine(Bullet.Active);
 
-                Program.Game._audio.RunSound("Shooting");
+                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Shooting));
 
                 Bullet.PosY = Bullet.GameObject.PosY;
                 Bullet.PosX = Bullet.GameObject.PosX;

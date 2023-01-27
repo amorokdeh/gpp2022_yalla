@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TileBasedGame
 {
-    class PlayerUpdateComponent:UpdateComponent
+    class PlayerUpdateComponent : UpdateComponent
     {
         public PlayerUpdateComponent(UpdateManager um) : base(um)
         {
@@ -18,7 +18,14 @@ namespace TileBasedGame
             Console.WriteLine("PLAYER");
             //TODO Überarbeiten
             Program.Game.Player.Lives--;
-            Program.Game._audio.RunSound("Player dead");
+            MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.PlayerDead));
         }
+
+        public override void UpdatePosition(HeroEvent heroEv)
+        {
+            GameObject.PosY = heroEv.NewY;
+            GameObject.PosX = heroEv.NewX;
+        }
+
     }
 }

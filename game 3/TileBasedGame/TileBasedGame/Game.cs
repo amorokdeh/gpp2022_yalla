@@ -23,7 +23,7 @@ namespace TileBasedGame
         public ShootingManager _shootings = new ShootingManager();
         public MapManager _maps = new MapManager();
         public UpdateManager _updates = new UpdateManager();
-        public Loader loader = new Loader();
+        public Loader _loader = new Loader();
         public Cleaner _cleaner = new Cleaner();
 
 
@@ -315,8 +315,8 @@ namespace TileBasedGame
             Player = (Player) BuildPlayer();
             //mapManager.loadMap("Level 1");
             //mapManager.createMap();
-            loader.loadImages();
-            loader.loadJson();
+            _loader.loadImages();
+            _loader.loadJson();
             _levels.Run();
         }
 

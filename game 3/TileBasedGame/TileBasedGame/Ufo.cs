@@ -10,7 +10,7 @@ namespace TileBasedGame
     {
         public Ufo(string name, int w, int h) : base(name, w, h)
         {
-            FlyingImg = Program.Game.loader.ufoImg;
+            FlyingImg = Program.Game._loader.ufoImg;
             Img = FlyingImg;
         }
 

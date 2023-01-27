@@ -23,7 +23,7 @@ namespace TileBasedGame
                 Bullet = (EnemyBullet)Program.Game.RequestEnemyBullet(GameObject);
                 Console.WriteLine(Bullet.Active);
 
-                //Program.game._audio.runSound("Shooting");
+                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.EnemyShooting));               
 
                 Bullet.PosY = Bullet.GameObject.PosY;
                 Bullet.PosX = Bullet.GameObject.PosX;

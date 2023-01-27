@@ -76,7 +76,7 @@ namespace TileBasedGame
                 {
                     LevelManager.display = LevelManager.GameState.GameOver;
                     Program.Game._audio.StopMusic();
-                    Program.Game._audio.RunSound("Game Over");
+                    MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GameOver));
                     Program.Game.SetInactive();
                     return;
                 }

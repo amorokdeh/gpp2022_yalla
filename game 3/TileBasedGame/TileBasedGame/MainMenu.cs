@@ -180,7 +180,8 @@ namespace TileBasedGame
         }
         public void GoTo()
         {
-            Program.Game._audio.RunSound("Menu click");
+            MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Click));
+            
             if (MenuSelected.Equals("main menu"))
             {
                 switch (_selected)
@@ -302,37 +303,37 @@ namespace TileBasedGame
             if ((MenuSelected.Equals("option")) && (_selected > Choices.Window))
             {
                 _selected--;
-                Program.Game._audio.RunSound("Menu buttons");
+                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.MenuButton));               
                 return;
             }
             else if ((MenuSelected.Equals("window")) && (_selected > Choices.Screen))
             {
                 _selected--;
-                Program.Game._audio.RunSound("Menu buttons");
+                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.MenuButton));
                 return;
             }
             else if ((MenuSelected.Equals("levels")) && (_selected > Choices.Level1))
             {
                 _selected--;
-                Program.Game._audio.RunSound("Menu buttons");
+                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.MenuButton));
                 return;
             }
             else if ((MenuSelected.Equals("soundUpDown")) && _selected > Choices.SoundUp)
             {
                 _selected--;
-                Program.Game._audio.RunSound("Menu buttons");
+                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.MenuButton));
                 return;
             }
             else if ((MenuSelected.Equals("MusicUpDown")) && _selected > Choices.MusicUp)
             {
                 _selected--;
-                Program.Game._audio.RunSound("Menu buttons");
+                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.MenuButton));
                 return;
             }
             else if ((MenuSelected.Equals("main menu")) && _selected > Choices.StartGame)
             {
                 _selected--;
-                Program.Game._audio.RunSound("Menu buttons");
+                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.MenuButton));
                 return;
             }
 
@@ -343,37 +344,37 @@ namespace TileBasedGame
             if ((MenuSelected.Equals("option")) && (_selected < Choices.BackMainMenu))
             {
                 _selected++;
-                Program.Game._audio.RunSound("Menu buttons");
+                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.MenuButton));
                 return;
             }
             else if ((MenuSelected.Equals("window")) && (_selected < Choices.BackOption))
             {
                 _selected++;
-                Program.Game._audio.RunSound("Menu buttons");
+                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.MenuButton));
                 return;
             }
             else if ((MenuSelected.Equals("levels")) && (_selected < Choices.BackToMainMenu))
             {
                 _selected++;
-                Program.Game._audio.RunSound("Menu buttons");
+                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.MenuButton));
                 return;
             }
             else if ((MenuSelected.Equals("soundUpDown")) && (_selected < Choices.BackToOption))
             {
                 _selected++;
-                Program.Game._audio.RunSound("Menu buttons");
+                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.MenuButton));
                 return;
             }
             else if ((MenuSelected.Equals("MusicUpDown")) && (_selected < Choices.BackToTheOption))
             {
                 _selected++;
-                Program.Game._audio.RunSound("Menu buttons");
+                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.MenuButton));
                 return;
             }
             else if ((MenuSelected.Equals("main menu")) && _selected < Choices.Quit)
             {
                 _selected++;
-                Program.Game._audio.RunSound("Menu buttons");
+                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.MenuButton));
                 return;
             }
         }
@@ -389,8 +390,8 @@ namespace TileBasedGame
         {
             Running = false;
             CloseAndGoTo(LevelManager.GameState.Level1);
-            Program.Game._audio.StopMusic();
-            Program.Game._audio.RunMusic("Level1 music");
+            MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Level1));
+            
 
 
         }
@@ -398,16 +399,14 @@ namespace TileBasedGame
         {
             Running = false;
             CloseAndGoTo(LevelManager.GameState.Level2);
-            Program.Game._audio.StopMusic();
-            Program.Game._audio.RunMusic("Level2 music");
+            MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Level2));
 
         }
         public void StartLevel3()
         {
             Running = false;
             CloseAndGoTo(LevelManager.GameState.Level3);
-            Program.Game._audio.StopMusic();
-            Program.Game._audio.RunMusic("Level3 music");
+            MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Level3));
 
         }
         public int NextTextPos()

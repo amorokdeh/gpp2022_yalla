@@ -17,6 +17,7 @@ namespace TileBasedGame
         public IntPtr Shooting = IntPtr.Zero;
         public IntPtr ExplodEnemy = IntPtr.Zero;
         public IntPtr ExplodPlayer = IntPtr.Zero;
+        public IntPtr ShootingEnemy = IntPtr.Zero;
 
         // music effects
         public IntPtr MenuMusic = IntPtr.Zero;
@@ -52,8 +53,11 @@ namespace TileBasedGame
             Shooting = LoadSound("sound/shooting.wav");
             ExplodEnemy = LoadSound("sound/explod_2.wav");
             ExplodPlayer = LoadSound("sound/explod_1.wav");
+            ShootingEnemy = LoadSound("sound/lasergun.wav");
 
         }
+
+        
 
         public IntPtr LoadMusic(String source)
         {

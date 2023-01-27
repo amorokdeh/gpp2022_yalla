@@ -23,25 +23,35 @@ namespace TileBasedGame
                 return;
             if (he.EventType == HeroEvent.Type.Collision)
             {
-
                 if (he.GameObject == this.GameObject)
                 {
                     hero = he;
+                }
+            }
+            else if (he.EventType == HeroEvent.Type.NeutralCollision)
+            {
+                if (he.GameObject == this.GameObject)
+                {
+                    UpdatePosition(he);
                 }
             }
         }
 
         public void DoUpdate()
         {
-            if(hero != null)
-            {
+            if (hero != null)
                 Update();
-                hero = null;
-            }
+            hero = null;
+
+            
                 
         }
 
         public virtual void Update()
+        {
+
+        }
+        public virtual void UpdatePosition(HeroEvent heroEv)
         {
 
         }

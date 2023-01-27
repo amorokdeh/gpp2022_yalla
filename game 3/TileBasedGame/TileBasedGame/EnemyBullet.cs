@@ -21,7 +21,7 @@ namespace TileBasedGame
 
             //VelY = -10;
             VelY = 200;
-            Img = Program.Game.loader.enemyBulletImg;
+            Img = Program.Game._loader.enemyBulletImg;
 
         }
 

@@ -10,7 +10,7 @@ namespace TileBasedGame
     {
         public Ship(string name, int w, int h) : base(name, w, h)
         {
-            FlyingImg = Program.Game.loader.shipImg;
+            FlyingImg = Program.Game._loader.shipImg;
             Img = FlyingImg;
         }
 

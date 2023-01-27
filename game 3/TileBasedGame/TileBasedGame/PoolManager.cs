@@ -95,7 +95,7 @@ namespace TileBasedGame
             {
                 if (bullet.Active == false)
                 {
-                    Console.WriteLine("Old bullet");
+                    //Console.WriteLine("Old bullet");
                     bullet.Active = true;
                     return bullet;
                 }
