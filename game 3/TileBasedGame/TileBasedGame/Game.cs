@@ -72,7 +72,7 @@ namespace TileBasedGame
             Component pc = _physics.CreatePlayerComponent();
             Player.AddComponent(pc);
 
-            Player.AddComponent(_rendering.CreateComponent(Globals.MediumImageSize, Globals.BigImageSize, Globals.MediumImageSize, Globals.BigImageSize - 10));
+            Player.AddComponent(_rendering.CreateComponent(Globals.MediumImageSize, Globals.BigImageSize, Globals.MediumImageSize, Globals.BigImageSize));
             Player.AddComponent(_rendering.CreateInfoComponent());
 
             Component cc = _controls.CreateComponent();
@@ -98,9 +98,9 @@ namespace TileBasedGame
         //Enemy
         public GameObject BuildShip(GameObject ship)
         {
-            ship = _objects.CreateGameShip("ship", Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier);
+            ship = _objects.CreateGameShip("ship", Globals.MediumImageSize, Globals.BigImageSize);
             ship.AddComponent(_physics.CreateComponent());
-            ship.AddComponent(_rendering.CreateComponent(Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
+            ship.AddComponent(_rendering.CreateComponent(Globals.MediumImageSize, Globals.BigImageSize, Globals.MediumImageSize, Globals.BigImageSize));
             ship.AddComponent(_ai.CreateComponent());
             Component coc = _collisions.CreateComponent("bad");
             ship.AddComponent(coc);

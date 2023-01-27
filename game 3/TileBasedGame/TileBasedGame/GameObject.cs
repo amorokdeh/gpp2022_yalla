@@ -62,11 +62,11 @@ namespace TileBasedGame
                 ImgStep++;
                 if (ImgStep < imgAmount)
                 {
-                    ImgChange = Globals.NormalImageSize * ImgStep;
+                    ImgChange = Globals.MediumImageSize * ImgStep;
                 }
                 else
                 {
-                    ImgChange = Globals.NormalImageSize * (imgAmount * Globals.Multiplier - 2 - ImgStep);
+                    ImgChange = Globals.MediumImageSize * (imgAmount * Globals.Multiplier - 2 - ImgStep);
                 }
 
                 if (ImgStep > imgAmount * Globals.Multiplier - 3)

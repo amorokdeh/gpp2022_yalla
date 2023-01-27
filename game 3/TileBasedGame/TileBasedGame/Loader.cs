@@ -32,7 +32,7 @@ namespace TileBasedGame
         public void loadImages() {
 
             playerImg.LoadImage("image/MiniPixelPack3/PlayerShip/player.png");
-            shipImg.LoadImage("image/MiniPixelPack3/Enemies/Lips.png");
+            shipImg.LoadImage("image/MiniPixelPack3/Enemies/Owlet_Monster_Walk_6.png");
             ufoImg.LoadImage("image/MiniPixelPack3/Enemies/Alan.png");
             bulletImg.LoadImage("image/MiniPixelPack3/Projectiles/PlayerBeam.png");
             level1Img.LoadImage("image/MiniPixelPack3/Maps/PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.png");
