@@ -17,9 +17,10 @@ namespace TileBasedGame
         public void Control()
         {
             GameObject.CurrentVelY = GameObject.VelY;
+            GameObject.CurrentVelX = GameObject.VelX;
 
             //nur zum Testen
-            if(GameObject is Enemy && GameObject.PosY > Program.Window.Height)
+            if (GameObject is Enemy && GameObject.PosY > Program.Window.Height)
             {
                 Program.Game.DespawnEnemy(GameObject);
             }

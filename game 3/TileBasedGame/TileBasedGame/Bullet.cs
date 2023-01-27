@@ -17,9 +17,8 @@ namespace TileBasedGame
             GameObject = player;
             this.Name = name;
 
-            //VelY = -10;
-            VelY = -150;
-           // VelX = -100;
+            VelY = 0;
+            VelX = 100;
             Img = Program.Game.loader.bulletImg;
 
         }
