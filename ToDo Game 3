@@ -23,7 +23,7 @@ Kritik und Tipps umsetzen:
 [x] Gameobject soll seine Components kennen
 [] Image-Variable in die RenderComponent und möglich machen, dass andere Components und GameObjects das Image verändern können
 [x] CollisionsComponent und Collisionsmanager sollen nur Kollision feststellen
-[] Fallunterscheidung eleganter gestalten, durch z.B. Component oder Interface
+[x] Fallunterscheidung eleganter gestalten, durch z.B. Component oder Interface
 [x] Observer/Message-Bus für Informationsaustausch
 [x] Zwischenschritt beim Input
 [x] Soundmanager und Auslösen durch Event
