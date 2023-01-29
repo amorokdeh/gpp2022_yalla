@@ -12,7 +12,12 @@ namespace TileBasedGame
 
         private float _gap = 0;
         private float _gapSize = Globals.AnimationGap;
-        
+
+        public int ImgStep = Globals.Reset;
+
+        protected int Pause = Globals.AnimationPause;
+
+
         public AnimationComponent(AnimationManager am)
         {
             this.AnimationManager = am;
@@ -20,12 +25,24 @@ namespace TileBasedGame
 
         public void Animate(float deltaT)
         {
+            if (GameObject.CurrentVelX > 0)
+            {
+                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.FlyRight, GameObject));
+            }
+            else if (GameObject.CurrentVelX < 0)
+            {
+                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.FlyLeft, GameObject));
+            }
+            else
+            {
+                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.FlyStraight, GameObject));
+            }
+            
             _gap += deltaT;
-            //Console.WriteLine("Animation");
 
             if (_gap > _gapSize)
             {
-                GameObject.ChangeImage();
+                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.ChangeImage, GameObject));
                 _gap = 0;
             }
 

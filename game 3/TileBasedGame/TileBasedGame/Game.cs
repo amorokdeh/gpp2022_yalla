@@ -44,6 +44,7 @@ namespace TileBasedGame
 
         public void BuildBackground(string source)
         {
+            /*
             int winW = Program.Window.Width;
             int winH = Program.Window.Height;
 
@@ -62,7 +63,7 @@ namespace TileBasedGame
                 }
 
                 bg.AddComponent(_ai.CreateComponent());
-            }
+            }*/
         }
 
         public GameObject BuildPlayer()
@@ -72,7 +73,7 @@ namespace TileBasedGame
             Component pc = _physics.CreatePlayerComponent();
             Player.AddComponent(pc);
 
-            Player.AddComponent(_rendering.CreateComponent(Globals.MediumImageSize, Globals.BigImageSize, Globals.MediumImageSize, Globals.BigImageSize));
+            Player.AddComponent(_rendering.CreateComponent(_loader.playerImg, Globals.MediumImageSize, Globals.BigImageSize, Globals.MediumImageSize, Globals.BigImageSize));
             Player.AddComponent(_rendering.CreateInfoComponent());
 
             Component cc = _controls.CreateComponent();
@@ -85,6 +86,8 @@ namespace TileBasedGame
 
             Component uc = _updates.CreatePlayerComponent();
             Player.AddComponent(uc);
+
+            Player.AddComponent(_animations.CreateComponent());
 
             //cc.AddObserver(pc);
             coc.AddObserver(uc);
@@ -100,7 +103,7 @@ namespace TileBasedGame
         {
             ship = _objects.CreateGameShip("ship", Globals.MediumImageSize, Globals.BigImageSize);
             ship.AddComponent(_physics.CreateComponent());
-            ship.AddComponent(_rendering.CreateComponent(Globals.MediumImageSize, Globals.BigImageSize, Globals.MediumImageSize, Globals.BigImageSize));
+            ship.AddComponent(_rendering.CreateComponent(_loader.shipImg, Globals.MediumImageSize, Globals.BigImageSize, Globals.MediumImageSize, Globals.BigImageSize));
             ship.AddComponent(_ai.CreateComponent());
             Component coc = _collisions.CreateComponent("bad");
             ship.AddComponent(coc);
@@ -120,15 +123,18 @@ namespace TileBasedGame
         {
             ufo = _objects.CreateGameUfo("ufo", Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier);
             ufo.AddComponent(_physics.CreateComponent());
-            ufo.AddComponent(_rendering.CreateComponent(Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
+            Component rc = _rendering.CreateComponent(_loader.ufoImg, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier);
+            ufo.AddComponent(rc);
             ufo.AddComponent(_ai.CreateComponent());
             Component coc = _collisions.CreateComponent("bad");
             ufo.AddComponent(coc);
-            ufo.AddComponent(_animations.CreateComponent());
+            Component ac = _animations.CreateComponent();
+            ufo.AddComponent(ac);
             Component uc = _updates.CreateEnemyComponent();
             ufo.AddComponent(uc);
 
             coc.AddObserver(uc);
+            ac.AddObserver(rc);
 
             return ufo;
 
@@ -138,7 +144,7 @@ namespace TileBasedGame
         {
             bullet = _objects.CreatePlayerBullet("playerBullet", player, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier);
             bullet.AddComponent(_physics.CreateComponent());
-            bullet.AddComponent(_rendering.CreateComponent(Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
+            bullet.AddComponent(_rendering.CreateComponent(_loader.bulletImg, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
             bullet.AddComponent(_ai.CreateComponent());
             Component coc = _collisions.CreateComponent("good");
             bullet.AddComponent(coc);
@@ -154,7 +160,7 @@ namespace TileBasedGame
         {
             bullet = _objects.CreateEnemyBullet("enemyBullet", enemy, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier);
             bullet.AddComponent(_physics.CreateComponent());
-            bullet.AddComponent(_rendering.CreateComponent(Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
+            bullet.AddComponent(_rendering.CreateComponent(_loader.enemyBulletImg, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
             bullet.AddComponent(_ai.CreateComponent());
             Component coc = _collisions.CreateComponent("bad");
             bullet.AddComponent(coc);
@@ -168,10 +174,10 @@ namespace TileBasedGame
         }
 
         // Background tiles
-        public GameObject BuildTiles(Tile tile)
+        public GameObject BuildTiles(string name, int w, int h, int x, int y, int imgFrame, Image img)
         {
-            tile = _objects.CreateTile("Tile", Globals.MediumImageSize, Globals.MediumImageSize, (int)tile.PosX, (int)tile.PosY, tile.Img, tile.imgFrame);
-            tile.AddComponent(_rendering.CreateComponent(Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize));
+            Tile tile = _objects.CreateTile(name, w, h, x, y);
+            tile.AddComponent(_rendering.CreateComponent(img, imgFrame, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
             tile.Active = true;
             tile.Died = false;
             return tile;
@@ -179,10 +185,10 @@ namespace TileBasedGame
         }
 
         // Blocks tiles
-        public GameObject BuildBlocks(Block block)
+        public GameObject BuildBlocks(string name, int w, int h, int x, int y, int imgFrame, Image img)
         {
-            block = _objects.CreateBlock("Block", Globals.MediumImageSize, Globals.MediumImageSize, (int)block.PosX, (int)block.PosY, block.Img, block.imgFrame);
-            block.AddComponent(_rendering.CreateComponent(Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize));
+            Block block = _objects.CreateBlock(name, w, h, x, y);
+            block.AddComponent(_rendering.CreateComponent(img, imgFrame, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
             Component coc = _collisions.CreateComponent("block");
             block.AddComponent(coc);
             block.Active = true;
@@ -192,10 +198,10 @@ namespace TileBasedGame
         }
 
         // Spikes tiles
-        public GameObject BuildSpikes(Spike spike)
+        public GameObject BuildSpikes(string name, int w, int h, int x, int y, int imgFrame, Image img)
         {
-            spike = _objects.CreateSpike("Spike", Globals.MediumImageSize, Globals.MediumImageSize, (int)spike.PosX, (int)spike.PosY, spike.Img, spike.imgFrame);
-            spike.AddComponent(_rendering.CreateComponent(Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize));
+            Spike spike = _objects.CreateSpike(name, w, h, x, y);
+            spike.AddComponent(_rendering.CreateComponent(img, imgFrame, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
             Component coc = _collisions.CreateComponent("bad");
             spike.AddComponent(coc);
             spike.Active = true;
@@ -205,10 +211,10 @@ namespace TileBasedGame
         }
         
         // End door tiles
-        public GameObject BuildEndDoor(EndDoor endDoor)
+        public GameObject BuildEndDoor(string name, int w, int h, int x, int y, int imgFrame, Image img)
         {
-            endDoor = _objects.CreateEndDoor("End door", Globals.MediumImageSize, Globals.MediumImageSize, (int)endDoor.PosX, (int)endDoor.PosY, endDoor.Img, endDoor.imgFrame);
-            endDoor.AddComponent(_rendering.CreateComponent(Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize));
+            EndDoor endDoor = _objects.CreateEndDoor(name, w, h, x, y);
+            endDoor.AddComponent(_rendering.CreateComponent(img, imgFrame, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
             Component coc = _collisions.CreateComponent("door");
             endDoor.AddComponent(coc);
             endDoor.Active = true;

@@ -10,16 +10,7 @@ namespace TileBasedGame
     {
         public Ufo(string name, int w, int h) : base(name, w, h)
         {
-            FlyingImg = Program.Game._loader.ufoImg;
-            Img = FlyingImg;
-        }
 
-        public override void ChangeImage()
-        {
-            if (Died)
-                base.Explode();
-            else
-                base.ChangeImage(3);
         }
     }
 }

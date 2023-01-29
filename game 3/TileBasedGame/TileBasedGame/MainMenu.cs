@@ -438,7 +438,7 @@ namespace TileBasedGame
 
                 for (int j = 0; j < winW / (64 * 4); j++)
                 {
-                    bg.AddComponent(_rendering.CreateBGComponent(0, 0, 128, 64, 128 * 4, 64 * 4, 128 * 4 * j));
+                    //bg.AddComponent(_rendering.CreateBGComponent(0, 0, 128, 64, 128 * 4, 64 * 4, 128 * 4 * j));
                 }
             }
         }

@@ -15,39 +15,41 @@ namespace TileBasedGame
 {
     class TiledMap
     {
-        public int mapWidth;
-        public int mapHeight;
+        public int MapWidth;
+        public int MapHeight;
 
-        public int tileWidth;
-        public int tileHeight;
+        public int TileWidth;
+        public int TileHeight;
 
-        private GameObject MapImg = new GameObject("MapImg", 32 * 10, 32 * 65);
+        //private GameObject MapImg = new GameObject("MapImg", 32 * 10, 32 * 65);
+        Image Image;
 
-        private List<Dictionary<string, object>> layersData = new List<Dictionary<string, object>>();
+        private List<Dictionary<string, object>> _layersData = new List<Dictionary<string, object>>();
 
-        public int playerXPos;
-        public int playerYPos;
+        public int PlayerXPos;
+        public int PlayerYPos;
 
-        private List<int> backgroundData = new List<int>();
-        private List<int> blocksData = new List<int>();
-        private List<int> spikesData = new List<int>();
-        private List<int> endDoorData = new List<int>();
-        private List<Enemy> enemiesData = new List<Enemy>();
-        public List<GameObject> tiles = new List<GameObject>();
+        private List<int> _backgroundData = new List<int>();
+        private List<int> _blocksData = new List<int>();
+        private List<int> _spikesData = new List<int>();
+        private List<int> _endDoorData = new List<int>();
+        private List<Enemy> _enemiesData = new List<Enemy>();
+        public List<GameObject> Tiles = new List<GameObject>();
 
         public void load(Dictionary<string, object> map, Image img){
 
             //load tiles size (32 x 32)
-            tileWidth = Convert.ToInt32(map["tilewidth"]);
-            tileHeight = Convert.ToInt32(map["tileheight"]);
+            TileWidth = Convert.ToInt32(map["tilewidth"]);
+            TileHeight = Convert.ToInt32(map["tileheight"]);
 
             //load map size
-            mapWidth = Convert.ToInt32(map["width"]) * tileWidth;
-            mapHeight = Convert.ToInt32(map["height"]) * tileHeight;
+            MapWidth = Convert.ToInt32(map["width"]) * TileWidth;
+            MapHeight = Convert.ToInt32(map["height"]) * TileHeight;
 
             //load map image
-            
-            MapImg.Img = img;
+
+            //MapImg.Img = img;
+            Image = img;
 
             //load layers data (Map and objects)
 
@@ -58,10 +60,10 @@ namespace TileBasedGame
                 foreach (var layer in layersArray)
                 {
 
-                    layersData.Add(layer.ToObject<Dictionary<string, object>>());
+                    _layersData.Add(layer.ToObject<Dictionary<string, object>>());
                 }
 
-                foreach (var layerData in layersData)
+                foreach (var layerData in _layersData)
                 {
 
                     var layerName = layerData["name"];
@@ -75,7 +77,7 @@ namespace TileBasedGame
                         {
 
                             int number = (int)data;
-                            backgroundData.Add(number);
+                            _backgroundData.Add(number);
                         }
                     }
 
@@ -88,7 +90,7 @@ namespace TileBasedGame
                         {
 
                             int number = (int)data;
-                            blocksData.Add(number);
+                            _blocksData.Add(number);
                         }
                     }
 
@@ -102,8 +104,8 @@ namespace TileBasedGame
 
                             var objX = obj["x"];
                             var objY = obj["y"];
-                            playerXPos = Convert.ToInt32(objX);
-                            playerYPos = Convert.ToInt32(objY);
+                            PlayerXPos = Convert.ToInt32(objX);
+                            PlayerYPos = Convert.ToInt32(objY);
 
                         }
 
@@ -119,10 +121,10 @@ namespace TileBasedGame
 
                             var objX = obj["x"];
                             var objY = obj["y"];
-                            Enemy enemy = new Enemy("Enemy", tileWidth, tileHeight);
+                            Enemy enemy = new Enemy("Enemy", TileWidth, TileHeight);
                             enemy.PosX = Convert.ToInt32(objX);
                             enemy.PosY = Convert.ToInt32(objY);
-                            enemiesData.Add(enemy);
+                            _enemiesData.Add(enemy);
 
                         }
 
@@ -137,7 +139,7 @@ namespace TileBasedGame
                         {
 
                             int number = (int)data;
-                            spikesData.Add(number);
+                            _spikesData.Add(number);
                         }
                     }
 
@@ -150,7 +152,7 @@ namespace TileBasedGame
                         {
 
                             int number = (int)data;
-                            endDoorData.Add(number);
+                            _endDoorData.Add(number);
                         }
                     }
 
@@ -167,20 +169,18 @@ namespace TileBasedGame
             int col = 0;
 
             //build blocks
-            foreach (int data in backgroundData){
+            foreach (int data in _backgroundData){
                 if (data != 0){
 
-                    int x = col * tileWidth;
-                    int y = line * tileHeight;
+                    int x = col * TileWidth;
+                    int y = line * TileHeight;
                     if (data != 0)
                     {
-                        Tile tile = new Tile("Tile", tileWidth, tileHeight, x, y, data);
-                        tile.Img = MapImg.Img;
-                        Program.Game.BuildTiles(tile);
+                        Program.Game.BuildTiles("Tile", TileWidth, TileHeight, x, y, data, Image);
                     }
                     col++;
                     //new line
-                    if (col == mapWidth / tileWidth)
+                    if (col == MapWidth / TileWidth)
                     {
 
                         line++;
@@ -198,21 +198,18 @@ namespace TileBasedGame
             int col = 0;
 
             //build blocks
-            foreach (int data in blocksData)
+            foreach (int data in _blocksData)
             {
                 
-                int x = col * tileWidth;
-                int y = line * tileHeight;
+                int x = col * TileWidth;
+                int y = line * TileHeight;
                 if (data != 0)
                 {
-
-                    Block block = new Block("Block", tileWidth, tileHeight, x, y, data);
-                    block.Img = MapImg.Img;
-                    Program.Game.BuildBlocks(block);
+                    Program.Game.BuildBlocks("Block", TileWidth, TileHeight, x, y, data, Image);
                 }
                 col++;
                 //new line
-                if (col == mapWidth / tileWidth)
+                if (col == MapWidth / TileWidth)
                 {
 
                     line++;
@@ -229,21 +226,19 @@ namespace TileBasedGame
             int col = 0;
 
             //build spikes
-            foreach (int data in spikesData)
+            foreach (int data in _spikesData)
             {
 
-                int x = col * tileWidth;
-                int y = line * tileHeight;
+                int x = col * TileWidth;
+                int y = line * TileHeight;
                 if (data != 0)
                 {
-                    Spike spike = new Spike("Spike", tileWidth, tileHeight, x, y, data);
-                    spike.Img = MapImg.Img;
-                    Program.Game.BuildSpikes(spike);
+                    Program.Game.BuildSpikes("Block", TileWidth, TileHeight, x, y, data, Image);
                 }
 
                 col++;
                 //new line
-                if (col == mapWidth / tileWidth)
+                if (col == MapWidth / TileWidth)
                 {
 
                     line++;
@@ -259,22 +254,19 @@ namespace TileBasedGame
             int col = 0;
 
             //build end door
-            foreach (int data in endDoorData)
+            foreach (int data in _endDoorData)
             {
 
-                int x = col * tileWidth;
-                int y = line * tileHeight;
+                int x = col * TileWidth;
+                int y = line * TileHeight;
                 if (data != 0) {
-                    EndDoor endDoor = new EndDoor("End door", tileWidth, tileHeight, x, y, data);
-                    endDoor.Img = MapImg.Img;
-                    Program.Game.BuildEndDoor(endDoor);
+                    Program.Game.BuildEndDoor("End door", TileWidth, TileHeight, x, y, data, Image);
                 }
 
                 col++;
                 //new line
-                if (col == mapWidth / tileWidth)
+                if (col == MapWidth / TileWidth)
                 {
-
                     line++;
                     col = 0;
                 }
@@ -287,13 +279,13 @@ namespace TileBasedGame
 
             Program.Game.Player = (Player) Program.Game.BuildPlayer();
             Program.Game.Player.Reset();
-            Program.Game.Player.PosX = playerXPos;
-            Program.Game.Player.PosY = playerYPos;
+            Program.Game.Player.PosX = PlayerXPos;
+            Program.Game.Player.PosY = PlayerYPos;
         }
 
         public void buildEnemies() {
 
-            foreach (Enemy enemy in enemiesData) {
+            foreach (Enemy enemy in _enemiesData) {
             
             }
         }
@@ -301,34 +293,34 @@ namespace TileBasedGame
         public void clearMap() {
 
 
-            for (int i = 0; i < tiles.Count; i++)
+            for (int i = 0; i < Tiles.Count; i++)
             {
-                tiles[i].Active = false;
-                tiles[i].Died = true;
-                tiles[i] = null;
+                Tiles[i].Active = false;
+                Tiles[i].Died = true;
+                Tiles[i] = null;
                 
             }
 
-            for (int i = 0; i < enemiesData.Count; i++)
+            for (int i = 0; i < _enemiesData.Count; i++)
             {
-                enemiesData[i].Active = false;
-                enemiesData[i].Died = true;
-                enemiesData[i] = null;
+                _enemiesData[i].Active = false;
+                _enemiesData[i].Died = true;
+                _enemiesData[i] = null;
             }
 
-            tiles.Clear();
-            backgroundData.Clear();
-            blocksData.Clear();
-            spikesData.Clear();
-            endDoorData.Clear();
-            enemiesData.Clear();
+            Tiles.Clear();
+            _backgroundData.Clear();
+            _blocksData.Clear();
+            _spikesData.Clear();
+            _endDoorData.Clear();
+            _enemiesData.Clear();
 
-            tiles = null;
-            backgroundData = null;
-            blocksData = null;
-            spikesData = null;
-            endDoorData = null;
-            enemiesData = null;
+            Tiles = null;
+            _backgroundData = null;
+            _blocksData = null;
+            _spikesData = null;
+            _endDoorData = null;
+            _enemiesData = null;
 
 
             GC.Collect();

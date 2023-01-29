@@ -15,7 +15,7 @@ namespace TileBasedGame
         {
             ExplodingImg = Program.Game._loader.explodingImg;
             VelY = 100;
-            Program.Game._maps.currentMap.tiles.Add(this);
+            Program.Game._maps.currentMap.Tiles.Add(this);
         }
 
         public int ExplosionStep = 0;
@@ -25,11 +25,11 @@ namespace TileBasedGame
             
             if (ExplosionStep < 5)
             {
-                ImgChange = Globals.NormalImageSize * ExplosionStep;
+                //ImgChange = Globals.NormalImageSize * ExplosionStep;
             } else
             {
                 ExplosionStep = 0;
-                Img = FlyingImg;
+                //Img = FlyingImg;
                 Died = false;
                 Program.Game.DespawnEnemy(this);
             }

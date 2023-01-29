@@ -16,19 +16,9 @@ namespace TileBasedGame
         {
             GameObject = enemy;
             this.Name = name;
-
-            Pause = 0;
-
             //VelY = -10;
             VelY = 200;
-            Img = Program.Game._loader.enemyBulletImg;
-
         }
 
-        public override void ChangeImage()
-        {
-
-            base.ChangeImage(3);
-        }
     }
 }

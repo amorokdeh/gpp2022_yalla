@@ -13,23 +13,7 @@ namespace TileBasedGame
 
         public Player(string name, int w, int h): base(name, w, h)
         {
-            ImgChange = 0;
-            Img = Program.Game._loader.playerImg;
-            Program.Game._maps.currentMap.tiles.Add(this);
-        }
-
-        public void FlyLeft()
-        {
-            ImgChange = Globals.MediumImageSize * 3;
-        }
-        public void FlyStraight()
-        {
-            ImgChange = 0;
-            ImgChangeY = 0;
-        }
-        public void FlyRight()
-        {
-            ImgChange = Globals.MediumImageSize * 2;
+            Program.Game._maps.currentMap.Tiles.Add(this);
         }
 
         public void Reset()

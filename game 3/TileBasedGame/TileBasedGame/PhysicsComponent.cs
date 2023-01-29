@@ -26,8 +26,8 @@ namespace TileBasedGame
 
         public void CheckBorders()
         {
-            int mapWidth = Program.Game._maps.currentMap.mapWidth;
-            int mapHeight = Program.Game._maps.currentMap.mapHeight;
+            int mapWidth = Program.Game._maps.currentMap.MapWidth;
+            int mapHeight = Program.Game._maps.currentMap.MapHeight;
 
             if (GameObject.PosX < 0)
             {

@@ -10,19 +10,25 @@ namespace TileBasedGame
     class RenderingManager
     {
         private List<RenderingComponent> _renderingComponents = new List<RenderingComponent>();
-        
-        internal Component CreateComponent(int w, int h)
+
+
+        internal Component CreateComponent(Image img, int w, int h)
+        {
+            return CreateComponent(img, w, h, Globals.NormalImageSize, Globals.NormalImageSize);
+        }
+
+        internal Component CreateComponent(Image img, int w, int h, int imgW, int imgH)
         {
 
-            RenderingComponent rc = new ImageRenderingComponent(this, 0, 0, Globals.NormalImageSize, Globals.NormalImageSize, w, h);
+            RenderingComponent rc = new ImageRenderingComponent(this,img, 0, 0, imgW, imgH, w, h);
             _renderingComponents.Add(rc);
             return rc;
         }
 
-        internal Component CreateComponent(int w, int h, int imgW, int imgH)
+        internal Component CreateComponent(Image img, int imgFrame, int w, int h, int imgW, int imgH)
         {
 
-            RenderingComponent rc = new ImageRenderingComponent(this, 0, 0, imgW, imgH, w, h);
+            RenderingComponent rc = new ImageRenderingComponent(this, imgFrame, img, 0, 0, imgW, imgH, w, h);
             _renderingComponents.Add(rc);
             return rc;
         }
@@ -31,12 +37,6 @@ namespace TileBasedGame
         {
 
             InfoRenderingComponent rc = new InfoRenderingComponent(this);
-            _renderingComponents.Add(rc);
-            return rc;
-        }
-        internal Component CreateBGComponent(int x, int y, int w, int h, int dstW, int dstH, int dstX = 0)
-        {
-            RenderingComponent rc = new ImageRenderingComponent(this, x, y, w, h, dstW, dstH, dstX);
             _renderingComponents.Add(rc);
             return rc;
         }

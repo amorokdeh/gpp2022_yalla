@@ -48,7 +48,7 @@ namespace TileBasedGame
             enemy1.Died = false;
 
             enemy1.ExplosionStep = Globals.Reset;
-            enemy1.Img = enemy1.FlyingImg;
+            //enemy1.Img = enemy1.FlyingImg;
 
         }
 

@@ -12,8 +12,8 @@ namespace TileBasedGame
         public float PosX;
         public float PosY;
 
-        private int mapWidth = Program.Game._maps.currentMap.mapWidth;
-        private int mapHeight = Program.Game._maps.currentMap.mapHeight;
+        private int mapWidth = Program.Game._maps.currentMap.MapWidth;
+        private int mapHeight = Program.Game._maps.currentMap.MapHeight;
         private int winWidth = Program.Window.Width;
         private int winHeight = Program.Window.Height;
 

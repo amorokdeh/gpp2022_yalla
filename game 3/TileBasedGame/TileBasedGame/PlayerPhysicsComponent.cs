@@ -30,6 +30,7 @@ namespace TileBasedGame
         public override void Move(float deltaT)
         {
             base.Move(deltaT);
+            /*
             Player p = (Player)GameObject;
             if (GameObject.CurrentVelX > 0)
             {
@@ -42,7 +43,7 @@ namespace TileBasedGame
             else
             {
                 p.FlyStraight();
-            }
+            }*/
                 
         }
 

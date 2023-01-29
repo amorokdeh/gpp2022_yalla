@@ -21,8 +21,8 @@ namespace TileBasedGame
             GameObject.Died = true;
 
             //TODO überarbeiten
-            Enemy enemy = (Enemy)GameObject;
-            enemy.Img = enemy.ExplodingImg;
+            //Enemy enemy = (Enemy)GameObject;
+            //enemy.Img = enemy.ExplodingImg;
 
             MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.EnemyDead));         
         }

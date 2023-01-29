@@ -24,15 +24,6 @@ namespace TileBasedGame
         public float VelY;
         public float CurrentVelY;
 
-        public Image Img = new Image();
-
-        public int ImgChange = Globals.Reset;
-        public int ImgChangeY = Globals.Reset;
-        public int ImgStep = Globals.Reset;
-
-        protected int Pause = Globals.AnimationPause;
-        private int _usedPause = Globals.Reset;
-
 
         public GameObject(string name, int w, int h)
         {
@@ -43,39 +34,7 @@ namespace TileBasedGame
             CurrentVelX = Globals.Reset;
             CurrentVelY = Globals.Reset;
 
-            Img.SetUp();
-
             this._name = name;
-        }
-
-        public virtual void ChangeImage() { }
-
-        public void ChangeImage(int imgAmount)
-        {
-            
-            
-            if(_usedPause > Globals.Reset)
-            {
-                _usedPause--;
-            }
-            else {
-                ImgStep++;
-                if (ImgStep < imgAmount)
-                {
-                    ImgChange = Globals.MediumImageSize * ImgStep;
-                }
-                else
-                {
-                    ImgChange = Globals.MediumImageSize * (imgAmount * Globals.Multiplier - 2 - ImgStep);
-                }
-
-                if (ImgStep > imgAmount * Globals.Multiplier - 3)
-                {
-                    ImgStep = Globals.Reset;
-                    _usedPause = Pause;
-                }
-            }
-
         }
 
         internal void AddComponent(Component component)

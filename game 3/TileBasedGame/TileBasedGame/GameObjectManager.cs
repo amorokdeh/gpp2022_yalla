@@ -53,34 +53,34 @@ namespace TileBasedGame
             return gameObject;
         }
 
-        public Tile CreateTile(string name, int w, int h, int x, int y, Image imgSrc, int imgFrame)
+        public Tile CreateTile(string name, int w, int h, int x, int y)
         {
-            Tile gameObject = new Tile(name, w, h, x, y, imgFrame);
-            gameObject.Img = imgSrc;
+            Tile gameObject = new Tile(name, w, h, x, y);
+            //gameObject.Img = imgSrc;
             _gameObjects.Add(gameObject);
             return gameObject;
         }
 
-        public Block CreateBlock(string name, int w, int h, int x, int y, Image imgSrc, int imgFrame)
+        public Block CreateBlock(string name, int w, int h, int x, int y)
         {
-            Block gameObject = new Block(name, w, h, x, y, imgFrame);
-            gameObject.Img = imgSrc;
+            Block gameObject = new Block(name, w, h, x, y);
+            //gameObject.Img = imgSrc;
             _gameObjects.Add(gameObject);
             return gameObject;
         }
 
-        public Spike CreateSpike(string name, int w, int h, int x, int y, Image imgSrc, int imgFrame)
+        public Spike CreateSpike(string name, int w, int h, int x, int y)
         {
-            Spike gameObject = new Spike(name, w, h, x, y, imgFrame);
-            gameObject.Img = imgSrc;
+            Spike gameObject = new Spike(name, w, h, x, y);
+            //gameObject.Img = imgSrc;
             _gameObjects.Add(gameObject);
             return gameObject;
         }
         
-        public EndDoor CreateEndDoor(string name, int w, int h, int x, int y, Image imgSrc, int imgFrame)
+        public EndDoor CreateEndDoor(string name, int w, int h, int x, int y)
         {
-            EndDoor gameObject = new EndDoor(name, w, h, x, y, imgFrame);
-            gameObject.Img = imgSrc;
+            EndDoor gameObject = new EndDoor(name, w, h, x, y);
+            //gameObject.Img = imgSrc;
             _gameObjects.Add(gameObject);
             return gameObject;
         }
