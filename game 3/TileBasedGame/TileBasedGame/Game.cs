@@ -43,26 +43,7 @@ namespace TileBasedGame
 
         public void BuildBackground(string source)
         {
-            /*
-            int winW = Program.Window.Width;
-            int winH = Program.Window.Height;
-
-            GameObject bg;
-
-
-            for (int i = -1; i < (winH / Globals.VeryBigImageSize * Globals.BigMultiplier); i++)
-            {
-                bg = _objects.CreateGameBackground(source, Globals.VeryBigImageSize * Globals.BigMultiplier, Globals.BigImageSize * Globals.BigMultiplier, 0, Globals.BigImageSize * Globals.BigMultiplier * i);
-                bg.Active = true;
-                bg.AddComponent(_physics.CreateBGComponent());
-
-                for (int j = 0; j < winW / (Globals.BigImageSize * Globals.BigMultiplier); j++)
-                {
-                    bg.AddComponent(_rendering.CreateBGComponent(0, 0, Globals.VeryBigImageSize, Globals.BigImageSize, Globals.VeryBigImageSize * Globals.BigMultiplier, 64 * Globals.BigMultiplier, 128 * Globals.BigMultiplier * j));
-                }
-
-                bg.AddComponent(_ai.CreateComponent());
-            }*/
+            
         }
 
         public GameObject BuildPlayer()

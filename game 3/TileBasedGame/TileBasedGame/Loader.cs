@@ -20,6 +20,7 @@ namespace TileBasedGame
         public Image level3Img = new Image();
         public Image enemyBulletImg = new Image();
         public Image explodingImg = new Image();
+        public Image BackgroundImg = new Image();
 
         //Json
         string json;
@@ -40,7 +41,9 @@ namespace TileBasedGame
             level3Img.LoadImage("image/MiniPixelPack3/Maps/PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.png");
             enemyBulletImg.LoadImage("image/MiniPixelPack3/Projectiles/enemyBullet.png");
             explodingImg.LoadImage("image/MiniPixelPack3/Effects/Explosion.png");
-            
+            BackgroundImg.LoadImage("image/MiniPixelPack3/Background.png");
+
+
         }
 
         public void loadJson(){

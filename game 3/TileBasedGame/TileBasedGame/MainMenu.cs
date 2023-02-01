@@ -116,6 +116,8 @@ namespace TileBasedGame
         public void Run()
         {
             Program.Game._audio.RunMusic("Menu music");
+            Program.Game.Camera.PosY = Program.Window.Height / 2;
+            Program.Game.Camera.PosX = Program.Window.Width / 2;
             while (Running)
             {
                 Program.Window.CalculateFPS(); //frame limit start calculating here
@@ -290,6 +292,9 @@ namespace TileBasedGame
                         return;
                     case Choices.ScreenSize:
                         Program.Window.ChangeWindowSize();
+                        BuildBackground("main menu");
+                        Program.Game.Camera.PosY = Program.Window.Height / 2;
+                        Program.Game.Camera.PosX = Program.Window.Width / 2;
                         return;
                     case Choices.BackOption:
                         MenuSelected = "option";
@@ -429,18 +434,10 @@ namespace TileBasedGame
             int winH = Program.Window.Height;
 
             GameObject bg;
-
-
-            for (int i = -1; i < (winH / 128 * 4); i++)
-            {
-                bg = _objects.CreateGameBackground(source, 128 * 4, 64 * 4, 0, 64 * 4 * i);
-                bg.Active = true;
-
-                for (int j = 0; j < winW / (64 * 4); j++)
-                {
-                    //bg.AddComponent(_rendering.CreateBGComponent(0, 0, 128, 64, 128 * 4, 64 * 4, 128 * 4 * j));
-                }
-            }
+            Image backImg = Program.Game._loader.BackgroundImg;
+            bg = _objects.CreateGameBackground(source, winW, winH);
+            bg.Active = true;
+            bg.AddComponent(_rendering.CreateComponent(backImg, winW, winH, 1920, 1080));
         }
         public void Render()
         {
@@ -450,15 +447,7 @@ namespace TileBasedGame
             //Background
             _rendering.Render();
 
-            //Rect position
-            _rect.x = (Program.Window.Width / 2) - 300;
-            _rect.y = (Program.Window.Height / 2) - 200;
-            _rect.w = 600;
-            _rect.h = 400;
-            //draw and fill rect
-            SDL.SDL_SetRenderDrawColor(Program.Window.Renderer, 0, 0, 0, 255);
-            SDL.SDL_RenderDrawRect(Program.Window.Renderer, ref _rect);
-            SDL.SDL_RenderFillRect(Program.Window.Renderer, ref _rect);
+            
             //calculate FPS
             Program.Window.FPSCalculate();
 
