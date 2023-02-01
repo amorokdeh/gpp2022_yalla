@@ -21,11 +21,13 @@ namespace TileBasedGame
             MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.PlayerDead));
         }
 
+        
         public override void UpdatePosition(HeroEvent heroEv)
         {
             GameObject.PosY = heroEv.NewY;
             GameObject.PosX = heroEv.NewX;
         }
+        
 
     }
 }

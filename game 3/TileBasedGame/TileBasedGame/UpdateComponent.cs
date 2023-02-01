@@ -53,7 +53,8 @@ namespace TileBasedGame
         }
         public virtual void UpdatePosition(HeroEvent heroEv)
         {
-
+            GameObject.PosY = heroEv.NewY;
+            GameObject.PosX = heroEv.NewX;
         }
     }
 }

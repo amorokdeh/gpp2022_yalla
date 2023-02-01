@@ -28,6 +28,16 @@ namespace TileBasedGame
                 Bullet.PosY = Bullet.GameObject.PosY;
                 Bullet.PosX = Bullet.GameObject.PosX;
 
+                if (GameObject.direction == "right")
+                {
+                    Bullet.VelX = 200;
+
+                }
+                else if (GameObject.direction == "left")
+                {
+                    Bullet.VelX = -200;
+                }
+
                 BulletGap = Globals.Reset;
 
             }

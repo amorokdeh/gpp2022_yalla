@@ -13,6 +13,8 @@ namespace TileBasedGame
             
         }
 
+
+
         public override void Update()
         {
             Console.WriteLine("ENEMY");
@@ -26,5 +28,6 @@ namespace TileBasedGame
 
             MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.EnemyDead));         
         }
+
     }
 }

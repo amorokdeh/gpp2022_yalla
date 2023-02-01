@@ -33,6 +33,10 @@ namespace TileBasedGame
             {
                 MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.FlyLeft, GameObject));
             }
+            else if (GameObject.CurrentVelY < 0)
+            {
+                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.FlyUp, GameObject));
+            }
             else
             {
                 MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.FlyStraight, GameObject));

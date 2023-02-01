@@ -102,7 +102,7 @@ namespace TileBasedGame
         public GameObject BuildShip(GameObject ship)
         {
             ship = _objects.CreateGameShip("ship", Globals.MediumImageSize, Globals.BigImageSize);
-            ship.AddComponent(_physics.CreateComponent());
+            ship.AddComponent(_physics.CreateEnemyComponent());
             ship.AddComponent(_rendering.CreateComponent(_loader.shipImg, Globals.MediumImageSize, Globals.BigImageSize, Globals.MediumImageSize, Globals.BigImageSize));
             ship.AddComponent(_ai.CreateComponent());
             Component coc = _collisions.CreateComponent("bad");
@@ -121,9 +121,9 @@ namespace TileBasedGame
         //Enemy
         public GameObject BuildUfo(GameObject ufo)
         {
-            ufo = _objects.CreateGameUfo("ufo", Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier);
-            ufo.AddComponent(_physics.CreateComponent());
-            Component rc = _rendering.CreateComponent(_loader.ufoImg, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier);
+            ufo = _objects.CreateGameUfo("ufo", Globals.MediumImageSize, Globals.BigImageSize);
+            ufo.AddComponent(_physics.CreateEnemyComponent());
+            Component rc = _rendering.CreateComponent(_loader.ufoImg, Globals.MediumImageSize, Globals.BigImageSize, Globals.MediumImageSize, Globals.BigImageSize);
             ufo.AddComponent(rc);
             ufo.AddComponent(_ai.CreateComponent());
             Component coc = _collisions.CreateComponent("bad");
@@ -148,6 +148,8 @@ namespace TileBasedGame
             bullet.AddComponent(_ai.CreateComponent());
             Component coc = _collisions.CreateComponent("good");
             bullet.AddComponent(coc);
+            //Component ac = _animations.CreateComponent();
+            //bullet.AddComponent(ac);
             Component uc = _updates.CreateBulletComponent();
             bullet.AddComponent(uc);
 
@@ -164,9 +166,10 @@ namespace TileBasedGame
             bullet.AddComponent(_ai.CreateComponent());
             Component coc = _collisions.CreateComponent("bad");
             bullet.AddComponent(coc);
-            bullet.AddComponent(_animations.CreateComponent());
+            
             Component uc = _updates.CreateBulletComponent();
             bullet.AddComponent(uc);
+            //bullet.AddComponent(_animations.CreateComponent());
 
             coc.AddObserver(uc);
             return bullet;
@@ -202,7 +205,7 @@ namespace TileBasedGame
         {
             Spike spike = _objects.CreateSpike(name, w, h, x, y);
             spike.AddComponent(_rendering.CreateComponent(img, imgFrame, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
-            Component coc = _collisions.CreateComponent("bad");
+            Component coc = _collisions.CreateComponent("spike");
             spike.AddComponent(coc);
             spike.Active = true;
             spike.Died = false;

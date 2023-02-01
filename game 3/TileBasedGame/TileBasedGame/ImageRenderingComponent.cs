@@ -65,32 +65,38 @@ namespace TileBasedGame
         {
             //Console.WriteLine("Change Image");
             HeroEvent he = e as HeroEvent;
-            if (he.GameObject == GameObject) {
+            if (he.GameObject == GameObject)
+            {
                 if (he == null)
                     return;
                 if (he.EventType == HeroEvent.Type.FlyLeft)
                 {
-                    Console.WriteLine("Change Image");
                     ImgChange = Globals.MediumImageSize * 3;
+                    Img.flipped = SDL.SDL_RendererFlip.SDL_FLIP_HORIZONTAL;
                 }
-                    
                 else if (he.EventType == HeroEvent.Type.FlyRight)
-                    ImgChange = Globals.Reset;
-                else if (he.EventType == HeroEvent.Type.FlyStraight)
+                {
+                    ImgChange = Globals.MediumImageSize * 3;
+                    Img.flipped = SDL.SDL_RendererFlip.SDL_FLIP_NONE;
+                }
+                else if (he.EventType == HeroEvent.Type.FlyStraight) { }
+
+                else if (he.EventType == HeroEvent.Type.FlyUp)
                     ImgChange = Globals.MediumImageSize * 2;
                 else if (he.EventType == HeroEvent.Type.ChangeImage)
                 {
                     ImgStep++;
                     if (ImgStep < 3)
-                    {                        
+                    {
                         ImgChange = Globals.MediumImageSize * ImgStep;
-                    } else
+                    }
+                    else
                     {
                         ImgChange = Globals.Reset;
                     }
 
                 }
-
+                
             }
         }
 
@@ -105,9 +111,9 @@ namespace TileBasedGame
             _srcRect.x = ImgChange;
             _srcRect.y = ImgChangeY;
 
-            //SDL.SDL_RenderCopy(Program.Window.Renderer, GameObject.Img.ImageTexture, ref _srcRect, ref _rect);
-            SDL.SDL_RenderCopy(Program.Window.Renderer, Img.ImageTexture, ref _srcRect, ref _rect);
-
+            //SDL.SDL_RenderCopy(Program.Window.Renderer, Img.ImageTexture, ref _srcRect, ref _rect);
+            Img.render(ref _srcRect, ref _rect);
+            
             SDL.SDL_SetRenderDrawColor(Program.Window.Renderer, 255, 255, 255, 255);
         }
     }

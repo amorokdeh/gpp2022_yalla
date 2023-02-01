@@ -27,25 +27,35 @@ namespace TileBasedGame
             {
                 if (colObject.GameObject.PosX + (colObject.GameObject.Width) > GameObject.PosX && colObject.GameObject.PosX < GameObject.PosX + (GameObject.Width))
                 {
+
                     if (this.Role == "good" && colObject.Role == "bad" || this.Role == "bad" && colObject.Role == "good")
                     {
                         MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Collision, GameObject));
                     }
 
-                    if (colObject.Role == "block" && this.Role == "good")
+                    if ((this.Role == "bad" && colObject.Role == "bad") || colObject.Role == "block" || colObject.Role == "spike")
                     {
                         collideDirection(colObject);
-                        
+                    }
+
+                    //collide with spike from top
+                    if (this.Role == "good" && colObject.Role == "spike")
+                    {
+                        if (collideDirection(colObject) == "bottom") {
+                            MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Collision, GameObject));
+                        }
+
                     }
                 }
             }
 
         }
 
-        public void collideDirection(CollisionComponent colObject)
+        public string collideDirection(CollisionComponent colObject)
         {
             GameObject block = colObject.GameObject;
             GameObject ob = GameObject;
+            string direction = "";
 
             // Calculate the distance between the player and the object on the x and y axis
             float xDistance = (ob.PosX + (ob.Width / 2)) - (block.PosX + (block.Width / 2));
@@ -63,15 +73,17 @@ namespace TileBasedGame
             {
                 if (xDistance > 0)
                 {
-                    // Colliding from the right
-                    //ob.PosX = block.PosX + block.Width + dis;
+                    // Colliding from the left
                     newX = block.PosX + block.Width + dis;
+                    direction = "left";
+                    MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.ChangeDirection));
                 }
                 else
                 {
-                    // Colliding from the left
-                    //ob.PosX = block.PosX - ob.Width - dis;
+                    // Colliding from the right
                     newX = block.PosX - ob.Width - dis;
+                    direction = "right";
+                    MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.ChangeDirection));
                 }
             }
             // Check if player is colliding from the top or bottom
@@ -79,23 +91,23 @@ namespace TileBasedGame
             {
                 if (yDistance > 0)
                 {
-                    // Colliding from the bottom
-                    //ob.PosY = block.PosY + block.Height + dis;
+                    // Colliding from the top
                     newY = block.PosY + block.Height + dis;
+                    ob.CurrentVelY = 0;
+                    direction = "top";
                 }
                 else
                 {
-                    // Colliding from the top
-                    //ob.PosY = block.PosY - ob.Height - dis;
+                    // Colliding from the bottom
                     newY = block.PosY - ob.Height - dis;
-                    ob.CurrentVelY = 0;
+                    direction = "bottom";
                 }
 
             }
 
 
             MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.NeutralCollision, GameObject, newX, newY));
-
+            return direction;
         }
     }
 }

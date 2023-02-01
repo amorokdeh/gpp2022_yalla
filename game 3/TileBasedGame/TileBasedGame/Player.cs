@@ -15,7 +15,7 @@ namespace TileBasedGame
         {
             Program.Game._maps.currentMap.Tiles.Add(this);
         }
-
+        
         public void Reset()
         {
             Lives = Globals.Lives;

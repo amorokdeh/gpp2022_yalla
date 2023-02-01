@@ -18,7 +18,7 @@ namespace TileBasedGame
             this.Name = name;
 
             VelY = 0;
-            VelX = 100;
+            VelX = 0;
         }
     }
 }

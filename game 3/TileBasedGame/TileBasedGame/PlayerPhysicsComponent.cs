@@ -62,6 +62,9 @@ namespace TileBasedGame
 
         public void moveLeft()
         {
+            if(GameObject.CurrentVelX == 0)
+                GameObject.direction = "left";
+
             if (GameObject.CurrentVelX >= 0)
             {
                 GameObject.CurrentVelX -= GameObject.VelX;
@@ -70,6 +73,9 @@ namespace TileBasedGame
 
         public void moveRight()
         {
+            if (GameObject.CurrentVelX == 0)
+                GameObject.direction = "right";
+
             if (GameObject.CurrentVelX <= 0)
             {
                 GameObject.CurrentVelX += GameObject.VelX;

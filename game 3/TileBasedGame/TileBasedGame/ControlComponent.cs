@@ -139,7 +139,7 @@ namespace TileBasedGame
                 }
                 else if (y > movingPoint) // Move character down
                 {
-                    MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoDown));
+                    //MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoDown));
                     _axisY = "down";
                 }
                 else

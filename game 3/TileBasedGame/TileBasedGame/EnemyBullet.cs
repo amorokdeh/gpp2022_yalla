@@ -16,8 +16,8 @@ namespace TileBasedGame
         {
             GameObject = enemy;
             this.Name = name;
-            //VelY = -10;
-            VelY = 200;
+            VelY = 0;
+            VelX = 0;
         }
 
     }
