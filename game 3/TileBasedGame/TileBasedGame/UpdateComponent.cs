@@ -56,6 +56,31 @@ namespace TileBasedGame
             GameObject.PosY = heroEv.NewY;
             GameObject.PosX = heroEv.NewX;
         }
+
+        public void changeDirection()
+        {
+            if (GameObject.direction == "left")
+            {
+                moveRight();
+            }
+            else if (GameObject.direction == "right")
+            {
+                moveLeft();
+            }
+        }
+
+        public void moveLeft()
+        {
+            GameObject.direction = "left";
+            GameObject.VelX *= -1;
+
+        }
+
+        public void moveRight()
+        {
+            GameObject.direction = "right";
+            GameObject.VelX *= -1;
+        }
     }
 }
 

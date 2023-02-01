@@ -102,13 +102,13 @@ namespace TileBasedGame
         public GameObject BuildShip(GameObject ship)
         {
             ship = _objects.CreateGameShip("ship", Globals.MediumImageSize, Globals.BigImageSize);
-            ship.AddComponent(_physics.CreateEnemyComponent());
+            ship.AddComponent(_physics.CreateComponent());
             ship.AddComponent(_rendering.CreateComponent(_loader.shipImg, Globals.MediumImageSize, Globals.BigImageSize, Globals.MediumImageSize, Globals.BigImageSize));
             ship.AddComponent(_ai.CreateComponent());
             Component coc = _collisions.CreateComponent("bad");
             ship.AddComponent(coc);
             ship.AddComponent(_animations.CreateComponent());
-            ship.AddComponent(_shootings.CreateEnemyComponent());
+            //ship.AddComponent(_shootings.CreateEnemyComponent());
             Component uc = _updates.CreateEnemyComponent();
             ship.AddComponent(uc);
 
@@ -122,7 +122,7 @@ namespace TileBasedGame
         public GameObject BuildUfo(GameObject ufo)
         {
             ufo = _objects.CreateGameUfo("ufo", Globals.MediumImageSize, Globals.BigImageSize);
-            ufo.AddComponent(_physics.CreateEnemyComponent());
+            ufo.AddComponent(_physics.CreateComponent());
             Component rc = _rendering.CreateComponent(_loader.ufoImg, Globals.MediumImageSize, Globals.BigImageSize, Globals.MediumImageSize, Globals.BigImageSize);
             ufo.AddComponent(rc);
             ufo.AddComponent(_ai.CreateComponent());

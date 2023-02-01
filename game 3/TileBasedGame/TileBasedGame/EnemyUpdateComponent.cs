@@ -13,6 +13,35 @@ namespace TileBasedGame
             
         }
 
+        public override void OnEvent(Event e)
+        {
+            HeroEvent he = e as HeroEvent;
+            if (he == null)
+                return;
+            if (he.EventType == HeroEvent.Type.Collision)
+            {
+                if (he.GameObject == this.GameObject)
+                {
+                    hero = he;
+                }
+            }
+            else if (he.EventType == HeroEvent.Type.NeutralCollision)
+            {
+                if (he.GameObject == this.GameObject)
+                {
+                    UpdatePosition(he);
+                }
+            }
+            else if (he.EventType == HeroEvent.Type.ChangeDirection)
+            {
+
+                if (he.GameObject == this.GameObject)
+                {
+                    changeDirection();
+                }
+
+            }
+        }
 
 
         public override void Update()

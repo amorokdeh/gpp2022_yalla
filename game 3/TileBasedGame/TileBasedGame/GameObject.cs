@@ -24,6 +24,7 @@ namespace TileBasedGame
         public float VelY;
         public float CurrentVelY;
         public string direction;
+        public int jumpPossibility;
 
 
         public GameObject(string name, int w, int h)
@@ -35,6 +36,7 @@ namespace TileBasedGame
             CurrentVelX = Globals.Reset;
             CurrentVelY = Globals.Reset;
             direction = "right";
+            jumpPossibility = 2;
 
             this._name = name;
         }

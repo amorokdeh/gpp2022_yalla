@@ -76,14 +76,14 @@ namespace TileBasedGame
                     // Colliding from the left
                     newX = block.PosX + block.Width + dis;
                     direction = "left";
-                    MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.ChangeDirection));
+                    MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.ChangeDirection, GameObject));
                 }
                 else
                 {
                     // Colliding from the right
                     newX = block.PosX - ob.Width - dis;
                     direction = "right";
-                    MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.ChangeDirection));
+                    MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.ChangeDirection, GameObject));
                 }
             }
             // Check if player is colliding from the top or bottom
@@ -101,6 +101,7 @@ namespace TileBasedGame
                     // Colliding from the bottom
                     newY = block.PosY - ob.Height - dis;
                     direction = "bottom";
+                    MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.JumpAble, GameObject));
                 }
 
             }

@@ -15,6 +15,8 @@ namespace TileBasedGame
         {
             ExplodingImg = Program.Game._loader.explodingImg;
             VelY = 100;
+            VelX= 50;
+            direction = "right";
             Program.Game._maps.currentMap.Tiles.Add(this);
         }
 

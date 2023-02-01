@@ -72,7 +72,6 @@
     <Compile Include="EndDoor.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="EnemyBullet.cs" />
-    <Compile Include="EnemyPhysicsComponent.cs" />
     <Compile Include="EnemyShootingComponent.cs" />
     <Compile Include="EnemyUpdateComponent.cs" />
     <Compile Include="Game.cs" />

@@ -38,12 +38,6 @@ namespace TileBasedGame
             this._physicsComponents.Add(pc);
             return pc;
         }
-        internal Component CreateEnemyComponent()
-        {
-            EnemyPhysicsComponent pc = new EnemyPhysicsComponent(this);
-            this._physicsComponents.Add(pc);
-            return pc;
-        }
 
         public void Move(float deltaT)
         {

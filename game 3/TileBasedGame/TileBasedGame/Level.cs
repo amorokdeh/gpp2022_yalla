@@ -35,7 +35,9 @@ namespace TileBasedGame
             this._player = Program.Game.Player;
             LevelManager.ControlQuitRequest = false;
             Rand = new Random();
-
+            ProduceEnemies(1);
+            ProduceEnemies(2);
+            ProduceEnemies(3);
 
 
             while (true)
@@ -61,7 +63,7 @@ namespace TileBasedGame
                 //Console.WriteLine(deltaTime);
                 //Console.WriteLine(avDeltaTime);
 
-                ProduceEnemies(_avDeltaTime);
+                //ProduceEnemies(_avDeltaTime);
                 //produceBullets(avDeltaTime);
                 // produceBulletEnemy(avDeltaTime);
 

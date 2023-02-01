@@ -26,6 +26,11 @@ namespace TileBasedGame
                 moveLeft();
             if (he.EventType == HeroEvent.Type.GoRight)
                 moveRight();
+            if (he.EventType == HeroEvent.Type.JumpAble)
+                if (he.GameObject == this.GameObject)
+                {
+                    jumpAble();
+                }
         }
         public override void Move(float deltaT)
         {
@@ -48,8 +53,12 @@ namespace TileBasedGame
         }
 
         public void moveUp() {
-            
+
+            if (GameObject.jumpPossibility > 0)
+            {
                 GameObject.CurrentVelY = Globals.JUMP_VELOCITY;
+                GameObject.jumpPossibility--;
+            }
             
         }
         public void moveDown()
@@ -80,6 +89,9 @@ namespace TileBasedGame
             {
                 GameObject.CurrentVelX += GameObject.VelX;
             }
+        }
+        public void jumpAble() {
+            GameObject.jumpPossibility = 2;
         }
 
     }
