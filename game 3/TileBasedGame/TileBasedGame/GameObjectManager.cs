@@ -27,9 +27,11 @@ namespace TileBasedGame
             return gameObject;
         }
 
-        public GameObject CreateGameUfo(string name, int w, int h)
+        public GameObject CreateGameUfo(string name, int w, int h, int x, int y)
         {
             GameObject gameObject = new Ufo(name, w, h);
+            gameObject.PosX = x;
+            gameObject.PosY = y;
             _gameObjects.Add(gameObject);
             return gameObject;
         }

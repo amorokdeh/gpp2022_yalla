@@ -284,9 +284,18 @@ namespace TileBasedGame
         }
 
         public void buildEnemies() {
-
+            int i = 0;
             foreach (Enemy enemy in _enemiesData) {
-                Program.Game.BuildShip(enemy);
+                if (i == 0)
+                {
+                    Program.Game.BuildShip(enemy);
+                    i++;
+                }
+                else {
+                    Program.Game.BuildUfo(enemy);
+                    i = 0;
+                }
+                
             }
         }
 

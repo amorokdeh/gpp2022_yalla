@@ -33,7 +33,7 @@ namespace TileBasedGame
                         MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Collision, GameObject));
                     }
 
-                    if ((this.Role == "bad" && colObject.Role == "bad") || colObject.Role == "block" || colObject.Role == "spike")
+                    if (colObject.Role == "block" || colObject.Role == "spike")
                     {
                         collideDirection(colObject);
                     }

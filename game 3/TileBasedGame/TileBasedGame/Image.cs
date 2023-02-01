@@ -47,11 +47,5 @@ namespace TileBasedGame
 
 
         }
-
-
-        public void render(ref SDL.SDL_Rect srcrect, ref SDL.SDL_Rect dstrect)
-        {
-            SDL.SDL_RenderCopyEx(Program.Window.Renderer, ImageTexture, ref srcrect, ref dstrect, rotateAngle, IntPtr.Zero, flipped);
-        }
     }
 }

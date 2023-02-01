@@ -39,15 +39,15 @@ namespace TileBasedGame
         public override void Update()
         {
             Console.WriteLine("ENEMY");
-            Program.Game.BulletReloadable = true;
             Program.Game.Player.Score++;
             GameObject.Died = true;
-
+            GameObject.VelY= 0;
+            GameObject.VelX= 0;
             //TODO überarbeiten
             //Enemy enemy = (Enemy)GameObject;
             //enemy.Img = enemy.ExplodingImg;
 
-            MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.EnemyDead));         
+            MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.EnemyDead, GameObject));         
         }
 
         public void changeDirection()

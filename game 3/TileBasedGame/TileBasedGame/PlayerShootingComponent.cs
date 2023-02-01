@@ -16,15 +16,15 @@ namespace TileBasedGame
         public override void Shoot(float deltaTime)
         {
             BulletGap += deltaTime;
-            if ((BulletGap > BulletGapSize) || (Program.Game.BulletReloadable))
+            if ((BulletGap > BulletGapSize))
             {
                 Bullet = (Bullet)Program.Game.RequestPlayerBullet(GameObject);
                 Console.WriteLine(Bullet.Active);
 
                 MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Shooting));
 
-                Bullet.PosY = Bullet.GameObject.PosY;
-                Bullet.PosX = Bullet.GameObject.PosX;
+                Bullet.PosY = Bullet.GameObject.PosY + (Bullet.GameObject.Height / 3);
+                Bullet.PosX = Bullet.GameObject.PosX + (Bullet.GameObject.Width / 3);
 
                 if (GameObject.direction == "right")
                 {
@@ -38,7 +38,6 @@ namespace TileBasedGame
 
 
                 BulletGap = Globals.Reset;
-                Program.Game.BulletReloadable = false;
             }
 
         }

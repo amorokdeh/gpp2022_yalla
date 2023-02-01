@@ -27,7 +27,6 @@ namespace TileBasedGame
         public Cleaner _cleaner = new Cleaner();
 
 
-        public bool BulletReloadable = false;
         public static bool Quit;
         public uint Ticks = SDL.SDL_GetTicks();
         public Player Player;
@@ -122,7 +121,7 @@ namespace TileBasedGame
         //Enemy
         public GameObject BuildUfo(GameObject ufo)
         {
-            ufo = _objects.CreateGameUfo("ufo", Globals.MediumImageSize, Globals.BigImageSize);
+            ufo = _objects.CreateGameUfo("ufo", Globals.MediumImageSize, Globals.BigImageSize, (int)ufo.PosX, (int)ufo.PosY);
             ufo.AddComponent(_physics.CreateComponent());
             Component rc = _rendering.CreateComponent(_loader.ufoImg, Globals.MediumImageSize, Globals.BigImageSize, Globals.MediumImageSize, Globals.BigImageSize);
             ufo.AddComponent(rc);
@@ -133,6 +132,7 @@ namespace TileBasedGame
             ufo.AddComponent(ac);
             Component uc = _updates.CreateEnemyComponent();
             ufo.AddComponent(uc);
+            ufo.Active = true;
 
             coc.AddObserver(uc);
             ac.AddObserver(rc);
@@ -143,9 +143,9 @@ namespace TileBasedGame
 
         public GameObject BuildPlayerBullet(GameObject bullet, GameObject player)
         {
-            bullet = _objects.CreatePlayerBullet("playerBullet", player, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier);
+            bullet = _objects.CreatePlayerBullet("playerBullet", player, Globals.MediumImageSize, Globals.MediumImageSize);
             bullet.AddComponent(_physics.CreateComponent());
-            bullet.AddComponent(_rendering.CreateComponent(_loader.bulletImg, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
+            bullet.AddComponent(_rendering.CreateComponent(_loader.enemyBulletImg, Globals.MediumImageSize, Globals.MediumImageSize));
             bullet.AddComponent(_ai.CreateComponent());
             Component coc = _collisions.CreateComponent("good");
             bullet.AddComponent(coc);

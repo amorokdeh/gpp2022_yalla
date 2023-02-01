@@ -10,7 +10,7 @@ namespace TileBasedGame
     {
         public static int Lives = 100;
 
-        public static int Velocity = 100;
+        public static int Velocity = 120;
 
         public static int BigImageSize = 64;
         public static int VeryBigImageSize = 128;

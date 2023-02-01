@@ -14,6 +14,8 @@ namespace TileBasedGame
         private int _dstX = 0;
 
         public Image Img = new Image();
+        public SDL.SDL_RendererFlip flipped = SDL.SDL_RendererFlip.SDL_FLIP_NONE; // to flip the image
+        public int rotateAngle = 0;
 
         public int ImgChange = Globals.Reset;
         public int ImgChangeY = Globals.Reset;
@@ -68,21 +70,25 @@ namespace TileBasedGame
                 return;
             if (he.GameObject == this.GameObject)
             {
-                
+
                 if (he.EventType == HeroEvent.Type.FlyLeft)
                 {
                     ImgChange = Globals.MediumImageSize * 3;
-                    Img.flipped = SDL.SDL_RendererFlip.SDL_FLIP_HORIZONTAL;
+                    flipped = SDL.SDL_RendererFlip.SDL_FLIP_HORIZONTAL;
                 }
                 else if (he.EventType == HeroEvent.Type.FlyRight)
                 {
                     ImgChange = Globals.MediumImageSize * 3;
-                    Img.flipped = SDL.SDL_RendererFlip.SDL_FLIP_NONE;
+                    flipped = SDL.SDL_RendererFlip.SDL_FLIP_NONE;
                 }
                 else if (he.EventType == HeroEvent.Type.FlyStraight) { }
 
                 else if (he.EventType == HeroEvent.Type.FlyUp)
                     ImgChange = Globals.MediumImageSize * 2;
+                else if (he.EventType == HeroEvent.Type.EnemyDead) { 
+                    rotateAngle= 90;
+                    GameObject.PosY += 32;
+                }
                 else if (he.EventType == HeroEvent.Type.ChangeImage)
                 {
                     ImgStep++;
@@ -112,7 +118,7 @@ namespace TileBasedGame
             _srcRect.y = ImgChangeY;
 
             //SDL.SDL_RenderCopy(Program.Window.Renderer, Img.ImageTexture, ref _srcRect, ref _rect);
-            Img.render(ref _srcRect, ref _rect);
+            SDL.SDL_RenderCopyEx(Program.Window.Renderer, Img.ImageTexture, ref _srcRect, ref _rect, rotateAngle, IntPtr.Zero, flipped);
             
             SDL.SDL_SetRenderDrawColor(Program.Window.Renderer, 255, 255, 255, 255);
         }
