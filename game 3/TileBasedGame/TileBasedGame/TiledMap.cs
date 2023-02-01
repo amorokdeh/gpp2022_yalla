@@ -286,7 +286,7 @@ namespace TileBasedGame
         public void buildEnemies() {
 
             foreach (Enemy enemy in _enemiesData) {
-            
+                Program.Game.BuildShip(enemy);
             }
         }
 

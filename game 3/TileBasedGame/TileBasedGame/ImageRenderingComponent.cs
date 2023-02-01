@@ -63,12 +63,12 @@ namespace TileBasedGame
 
         public override void OnEvent(Event e)
         {
-            //Console.WriteLine("Change Image");
             HeroEvent he = e as HeroEvent;
-            if (he.GameObject == GameObject)
+            if (he == null)
+                return;
+            if (he.GameObject == this.GameObject)
             {
-                if (he == null)
-                    return;
+                
                 if (he.EventType == HeroEvent.Type.FlyLeft)
                 {
                     ImgChange = Globals.MediumImageSize * 3;

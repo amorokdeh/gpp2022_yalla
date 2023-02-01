@@ -42,13 +42,7 @@ namespace TileBasedGame
                 MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.FlyStraight, GameObject));
             }
             
-            _gap += deltaT;
-
-            if (_gap > _gapSize)
-            {
-                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.ChangeImage, GameObject));
-                _gap = 0;
-            }
+            
 
         }
     }

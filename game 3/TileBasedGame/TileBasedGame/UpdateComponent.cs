@@ -21,16 +21,13 @@ namespace TileBasedGame
             HeroEvent he = e as HeroEvent;
             if (he == null)
                 return;
-            if (he.EventType == HeroEvent.Type.Collision)
+            if (he.GameObject == this.GameObject)
             {
-                if (he.GameObject == this.GameObject)
+                if (he.EventType == HeroEvent.Type.Collision)
                 {
                     hero = he;
                 }
-            }
-            else if (he.EventType == HeroEvent.Type.NeutralCollision)
-            {
-                if (he.GameObject == this.GameObject)
+                else if (he.EventType == HeroEvent.Type.NeutralCollision)
                 {
                     UpdatePosition(he);
                 }
@@ -55,31 +52,6 @@ namespace TileBasedGame
         {
             GameObject.PosY = heroEv.NewY;
             GameObject.PosX = heroEv.NewX;
-        }
-
-        public void changeDirection()
-        {
-            if (GameObject.direction == "left")
-            {
-                moveRight();
-            }
-            else if (GameObject.direction == "right")
-            {
-                moveLeft();
-            }
-        }
-
-        public void moveLeft()
-        {
-            GameObject.direction = "left";
-            GameObject.VelX *= -1;
-
-        }
-
-        public void moveRight()
-        {
-            GameObject.direction = "right";
-            GameObject.VelX *= -1;
         }
     }
 }

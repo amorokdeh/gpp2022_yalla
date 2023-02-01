@@ -18,9 +18,11 @@ namespace TileBasedGame
             return gameObject;
         }
 
-        public GameObject CreateGameShip(string name, int w, int h)
+        public GameObject CreateGameShip(string name, int w, int h, int x, int y)
         {
             GameObject gameObject = new Ship(name, w, h);
+            gameObject.PosX= x;
+            gameObject.PosY= y;
             _gameObjects.Add(gameObject);
             return gameObject;
         }

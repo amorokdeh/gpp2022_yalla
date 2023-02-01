@@ -101,7 +101,7 @@ namespace TileBasedGame
         //Enemy
         public GameObject BuildShip(GameObject ship)
         {
-            ship = _objects.CreateGameShip("ship", Globals.MediumImageSize, Globals.BigImageSize);
+            ship = _objects.CreateGameShip("ship", Globals.MediumImageSize, Globals.BigImageSize, (int) ship.PosX, (int) ship.PosY);
             ship.AddComponent(_physics.CreateComponent());
             ship.AddComponent(_rendering.CreateComponent(_loader.shipImg, Globals.MediumImageSize, Globals.BigImageSize, Globals.MediumImageSize, Globals.BigImageSize));
             ship.AddComponent(_ai.CreateComponent());
@@ -111,6 +111,7 @@ namespace TileBasedGame
             //ship.AddComponent(_shootings.CreateEnemyComponent());
             Component uc = _updates.CreateEnemyComponent();
             ship.AddComponent(uc);
+            ship.Active = true;
 
             coc.AddObserver(uc);
 
