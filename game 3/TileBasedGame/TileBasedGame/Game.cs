@@ -74,8 +74,8 @@ namespace TileBasedGame
         {
             Image img = new Image();
             switch (type) {
-                case 1: img = _loader.shipImg; break;
-                case 2: img = _loader.ufoImg; break;
+                case 1: img = _loader.enemy1Img; break;
+                case 2: img = _loader.enemy2Img; break;
             }
             enemy = _objects.CreateGameEnemy("Enemy", Globals.MediumImageSize, Globals.BigImageSize, (int)enemy.PosX, (int)enemy.PosY);
             enemy.AddComponent(_physics.CreateComponent());
@@ -97,7 +97,7 @@ namespace TileBasedGame
         {
             bullet = _objects.CreatePlayerBullet("playerBullet", player, Globals.MediumImageSize, Globals.MediumImageSize);
             bullet.AddComponent(_physics.CreateComponent());
-            bullet.AddComponent(_rendering.CreateComponent(_loader.enemyBulletImg, Globals.MediumImageSize, Globals.MediumImageSize));
+            bullet.AddComponent(_rendering.CreateComponent(_loader.bulletImg, Globals.MediumImageSize, Globals.MediumImageSize));
             bullet.AddComponent(_ai.CreateComponent());
             Component coc = _collisions.CreateComponent("good");
             bullet.AddComponent(coc);
@@ -115,7 +115,7 @@ namespace TileBasedGame
         {
             bullet = _objects.CreateEnemyBullet("enemyBullet", enemy, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier);
             bullet.AddComponent(_physics.CreateComponent());
-            bullet.AddComponent(_rendering.CreateComponent(_loader.enemyBulletImg, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
+            bullet.AddComponent(_rendering.CreateComponent(_loader.bulletImg, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
             bullet.AddComponent(_ai.CreateComponent());
             Component coc = _collisions.CreateComponent("bad");
             bullet.AddComponent(coc);

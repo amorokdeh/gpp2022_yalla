@@ -9,13 +9,22 @@ namespace TileBasedGame
 {
     class AudioManager : Observer
     {
-        private AudioComponent _audioC = new AudioComponent();
-        private int _volumMin = 0;
-        private int _volumMax = 250;
+        private List<AudioComponent> _audioC = new List<AudioComponent>();
+
+        private int volumeMusic = 50;
+        private int volumeSound = 30;
+
+        public int _volumMin = 0;
+        public int _volumMax = 250;
+
         public AudioManager()
         {
+            // Initialize SDL_mixer
+            if (SDL_mixer.Mix_OpenAudio(44100, SDL_mixer.MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+            {
+                Console.WriteLine("SDL_mixer could not initialize! SDL_mixer Error: {0}", SDL.SDL_GetError());
+            }
             MessageBus.Register(this);
-            _audioC.Setup();
         }
 
         public void OnEvent(Event e)
@@ -71,14 +80,17 @@ namespace TileBasedGame
                 RunMusic("Level3 music");
             }
         }
-
+        public void AddAudio(AudioComponent au)
+        {
+            _audioC.Add(au);
+        }
         public void RunSound(string sound)
         {
-            _audioC.RunSound(Search(sound));
+            Search(sound).RunSound();
         }
         public void RunMusic(string music)
         {
-            _audioC.RunMusic(Search(music));
+            Search(music).RunMusic();
         }
         public void StopMusic()
         {
@@ -89,45 +101,53 @@ namespace TileBasedGame
             if (volume > _volumMax) { volume = _volumMin; }
             else if (volume < _volumMin) { volume = _volumMax; }
 
-            _audioC.ChangeVolumeMusic(volume);
+            volumeMusic = volume;
+            foreach (var audio in _audioC) {
+                audio.ChangeVolumeMusic(volume);
+            }
         }
         public int GetVolumeMusic()
         {
-            return _audioC.volumeMusic;
+            return volumeMusic;
         }
         public void ChangeVolumeSound(int volume)
         {
             if (volume > _volumMax) { volume = _volumMin; }
             else if (volume < _volumMin) { volume = _volumMax; }
 
-            _audioC.ChangeVolumeSound(volume);
+            volumeSound = volume;
+            foreach (var audio in _audioC){
+                audio.ChangeVolumeSound(volume);
+            }
         }
         public int GetVolumeSound()
         {
-            return _audioC.volumeSound;
+            return volumeSound;
         }
         public void CleanUp()
         {
-            _audioC.cleanUp();
+            foreach (var audio in _audioC){
+                audio.clean();
+            }
         }
-        public IntPtr Search(string sound)
+        public AudioComponent Search(string sound)
         {
             switch (sound)
             {
-                case "Menu buttons": return _audioC.MenuButtons;
-                case "Menu click": return _audioC.MenuClick;
-                case "Menu music": return _audioC.MenuMusic;
-                case "Level1 music": return _audioC.Level1Music;
-                case "Level2 music": return _audioC.Level2Music;
-                case "Level3 music": return _audioC.Level3Music;
-                case "Game Over": return _audioC.GameOver;
-                case "Shooting": return _audioC.Shooting;
-                case "Shooting enemy": return _audioC.ShootingEnemy;
-                case "Enemy dead": return _audioC.ExplodEnemy;
-                case "Player dead": return _audioC.ExplodPlayer;
+                case "Menu buttons": return Program.Game._loader.MenuButtons;
+                case "Menu click": return Program.Game._loader.MenuClick;
+                case "Menu music": return Program.Game._loader.MenuMusic;
+                case "Level1 music": return Program.Game._loader.Level1Music;
+                case "Level2 music": return Program.Game._loader.Level2Music;
+                case "Level3 music": return Program.Game._loader.Level3Music;
+                case "Game Over": return Program.Game._loader.GameOver;
+                case "Shooting": return Program.Game._loader.Shooting;
+                case "Shooting enemy": return Program.Game._loader.ShootingEnemy;
+                case "Enemy dead": return Program.Game._loader.ExplodEnemy;
+                case "Player dead": return Program.Game._loader.ExplodPlayer;
 
             }
-            return IntPtr.Zero;
+            return null;
         }
 
     }
