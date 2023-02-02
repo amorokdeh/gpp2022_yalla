@@ -69,7 +69,7 @@ namespace TileBasedGame
             _txt.SetUp();
             _txt.LoadText(1);
             //limit fps
-            LimitedFPS = 30;
+            LimitedFPS = 60;
             DesiredDelta = 1000 / LimitedFPS;
 
         }

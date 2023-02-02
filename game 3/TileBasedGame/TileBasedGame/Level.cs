@@ -15,6 +15,7 @@ namespace TileBasedGame
         private float _deltaTime;
         private float _avDeltaTime = -1;
         public Player _player;
+        float _gap = 0;
 
         public float Gap = Globals.Reset;
         public float GapSize = Globals.EnemyGap;
@@ -40,9 +41,6 @@ namespace TileBasedGame
             while (true)
             {
                 rounds = 0;
-                if (this._player.CurrentVelY < 500) {
-                    this._player.CurrentVelY += Globals.Gravity;
-                }
                 
 
                 Program.Window.CalculateFPS(); //frame limit start calculating here
@@ -63,6 +61,17 @@ namespace TileBasedGame
                 //ProduceEnemies(_avDeltaTime);
                 //produceBullets(avDeltaTime);
                 // produceBulletEnemy(avDeltaTime);
+                _gap += _avDeltaTime;
+
+                if (_gap > Globals.AnimationGap)
+                {
+                    if (this._player.CurrentVelY < 500)
+                    {
+                        this._player.CurrentVelY += Globals.Gravity;
+                    }
+                    _gap = 0;
+                }
+
 
                 Program.Game.Shoot(_avDeltaTime);
                 Program.Game.ControlEnemy();

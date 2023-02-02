@@ -37,15 +37,6 @@ namespace TileBasedGame
 
         }
 
-
-
-
-
-        public void BuildBackground(string source)
-        {
-            
-        }
-
         public GameObject BuildPlayer()
         {
             Player = _objects.CreateGamePlayer("player", Globals.MediumImageSize, Globals.BigImageSize);
@@ -302,12 +293,8 @@ namespace TileBasedGame
 
         //Game loop
         public void Run() {
-            //BuildBackground("level 1");
             Player = (Player) BuildPlayer();
-            //mapManager.loadMap("Level 1");
-            //mapManager.createMap();
-            _loader.loadImages();
-            _loader.loadJson();
+            _loader.load();
             _levels.Run();
         }
 

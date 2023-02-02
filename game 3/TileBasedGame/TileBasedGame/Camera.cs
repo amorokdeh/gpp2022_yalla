@@ -25,7 +25,21 @@ namespace TileBasedGame
 
         public void UpdateCamera(GameObject player)
         {
-            PosX = player.PosX;
+            int view = Program.Window.Width * 10 / 100;
+            int camSpeed = 25;
+            if (player.direction == "right" && PosX <= player.PosX + view)
+            {
+                PosX += camSpeed;
+                if (PosX > player.PosX + view)
+                    PosX = player.PosX + view;
+            }
+            else if (player.direction == "left" && PosX >= player.PosX - view)
+            {
+                PosX -= camSpeed;
+                if (PosX < player.PosX - view)
+                    PosX = player.PosX - view;
+            }
+            
             PosY = player.PosY;
 
             //Fix position
