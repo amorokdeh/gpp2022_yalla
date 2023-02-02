@@ -70,46 +70,26 @@ namespace TileBasedGame
 
 
         //Enemy
-        public GameObject BuildShip(GameObject ship)
+        public GameObject BuildEnemy(GameObject enemy, int type)
         {
-            ship = _objects.CreateGameShip("ship", Globals.MediumImageSize, Globals.BigImageSize, (int) ship.PosX, (int) ship.PosY);
-            ship.AddComponent(_physics.CreateComponent());
-            ship.AddComponent(_rendering.CreateComponent(_loader.shipImg, Globals.MediumImageSize, Globals.BigImageSize, Globals.MediumImageSize, Globals.BigImageSize));
-            ship.AddComponent(_ai.CreateComponent());
+            Image img = new Image();
+            switch (type) {
+                case 1: img = _loader.shipImg; break;
+                case 2: img = _loader.ufoImg; break;
+            }
+            enemy = _objects.CreateGameEnemy("Enemy", Globals.MediumImageSize, Globals.BigImageSize, (int)enemy.PosX, (int)enemy.PosY);
+            enemy.AddComponent(_physics.CreateComponent());
+            enemy.AddComponent(_rendering.CreateComponent(img, Globals.MediumImageSize, Globals.BigImageSize, Globals.MediumImageSize, Globals.BigImageSize));
+            enemy.AddComponent(_ai.CreateComponent());
             Component coc = _collisions.CreateComponent("bad");
-            ship.AddComponent(coc);
-            ship.AddComponent(_animations.CreateComponent());
-            //ship.AddComponent(_shootings.CreateEnemyComponent());
+            enemy.AddComponent(coc);
+            enemy.AddComponent(_animations.CreateComponent());
             Component uc = _updates.CreateEnemyComponent();
-            ship.AddComponent(uc);
-            ship.Active = true;
-
+            enemy.AddComponent(uc);
+            enemy.Active = true;
             coc.AddObserver(uc);
 
-            return ship;
-
-        }
-
-        //Enemy
-        public GameObject BuildUfo(GameObject ufo)
-        {
-            ufo = _objects.CreateGameUfo("ufo", Globals.MediumImageSize, Globals.BigImageSize, (int)ufo.PosX, (int)ufo.PosY);
-            ufo.AddComponent(_physics.CreateComponent());
-            Component rc = _rendering.CreateComponent(_loader.ufoImg, Globals.MediumImageSize, Globals.BigImageSize, Globals.MediumImageSize, Globals.BigImageSize);
-            ufo.AddComponent(rc);
-            ufo.AddComponent(_ai.CreateComponent());
-            Component coc = _collisions.CreateComponent("bad");
-            ufo.AddComponent(coc);
-            Component ac = _animations.CreateComponent();
-            ufo.AddComponent(ac);
-            Component uc = _updates.CreateEnemyComponent();
-            ufo.AddComponent(uc);
-            ufo.Active = true;
-
-            coc.AddObserver(uc);
-            ac.AddObserver(rc);
-
-            return ufo;
+            return enemy;
 
         }
 
@@ -199,17 +179,9 @@ namespace TileBasedGame
 
         }
 
-        public GameObject RequestEnemyUfo()
-        {
-            return _pool.RequestEnemyUfo();
-        }
         public void DespawnEnemy(GameObject enemy)
         {
             _pool.DespawnEnemy(enemy);
-        }
-        public GameObject RequestEnemyShip()
-        {
-            return _pool.RequestEnemyShip();
         }
 
         public GameObject RequestPlayerBullet(GameObject player)

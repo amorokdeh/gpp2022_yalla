@@ -22,7 +22,7 @@ namespace TileBasedGame
             Program.Game._maps.createMap();
         }
 
-
+        /*
         public override void ProduceEnemies(float deltaTime)
         {
             Gap += deltaTime;
@@ -45,5 +45,6 @@ namespace TileBasedGame
                 Gap = 0;
             }
         }
+        */
     }
 }

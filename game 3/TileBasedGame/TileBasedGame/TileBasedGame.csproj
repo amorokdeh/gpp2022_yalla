@@ -105,14 +105,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RenderingComponent.cs" />
     <Compile Include="RenderingManager.cs" />
-    <Compile Include="Ship.cs" />
     <Compile Include="ShootingComponent.cs" />
     <Compile Include="ShootingManager.cs" />
     <Compile Include="Spike.cs" />
     <Compile Include="Text.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="TiledMap.cs" />
-    <Compile Include="Ufo.cs" />
     <Compile Include="UpdateComponent.cs" />
     <Compile Include="UpdateManager.cs" />
     <Compile Include="Window.cs" />
@@ -131,115 +129,34 @@
     <None Include="font\lazy.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="image\MiniPixelPack3\Maps\Level1.json">
+    <None Include="image\Maps\Level1.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="image\MiniPixelPack3\Background.png">
+    <Content Include="image\Effects\Explosion.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="image\MiniPixelPack3\Effects\Explosion.png">
+    <Content Include="image\Enemies\Dude_Monster_Walk_6.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="image\MiniPixelPack3\Effects\Sparkle %2816 x 16%29.png">
+    <Content Include="image\Enemies\Owlet_Monster_Walk_6.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="image\MiniPixelPack3\Enemies\Alan.png">
+    <Content Include="image\Items\Circle_+_Square_+_Missile_pick-ups.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="image\MiniPixelPack3\Enemies\Bon_Bon .png">
+    <Content Include="image\Items\Power.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="image\MiniPixelPack3\Enemies\Dude_Monster_Walk_6.png">
+    <Content Include="image\Maps\PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="image\MiniPixelPack3\Enemies\Lips.png">
+    <Content Include="image\PlayerShip\player.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="image\MiniPixelPack3\Enemies\Owlet_Monster_Walk_6.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="image\MiniPixelPack3\Items\Circle_+_Square_+_Missile_pick-ups %2816 x 16%29.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="image\MiniPixelPack3\Items\Power_item %2816 x 16%29.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="image\MiniPixelPack3\level_2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="image\MiniPixelPack3\LICENSE.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="image\MiniPixelPack3\Maps\PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="image\MiniPixelPack3\mm.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="image\MiniPixelPack3\PlayerShip\Boosters.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="image\MiniPixelPack3\PlayerShip\Boosters_left.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="image\MiniPixelPack3\PlayerShip\Boosters_right.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="image\MiniPixelPack3\PlayerShip\player.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="image\MiniPixelPack3\PlayerShip\PlayerShip.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="image\MiniPixelPack3\Projectiles\enemyBullet.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="image\MiniPixelPack3\Projectiles\Enemy_projectile %2816 x 16%29.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="image\MiniPixelPack3\Projectiles\PlayerBeam.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="image\MiniPixelPack3\Projectiles\Player_charged_beam %2816 x 16%29.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="image\MiniPixelPack3\Projectiles\Player_charged_donut_shot %2816 x 16%29.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="image\MiniPixelPack3\Projectiles\Player_charged_square_shot %2816 x 16%29.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="image\MiniPixelPack3\Projectiles\Player_donut_shot %2816 x 16%29.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="image\MiniPixelPack3\Projectiles\Player_missile_shots %2816 x 16%29.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="image\MiniPixelPack3\Projectiles\Player_square_shot %2816 x 16%29.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="image\MiniPixelPack3\SpaceBG.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="image\MiniPixelPack3\UIobjects\GAME_OVER %2872 x 8%29.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="image\MiniPixelPack3\UIobjects\Item_held_box %2816 x 16%29.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="image\MiniPixelPack3\UIobjects\Number_font %288 x 8%29.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="image\MiniPixelPack3\UIobjects\Player_life_icon %2816 x 16%29.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="image\MiniPixelPack3\UIobjects\Power_+_charge_bars %28full + empty%29 %2832 x 16%29.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="image\MiniPixelPack3\UIobjects\START %2848 x 8%29.png">
+    <Content Include="image\Projectiles\Bullet.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="libfreetype-6.dll">
@@ -313,7 +230,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="image\MiniPixelPack3\Maps\PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.tsx">
+    <TypeScriptCompile Include="image\Maps\PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.tsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </TypeScriptCompile>
   </ItemGroup>

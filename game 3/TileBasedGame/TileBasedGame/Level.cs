@@ -115,7 +115,12 @@ namespace TileBasedGame
             }
         }
 
+        public virtual void buildMap()
+        {
 
+        }
+
+        /*
         public virtual void ProduceEnemies(float deltaTime)
         {
             
@@ -134,9 +139,6 @@ namespace TileBasedGame
                 Gap = Globals.Reset;
             }
         }
-
-        public virtual void buildMap() { 
-        
-        }
+        */
     }
 }

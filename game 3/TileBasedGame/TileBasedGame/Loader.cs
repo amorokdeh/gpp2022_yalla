@@ -38,19 +38,19 @@ namespace TileBasedGame
         public void loadAssets(int i) {
             switch (i)
             {
-                case 0: playerImg.LoadImage("image/MiniPixelPack3/PlayerShip/player.png"); break;
-                case 1: shipImg.LoadImage("image/MiniPixelPack3/Enemies/Owlet_Monster_Walk_6.png"); break;
-                case 2: ufoImg.LoadImage("image/MiniPixelPack3/Enemies/Dude_Monster_Walk_6.png"); break;
-                case 3: bulletImg.LoadImage("image/MiniPixelPack3/Projectiles/Player_charged_beam (16 x 16).png"); break;
-                case 4: level1Img.LoadImage("image/MiniPixelPack3/Maps/PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.png"); break;
-                case 5: level2Img.LoadImage("image/MiniPixelPack3/Maps/PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.png"); break;
-                case 6: level3Img.LoadImage("image/MiniPixelPack3/Maps/PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.png"); break;
-                case 7: enemyBulletImg.LoadImage("image/MiniPixelPack3/Projectiles/enemyBullet.png"); break;
-                case 8: explodingImg.LoadImage("image/MiniPixelPack3/Effects/Explosion.png"); break;
-                case 9: BackgroundImg.LoadImage("image/MiniPixelPack3/Background.png"); break;
-                case 10: json = File.ReadAllText("image/MiniPixelPack3/Maps/Level1.json"); level1Json = JsonConvert.DeserializeObject<Dictionary<string, object>>(json); break;
-                case 11: json = File.ReadAllText("image/MiniPixelPack3/Maps/Level1.json"); level2Json = JsonConvert.DeserializeObject<Dictionary<string, object>>(json); break;
-                case 12: json = File.ReadAllText("image/MiniPixelPack3/Maps/Level1.json"); level3Json = JsonConvert.DeserializeObject<Dictionary<string, object>>(json); break;
+                case 0: playerImg.LoadImage("image/PlayerShip/player.png"); break;
+                case 1: shipImg.LoadImage("image/Enemies/Owlet_Monster_Walk_6.png"); break;
+                case 2: ufoImg.LoadImage("image/Enemies/Dude_Monster_Walk_6.png"); break;
+                case 3: bulletImg.LoadImage("image/Projectiles/Player_charged_beam (16 x 16).png"); break;
+                case 4: level1Img.LoadImage("image/Maps/PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.png"); break;
+                case 5: level2Img.LoadImage("image/Maps/PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.png"); break;
+                case 6: level3Img.LoadImage("image/Maps/PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.png"); break;
+                case 7: enemyBulletImg.LoadImage("image/Projectiles/Bullet.png"); break;
+                case 8: explodingImg.LoadImage("image/Effects/Explosion.png"); break;
+                case 9: BackgroundImg.LoadImage("image/Background.png"); break;
+                case 10: json = File.ReadAllText("image/Maps/Level1.json"); level1Json = JsonConvert.DeserializeObject<Dictionary<string, object>>(json); break;
+                case 11: json = File.ReadAllText("image/Maps/Level1.json"); level2Json = JsonConvert.DeserializeObject<Dictionary<string, object>>(json); break;
+                case 12: json = File.ReadAllText("image/Maps/Level1.json"); level3Json = JsonConvert.DeserializeObject<Dictionary<string, object>>(json); break;
             }
         }
 

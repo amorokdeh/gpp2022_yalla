@@ -288,11 +288,11 @@ namespace TileBasedGame
             foreach (Enemy enemy in _enemiesData) {
                 if (i == 0)
                 {
-                    Program.Game.BuildShip(enemy);
+                    Program.Game.BuildEnemy(enemy, 1);
                     i++;
                 }
                 else {
-                    Program.Game.BuildUfo(enemy);
+                    Program.Game.BuildEnemy(enemy, 2);
                     i = 0;
                 }
                 

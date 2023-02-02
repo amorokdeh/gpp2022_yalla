@@ -20,7 +20,7 @@ namespace TileBasedGame
         {
             
         }
-
+        /*
         public GameObject RequestEnemyUfo()
         {
             foreach (GameObject enemy in _enemyUfoPool)
@@ -40,6 +40,7 @@ namespace TileBasedGame
 
             return newEnemy;
         }
+        */
 
         public void DespawnEnemy(GameObject enemy)
         {
@@ -51,7 +52,7 @@ namespace TileBasedGame
             //enemy1.Img = enemy1.FlyingImg;
 
         }
-
+        /*
         public GameObject RequestEnemyShip()
         {
             foreach (GameObject enemy in _enemyShipPool)
@@ -64,12 +65,13 @@ namespace TileBasedGame
                 }
             }
             //Console.WriteLine("New enemy");
-            GameObject newEnemy = Program.Game.BuildShip(_objectPrefab);
+            GameObject newEnemy = Program.Game.BuildEnemy(_objectPrefab);
             newEnemy.Active = true;
             _enemyShipPool.Add(newEnemy);
 
             return newEnemy;
         }
+        */
         public GameObject RequestPlayerBullet(GameObject player)
         {
             foreach (GameObject bullet in _playerBulletPool)

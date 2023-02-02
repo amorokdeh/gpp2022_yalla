@@ -18,20 +18,11 @@ namespace TileBasedGame
             return gameObject;
         }
 
-        public GameObject CreateGameShip(string name, int w, int h, int x, int y)
+        public GameObject CreateGameEnemy(string name, int w, int h, int x, int y)
         {
-            GameObject gameObject = new Ship(name, w, h);
+            GameObject gameObject = new Enemy(name, w, h);
             gameObject.PosX= x;
             gameObject.PosY= y;
-            _gameObjects.Add(gameObject);
-            return gameObject;
-        }
-
-        public GameObject CreateGameUfo(string name, int w, int h, int x, int y)
-        {
-            GameObject gameObject = new Ufo(name, w, h);
-            gameObject.PosX = x;
-            gameObject.PosY = y;
             _gameObjects.Add(gameObject);
             return gameObject;
         }
