@@ -1,12 +1,9 @@
-Map Erstellen
-Map-Datei einlesen mit dem Projekt (SDL)
-Camera Position an Player
-
-[] Kollision nur in bestimmten Bereich
-[] Memory Problem lösen
+[x] Kollision nur in bestimmten Bereich
+[x] Memory Problem lösen
 [] State Modelling
-[] richtige Gegner einbauen
-[] Schießen nach rechts und per Tastendruck
+[x] richtige Gegner einbauen
+[x] Schießen nach rechts und links (Player-Richtung)
+[] Schießen per Tastendruck
 [] Gegner, die auf den Spieler zukommen
 [] Coins oder ähnliches zum Einsammeln
 
