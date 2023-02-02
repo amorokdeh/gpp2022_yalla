@@ -20,7 +20,14 @@ namespace TileBasedGame
         {
 
             GameObject.PosX += GameObject.CurrentVelX * deltaT;
-            GameObject.PosY += GameObject.CurrentVelY * deltaT;   
+            GameObject.PosY += GameObject.CurrentVelY * deltaT;
+
+            //Gravity
+            if (GameObject.CurrentVelY < 500)
+            {
+                GameObject.CurrentVelY += Globals.Gravity * deltaT;
+            }
+
 
         }
 

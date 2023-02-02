@@ -15,7 +15,7 @@ namespace TileBasedGame
         private float _deltaTime;
         private float _avDeltaTime = -1;
         public Player _player;
-        float _gap = 0;
+        //float _gap = 0;
 
         public float Gap = Globals.Reset;
         public float GapSize = Globals.EnemyGap;
@@ -61,6 +61,7 @@ namespace TileBasedGame
                 //ProduceEnemies(_avDeltaTime);
                 //produceBullets(avDeltaTime);
                 // produceBulletEnemy(avDeltaTime);
+                /*
                 _gap += _avDeltaTime;
 
                 if (_gap > Globals.AnimationGap)
@@ -71,7 +72,7 @@ namespace TileBasedGame
                     }
                     _gap = 0;
                 }
-
+                */
 
                 Program.Game.Shoot(_avDeltaTime);
                 Program.Game.ControlEnemy();
