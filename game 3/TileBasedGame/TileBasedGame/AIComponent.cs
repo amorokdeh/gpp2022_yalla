@@ -16,22 +16,45 @@ namespace TileBasedGame
 
         public void Control()
         {
-            GameObject.CurrentVelY = GameObject.VelY;
-            GameObject.CurrentVelX = GameObject.VelX;
+            GameObject go = GameObject;
 
-            //nur zum Testen
-            if (GameObject is Enemy && GameObject.PosY > Program.Window.Height)
+            int winHeight = Program.Window.Height;
+            int winWidth = Program.Window.Width;
+
+            float cameraX = Program.Game.Camera.PosX;
+            float cameraY = Program.Game.Camera.PosY;
+
+            float camLeftBorder = cameraX - winWidth / 2;
+            float camRightBorder = cameraX + winWidth / 2;
+            float camTopBorder = cameraY - winHeight / 2;
+            float camBottomBorder = cameraY + winHeight / 2;
+
+            bool objectOnCamera = (go.PosX < camRightBorder) && (go.PosX + go.Width > camLeftBorder) && (go.PosY < camBottomBorder) && (go.PosY + go.Height > camTopBorder);
+
+            go.CurrentVelY = go.VelY;
+            go.CurrentVelX = go.VelX;
+
+            if (go is Enemy || go is Tile)
             {
-                Program.Game.DespawnEnemy(GameObject);
+                if (objectOnCamera){
+                    go.Active = true;
+                }
+                else { 
+                    go.Active = false; 
+                }
+
             }
-            if (GameObject is Bullet && GameObject.PosY < Globals.LeftBoundary)
-            {
-                Program.Game.DespawnPlayerBullet(GameObject);
+
+            if (go is Bullet && ! objectOnCamera) {
+
+                Program.Game.DespawnPlayerBullet(go);
             }
+            /*
             if (GameObject is EnemyBullet && GameObject.PosY > Program.Window.Height)
             {
                 Program.Game.DespawnEnemyBullet(GameObject);
             }
+            */
         }
     }
 }

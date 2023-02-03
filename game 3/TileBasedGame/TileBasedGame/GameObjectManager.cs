@@ -13,7 +13,7 @@ namespace TileBasedGame
 
         public GameObject CreateGameBackground(string name, int w, int h, int x=0, int y=0)
         {
-            GameObject gameObject = new Background(name, w, h, x, y);
+            GameObject gameObject = new GameObject(name, w, h);
             _gameObjects.Add(gameObject);
             return gameObject;
         }
@@ -51,7 +51,6 @@ namespace TileBasedGame
         public Tile CreateTile(string name, int w, int h, int x, int y)
         {
             Tile gameObject = new Tile(name, w, h, x, y);
-            //gameObject.Img = imgSrc;
             _gameObjects.Add(gameObject);
             return gameObject;
         }
@@ -59,7 +58,6 @@ namespace TileBasedGame
         public Block CreateBlock(string name, int w, int h, int x, int y)
         {
             Block gameObject = new Block(name, w, h, x, y);
-            //gameObject.Img = imgSrc;
             _gameObjects.Add(gameObject);
             return gameObject;
         }
@@ -67,7 +65,6 @@ namespace TileBasedGame
         public Spike CreateSpike(string name, int w, int h, int x, int y)
         {
             Spike gameObject = new Spike(name, w, h, x, y);
-            //gameObject.Img = imgSrc;
             _gameObjects.Add(gameObject);
             return gameObject;
         }
@@ -75,7 +72,23 @@ namespace TileBasedGame
         public EndDoor CreateEndDoor(string name, int w, int h, int x, int y)
         {
             EndDoor gameObject = new EndDoor(name, w, h, x, y);
-            //gameObject.Img = imgSrc;
+            _gameObjects.Add(gameObject);
+            return gameObject;
+        }
+
+        public Coin CreateCoin(string name, int w, int h, int x, int y)
+        {
+            Coin gameObject = new Coin(name, w, h);
+            gameObject.PosX = x;
+            gameObject.PosY = y;
+            _gameObjects.Add(gameObject);
+            return gameObject;
+        }
+        public Power CreatePower(string name, int w, int h, int x, int y)
+        {
+            Power gameObject = new Power(name, w, h);
+            gameObject.PosX = x;
+            gameObject.PosY = y;
             _gameObjects.Add(gameObject);
             return gameObject;
         }

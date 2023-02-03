@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="100" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="9" nextobjectid="11">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="100" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="11" nextobjectid="41">
  <tileset firstgid="1" source="Level1.tsx"/>
  <layer id="1" name="Background" width="100" height="40">
   <data encoding="csv">
@@ -90,16 +90,64 @@
 </data>
  </layer>
  <objectgroup id="4" name="Enemy">
-  <object id="4" name="Enemy" class="Enemy" x="1649.33" y="1028">
+  <object id="4" name="Enemy" class="Enemy" x="1552.33" y="929">
    <point/>
   </object>
-  <object id="5" name="Enemy" class="Enemy" x="1942" y="1032.67">
+  <object id="5" name="Enemy" class="Enemy" x="1899" y="910.67">
    <point/>
   </object>
-  <object id="7" x="690.667" y="317.333">
+  <object id="7" name="Enemy" class="Enemy" x="638.667" y="316.333">
    <point/>
   </object>
-  <object id="8" x="1548" y="434.667">
+  <object id="8" name="Power" class="Power" x="1548" y="434.667">
+   <point/>
+  </object>
+  <object id="13" name="Enemy" class="Enemy" x="2492" y="1009">
+   <point/>
+  </object>
+  <object id="14" name="Enemy" class="Enemy" x="2789" y="1001">
+   <point/>
+  </object>
+  <object id="39" name="Enemy" class="Enemy" x="960" y="320">
+   <point/>
+  </object>
+  <object id="40" name="Enemy" class="Enemy" x="223" y="281">
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="9" name="Coin">
+  <object id="15" name="Coin" class="Coin" x="2155" y="845"/>
+  <object id="16" name="Coin" class="Coin" x="2216" y="845"/>
+  <object id="17" name="Coin" class="Coin" x="2155" y="891"/>
+  <object id="18" name="Coin" class="Coin" x="2216" y="891"/>
+  <object id="19" name="Coin" class="Coin" x="2156" y="935"/>
+  <object id="20" name="Coin" class="Coin" x="2217" y="935"/>
+  <object id="21" name="Coin" class="Coin" x="2156" y="981"/>
+  <object id="22" name="Coin" class="Coin" x="2217" y="981"/>
+  <object id="23" name="Coin" class="Coin" x="3085" y="729"/>
+  <object id="24" name="Coin" class="Coin" x="3146" y="729"/>
+  <object id="25" name="Coin" class="Coin" x="3085" y="775"/>
+  <object id="26" name="Coin" class="Coin" x="3146" y="775"/>
+  <object id="27" name="Coin" class="Coin" x="3086" y="819"/>
+  <object id="28" name="Coin" class="Coin" x="3147" y="819"/>
+  <object id="29" name="Coin" class="Coin" x="3086" y="865"/>
+  <object id="30" name="Coin" class="Coin" x="3147" y="865"/>
+  <object id="31" name="Coin" class="Coin" x="2444" y="590"/>
+  <object id="32" name="Coin" class="Coin" x="2505" y="590"/>
+  <object id="33" name="Coin" class="Coin" x="2096" y="591"/>
+  <object id="34" name="Coin" class="Coin" x="2157" y="591"/>
+ </objectgroup>
+ <objectgroup id="10" name="Power">
+  <object id="35" name="Power" class="Power" x="879" y="910">
+   <point/>
+  </object>
+  <object id="36" name="Power" class="Power" x="1755" y="1009">
+   <point/>
+  </object>
+  <object id="37" name="Power" class="Power" x="2643" y="1033">
+   <point/>
+  </object>
+  <object id="38" name="Power" class="Power" x="2735" y="634">
    <point/>
   </object>
  </objectgroup>

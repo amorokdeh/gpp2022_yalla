@@ -178,6 +178,32 @@ namespace TileBasedGame
             return endDoor;
 
         }
+        //Coins
+        public GameObject BuildCoin(Coin coin)
+        {
+            coin = _objects.CreateCoin("Coin", Globals.MediumImageSize, Globals.MediumImageSize, (int)coin.PosX, (int)coin.PosY);
+            coin.AddComponent(_rendering.CreateComponent(_loader.coinImg, Globals.MediumImageSize, Globals.MediumImageSize, Globals.NormalImageSize, Globals.NormalImageSize));
+            Component coc = _collisions.CreateComponent("coin");
+            coin.AddComponent(coc);
+            coin.AddComponent(_animations.CreateComponent());
+            coin.Active = true;
+            coin.Died = false;
+            return coin;
+
+        }
+        //Coins
+        public GameObject BuildPower(Power power)
+        {
+            power = _objects.CreatePower("Power", Globals.MediumImageSize, Globals.MediumImageSize, (int)power.PosX, (int)power.PosY);
+            power.AddComponent(_rendering.CreateComponent(_loader.powerImg, Globals.MediumImageSize, Globals.MediumImageSize, Globals.NormalImageSize, Globals.NormalImageSize));
+            Component coc = _collisions.CreateComponent("power");
+            power.AddComponent(coc);
+            power.AddComponent(_animations.CreateComponent());
+            power.Active = true;
+            power.Died = false;
+            return power;
+
+        }
 
         public void DespawnEnemy(GameObject enemy)
         {

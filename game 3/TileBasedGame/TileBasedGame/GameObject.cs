@@ -39,6 +39,7 @@ namespace TileBasedGame
             jumpPossibility = 2;
 
             this._name = name;
+            Program.Game._maps.currentMap.Tiles.Add(this);
         }
 
         internal void AddComponent(Component component)

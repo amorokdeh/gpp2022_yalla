@@ -14,7 +14,7 @@ namespace TileBasedGame
     class Loader
     {
         //Number of assets to load
-        private int totalAssets = 23;
+        private int totalAssets = 25;
         private int assetsLoaded = 0;
 
         public Text Txt = new Text();
@@ -24,6 +24,8 @@ namespace TileBasedGame
         public Image enemy1Img = new Image();
         public Image enemy2Img = new Image();
         public Image bulletImg = new Image();
+        public Image coinImg = new Image();
+        public Image powerImg = new Image();
         public Image level1Img = new Image();
         public Image level2Img = new Image();
         public Image level3Img = new Image();
@@ -60,28 +62,30 @@ namespace TileBasedGame
                 case 1:  return loadImage(enemy1Img, "image/Enemies/Owlet_Monster_Walk_6.png");
                 case 2:  return loadImage(enemy2Img, "image/Enemies/Dude_Monster_Walk_6.png");
                 case 3:  return loadImage(bulletImg, "image/Projectiles/Bullet.png");
-                case 4:  return loadImage(level1Img, "image/Maps/PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.png");
-                case 5:  return loadImage(level2Img, "image/Maps/PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.png");
-                case 6:  return loadImage(level3Img, "image/Maps/PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.png");
-                case 7:  return loadImage(explodingImg, "image/Effects/Explosion.png");
-                case 8:  return loadImage(BackgroundImg, "image/Background.png");
+                case 4:  return loadImage(coinImg, "image/Items/Circle_+_Square_+_Missile_pick-ups.png");
+                case 5:  return loadImage(powerImg, "image/Items/Power.png");
+                case 6:  return loadImage(level1Img, "image/Maps/PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.png");
+                case 7:  return loadImage(level2Img, "image/Maps/PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.png");
+                case 8:  return loadImage(level3Img, "image/Maps/PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.png");
+                case 9:  return loadImage(explodingImg, "image/Effects/Explosion.png");
+                case 10: return loadImage(BackgroundImg, "image/Background.png");
 
-                case 9:  return loadLevel(level1Json = loadMap("image/Maps/Level1.json"));
-                case 10: return loadLevel(level2Json = loadMap("image/Maps/Level1.json"));
-                case 11: return loadLevel(level3Json = loadMap("image/Maps/Level1.json"));
+                case 11: return loadLevel(level1Json = loadMap("image/Maps/Level1.json"));
+                case 12: return loadLevel(level2Json = loadMap("image/Maps/Level1.json"));
+                case 13: return loadLevel(level3Json = loadMap("image/Maps/Level1.json"));
 
-                case 12: return loadMusic(MenuMusic, "sound/MainMenu Music.wav");
-                case 13: return loadMusic(Level1Music, "sound/Level1 Music.wav");
-                case 14: return loadMusic(Level2Music, "sound/Level2 Music.wav");
-                case 15: return loadMusic(Level3Music, "sound/Level3 Music.wav");
+                case 14: return loadMusic(MenuMusic, "sound/MainMenu Music.wav");
+                case 15: return loadMusic(Level1Music, "sound/Level1 Music.wav");
+                case 16: return loadMusic(Level2Music, "sound/Level2 Music.wav");
+                case 17: return loadMusic(Level3Music, "sound/Level3 Music.wav");
 
-                case 16: return loadSound(MenuButtons, "sound/Menu buttons.wav");
-                case 17: return loadSound(MenuClick, "sound/Menu click.wav");
-                case 18: return loadSound(GameOver, "sound/game_over.wav");
-                case 19: return loadSound(Shooting, "sound/shooting.wav");
-                case 20: return loadSound(ExplodEnemy, "sound/explod_2.wav");
-                case 21: return loadSound(ExplodPlayer, "sound/explod_1.wav");
-                case 22: return loadSound(ShootingEnemy, "sound/lasergun.wav");
+                case 18: return loadSound(MenuButtons, "sound/Menu buttons.wav");
+                case 19: return loadSound(MenuClick, "sound/Menu click.wav");
+                case 20: return loadSound(GameOver, "sound/game_over.wav");
+                case 21: return loadSound(Shooting, "sound/shooting.wav");
+                case 22: return loadSound(ExplodEnemy, "sound/explod_2.wav");
+                case 23: return loadSound(ExplodPlayer, "sound/explod_1.wav");
+                case 24: return loadSound(ShootingEnemy, "sound/lasergun.wav");
                 default: return "";
             }
         }

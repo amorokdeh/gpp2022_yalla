@@ -21,7 +21,6 @@ namespace TileBasedGame
         public int TileWidth;
         public int TileHeight;
 
-        //private GameObject MapImg = new GameObject("MapImg", 32 * 10, 32 * 65);
         Image Image;
 
         private List<Dictionary<string, object>> _layersData = new List<Dictionary<string, object>>();
@@ -34,6 +33,8 @@ namespace TileBasedGame
         private List<int> _spikesData = new List<int>();
         private List<int> _endDoorData = new List<int>();
         private List<Enemy> _enemiesData = new List<Enemy>();
+        private List<Coin> _coinsData = new List<Coin>();
+        private List<Power> _powerData = new List<Power>();
         public List<GameObject> Tiles = new List<GameObject>();
 
         public void load(Dictionary<string, object> map, Image img){
@@ -47,8 +48,6 @@ namespace TileBasedGame
             MapHeight = Convert.ToInt32(map["height"]) * TileHeight;
 
             //load map image
-
-            //MapImg.Img = img;
             Image = img;
 
             //load layers data (Map and objects)
@@ -118,14 +117,44 @@ namespace TileBasedGame
                         JArray layerObject = (JArray)layerData["objects"];
                         foreach (var obj in layerObject)
                         {
-
                             var objX = obj["x"];
                             var objY = obj["y"];
                             Enemy enemy = new Enemy("Enemy", TileWidth, TileHeight);
                             enemy.PosX = Convert.ToInt32(objX);
                             enemy.PosY = Convert.ToInt32(objY);
                             _enemiesData.Add(enemy);
+                        }
 
+                    }
+                    //load Coins
+                    if (layerName.Equals("Coin") && layerData.ContainsKey("objects"))
+                    {
+
+                        JArray layerObject = (JArray)layerData["objects"];
+                        foreach (var obj in layerObject)
+                        {
+                            var objX = obj["x"];
+                            var objY = obj["y"];
+                            Coin coin = new Coin("Coin", TileWidth, TileHeight);
+                            coin.PosX = Convert.ToInt32(objX);
+                            coin.PosY = Convert.ToInt32(objY);
+                            _coinsData.Add(coin);
+                        }
+
+                    }
+                    //load Coins
+                    if (layerName.Equals("Power") && layerData.ContainsKey("objects"))
+                    {
+
+                        JArray layerObject = (JArray)layerData["objects"];
+                        foreach (var obj in layerObject)
+                        {
+                            var objX = obj["x"];
+                            var objY = obj["y"];
+                            Power power = new Power("Power", TileWidth, TileHeight);
+                            power.PosX = Convert.ToInt32(objX);
+                            power.PosY = Convert.ToInt32(objY);
+                            _powerData.Add(power);
                         }
 
                     }
@@ -296,6 +325,20 @@ namespace TileBasedGame
                     i = 0;
                 }
                 
+            }
+        }
+        public void buildCoins()
+        {
+            foreach (Coin coin in _coinsData)
+            {
+                Program.Game.BuildCoin(coin);
+            }
+        }
+        public void buildPowers()
+        {
+            foreach (Power power in _powerData)
+            {
+                Program.Game.BuildPower(power);
             }
         }
 

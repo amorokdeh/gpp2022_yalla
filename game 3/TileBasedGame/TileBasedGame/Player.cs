@@ -13,7 +13,6 @@ namespace TileBasedGame
 
         public Player(string name, int w, int h): base(name, w, h)
         {
-            Program.Game._maps.currentMap.Tiles.Add(this);
         }
         
         public void Reset()

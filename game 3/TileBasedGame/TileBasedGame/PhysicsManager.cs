@@ -25,13 +25,6 @@ namespace TileBasedGame
             return pc;
         }
 
-        internal Component CreateBGComponent()
-        {
-            PhysicsBGComponent pc = new PhysicsBGComponent(this);
-            this._physicsComponents.Add(pc);
-            return pc;
-        }
-
         internal Component CreatePlayerComponent()
         {
             PlayerPhysicsComponent pc = new PlayerPhysicsComponent(this);
@@ -43,7 +36,8 @@ namespace TileBasedGame
         {
             foreach (var component in _physicsComponents)
             {
-                component.Move(deltaT);
+                if(component.GameObject.Active)
+                    component.Move(deltaT);
                 //Console.WriteLine(component.GameObject.GetType());
                 if(component.GameObject is Player)
                 {

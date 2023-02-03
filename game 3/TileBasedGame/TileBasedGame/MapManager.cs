@@ -30,6 +30,8 @@ namespace TileBasedGame
             currentMap.buildBlocks();
             currentMap.buildSpikes();
             currentMap.buildEnemies();
+            currentMap.buildCoins();
+            currentMap.buildPowers();
             currentMap.buildEndDoor();
             currentMap.resetPlayer();
         }

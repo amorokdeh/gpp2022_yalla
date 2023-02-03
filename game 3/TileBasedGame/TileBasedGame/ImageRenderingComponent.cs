@@ -81,7 +81,13 @@ namespace TileBasedGame
                     ImgChange = Globals.MediumImageSize * 3;
                     flipped = SDL.SDL_RendererFlip.SDL_FLIP_NONE;
                 }
-                else if (he.EventType == HeroEvent.Type.FlyStraight) { }
+                else if (he.EventType == HeroEvent.Type.FlyStraight) {
+
+                    if (GameObject is Power || GameObject is Coin)
+                    {
+                        ImgChange = Globals.MediumImageSize * 1;
+                    }
+                }
 
                 else if (he.EventType == HeroEvent.Type.FlyUp)
                     ImgChange = Globals.MediumImageSize * 2;
@@ -92,7 +98,7 @@ namespace TileBasedGame
                 else if (he.EventType == HeroEvent.Type.ChangeImage)
                 {
                     ImgStep++;
-                    if (ImgStep < 3)
+                    if (ImgStep < 5)
                     {
                         ImgChange = Globals.MediumImageSize * ImgStep;
                     }
@@ -110,9 +116,6 @@ namespace TileBasedGame
         {
             _rect.x = (int)(GameObject.PosX + _dstX - Program.Game.Camera.PosX + Program.Window.Width / 2);
             _rect.y = (int)(GameObject.PosY - Program.Game.Camera.PosY + Program.Window.Height / 2);
-
-            //_srcRect.x = GameObject.ImgChange;
-            //_srcRect.y = GameObject.ImgChangeY;
 
             _srcRect.x = ImgChange;
             _srcRect.y = ImgChangeY;

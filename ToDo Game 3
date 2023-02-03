@@ -1,12 +1,13 @@
 [x] Kollision nur in bestimmten Bereich
 [x] Memory Problem lösen
-[] State Modelling
 [x] richtige Gegner einbauen
 [x] Schießen nach rechts und links (Player-Richtung)
+[x] Coins oder ähnliches zum Einsammeln
+[x] Sounds in Loader class laden
+[] State Modelling
 [] Schießen per Tastendruck
 [] Gegner, die auf den Spieler zukommen
-[] Coins oder ähnliches zum Einsammeln
-[] Sounds in Loader class laden
+[] Animationen langsamer machen
 
 
 Kritik und Tipps umsetzen:

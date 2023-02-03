@@ -13,8 +13,6 @@ namespace TileBasedGame
             this._name = name;
             PosX = x;
             PosY = y;
-
-            Program.Game._maps.currentMap.Tiles.Add(this);
         }
     }
 }
