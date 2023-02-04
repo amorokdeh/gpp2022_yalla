@@ -15,7 +15,7 @@ namespace TileBasedGame
         {
             ExplodingImg = Program.Game._loader.explodingImg;
             VelY = 100;
-            VelX= 50;
+            VelX= 100;
             
         }
 

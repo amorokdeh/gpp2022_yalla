@@ -50,7 +50,7 @@ namespace TileBasedGame
             Component cc = _controls.CreateComponent();
             Player.AddComponent(cc);
 
-            Component coc = _collisions.CreateComponent("good");
+            Component coc = _collisions.CreateComponent("player");
             Player.AddComponent(coc);
 
             Player.AddComponent(_shootings.CreatePlayerComponent());
@@ -179,13 +179,12 @@ namespace TileBasedGame
 
         }
         //Coins
-        public GameObject BuildCoin(Coin coin)
+        public GameObject BuildCoin(Coin coin, int imgX, int imgY)
         {
             coin = _objects.CreateCoin("Coin", Globals.MediumImageSize, Globals.MediumImageSize, (int)coin.PosX, (int)coin.PosY);
-            coin.AddComponent(_rendering.CreateComponent(_loader.coinImg, Globals.MediumImageSize, Globals.MediumImageSize, Globals.NormalImageSize, Globals.NormalImageSize));
+            coin.AddComponent(_rendering.CreateComponent(_loader.coinImg, Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize, imgX, imgY));
             Component coc = _collisions.CreateComponent("coin");
             coin.AddComponent(coc);
-            coin.AddComponent(_animations.CreateComponent());
             coin.Active = true;
             coin.Died = false;
             return coin;

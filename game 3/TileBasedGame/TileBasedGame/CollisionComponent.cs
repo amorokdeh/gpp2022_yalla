@@ -33,18 +33,33 @@ namespace TileBasedGame
                         MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Collision, GameObject));
                     }
 
+                    if (colObject.Role == "bad" && this.Role == "bad")
+                    {
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.ChangeDirection, this.GameObject));
+                    }
+
                     if (colObject.Role == "block" || colObject.Role == "spike")
                     {
                         collideDirection(colObject);
                     }
 
                     //collide with spike from top
-                    if (this.Role == "good" && colObject.Role == "spike")
+                    if (this.Role == "player" && colObject.Role == "spike")
                     {
                         if (collideDirection(colObject) == "bottom") {
                             MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Collision, GameObject));
                         }
 
+                    }
+                    //player take coins
+                    if (this.Role == "player" && colObject.Role == "coin")
+                    {
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.takeCoin, colObject.GameObject));
+                    }
+                    //player take power
+                    if (this.Role == "player" && colObject.Role == "power")
+                    {
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.takePower, colObject.GameObject));
                     }
                 }
             }

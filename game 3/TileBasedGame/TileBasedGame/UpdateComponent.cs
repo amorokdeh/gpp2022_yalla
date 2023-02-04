@@ -31,6 +31,20 @@ namespace TileBasedGame
                 {
                     UpdatePosition(he);
                 }
+                
+            }
+
+            if (he.EventType == HeroEvent.Type.takeCoin)
+            {
+                he.GameObject.Active= false;
+                he.GameObject.Died= true;
+                Program.Game.Player.Score++;
+            }
+            if (he.EventType == HeroEvent.Type.takePower)
+            {
+                he.GameObject.Active = false;
+                he.GameObject.Died = true;
+                Program.Game.Player.Score += 5;
             }
         }
 

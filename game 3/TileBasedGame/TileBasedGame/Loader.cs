@@ -14,7 +14,7 @@ namespace TileBasedGame
     class Loader
     {
         //Number of assets to load
-        private int totalAssets = 25;
+        private int totalAssets = 28;
         private int assetsLoaded = 0;
 
         public Text Txt = new Text();
@@ -50,6 +50,9 @@ namespace TileBasedGame
         public AudioComponent Level1Music = new AudioComponent();
         public AudioComponent Level2Music = new AudioComponent();
         public AudioComponent Level3Music = new AudioComponent();
+        public AudioComponent Jump = new AudioComponent();
+        public AudioComponent Coin = new AudioComponent();
+        public AudioComponent Power = new AudioComponent();
 
         public Loader() {
 
@@ -62,7 +65,7 @@ namespace TileBasedGame
                 case 1:  return loadImage(enemy1Img, "image/Enemies/Owlet_Monster_Walk_6.png");
                 case 2:  return loadImage(enemy2Img, "image/Enemies/Dude_Monster_Walk_6.png");
                 case 3:  return loadImage(bulletImg, "image/Projectiles/Bullet.png");
-                case 4:  return loadImage(coinImg, "image/Items/Circle_+_Square_+_Missile_pick-ups.png");
+                case 4:  return loadImage(coinImg, "image/Items/Coin.png");
                 case 5:  return loadImage(powerImg, "image/Items/Power.png");
                 case 6:  return loadImage(level1Img, "image/Maps/PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.png");
                 case 7:  return loadImage(level2Img, "image/Maps/PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.png");
@@ -83,9 +86,12 @@ namespace TileBasedGame
                 case 19: return loadSound(MenuClick, "sound/Menu click.wav");
                 case 20: return loadSound(GameOver, "sound/game_over.wav");
                 case 21: return loadSound(Shooting, "sound/shooting.wav");
-                case 22: return loadSound(ExplodEnemy, "sound/explod_2.wav");
+                case 22: return loadSound(ExplodEnemy, "sound/Death.wav");
                 case 23: return loadSound(ExplodPlayer, "sound/explod_1.wav");
                 case 24: return loadSound(ShootingEnemy, "sound/lasergun.wav");
+                case 25: return loadSound(Jump, "sound/Jump.wav");
+                case 26: return loadSound(Coin, "sound/Coin.wav");
+                case 27: return loadSound(Power, "sound/Power.wav");
                 default: return "";
             }
         }
@@ -176,6 +182,9 @@ namespace TileBasedGame
             Program.Game._audio.AddAudio(Level1Music);
             Program.Game._audio.AddAudio(Level2Music);
             Program.Game._audio.AddAudio(Level3Music);
+            Program.Game._audio.AddAudio(Jump);
+            Program.Game._audio.AddAudio(Coin);
+            Program.Game._audio.AddAudio(Power);
         }
     }
 }

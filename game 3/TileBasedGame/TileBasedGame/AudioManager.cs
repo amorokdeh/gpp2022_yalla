@@ -12,7 +12,7 @@ namespace TileBasedGame
         private List<AudioComponent> _audioC = new List<AudioComponent>();
 
         private int volumeMusic = 50;
-        private int volumeSound = 30;
+        private int volumeSound = 50;
 
         public int _volumMin = 0;
         public int _volumMax = 250;
@@ -63,6 +63,18 @@ namespace TileBasedGame
             else if (he.EventType == HeroEvent.Type.PlayerDead)
             {
                 RunSound("Player dead");
+            }
+            else if (he.EventType == HeroEvent.Type.takeCoin)
+            {
+                RunSound("Coin");
+            }
+            else if (he.EventType == HeroEvent.Type.takePower)
+            {
+                RunSound("Power");
+            }
+            else if (he.EventType == HeroEvent.Type.GoUp && Program.Game.Player.jumpPossibility > 0)
+            {
+                RunSound("Jump");
             }
             else if (he.EventType == HeroEvent.Type.Level1)
             {
@@ -145,6 +157,10 @@ namespace TileBasedGame
                 case "Shooting enemy": return Program.Game._loader.ShootingEnemy;
                 case "Enemy dead": return Program.Game._loader.ExplodEnemy;
                 case "Player dead": return Program.Game._loader.ExplodPlayer;
+                case "Jump": return Program.Game._loader.Jump;
+                case "Coin": return Program.Game._loader.Coin;
+                case "Power": return Program.Game._loader.Power;
+
 
             }
             return null;

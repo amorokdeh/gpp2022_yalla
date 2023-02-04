@@ -32,6 +32,8 @@ namespace TileBasedGame
             _rect.w = dstW;
             _rect.h = dstH;
             this._dstX = dstX;
+            ImgChange = x;
+            ImgChangeY = y;
         }
 
         public ImageRenderingComponent(RenderingManager rm, int imgFrame,  Image image, int x, int y, int w, int h, int dstW, int dstH, int dstX = 0) : base()

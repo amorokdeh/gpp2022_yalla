@@ -34,7 +34,7 @@ namespace TileBasedGame
             go.CurrentVelY = go.VelY;
             go.CurrentVelX = go.VelX;
 
-            if (go is Enemy || go is Tile)
+            if (go is Tile)
             {
                 if (objectOnCamera){
                     go.Active = true;

@@ -329,9 +329,24 @@ namespace TileBasedGame
         }
         public void buildCoins()
         {
+            int line = 0;
+            int col = 0;
             foreach (Coin coin in _coinsData)
             {
-                Program.Game.BuildCoin(coin);
+                int x = col * TileWidth;
+                int y = line * TileHeight;
+                Program.Game.BuildCoin(coin, x, y);
+                col++;
+                //new line
+                if (col == 3)
+                {
+                    line++;
+                    col = 0;
+                }
+                if (line == 3)
+                {
+                    line = 0;
+                }
             }
         }
         public void buildPowers()

@@ -13,7 +13,7 @@ namespace TileBasedGame
         public IntPtr sound = IntPtr.Zero;
 
         public int volumeMusic = 50;
-        public int volumeSound = 30;
+        public int volumeSound = 50;
 
         public AudioComponent()
         {
