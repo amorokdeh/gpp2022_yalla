@@ -1,13 +1,17 @@
+[] State Modelling Charakter Controller (Majbrit)
+[] Gegner, die auf den Spieler zukommen
+[] Animationen langsamer machen
+[] Level 2 and 3 (Amr)
+[] Collision mit End door "Level win" (Amr)
+[] Collision mit Gegener und Spitzen "Player-Reaktion"
+
+[x] Schießen per Tastendruck
 [x] Kollision nur in bestimmten Bereich
 [x] Memory Problem lösen
 [x] richtige Gegner einbauen
 [x] Schießen nach rechts und links (Player-Richtung)
 [x] Coins oder ähnliches zum Einsammeln
 [x] Sounds in Loader class laden
-[] State Modelling Charakter Controller (Majbrit)
-[x] Schießen per Tastendruck
-[] Gegner, die auf den Spieler zukommen
-[] Animationen langsamer machen
 
 
 Kritik und Tipps umsetzen:
