@@ -5,7 +5,7 @@
 [x] Coins oder ähnliches zum Einsammeln
 [x] Sounds in Loader class laden
 [] State Modelling
-[] Schießen per Tastendruck
+[x] Schießen per Tastendruck
 [] Gegner, die auf den Spieler zukommen
 [] Animationen langsamer machen
 
@@ -20,7 +20,7 @@ Kritik und Tipps umsetzen:
   - nicht genutzte out-Parameter durch out _ ersetzen
   - SRect x und y nicht auf 0 setzen
 [x] Gameobject soll seine Components kennen
-[] Image-Variable in die RenderComponent und möglich machen, dass andere Components und GameObjects das Image verändern können
+[x] Image-Variable in die RenderComponent und möglich machen, dass andere Components und GameObjects das Image verändern können
 [x] CollisionsComponent und Collisionsmanager sollen nur Kollision feststellen
 [x] Fallunterscheidung eleganter gestalten, durch z.B. Component oder Interface
 [x] Observer/Message-Bus für Informationsaustausch
