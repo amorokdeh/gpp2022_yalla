@@ -26,5 +26,4 @@ Kritik und Tipps umsetzen:
 [x] Observer/Message-Bus für Informationsaustausch
 [x] Zwischenschritt beim Input
 [x] Soundmanager und Auslösen durch Event
-
-[] Zwischenschritt beim Input für Controller
+[x] Zwischenschritt beim Input für Controller
