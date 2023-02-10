@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using static TileBasedGame.LevelManager;
@@ -61,19 +62,24 @@ namespace TileBasedGame
 
         public void HandleEvent(SDL.SDL_Event e)
         {
-            
+
             //If a key was pressed
             if (e.type == SDL.SDL_EventType.SDL_KEYDOWN && e.key.repeat == 0)
             {
-                //Adjust the velocity
                 switch (e.key.keysym.sym)
                 {
                     case SDL.SDL_Keycode.SDLK_UP:
                         MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoUp));
                         break;
-                    case SDL.SDL_Keycode.SDLK_DOWN:
-                        //MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoDown));
-                        break;
+                }
+            }
+
+            if (e.type == SDL.SDL_EventType.SDL_KEYDOWN)
+            {
+                //Adjust the velocity
+                switch (e.key.keysym.sym)
+                {
+
                     case SDL.SDL_Keycode.SDLK_LEFT:
                         MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoLeft));
                         break;
@@ -90,16 +96,16 @@ namespace TileBasedGame
 
                 }
             }
-            else if (e.type == SDL.SDL_EventType.SDL_KEYUP && e.key.repeat == 0)
+            else if (e.type == SDL.SDL_EventType.SDL_KEYUP)
             {
                 //Adjust the velocity
                 switch (e.key.keysym.sym)
                 {
                     case SDL.SDL_Keycode.SDLK_LEFT:
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoRight));
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.StopMoving));
                         break;
                     case SDL.SDL_Keycode.SDLK_RIGHT:
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoLeft));
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.StopMoving));
                         break;
 
 

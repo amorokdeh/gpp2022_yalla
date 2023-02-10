@@ -28,6 +28,8 @@ namespace TileBasedGame
         public bool shoot;
         public bool canShoot;
         public float shootingSpeed;
+        public bool hurt;
+        public int hurtAmount;
 
 
         public GameObject(string name, int w, int h)
@@ -43,6 +45,8 @@ namespace TileBasedGame
             shoot = false;
             canShoot = true;
             shootingSpeed = 0;
+            hurt = false;
+            hurtAmount = 0;
 
             this._name = name;
             Program.Game._maps.currentMap.Tiles.Add(this);

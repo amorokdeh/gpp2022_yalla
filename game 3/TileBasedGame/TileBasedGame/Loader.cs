@@ -160,10 +160,10 @@ namespace TileBasedGame
                 // draw the loading bar rectangle
                 SDL.SDL_Rect loadingBarRect = new SDL.SDL_Rect
                 {
-                    x = Program.Window.Width * 10 / 100,
-                    y = Program.Window.Height * 80 / 100,
-                    w = (int)(percentLoaded / 100.0f * (Program.Window.Width - Program.Window.Width * 20 / 100)),
-                    h = 50
+                    x = Program.Window.Width * 10 / 100 + 5,
+                    y = Program.Window.Height * 80 / 100 + 5,
+                    w = (int)(percentLoaded / 100.0f * (Program.Window.Width - Program.Window.Width * 20 / 100)) - 10,
+                    h = 50 - 10
                 };
                 SDL.SDL_SetRenderDrawColor(Program.Window.Renderer, 0, 255, 0, 255);
                 SDL.SDL_RenderFillRect(Program.Window.Renderer, ref loadingBarRect);
