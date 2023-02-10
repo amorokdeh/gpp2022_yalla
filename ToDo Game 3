@@ -4,7 +4,7 @@
 [x] Schießen nach rechts und links (Player-Richtung)
 [x] Coins oder ähnliches zum Einsammeln
 [x] Sounds in Loader class laden
-[] State Modelling
+[] State Modelling Charakter Controller (Majbrit)
 [x] Schießen per Tastendruck
 [] Gegner, die auf den Spieler zukommen
 [] Animationen langsamer machen
