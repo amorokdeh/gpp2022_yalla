@@ -375,12 +375,29 @@ namespace TileBasedGame
                 _enemiesData[i] = null;
             }
 
+            for (int i = 0; i < _coinsData.Count; i++)
+            {
+                _coinsData[i].Active = false;
+                _coinsData[i].Died = true;
+                _coinsData[i] = null;
+            }
+
+            for (int i = 0; i < _powerData.Count; i++)
+            {
+                _powerData[i].Active = false;
+                _powerData[i].Died = true;
+                _powerData[i] = null;
+            }
+
+
             Tiles.Clear();
             _backgroundData.Clear();
             _blocksData.Clear();
             _spikesData.Clear();
             _endDoorData.Clear();
             _enemiesData.Clear();
+            _coinsData.Clear();
+            _powerData.Clear();
 
             Tiles = null;
             _backgroundData = null;
@@ -388,7 +405,8 @@ namespace TileBasedGame
             _spikesData = null;
             _endDoorData = null;
             _enemiesData = null;
-
+            _coinsData = null;
+            _powerData = null;
 
             GC.Collect();
 

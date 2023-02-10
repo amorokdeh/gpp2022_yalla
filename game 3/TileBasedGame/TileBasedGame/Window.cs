@@ -27,7 +27,7 @@ namespace TileBasedGame
         public String ShowFPSRunning = "Yes";
 
         public uint LimitedFPS;
-        public uint DesiredDelta;
+        public float DesiredDelta;
         public uint StartFPS;
 
         public Window(int SCREEN_HEIGHT, int SCREEN_WIDTH)
@@ -125,15 +125,16 @@ namespace TileBasedGame
             uint delta = SDL.SDL_GetTicks() - StartFPS;
             if (delta < DesiredDelta)
             {
-                uint deltaFPS = DesiredDelta - delta;
+                uint deltaFPS = (uint) DesiredDelta - delta;
                 if (Program.Game._levels.MainMenu.Running) { deltaFPS *= 2; } //Because we have in main menu x2 Render (we want to fix this problem later)
                 SDL.SDL_Delay(deltaFPS);
             }
         }
 
-        public void CalculateFPS()
+        public float CalculateFPS()
         {
             StartFPS = SDL.SDL_GetTicks();
+            return DesiredDelta / 1000;
         }
         public void ChangeFPSLimit() {
             LimitedFPS = LimitedFPS * 2;

@@ -18,6 +18,7 @@ namespace TileBasedGame
         public SDL.SDL_Color White;
         public SDL.SDL_Color Red;
         public SDL.SDL_Color Green;
+        public SDL.SDL_Color Black;
         public Text() 
         { 
         
@@ -35,6 +36,7 @@ namespace TileBasedGame
             LightGray = new SDL.SDL_Color() { r = 235, g = 235, b = 240 };
             Red = new SDL.SDL_Color() { r = 255, g = 0, b = 0 };
             Green = new SDL.SDL_Color() { r = 0, g = 255, b = 0 };
+            Black = new SDL.SDL_Color() { r = 0, g = 0, b = 0 };
         }
 
         public void LoadText(int num) 

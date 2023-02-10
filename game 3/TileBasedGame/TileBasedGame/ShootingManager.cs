@@ -24,12 +24,12 @@ namespace TileBasedGame
         }
 
 
-        public void Shoot(float deltaT)
+        public void Shoot(float deltaTime)
         {
             foreach (var component in _shootingComponents)
             {
                 if(component.GameObject.Active && !component.GameObject.Died)
-                    component.Shoot(deltaT);
+                    component.Shoot(deltaTime);
             }
         }
 

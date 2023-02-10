@@ -15,65 +15,22 @@ namespace TileBasedGame
         private float _deltaTime;
         private float _avDeltaTime = -1;
         public Player _player;
-        //float _gap = 0;
-
-        public float Gap = Globals.Reset;
-        public float GapSize = Globals.EnemyGap;
-        public GameObject GameObject;
-
-        public Random Rand;
-
-        public static int rounds = 0;
 
         public virtual void Run()
         {
 
             Program.Game._cleaner.clean();
 
-            //_player.Reset();
             buildMap();
-            
+
             this._player = Program.Game.Player;
             LevelManager.ControlQuitRequest = false;
-            Rand = new Random();
 
 
             while (true)
             {
-                rounds = 0;
-                
-
                 Program.Window.CalculateFPS(); //frame limit start calculating here
-                _timeNow = DateTime.Now;
-                _deltaTime = (_timeNow.Ticks - _timeBefore.Ticks) / 10000000f;
-                if (_avDeltaTime == -1)
-                {
-                    _avDeltaTime = _deltaTime;
-                }
-                else
-                {
-                    _avDeltaTime = (_deltaTime + _avDeltaTime) / 2f;
-                }
-                _timeBefore = _timeNow;
-                //Console.WriteLine(deltaTime);
-                //Console.WriteLine(avDeltaTime);
-
-                //ProduceEnemies(_avDeltaTime);
-                //produceBullets(avDeltaTime);
-                // produceBulletEnemy(avDeltaTime);
-                /*
-                _gap += _avDeltaTime;
-
-                if (_gap > Globals.AnimationGap)
-                {
-                    if (this._player.CurrentVelY < 500)
-                    {
-                        this._player.CurrentVelY += Globals.Gravity;
-                    }
-                    _gap = 0;
-                }
-                */
-
+                calculateDeltaTime();
                 Program.Game.Shoot(_avDeltaTime);
                 Program.Game.ControlEnemy();
                 Program.Game.ControlPlayer();
@@ -90,7 +47,6 @@ namespace TileBasedGame
                     return;
                 }
 
-                
                 Program.Game.UpdateCamera(_player);
                 Program.Game.Render();
 
@@ -107,38 +63,32 @@ namespace TileBasedGame
                     Program.Game.SetInactive();
                     Program.Game._audio.StopMusic();
                     return;
-                }  // press escape to quit
-                Program.Window.DeltaFPS(); //frame limit end calculating here
+                }
 
-                if(rounds >0)
-                    Console.WriteLine(rounds);
+                Program.Window.DeltaFPS(); //frame limit end calculating here
             }
+        }
+        private void calculateDeltaTime() {
+
+            _timeNow = DateTime.Now;
+            _deltaTime = (_timeNow.Ticks - _timeBefore.Ticks) / 10000000f;
+            if (_avDeltaTime == -1)
+            {
+                _avDeltaTime = _deltaTime;
+            }
+            else
+            {
+                _avDeltaTime = (_deltaTime + _avDeltaTime) / 2f;
+            }
+            _timeBefore = _timeNow;
+
+            if (_avDeltaTime > 0.02)
+                _avDeltaTime = 0.02f;
         }
 
         public virtual void buildMap()
         {
 
         }
-
-        /*
-        public virtual void ProduceEnemies(float deltaTime)
-        {
-            
-            Gap += deltaTime;
-            if (Gap > GapSize)
-            {
-                GameObject = Program.Game.RequestEnemyShip();
-
-                GameObject.PosY = Globals.Reset;
-                GameObject.PosX = Rand.Next(0, Program.Window.Width); // Enemy Random Position 
-                GameObject = Program.Game.RequestEnemyUfo();
-
-                GameObject.PosY = Globals.Reset;
-                GameObject.PosX = Rand.Next(0, Program.Window.Width); // Enemy Random Position 
-
-                Gap = Globals.Reset;
-            }
-        }
-        */
     }
 }

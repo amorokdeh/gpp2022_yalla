@@ -25,6 +25,9 @@ namespace TileBasedGame
         public float CurrentVelY;
         public string direction;
         public int jumpPossibility;
+        public bool shoot;
+        public bool canShoot;
+        public float shootingSpeed;
 
 
         public GameObject(string name, int w, int h)
@@ -37,6 +40,9 @@ namespace TileBasedGame
             CurrentVelY = Globals.Reset;
             direction = "right";
             jumpPossibility = 2;
+            shoot = false;
+            canShoot = true;
+            shootingSpeed = 0;
 
             this._name = name;
             Program.Game._maps.currentMap.Tiles.Add(this);

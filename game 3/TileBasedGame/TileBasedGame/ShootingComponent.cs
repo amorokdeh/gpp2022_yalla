@@ -11,7 +11,7 @@ namespace TileBasedGame
         ShootingManager ShootingManager;
 
         protected float BulletGap = Globals.Reset;
-        protected int BulletGapSize = Globals.BulletGap;
+        protected float BulletGapSize = Globals.BulletGap;
         
         public ShootingComponent(ShootingManager sm)
         {

@@ -14,7 +14,6 @@ namespace TileBasedGame
 
         public override void Update()
         {
-            Level.rounds++;
             Console.WriteLine("PLAYER");
             //TODO Überarbeiten
             Program.Game.Player.Lives--;

@@ -80,6 +80,9 @@ namespace TileBasedGame
                     case SDL.SDL_Keycode.SDLK_RIGHT:
                         MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoRight));
                         break;
+                    case SDL.SDL_Keycode.SDLK_SPACE:
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.TryShooting));
+                        break;
                     case SDL.SDL_Keycode.SDLK_ESCAPE: 
                         LevelManager.display = GameState.MainMenu; 
                         LevelManager.ControlQuitRequest = true; 
@@ -92,12 +95,6 @@ namespace TileBasedGame
                 //Adjust the velocity
                 switch (e.key.keysym.sym)
                 {
-                    case SDL.SDL_Keycode.SDLK_UP:
-                        //MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoDown));
-                        break;
-                    case SDL.SDL_Keycode.SDLK_DOWN:
-                       // MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoUp));
-                        break;
                     case SDL.SDL_Keycode.SDLK_LEFT:
                         MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoRight));
                         break;
@@ -108,6 +105,7 @@ namespace TileBasedGame
 
                 }
             }
+
             //Controller
             int x = SDL.SDL_JoystickGetAxis(GGameController, 0);
             int y = SDL.SDL_JoystickGetAxis(GGameController, 1);

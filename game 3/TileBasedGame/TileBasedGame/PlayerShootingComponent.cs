@@ -9,6 +9,7 @@ namespace TileBasedGame
     class PlayerShootingComponent : ShootingComponent
     {
         protected Bullet Bullet;
+        private bool relaod = false;
         public PlayerShootingComponent(ShootingManager sm) : base(sm)
         {
         }
@@ -16,28 +17,41 @@ namespace TileBasedGame
         public override void Shoot(float deltaTime)
         {
             BulletGap += deltaTime;
-            if ((BulletGap > BulletGapSize))
+            BulletGapSize = Globals.BulletGap - GameObject.shootingSpeed;
+
+            if (BulletGap > BulletGapSize) //reload
             {
-                Bullet = (Bullet)Program.Game.RequestPlayerBullet(GameObject);
-                Console.WriteLine(Bullet.Active);
-
-                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Shooting));
-
-                Bullet.PosY = Bullet.GameObject.PosY + (Bullet.GameObject.Height / 3);
-                Bullet.PosX = Bullet.GameObject.PosX + (Bullet.GameObject.Width / 3);
-
-                if (GameObject.direction == "right")
+                if(!relaod)
                 {
-                    Bullet.VelX = 200;
+                    MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.ReloadShooting));
+                    GameObject.canShoot = true;
+                    relaod = true;
 
                 }
-                else if (GameObject.direction == "left")
+
+                if (GameObject.shoot)
                 {
-                    Bullet.VelX = -200;
+                    Bullet = (Bullet)Program.Game.RequestPlayerBullet(GameObject);
+                    Console.WriteLine(Bullet.Active);
+                    MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Shooting));
+                    Bullet.PosY = Bullet.GameObject.PosY + (Bullet.GameObject.Height / 3);
+                    Bullet.PosX = Bullet.GameObject.PosX + (Bullet.GameObject.Width / 3);
+
+                    if (GameObject.direction == "right")
+                    {
+                        Bullet.VelX = 200;
+
+                    }
+                    else if (GameObject.direction == "left")
+                    {
+                        Bullet.VelX = -200;
+                    }
+
+                    BulletGap = Globals.Reset;
+                    GameObject.shoot = false;
+                    GameObject.canShoot = false;
+                    relaod = false;
                 }
-
-
-                BulletGap = Globals.Reset;
             }
 
         }

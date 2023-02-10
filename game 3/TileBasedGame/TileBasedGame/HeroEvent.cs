@@ -8,7 +8,7 @@ namespace TileBasedGame
 {
     class HeroEvent : Event
     {
-        public enum Type { GoUp, GoDown, GoLeft, GoRight, Collision, NeutralCollision, Shooting, EnemyShooting, EnemyDead, PlayerDead, GameOver, Click, MenuButton, Level1, Level2, Level3, FlyLeft, FlyRight, FlyUp, FlyStraight, ChangeImage, ChangeDirection, JumpAble, takeCoin, takePower }
+        public enum Type { GoUp, GoDown, GoLeft, GoRight, Collision, NeutralCollision, TryShooting, Shooting, ReloadShooting, EnemyShooting, EnemyDead, PlayerDead, GameOver, Click, MenuButton, Level1, Level2, Level3, FlyLeft, FlyRight, FlyUp, FlyStraight, ChangeImage, ChangeDirection, JumpAble, takeCoin, takePower, powerUp }
         public Type EventType;
         public int Arg0;
         public GameObject GameObject;

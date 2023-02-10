@@ -23,12 +23,12 @@ namespace TileBasedGame
         public ShootingManager _shootings = new ShootingManager();
         public MapManager _maps = new MapManager();
         public UpdateManager _updates = new UpdateManager();
+        public InfoBoxManager _infoBox = new InfoBoxManager();
         public Loader _loader = new Loader();
         public Cleaner _cleaner = new Cleaner();
 
 
         public static bool Quit;
-        public uint Ticks = SDL.SDL_GetTicks();
         public Player Player;
         public Camera Camera;
 
@@ -88,7 +88,6 @@ namespace TileBasedGame
             enemy.AddComponent(uc);
             enemy.Active = true;
             coc.AddObserver(uc);
-
             return enemy;
 
         }
@@ -101,11 +100,8 @@ namespace TileBasedGame
             bullet.AddComponent(_ai.CreateComponent());
             Component coc = _collisions.CreateComponent("good");
             bullet.AddComponent(coc);
-            //Component ac = _animations.CreateComponent();
-            //bullet.AddComponent(ac);
             Component uc = _updates.CreateBulletComponent();
             bullet.AddComponent(uc);
-
             coc.AddObserver(uc);
             return bullet;
         }
@@ -119,11 +115,8 @@ namespace TileBasedGame
             bullet.AddComponent(_ai.CreateComponent());
             Component coc = _collisions.CreateComponent("bad");
             bullet.AddComponent(coc);
-            
             Component uc = _updates.CreateBulletComponent();
             bullet.AddComponent(uc);
-            //bullet.AddComponent(_animations.CreateComponent());
-
             coc.AddObserver(uc);
             return bullet;
 
@@ -299,19 +292,7 @@ namespace TileBasedGame
 
 
 
-        public void QuitGame()
-        {
-            /*
-            _levels = null;
-            _objects = null;
-            _physics = null;
-            _rendering = null;
-            _audio = null;
-            _collisions = null;
-            _ai = null;
-            _controls = null;*/
-
-
+        public void QuitGame(){
             SDL.SDL_DestroyWindow(Program.Window.Show);
             _audio.CleanUp();
             SDL.SDL_Quit();

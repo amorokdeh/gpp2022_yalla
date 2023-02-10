@@ -21,7 +21,8 @@ namespace TileBasedGame
 
         public static int LeftBoundary = 0;
 
-        public static int BulletGap = 2;
+        public static float BulletGap = 1.5f;
+        public static float BulletPowerUp = 0.15f;
         public static int EnemyGap = 1;
         public static float AnimationGap = 0.15f;
         public static int AnimationPause = 5;

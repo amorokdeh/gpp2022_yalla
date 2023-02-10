@@ -14,7 +14,7 @@ namespace TileBasedGame
     class Loader
     {
         //Number of assets to load
-        private int totalAssets = 28;
+        private int totalAssets = 29;
         private int assetsLoaded = 0;
 
         public Text Txt = new Text();
@@ -42,6 +42,7 @@ namespace TileBasedGame
         public AudioComponent MenuClick = new AudioComponent();
         public AudioComponent GameOver = new AudioComponent();
         public AudioComponent Shooting = new AudioComponent();
+        public AudioComponent reloadShooting = new AudioComponent();
         public AudioComponent ExplodEnemy = new AudioComponent();
         public AudioComponent ExplodPlayer = new AudioComponent();
         public AudioComponent ShootingEnemy = new AudioComponent();
@@ -92,6 +93,7 @@ namespace TileBasedGame
                 case 25: return loadSound(Jump, "sound/Jump.wav");
                 case 26: return loadSound(Coin, "sound/Coin.wav");
                 case 27: return loadSound(Power, "sound/Power.wav");
+                case 28: return loadSound(reloadShooting, "sound/reload.wav");
                 default: return "";
             }
         }
@@ -185,6 +187,7 @@ namespace TileBasedGame
             Program.Game._audio.AddAudio(Jump);
             Program.Game._audio.AddAudio(Coin);
             Program.Game._audio.AddAudio(Power);
+            Program.Game._audio.AddAudio(reloadShooting);
         }
     }
 }

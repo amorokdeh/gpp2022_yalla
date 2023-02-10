@@ -45,6 +45,8 @@ namespace TileBasedGame
                 he.GameObject.Active = false;
                 he.GameObject.Died = true;
                 Program.Game.Player.Score += 5;
+
+                Program.Game._infoBox.powerUpInfo();
             }
         }
 

@@ -1,0 +1,46 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TileBasedGame
+{
+    class InfoBoxManager
+    {
+        public InfoBox infoBox = new InfoBox();
+        public bool powerUpInfoRunning = true;
+        public bool keysInfoRunning = true;
+        public InfoBoxManager() { 
+        }
+
+        public void powerUpInfo() {
+
+            while (powerUpInfoRunning)
+            {
+                infoBox.renderBox();
+                infoBox.printTxt("Power up", (Program.Window.Height * 30 / 100) + Program.Window.Height * 2 / 100, 30);
+                infoBox.printTxt("You can now shoot faster", (Program.Window.Height * 30 / 100) + Program.Window.Height * 10 / 100, 30);
+                infoBox.printAnimText("Press Enter");
+                powerUpInfoRunning = infoBox.Control();
+            }
+        }
+
+        public void keysInfo()
+        {
+
+            while (keysInfoRunning)
+            {
+                infoBox.renderBox();
+                infoBox.printTxt("Game Info", (Program.Window.Height * 30 / 100) + Program.Window.Height * 2 / 100, 30);
+                infoBox.printTxt("Left, Right to move", (Program.Window.Height * 30 / 100) + Program.Window.Height * 7 / 100, 25);
+                infoBox.printTxt("Up to jump", (Program.Window.Height * 30 / 100) + Program.Window.Height * 12 / 100, 25);
+                infoBox.printTxt("Space to shoot", (Program.Window.Height * 30 / 100) + Program.Window.Height * 17 / 100, 25);
+                infoBox.printAnimText("Press Enter");
+                keysInfoRunning = infoBox.Control();
+            }
+        }
+
+
+    }
+}

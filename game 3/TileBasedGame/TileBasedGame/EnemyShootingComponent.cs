@@ -17,7 +17,7 @@ namespace TileBasedGame
 
         public override void Shoot(float deltaTime)
         {
-            BulletGap += deltaTime;
+            //BulletGap += deltaTime;
             if ((BulletGap > BulletGapSize))
             {
                 Bullet = (EnemyBullet)Program.Game.RequestEnemyBullet(GameObject);

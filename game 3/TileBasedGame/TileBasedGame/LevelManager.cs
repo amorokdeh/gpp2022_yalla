@@ -9,17 +9,9 @@ namespace TileBasedGame
     class LevelManager
     {
 
-
-        public Level1 Level1;
-        public Level2 Level2;
-        public Level3 Level3;
-
-        public static int CurrentLevel;
-
+        public Level CurrentLevel;
         public MainMenu MainMenu;
-
         public GameOver GameOver;
-        //public JoystickComponent gamePad = new JoystickComponent();
         public static bool ControlQuitRequest = false;
 
 
@@ -38,26 +30,22 @@ namespace TileBasedGame
 
         public void RunLevel1()
         {
-            Level1 = new Level1();
-            CurrentLevel = 1;
-            Level1.Run();
+            CurrentLevel = new Level1();
+            CurrentLevel.Run();
         }
         public void RunLevel2()
         {
-            Level2 = new Level2();
-            CurrentLevel = 2;
-            Level2.Run();
+            CurrentLevel = new Level2();
+            CurrentLevel.Run();
         }
         public void RunLevel3()
         {
-            Level3 = new Level3();
-            CurrentLevel = 3;
-            Level3.Run();
+            CurrentLevel = new Level3();
+            CurrentLevel.Run();
         }
 
         public void RunMainMenu()
         {
-            //gamePad.setup();
             MainMenu = new MainMenu();
             MainMenu.Run();
         }

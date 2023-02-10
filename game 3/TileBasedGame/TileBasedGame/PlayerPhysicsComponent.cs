@@ -26,6 +26,10 @@ namespace TileBasedGame
                 moveLeft();
             if (he.EventType == HeroEvent.Type.GoRight)
                 moveRight();
+            if (he.EventType == HeroEvent.Type.TryShooting)
+                shoot();
+            if (he.EventType == HeroEvent.Type.powerUp)
+                powerUp();
             if (he.EventType == HeroEvent.Type.JumpAble)
                 if (he.GameObject == this.GameObject)
                 {
@@ -35,21 +39,6 @@ namespace TileBasedGame
         public override void Move(float deltaT)
         {
             base.Move(deltaT);
-            /*
-            Player p = (Player)GameObject;
-            if (GameObject.CurrentVelX > 0)
-            {
-                p.FlyRight();
-            }
-            else if (GameObject.CurrentVelX < 0)
-            {
-                p.FlyLeft();
-            }
-            else
-            {
-                p.FlyStraight();
-            }*/
-                
         }
 
         public void moveUp() {
@@ -90,8 +79,19 @@ namespace TileBasedGame
                 GameObject.CurrentVelX += GameObject.VelX;
             }
         }
+
         public void jumpAble() {
             GameObject.jumpPossibility = 2;
+        }
+
+        public void shoot() {
+            if (GameObject.canShoot) {
+                GameObject.shoot = true;
+            }
+        }
+
+        public void powerUp() {
+            GameObject.shootingSpeed += Globals.BulletPowerUp;
         }
 
     }

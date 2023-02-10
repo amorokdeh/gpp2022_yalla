@@ -60,6 +60,7 @@ namespace TileBasedGame
                     if (this.Role == "player" && colObject.Role == "power")
                     {
                         MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.takePower, colObject.GameObject));
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.powerUp));
                     }
                 }
             }

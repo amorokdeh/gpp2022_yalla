@@ -191,6 +191,7 @@ namespace TileBasedGame
                     case Choices.StartGame:
                         MenuSelected = "levels";
                         _selected = Choices.Level1;
+                        Program.Game._infoBox.keysInfo();
                         return;
                     case Choices.Options:
                         MenuSelected = "option";
