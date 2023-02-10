@@ -3,7 +3,6 @@
 [] Animationen(Images) langsamer machen
 [] Level 2 and 3 (Amr)
 [] Collision mit End door "Level win" (Amr)
-[] Collision mit Gegener und Spitzen "Player-Reaktion"
 
 [x] Schießen per Tastendruck
 [x] Kollision nur in bestimmten Bereich
@@ -12,6 +11,7 @@
 [x] Schießen nach rechts und links (Player-Richtung)
 [x] Coins oder ähnliches zum Einsammeln
 [x] Sounds in Loader class laden
+[x] Collision mit Gegener und Spitzen "Player-Reaktion"
 
 
 Kritik und Tipps umsetzen:
