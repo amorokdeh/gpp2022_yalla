@@ -26,6 +26,8 @@ namespace TileBasedGame
                 moveLeft();
             if (he.EventType == HeroEvent.Type.GoRight)
                 moveRight();
+            if (he.EventType == HeroEvent.Type.StopMoving)
+                stopMoving();
             if (he.EventType == HeroEvent.Type.TryShooting)
                 shoot();
             if (he.EventType == HeroEvent.Type.powerUp)
@@ -77,6 +79,18 @@ namespace TileBasedGame
             if (GameObject.CurrentVelX <= 0)
             {
                 GameObject.CurrentVelX += GameObject.VelX;
+            }
+        }
+
+        public void stopMoving() 
+        {
+            if (GameObject.CurrentVelX < 0)
+            {
+                GameObject.CurrentVelX += GameObject.VelX;
+            }
+            else if (GameObject.CurrentVelX > 0)
+            {
+                GameObject.CurrentVelX -= GameObject.VelX;
             }
         }
 
