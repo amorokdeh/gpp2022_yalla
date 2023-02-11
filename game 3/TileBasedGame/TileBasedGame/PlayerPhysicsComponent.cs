@@ -9,89 +9,107 @@ namespace TileBasedGame
 {
     class PlayerPhysicsComponent : PhysicsComponent
     {
+
+        State next;
         public PlayerPhysicsComponent(PhysicsManager pm) : base(pm)
         {
+            
         }
+
+
+
         public override void OnEvent(Event e)
         {
 
             HeroEvent he = e as HeroEvent;
             if (he == null)
                 return;
-            if (he.EventType == HeroEvent.Type.GoUp)
-                moveUp();
-            if (he.EventType == HeroEvent.Type.GoDown)
-                moveDown();
-            if (he.EventType == HeroEvent.Type.GoLeft)
-                moveLeft();
-            if (he.EventType == HeroEvent.Type.GoRight)
-                moveRight();
             if (he.EventType == HeroEvent.Type.TryShooting)
                 shoot();
             if (he.EventType == HeroEvent.Type.powerUp)
                 powerUp();
-            if (he.EventType == HeroEvent.Type.JumpAble)
+           /* if (he.EventType == HeroEvent.Type.JumpAble)
                 if (he.GameObject == this.GameObject)
                 {
                     jumpAble();
-                }
+                }*/
+            next = GameObject.State.HandleInput(he);
+
+            //Console.WriteLine(next);
+            if (next != GameObject.State)
+            {
+                GameObject.State = next;
+                GameObject.State.Enter(GameObject);
+            }
+
+            /*   if (he == null)
+                   return;
+               if (he.GameObject == this.GameObject)
+               {
+
+                   if (he.EventType == HeroEvent.Type.FlyLeft)
+                   {
+                       ImgChange = Globals.MediumImageSize * 3;
+                       flipped = SDL.SDL_RendererFlip.SDL_FLIP_HORIZONTAL;
+                   }
+                   else if (he.EventType == HeroEvent.Type.FlyRight)
+                   {
+                       ImgChange = Globals.MediumImageSize * 3;
+                       flipped = SDL.SDL_RendererFlip.SDL_FLIP_NONE;
+                   }
+                   else if (he.EventType == HeroEvent.Type.FlyStraight)
+                   {
+
+                       if (GameObject is Power || GameObject is Coin)
+                       {
+                           ImgChange = Globals.MediumImageSize * 1;
+                       }
+                   }
+
+                   else if (he.EventType == HeroEvent.Type.FlyUp)
+                       ImgChange = Globals.MediumImageSize * 2;
+                   else if (he.EventType == HeroEvent.Type.EnemyDead)
+                   {
+                       rotateAngle = 90;
+                       GameObject.PosY += 32;
+                   }
+                   else if (he.EventType == HeroEvent.Type.ChangeImage)
+                   {
+                       ImgStep++;
+                       if (ImgStep < 5)
+                       {
+                           ImgChange = Globals.MediumImageSize * ImgStep;
+                       }
+                       else
+                       {
+                           ImgChange = Globals.Reset;
+                       }
+
+                   }
+
+               }*/
         }
+
         public override void Move(float deltaT)
-        {
+        {            
+            GameObject.State.Update(deltaT);
             base.Move(deltaT);
+            //Console.WriteLine(GameObject.State.GetDirection());
         }
 
-        public void moveUp() {
-
-            if (GameObject.jumpPossibility > 0)
-            {
-                GameObject.CurrentVelY = Globals.JUMP_VELOCITY;
-                GameObject.jumpPossibility--;
-            }
-            
-        }
-        public void moveDown()
-        {
-            if (GameObject.CurrentVelY <= 0)
-            {
-                GameObject.CurrentVelY += GameObject.VelY;
-            }
-        }
-
-        public void moveLeft()
-        {
-            if(GameObject.CurrentVelX == 0)
-                GameObject.direction = "left";
-
-            if (GameObject.CurrentVelX >= 0)
-            {
-                GameObject.CurrentVelX -= GameObject.VelX;
-            }
-        }
-
-        public void moveRight()
-        {
-            if (GameObject.CurrentVelX == 0)
-                GameObject.direction = "right";
-
-            if (GameObject.CurrentVelX <= 0)
-            {
-                GameObject.CurrentVelX += GameObject.VelX;
-            }
-        }
 
         public void jumpAble() {
-            GameObject.jumpPossibility = 2;
+            GameObject.JumpPossibility = 2;
         }
 
         public void shoot() {
-            if (GameObject.canShoot) {
-                GameObject.shoot = true;
+            if (GameObject.CanShoot) {
+                GameObject.Shoot = true;
             }
         }
 
         public void powerUp() {
-            GameObject.shootingSpeed += Globals.BulletPowerUp;
+            GameObject.ShootingSpeed += Globals.BulletPowerUp;
         }
 
     }

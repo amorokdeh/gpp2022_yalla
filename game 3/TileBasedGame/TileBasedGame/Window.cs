@@ -126,7 +126,7 @@ namespace TileBasedGame
             if (delta < DesiredDelta)
             {
                 uint deltaFPS = (uint) DesiredDelta - delta;
-                if (Program.Game._levels.MainMenu.Running) { deltaFPS *= 2; } //Because we have in main menu x2 Render (we want to fix this problem later)
+                if (Program.Game.Levels.MainMenu.Running) { deltaFPS *= 2; } //Because we have in main menu x2 Render (we want to fix this problem later)
                 SDL.SDL_Delay(deltaFPS);
             }
         }

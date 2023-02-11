@@ -32,6 +32,7 @@ namespace TileBasedGame
             _rect.w = dstW;
             _rect.h = dstH;
             this._dstX = dstX;
+            //GameObject.ImgChange = x;
             ImgChange = x;
             ImgChangeY = y;
         }
@@ -64,10 +65,12 @@ namespace TileBasedGame
             _rect.h = dstH;
             this._dstX = dstX;
         }
-
+/*
         public override void OnEvent(Event e)
         {
+            
             HeroEvent he = e as HeroEvent;
+            State.HandleInput(he);
             if (he == null)
                 return;
             if (he.GameObject == this.GameObject)
@@ -112,15 +115,37 @@ namespace TileBasedGame
                 }
                 
             }
-        }
+        }*/
 
         override public void Render()
         {
+            /*
+            if(GameObject is Player) { 
+                if (GameObject.State is Running)
+                {
+                    Console.WriteLine("Running");
+                }
+                else if (GameObject.State is Jumping)
+                {
+                    Console.WriteLine("Jumping");
+                }
+                else if (GameObject.State is Ducking)
+                {
+                    Console.WriteLine("Ducking");
+                }
+            }*/
+
+
             _rect.x = (int)(GameObject.PosX + _dstX - Program.Game.Camera.PosX + Program.Window.Width / 2);
             _rect.y = (int)(GameObject.PosY - Program.Game.Camera.PosY + Program.Window.Height / 2);
+            _rect.h = GameObject.Height;
 
+            
             _srcRect.x = ImgChange;
             _srcRect.y = ImgChangeY;
+
+            if(GameObject is Player)
+                _srcRect.x = GameObject.ImgChange;
 
             //SDL.SDL_RenderCopy(Program.Window.Renderer, Img.ImageTexture, ref _srcRect, ref _rect);
             SDL.SDL_RenderCopyEx(Program.Window.Renderer, Img.ImageTexture, ref _srcRect, ref _rect, rotateAngle, IntPtr.Zero, flipped);

@@ -13,39 +13,57 @@ namespace TileBasedGame
         public bool Active = false;
         public bool Died = false;
 
-        public string _name;
+        public string Name;
 
         public float PosX;
         public float PosY;
         public int Width;
         public int Height;
+        public int GeneralHeight;
         public float VelX;
         public float CurrentVelX;
         public float VelY;
         public float CurrentVelY;
         public string direction;
-        public int jumpPossibility;
-        public bool shoot;
-        public bool canShoot;
-        public float shootingSpeed;
+        public int JumpPossibility;
+        public bool Shoot;
+        public bool CanShoot;
+        public float ShootingSpeed;
+
+        public State State;
+
+
+        //! an andere Stelle im Programm
+        public CharacterData CharData;
+        public int ImgChange;
+
+
 
 
         public GameObject(string name, int w, int h)
         {
+            //! an andere Stelle im Programm
+            CharData = Program.Game.Loader.PlayerAnimation;
+            State = new Running();
+            State.SetDirection("stand");
+            State.Enter(this);
+            
+
             Width = w;
             Height = h;
+            GeneralHeight = h;
             VelX = Globals.Velocity;
             VelY = Globals.Velocity;
             CurrentVelX = Globals.Reset;
             CurrentVelY = Globals.Reset;
             direction = "right";
-            jumpPossibility = 2;
-            shoot = false;
-            canShoot = true;
-            shootingSpeed = 0;
+            JumpPossibility = 2;
+            Shoot = false;
+            CanShoot = true;
+            ShootingSpeed = 0;
 
-            this._name = name;
-            Program.Game._maps.currentMap.Tiles.Add(this);
+            this.Name = name;
+            Program.Game.Maps.currentMap.Tiles.Add(this);
         }
 
         internal void AddComponent(Component component)
@@ -53,6 +71,8 @@ namespace TileBasedGame
             Components.Add(component);
             component.GameObject = this;
         }
+
+
 
     }
 }

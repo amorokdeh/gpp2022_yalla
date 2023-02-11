@@ -65,7 +65,7 @@ namespace TileBasedGame
                     {
                         case SDL.SDL_Keycode.SDLK_RETURN: 
                             Running = false;
-                            Level level = Program.Game._levels.CurrentLevel;
+                            Level level = Program.Game.Levels.CurrentLevel;
                             if (level is Level1)
                             {
                                 CloseAndGoTo(LevelManager.GameState.Level1); 

@@ -115,7 +115,7 @@ namespace TileBasedGame
         }
         public void Run()
         {
-            Program.Game._audio.RunMusic("Menu music");
+            Program.Game.Audio.RunMusic("Menu music");
             Program.Game.Camera.PosY = Program.Window.Height / 2;
             Program.Game.Camera.PosX = Program.Window.Width / 2;
             while (Running)
@@ -191,7 +191,7 @@ namespace TileBasedGame
                     case Choices.StartGame:
                         MenuSelected = "levels";
                         _selected = Choices.Level1;
-                        Program.Game._infoBox.keysInfo();
+                        Program.Game.InfoBox.keysInfo();
                         return;
                     case Choices.Options:
                         MenuSelected = "option";
@@ -249,10 +249,10 @@ namespace TileBasedGame
                 {
 
                     case Choices.SoundUp:
-                        Program.Game._audio.ChangeVolumeSound(Program.Game._audio.GetVolumeSound() + Globals.AudioStep);
+                        Program.Game.Audio.ChangeVolumeSound(Program.Game.Audio.GetVolumeSound() + Globals.AudioStep);
                         return;
                     case Choices.SoundDown:
-                        Program.Game._audio.ChangeVolumeSound(Program.Game._audio.GetVolumeSound() - Globals.AudioStep);
+                        Program.Game.Audio.ChangeVolumeSound(Program.Game.Audio.GetVolumeSound() - Globals.AudioStep);
                         return;
                     case Choices.BackToOption:
                         MenuSelected = "option";
@@ -266,10 +266,10 @@ namespace TileBasedGame
                 {
 
                     case Choices.MusicUp:
-                        Program.Game._audio.ChangeVolumeMusic(Program.Game._audio.GetVolumeMusic() + Globals.AudioStep);
+                        Program.Game.Audio.ChangeVolumeMusic(Program.Game.Audio.GetVolumeMusic() + Globals.AudioStep);
                         return;
                     case Choices.MusicDown:
-                        Program.Game._audio.ChangeVolumeMusic(Program.Game._audio.GetVolumeMusic() - Globals.AudioStep);
+                        Program.Game.Audio.ChangeVolumeMusic(Program.Game.Audio.GetVolumeMusic() - Globals.AudioStep);
                         return;
                     case Choices.BackToTheOption:
                         MenuSelected = "option";
@@ -435,7 +435,7 @@ namespace TileBasedGame
             int winH = Program.Window.Height;
 
             GameObject bg;
-            Image backImg = Program.Game._loader.BackgroundImg;
+            Image backImg = Program.Game.Loader.BackgroundImg;
             bg = _objects.CreateGameBackground(source, winW, winH);
             bg.Active = true;
             bg.AddComponent(_rendering.CreateComponent(backImg, winW, winH, 1920, 1080));
@@ -494,7 +494,7 @@ namespace TileBasedGame
             {
                 NextText = Program.Window.Height / 3;
 
-                TextPrinter("Sound volume: " + Program.Game._audio.GetVolumeSound().ToString(), Choices.StartGame);
+                TextPrinter("Sound volume: " + Program.Game.Audio.GetVolumeSound().ToString(), Choices.StartGame);
                 TextPrinter("+", Choices.SoundUp);
                 TextPrinter("-", Choices.SoundDown);
                 TextPrinter("Back", Choices.BackToOption);
@@ -503,7 +503,7 @@ namespace TileBasedGame
             {
                 NextText = Program.Window.Height / 3;
 
-                TextPrinter("Music volume: " + Program.Game._audio.GetVolumeMusic().ToString(), Choices.StartGame);
+                TextPrinter("Music volume: " + Program.Game.Audio.GetVolumeMusic().ToString(), Choices.StartGame);
                 TextPrinter("+", Choices.MusicUp);
                 TextPrinter("-", Choices.MusicDown);
                 TextPrinter("Back", Choices.BackToTheOption);

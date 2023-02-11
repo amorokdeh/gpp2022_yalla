@@ -11,8 +11,8 @@ namespace TileBasedGame
         public override void buildMap()
         {
 
-            Program.Game._maps.loadMap("Level 3");
-            Program.Game._maps.createMap();
+            Program.Game.Maps.loadMap("Level 3");
+            Program.Game.Maps.createMap();
         }
     }
 }

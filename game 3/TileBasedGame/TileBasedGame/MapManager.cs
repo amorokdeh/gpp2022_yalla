@@ -18,9 +18,9 @@ namespace TileBasedGame
 
             switch (level){
 
-                case "Level 1": currentMap.load(Program.Game._loader.level1Json, Program.Game._loader.level1Img); break;
-                case "Level 2": currentMap.load(Program.Game._loader.level2Json, Program.Game._loader.level2Img); break;
-                case "Level 3": currentMap.load(Program.Game._loader.level3Json, Program.Game._loader.level3Img); break;
+                case "Level 1": currentMap.load(Program.Game.Loader.Level1Json, Program.Game.Loader.Level1Img); break;
+                case "Level 2": currentMap.load(Program.Game.Loader.Level2Json, Program.Game.Loader.Level2Img); break;
+                case "Level 3": currentMap.load(Program.Game.Loader.Level3Json, Program.Game.Loader.Level3Img); break;
             }
         }
 

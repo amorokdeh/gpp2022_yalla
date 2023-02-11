@@ -10,22 +10,22 @@ namespace TileBasedGame
 {
     class Game
     {
-        public GameObjectManager _objects = new GameObjectManager();
-        public PhysicsManager _physics = new PhysicsManager();
-        public RenderingManager _rendering = new RenderingManager();
-        public AudioManager _audio = new AudioManager();
-        public LevelManager _levels = new LevelManager();
-        public CollisionManager _collisions = new CollisionManager();
-        public AIManager _ai = new AIManager();
-        public ControlManager _controls = new ControlManager();
-        public AnimationManager _animations = new AnimationManager();
-        public PoolManager _pool = new PoolManager();
-        public ShootingManager _shootings = new ShootingManager();
-        public MapManager _maps = new MapManager();
-        public UpdateManager _updates = new UpdateManager();
-        public InfoBoxManager _infoBox = new InfoBoxManager();
-        public Loader _loader = new Loader();
-        public Cleaner _cleaner = new Cleaner();
+        public GameObjectManager Objects = new GameObjectManager();
+        public PhysicsManager Physics = new PhysicsManager();
+        public RenderingManager Rendering = new RenderingManager();
+        public AudioManager Audio = new AudioManager();
+        public LevelManager Levels = new LevelManager();
+        public CollisionManager Collisions = new CollisionManager();
+        public AIManager Ai = new AIManager();
+        public ControlManager Controls = new ControlManager();
+        public AnimationManager Animations = new AnimationManager();
+        public PoolManager Pool = new PoolManager();
+        public ShootingManager Shootings = new ShootingManager();
+        public MapManager Maps = new MapManager();
+        public UpdateManager Updates = new UpdateManager();
+        public InfoBoxManager InfoBox = new InfoBoxManager();
+        public Loader Loader = new Loader();
+        public Cleaner Cleaner = new Cleaner();
 
 
         public static bool Quit;
@@ -39,26 +39,27 @@ namespace TileBasedGame
 
         public GameObject BuildPlayer()
         {
-            Player = _objects.CreateGamePlayer("player", Globals.MediumImageSize, Globals.BigImageSize);
+            Player = Objects.CreateGamePlayer("player", Globals.MediumImageSize, Globals.BigImageSize);
             Player.Active = true;
-            Component pc = _physics.CreatePlayerComponent();
+            //Player.CharData = Loader.PlayerAnimation;
+            Component pc = Physics.CreatePlayerComponent();
             Player.AddComponent(pc);
 
-            Player.AddComponent(_rendering.CreateComponent(_loader.playerImg, Globals.MediumImageSize, Globals.BigImageSize, Globals.MediumImageSize, Globals.BigImageSize));
-            Player.AddComponent(_rendering.CreateInfoComponent());
+            Player.AddComponent(Rendering.CreateComponent(Loader.PlayerImg, Globals.MediumImageSize, Globals.BigImageSize, Globals.MediumImageSize, Globals.BigImageSize));
+            Player.AddComponent(Rendering.CreateInfoComponent());
 
-            Component cc = _controls.CreateComponent();
+            Component cc = Controls.CreateComponent();
             Player.AddComponent(cc);
 
-            Component coc = _collisions.CreateComponent("player");
+            Component coc = Collisions.CreateComponent("player");
             Player.AddComponent(coc);
 
-            Player.AddComponent(_shootings.CreatePlayerComponent());
+            Player.AddComponent(Shootings.CreatePlayerComponent());
 
-            Component uc = _updates.CreatePlayerComponent();
+            Component uc = Updates.CreatePlayerComponent();
             Player.AddComponent(uc);
 
-            Player.AddComponent(_animations.CreateComponent());
+            Player.AddComponent(Animations.CreateComponent());
 
             //cc.AddObserver(pc);
             coc.AddObserver(uc);
@@ -74,17 +75,17 @@ namespace TileBasedGame
         {
             Image img = new Image();
             switch (type) {
-                case 1: img = _loader.enemy1Img; break;
-                case 2: img = _loader.enemy2Img; break;
+                case 1: img = Loader.Enemy1Img; break;
+                case 2: img = Loader.Enemy2Img; break;
             }
-            enemy = _objects.CreateGameEnemy("Enemy", Globals.MediumImageSize, Globals.BigImageSize, (int)enemy.PosX, (int)enemy.PosY);
-            enemy.AddComponent(_physics.CreateComponent());
-            enemy.AddComponent(_rendering.CreateComponent(img, Globals.MediumImageSize, Globals.BigImageSize, Globals.MediumImageSize, Globals.BigImageSize));
-            enemy.AddComponent(_ai.CreateComponent());
-            Component coc = _collisions.CreateComponent("bad");
+            enemy = Objects.CreateGameEnemy("Enemy", Globals.MediumImageSize, Globals.BigImageSize, (int)enemy.PosX, (int)enemy.PosY);
+            enemy.AddComponent(Physics.CreateComponent());
+            enemy.AddComponent(Rendering.CreateComponent(img, Globals.MediumImageSize, Globals.BigImageSize, Globals.MediumImageSize, Globals.BigImageSize));
+            enemy.AddComponent(Ai.CreateComponent());
+            Component coc = Collisions.CreateComponent("bad");
             enemy.AddComponent(coc);
-            enemy.AddComponent(_animations.CreateComponent());
-            Component uc = _updates.CreateEnemyComponent();
+            enemy.AddComponent(Animations.CreateComponent());
+            Component uc = Updates.CreateEnemyComponent();
             enemy.AddComponent(uc);
             enemy.Active = true;
             coc.AddObserver(uc);
@@ -94,13 +95,13 @@ namespace TileBasedGame
 
         public GameObject BuildPlayerBullet(GameObject bullet, GameObject player)
         {
-            bullet = _objects.CreatePlayerBullet("playerBullet", player, Globals.MediumImageSize, Globals.MediumImageSize);
-            bullet.AddComponent(_physics.CreateComponent());
-            bullet.AddComponent(_rendering.CreateComponent(_loader.bulletImg, Globals.MediumImageSize, Globals.MediumImageSize));
-            bullet.AddComponent(_ai.CreateComponent());
-            Component coc = _collisions.CreateComponent("good");
+            bullet = Objects.CreatePlayerBullet("playerBullet", player, Globals.MediumImageSize, Globals.MediumImageSize);
+            bullet.AddComponent(Physics.CreateComponent());
+            bullet.AddComponent(Rendering.CreateComponent(Loader.BulletImg, Globals.MediumImageSize, Globals.MediumImageSize));
+            bullet.AddComponent(Ai.CreateComponent());
+            Component coc = Collisions.CreateComponent("good");
             bullet.AddComponent(coc);
-            Component uc = _updates.CreateBulletComponent();
+            Component uc = Updates.CreateBulletComponent();
             bullet.AddComponent(uc);
             coc.AddObserver(uc);
             return bullet;
@@ -109,13 +110,13 @@ namespace TileBasedGame
         // Enemy Bullet
         public GameObject BuildEnemyBullet(GameObject bullet, GameObject enemy)
         {
-            bullet = _objects.CreateEnemyBullet("enemyBullet", enemy, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier);
-            bullet.AddComponent(_physics.CreateComponent());
-            bullet.AddComponent(_rendering.CreateComponent(_loader.bulletImg, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
-            bullet.AddComponent(_ai.CreateComponent());
-            Component coc = _collisions.CreateComponent("bad");
+            bullet = Objects.CreateEnemyBullet("enemyBullet", enemy, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier);
+            bullet.AddComponent(Physics.CreateComponent());
+            bullet.AddComponent(Rendering.CreateComponent(Loader.BulletImg, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
+            bullet.AddComponent(Ai.CreateComponent());
+            Component coc = Collisions.CreateComponent("bad");
             bullet.AddComponent(coc);
-            Component uc = _updates.CreateBulletComponent();
+            Component uc = Updates.CreateBulletComponent();
             bullet.AddComponent(uc);
             coc.AddObserver(uc);
             return bullet;
@@ -125,8 +126,8 @@ namespace TileBasedGame
         // Background tiles
         public GameObject BuildTiles(string name, int w, int h, int x, int y, int imgFrame, Image img)
         {
-            Tile tile = _objects.CreateTile(name, w, h, x, y);
-            tile.AddComponent(_rendering.CreateComponent(img, imgFrame, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
+            Tile tile = Objects.CreateTile(name, w, h, x, y);
+            tile.AddComponent(Rendering.CreateComponent(img, imgFrame, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
             tile.Active = true;
             tile.Died = false;
             return tile;
@@ -136,9 +137,9 @@ namespace TileBasedGame
         // Blocks tiles
         public GameObject BuildBlocks(string name, int w, int h, int x, int y, int imgFrame, Image img)
         {
-            Block block = _objects.CreateBlock(name, w, h, x, y);
-            block.AddComponent(_rendering.CreateComponent(img, imgFrame, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
-            Component coc = _collisions.CreateComponent("block");
+            Block block = Objects.CreateBlock(name, w, h, x, y);
+            block.AddComponent(Rendering.CreateComponent(img, imgFrame, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
+            Component coc = Collisions.CreateComponent("block");
             block.AddComponent(coc);
             block.Active = true;
             block.Died = false;
@@ -149,9 +150,9 @@ namespace TileBasedGame
         // Spikes tiles
         public GameObject BuildSpikes(string name, int w, int h, int x, int y, int imgFrame, Image img)
         {
-            Spike spike = _objects.CreateSpike(name, w, h, x, y);
-            spike.AddComponent(_rendering.CreateComponent(img, imgFrame, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
-            Component coc = _collisions.CreateComponent("spike");
+            Spike spike = Objects.CreateSpike(name, w, h, x, y);
+            spike.AddComponent(Rendering.CreateComponent(img, imgFrame, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
+            Component coc = Collisions.CreateComponent("spike");
             spike.AddComponent(coc);
             spike.Active = true;
             spike.Died = false;
@@ -162,9 +163,9 @@ namespace TileBasedGame
         // End door tiles
         public GameObject BuildEndDoor(string name, int w, int h, int x, int y, int imgFrame, Image img)
         {
-            EndDoor endDoor = _objects.CreateEndDoor(name, w, h, x, y);
-            endDoor.AddComponent(_rendering.CreateComponent(img, imgFrame, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
-            Component coc = _collisions.CreateComponent("door");
+            EndDoor endDoor = Objects.CreateEndDoor(name, w, h, x, y);
+            endDoor.AddComponent(Rendering.CreateComponent(img, imgFrame, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
+            Component coc = Collisions.CreateComponent("door");
             endDoor.AddComponent(coc);
             endDoor.Active = true;
             endDoor.Died = false;
@@ -174,9 +175,9 @@ namespace TileBasedGame
         //Coins
         public GameObject BuildCoin(Coin coin, int imgX, int imgY)
         {
-            coin = _objects.CreateCoin("Coin", Globals.MediumImageSize, Globals.MediumImageSize, (int)coin.PosX, (int)coin.PosY);
-            coin.AddComponent(_rendering.CreateComponent(_loader.coinImg, Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize, imgX, imgY));
-            Component coc = _collisions.CreateComponent("coin");
+            coin = Objects.CreateCoin("Coin", Globals.MediumImageSize, Globals.MediumImageSize, (int)coin.PosX, (int)coin.PosY);
+            coin.AddComponent(Rendering.CreateComponent(Loader.CoinImg, Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize, imgX, imgY));
+            Component coc = Collisions.CreateComponent("coin");
             coin.AddComponent(coc);
             coin.Active = true;
             coin.Died = false;
@@ -186,11 +187,11 @@ namespace TileBasedGame
         //Coins
         public GameObject BuildPower(Power power)
         {
-            power = _objects.CreatePower("Power", Globals.MediumImageSize, Globals.MediumImageSize, (int)power.PosX, (int)power.PosY);
-            power.AddComponent(_rendering.CreateComponent(_loader.powerImg, Globals.MediumImageSize, Globals.MediumImageSize, Globals.NormalImageSize, Globals.NormalImageSize));
-            Component coc = _collisions.CreateComponent("power");
+            power = Objects.CreatePower("Power", Globals.MediumImageSize, Globals.MediumImageSize, (int)power.PosX, (int)power.PosY);
+            power.AddComponent(Rendering.CreateComponent(Loader.PowerImg, Globals.MediumImageSize, Globals.MediumImageSize, Globals.NormalImageSize, Globals.NormalImageSize));
+            Component coc = Collisions.CreateComponent("power");
             power.AddComponent(coc);
-            power.AddComponent(_animations.CreateComponent());
+            power.AddComponent(Animations.CreateComponent());
             power.Active = true;
             power.Died = false;
             return power;
@@ -199,75 +200,75 @@ namespace TileBasedGame
 
         public void DespawnEnemy(GameObject enemy)
         {
-            _pool.DespawnEnemy(enemy);
+            Pool.DespawnEnemy(enemy);
         }
 
         public GameObject RequestPlayerBullet(GameObject player)
         {
-            return _pool.RequestPlayerBullet(player);
+            return Pool.RequestPlayerBullet(player);
         }
 
         public GameObject RequestEnemyBullet(GameObject enemy)
         {
-            return _pool.RequestEnemyBullet(enemy);
+            return Pool.RequestEnemyBullet(enemy);
         }
 
         public void DespawnPlayerBullet(GameObject bullet)
         {
-            _pool.DespawnPlayerBullet(bullet);
+            Pool.DespawnPlayerBullet(bullet);
         }
 
         public void DespawnEnemyBullet(GameObject bullet)
         {
-            _pool.DespawnEnemyBullet(bullet);
+            Pool.DespawnEnemyBullet(bullet);
         }
 
         public void DespawnBullet(GameObject bullet)
         {
-            _pool.DespawnBullet(bullet);
+            Pool.DespawnBullet(bullet);
         }
 
 
         public void ControlPlayer()
         {
-            _controls.Control();
+            Controls.Control();
         }
         public void ControlEnemy()
         {
-            _ai.Control();
+            Ai.Control();
         }
 
 
         public void Move(float deltaT)
         {
-            _physics.Move(deltaT);
+            Physics.Move(deltaT);
         }
 
         public void Collide()
         {
-            _collisions.Collide();
+            Collisions.Collide();
         }
 
 
         public void Render()
         {
-            _rendering.Render();
+            Rendering.Render();
         }
 
         public void SetInactive()
         {
-            _pool.SetInactive();
+            Pool.SetInactive();
 
         }
 
         public void Animate(float deltaT)
         {
-            _animations.Animate(deltaT);
+            Animations.Animate(deltaT);
         }
 
         public void Shoot(float deltaT)
         {
-            _shootings.Shoot(deltaT);
+            Shootings.Shoot(deltaT);
         }
 
         public void UpdateCamera(Player player)
@@ -277,15 +278,16 @@ namespace TileBasedGame
 
         public void DoUpdate()
         {
-            _updates.DoUpdate();
+            Updates.DoUpdate();
         }
 
 
         //Game loop
         public void Run() {
-            Player = (Player) BuildPlayer();
-            _loader.load();
-            _levels.Run();
+            Loader.Load();
+            Player = (Player)BuildPlayer();
+            Player.CharData = Loader.PlayerAnimation;
+            Levels.Run();
         }
 
 
@@ -294,7 +296,7 @@ namespace TileBasedGame
 
         public void QuitGame(){
             SDL.SDL_DestroyWindow(Program.Window.Show);
-            _audio.CleanUp();
+            Audio.CleanUp();
             SDL.SDL_Quit();
         }
     }

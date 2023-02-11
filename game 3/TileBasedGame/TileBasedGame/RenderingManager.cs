@@ -68,7 +68,7 @@ namespace TileBasedGame
             {
                 rc.Render();
             }*/
-            if (!Program.Game._levels.MainMenu.Running)
+            if (!Program.Game.Levels.MainMenu.Running)
             {
                 SDL.SDL_RenderPresent(Program.Window.Renderer);
             }

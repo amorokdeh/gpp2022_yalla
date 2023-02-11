@@ -13,7 +13,7 @@ namespace TileBasedGame
 
         public Enemy(string name, int w, int h) : base(name, w, h)
         {
-            ExplodingImg = Program.Game._loader.explodingImg;
+            ExplodingImg = Program.Game.Loader.ExplodingImg;
             VelY = 100;
             VelX= 100;
             

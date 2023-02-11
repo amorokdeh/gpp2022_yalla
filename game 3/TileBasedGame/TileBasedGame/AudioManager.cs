@@ -72,7 +72,7 @@ namespace TileBasedGame
             {
                 RunSound("Power");
             }
-            else if (he.EventType == HeroEvent.Type.GoUp && Program.Game.Player.jumpPossibility > 0)
+            else if (he.EventType == HeroEvent.Type.GoUp && Program.Game.Player.JumpPossibility > 0)
             {
                 RunSound("Jump");
             }
@@ -150,21 +150,21 @@ namespace TileBasedGame
         {
             switch (sound)
             {
-                case "Menu buttons": return Program.Game._loader.MenuButtons;
-                case "Menu click": return Program.Game._loader.MenuClick;
-                case "Menu music": return Program.Game._loader.MenuMusic;
-                case "Level1 music": return Program.Game._loader.Level1Music;
-                case "Level2 music": return Program.Game._loader.Level2Music;
-                case "Level3 music": return Program.Game._loader.Level3Music;
-                case "Game Over": return Program.Game._loader.GameOver;
-                case "Shooting": return Program.Game._loader.Shooting;
-                case "Shooting enemy": return Program.Game._loader.ShootingEnemy;
-                case "Enemy dead": return Program.Game._loader.ExplodEnemy;
-                case "Player dead": return Program.Game._loader.ExplodPlayer;
-                case "Jump": return Program.Game._loader.Jump;
-                case "Coin": return Program.Game._loader.Coin;
-                case "Power": return Program.Game._loader.Power;
-                case "reloadShooting": return Program.Game._loader.reloadShooting;
+                case "Menu buttons": return Program.Game.Loader.MenuButtons;
+                case "Menu click": return Program.Game.Loader.MenuClick;
+                case "Menu music": return Program.Game.Loader.MenuMusic;
+                case "Level1 music": return Program.Game.Loader.Level1Music;
+                case "Level2 music": return Program.Game.Loader.Level2Music;
+                case "Level3 music": return Program.Game.Loader.Level3Music;
+                case "Game Over": return Program.Game.Loader.GameOver;
+                case "Shooting": return Program.Game.Loader.Shooting;
+                case "Shooting enemy": return Program.Game.Loader.ShootingEnemy;
+                case "Enemy dead": return Program.Game.Loader.ExplodEnemy;
+                case "Player dead": return Program.Game.Loader.ExplodPlayer;
+                case "Jump": return Program.Game.Loader.Jump;
+                case "Coin": return Program.Game.Loader.Coin;
+                case "Power": return Program.Game.Loader.Power;
+                case "reloadShooting": return Program.Game.Loader.ReloadShooting;
 
 
             }

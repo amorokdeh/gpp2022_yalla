@@ -72,7 +72,7 @@ namespace TileBasedGame
                         MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoUp));
                         break;
                     case SDL.SDL_Keycode.SDLK_DOWN:
-                        //MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoDown));
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoDown));
                         break;
                     case SDL.SDL_Keycode.SDLK_LEFT:
                         MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoLeft));

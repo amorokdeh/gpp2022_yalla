@@ -17,19 +17,19 @@ namespace TileBasedGame
         public override void Shoot(float deltaTime)
         {
             BulletGap += deltaTime;
-            BulletGapSize = Globals.BulletGap - GameObject.shootingSpeed;
+            BulletGapSize = Globals.BulletGap - GameObject.ShootingSpeed;
 
             if (BulletGap > BulletGapSize) //reload
             {
                 if(!relaod)
                 {
                     MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.ReloadShooting));
-                    GameObject.canShoot = true;
+                    GameObject.CanShoot = true;
                     relaod = true;
 
                 }
 
-                if (GameObject.shoot)
+                if (GameObject.Shoot)
                 {
                     Bullet = (Bullet)Program.Game.RequestPlayerBullet(GameObject);
                     Console.WriteLine(Bullet.Active);
@@ -48,8 +48,8 @@ namespace TileBasedGame
                     }
 
                     BulletGap = Globals.Reset;
-                    GameObject.shoot = false;
-                    GameObject.canShoot = false;
+                    GameObject.Shoot = false;
+                    GameObject.CanShoot = false;
                     relaod = false;
                 }
             }

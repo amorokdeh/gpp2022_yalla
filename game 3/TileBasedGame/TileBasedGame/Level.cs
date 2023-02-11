@@ -18,8 +18,7 @@ namespace TileBasedGame
 
         public virtual void Run()
         {
-
-            Program.Game._cleaner.clean();
+            Program.Game.Cleaner.clean();
 
             buildMap();
 
@@ -35,13 +34,13 @@ namespace TileBasedGame
                 Program.Game.ControlEnemy();
                 Program.Game.ControlPlayer();
                 Program.Game.Move(_avDeltaTime);
-                Program.Game.Animate(_avDeltaTime);
+                //Program.Game.Animate(_avDeltaTime);
                 Program.Game.Collide();
                 Program.Game.DoUpdate();
                 if (_player.Lives <= 0)
                 {
                     LevelManager.display = LevelManager.GameState.GameOver;
-                    Program.Game._audio.StopMusic();
+                    Program.Game.Audio.StopMusic();
                     MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GameOver));
                     Program.Game.SetInactive();
                     return;
@@ -55,13 +54,13 @@ namespace TileBasedGame
                     LevelManager.display = LevelManager.GameState.Quit;
                     LevelManager.ControlQuitRequest = true;
                     Program.Game.SetInactive();
-                    Program.Game._audio.StopMusic();
+                    Program.Game.Audio.StopMusic();
 
                 }
                 if (LevelManager.ControlQuitRequest)
                 {
                     Program.Game.SetInactive();
-                    Program.Game._audio.StopMusic();
+                    Program.Game.Audio.StopMusic();
                     return;
                 }
 
