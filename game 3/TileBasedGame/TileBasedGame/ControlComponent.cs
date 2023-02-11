@@ -96,10 +96,10 @@ namespace TileBasedGame
                 switch (e.key.keysym.sym)
                 {
                     case SDL.SDL_Keycode.SDLK_LEFT:
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.StopMoving));
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoRight));
                         break;
                     case SDL.SDL_Keycode.SDLK_RIGHT:
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.StopMoving));
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoLeft));
                         break;
 
 

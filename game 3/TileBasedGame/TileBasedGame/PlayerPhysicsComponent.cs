@@ -25,9 +25,9 @@ namespace TileBasedGame
             if (he == null)
                 return;
             if (he.EventType == HeroEvent.Type.TryShooting)
-                shoot();
+                Shoot();
             if (he.EventType == HeroEvent.Type.powerUp)
-                powerUp();
+                PowerUp();
            /* if (he.EventType == HeroEvent.Type.JumpAble)
                 if (he.GameObject == this.GameObject)
                 {
@@ -95,13 +95,13 @@ namespace TileBasedGame
             GameObject.State.Update(deltaT);
             base.Move(deltaT);
             //Console.WriteLine(GameObject.State.GetDirection());
-            if (GameObject.hurt) {
-                hurt();
+            if (GameObject.Hurt) {
+                Hurt();
             }
         }
 
 
-        public void stopMoving()
+        public void StopMoving()
         {
             if (GameObject.CurrentVelX < 0 && GameObject.direction == "left")
             {
@@ -113,40 +113,40 @@ namespace TileBasedGame
             }
         }
 
-        public void jumpAble() {
+        public void JumpAble() {
             GameObject.JumpPossibility = 2;
         }
 
-        public void shoot() {
+        public void Shoot() {
             if (GameObject.CanShoot) {
                 GameObject.Shoot = true;
             }
         }
 
-        public void powerUp() {
+        public void PowerUp() {
             GameObject.ShootingSpeed += Globals.BulletPowerUp;
         }
 
-        public void hurt() {
+        public void Hurt() {
 
-            GameObject.jumpPossibility = 0;
+            //GameObject.jumpPossibility = 0;
             GameObject.CurrentVelY = - Globals.HurtChangePosY;
 
-            if (GameObject.direction == "right" && GameObject.hurtAmount < Globals.NormalHurtAmount)
+            if (GameObject.direction == "right" && GameObject.HurtAmount < Globals.NormalHurtAmount)
             {
                 GameObject.PosX -= Globals.HurtChangePosX;
                 //GameObject.PosY -= Globals.HurtChangePosY;
-                GameObject.hurtAmount++;
+                GameObject.HurtAmount++;
             }
-            else if (GameObject.direction == "left" && GameObject.hurtAmount < Globals.NormalHurtAmount)
+            else if (GameObject.direction == "left" && GameObject.HurtAmount < Globals.NormalHurtAmount)
             {
                 GameObject.PosX += Globals.HurtChangePosX;
                 //GameObject.PosY -= Globals.HurtChangePosY;
-                GameObject.hurtAmount++;
+                GameObject.HurtAmount++;
             }
             else {
-                GameObject.hurt = false;
-                GameObject.hurtAmount = 0;
+                GameObject.Hurt = false;
+                GameObject.HurtAmount = 0;
             }
         }
 

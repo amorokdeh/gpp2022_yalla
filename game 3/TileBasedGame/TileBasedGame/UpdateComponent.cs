@@ -47,7 +47,7 @@ namespace TileBasedGame
                 Program.Game.Player.Score += 5;
                 if(Program.Game.Player.Lives < 10)
                     Program.Game.Player.Lives++;
-                Program.Game._infoBox.powerUpInfo();
+                //Program.Game._infoBox.powerUpInfo();
             }
         }
 
