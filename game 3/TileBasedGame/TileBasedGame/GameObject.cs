@@ -30,12 +30,16 @@ namespace TileBasedGame
         public bool CanShoot;
         public float ShootingSpeed;
 
+        public bool hurt;
+        public int hurtAmount;
+
         public State State;
 
 
         //! an andere Stelle im Programm
         public CharacterData CharData;
         public int ImgChange;
+
 
 
 
@@ -47,7 +51,7 @@ namespace TileBasedGame
             State = new Running();
             State.SetDirection("stand");
             State.Enter(this);
-            
+
 
             Width = w;
             Height = h;
@@ -61,6 +65,8 @@ namespace TileBasedGame
             Shoot = false;
             CanShoot = true;
             ShootingSpeed = 0;
+            hurt = false;
+            hurtAmount = 0;
 
             this.Name = name;
             Program.Game.Maps.currentMap.Tiles.Add(this);

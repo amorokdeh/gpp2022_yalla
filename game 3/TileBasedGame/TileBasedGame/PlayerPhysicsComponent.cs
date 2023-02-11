@@ -13,7 +13,7 @@ namespace TileBasedGame
         State next;
         public PlayerPhysicsComponent(PhysicsManager pm) : base(pm)
         {
-            
+
         }
 
 
@@ -91,12 +91,27 @@ namespace TileBasedGame
         }
 
         public override void Move(float deltaT)
-        {            
+        {
             GameObject.State.Update(deltaT);
             base.Move(deltaT);
             //Console.WriteLine(GameObject.State.GetDirection());
+            if (GameObject.hurt) {
+                hurt();
+            }
         }
 
+
+        public void stopMoving()
+        {
+            if (GameObject.CurrentVelX < 0 && GameObject.direction == "left")
+            {
+                GameObject.CurrentVelX = 0;
+            }
+            if (GameObject.CurrentVelX > 0 && GameObject.direction == "right")
+            {
+                GameObject.CurrentVelX = 0;
+            }
+        }
 
         public void jumpAble() {
             GameObject.JumpPossibility = 2;
@@ -110,6 +125,29 @@ namespace TileBasedGame
 
         public void powerUp() {
             GameObject.ShootingSpeed += Globals.BulletPowerUp;
+        }
+
+        public void hurt() {
+
+            GameObject.jumpPossibility = 0;
+            GameObject.CurrentVelY = - Globals.HurtChangePosY;
+
+            if (GameObject.direction == "right" && GameObject.hurtAmount < Globals.NormalHurtAmount)
+            {
+                GameObject.PosX -= Globals.HurtChangePosX;
+                //GameObject.PosY -= Globals.HurtChangePosY;
+                GameObject.hurtAmount++;
+            }
+            else if (GameObject.direction == "left" && GameObject.hurtAmount < Globals.NormalHurtAmount)
+            {
+                GameObject.PosX += Globals.HurtChangePosX;
+                //GameObject.PosY -= Globals.HurtChangePosY;
+                GameObject.hurtAmount++;
+            }
+            else {
+                GameObject.hurt = false;
+                GameObject.hurtAmount = 0;
+            }
         }
 
     }

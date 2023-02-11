@@ -48,8 +48,16 @@ namespace TileBasedGame
                     {
                         if (collideDirection(colObject) == "bottom") {
                             MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Collision, GameObject));
+                            MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Hurt, GameObject));
                         }
 
+                    }
+
+                    if (this.Role == "player" && colObject.Role == "bad")
+                    {
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Hurt, GameObject));
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Collision, GameObject));
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.ChangeDirection, colObject.GameObject));
                     }
                     //player take coins
                     if (this.Role == "player" && colObject.Role == "coin")

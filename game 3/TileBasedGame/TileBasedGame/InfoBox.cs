@@ -55,6 +55,8 @@ namespace TileBasedGame
 
         public bool Control()
         {
+            //let player stop moving
+            MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.StopMoving, Program.Game.Player));
             //Key
             SDL.SDL_Event e;
             // Handle events on queue

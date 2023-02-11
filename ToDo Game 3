@@ -1,13 +1,17 @@
+[] State Modelling Charakter Controller (Majbrit)
+[] Gegner, die auf den Spieler zukommen
+[] Animationen(Images) langsamer machen
+[] Level 2 and 3 (Amr)
+[] Collision mit End door "Level win" (Amr)
+
+[x] Schießen per Tastendruck
 [x] Kollision nur in bestimmten Bereich
 [x] Memory Problem lösen
 [x] richtige Gegner einbauen
 [x] Schießen nach rechts und links (Player-Richtung)
 [x] Coins oder ähnliches zum Einsammeln
 [x] Sounds in Loader class laden
-[] State Modelling
-[] Schießen per Tastendruck
-[] Gegner, die auf den Spieler zukommen
-[] Animationen langsamer machen
+[x] Collision mit Gegener und Spitzen "Player-Reaktion"
 
 
 Kritik und Tipps umsetzen:
@@ -20,11 +24,10 @@ Kritik und Tipps umsetzen:
   - nicht genutzte out-Parameter durch out _ ersetzen
   - SRect x und y nicht auf 0 setzen
 [x] Gameobject soll seine Components kennen
-[] Image-Variable in die RenderComponent und möglich machen, dass andere Components und GameObjects das Image verändern können
+[x] Image-Variable in die RenderComponent und möglich machen, dass andere Components und GameObjects das Image verändern können
 [x] CollisionsComponent und Collisionsmanager sollen nur Kollision feststellen
 [x] Fallunterscheidung eleganter gestalten, durch z.B. Component oder Interface
 [x] Observer/Message-Bus für Informationsaustausch
 [x] Zwischenschritt beim Input
 [x] Soundmanager und Auslösen durch Event
-
-[] Zwischenschritt beim Input für Controller
+[x] Zwischenschritt beim Input für Controller

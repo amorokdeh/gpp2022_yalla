@@ -8,7 +8,7 @@ namespace TileBasedGame
 {
     public static class Globals
     {
-        public static int Lives = 100;
+        public static int Lives = 10;
 
         public static int Velocity = 120;
 
@@ -37,6 +37,10 @@ namespace TileBasedGame
 
         public const float Gravity = 600.0f;
         public const float JUMP_VELOCITY = -350.0f;
+
+        public const float NormalHurtAmount = 50;
+        public const float HurtChangePosX = 2;
+        public const float HurtChangePosY = 20;
 
 
     }
