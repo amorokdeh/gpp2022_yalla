@@ -35,23 +35,10 @@ namespace TileBasedGame
 
         public State State;
 
-
-        //! an andere Stelle im Programm
-        public CharacterData CharData;
-
-
-
-
+        public CharacterData CharData = new CharacterData();
 
         public GameObject(string name, int w, int h)
         {
-            //! an andere Stelle im Programm
-            CharData = Program.Game.Loader.PlayerAnimation;
-            State = new Running();
-            State.SetDirection("stand");
-            State.Enter(this);
-
-
             Width = w;
             Height = h;
             GeneralHeight = h;

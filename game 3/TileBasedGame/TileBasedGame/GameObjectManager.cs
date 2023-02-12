@@ -24,6 +24,11 @@ namespace TileBasedGame
             gameObject.PosX= x;
             gameObject.PosY= y;
             _gameObjects.Add(gameObject);
+            gameObject.CharData.SetConfig(Program.Game.Loader.EnemyConfig);
+            gameObject.State = new Running();
+            gameObject.State.SetDirection("right");
+            gameObject.State.SetFlipped(false);
+            gameObject.State.Enter(gameObject);
             return gameObject;
         }
 
@@ -31,6 +36,11 @@ namespace TileBasedGame
         {
             Player gameObject = new Player(name, w, h);
             _gameObjects.Add(gameObject);
+            gameObject.CharData.SetConfig(Program.Game.Loader.PlayerConfig);
+            gameObject.State = new Running();
+            gameObject.State.SetDirection("stand");
+            gameObject.State.SetFlipped(false);
+            gameObject.State.Enter(gameObject);
             return gameObject;
         }
 
@@ -38,6 +48,10 @@ namespace TileBasedGame
         {
             GameObject gameObject = new Bullet(name,player, w, h);
             _gameObjects.Add(gameObject);
+            gameObject.State = new Shooting();
+            gameObject.State.SetDirection("stand");
+            gameObject.State.SetFlipped(false);
+            gameObject.State.Enter(gameObject);
             return gameObject;
         }
 
@@ -45,6 +59,10 @@ namespace TileBasedGame
         {
             GameObject gameObject = new EnemyBullet(name, enemy, w, h);
             _gameObjects.Add(gameObject);
+            gameObject.State = new Shooting();
+            gameObject.State.SetDirection("stand");
+            gameObject.State.SetFlipped(false);
+            gameObject.State.Enter(gameObject);
             return gameObject;
         }
 

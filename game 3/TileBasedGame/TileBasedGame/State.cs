@@ -8,7 +8,7 @@ namespace TileBasedGame
 {
     interface State
     {
-        State HandleInput(HeroEvent he);
+        State HandleInput(MovingEvent me);
         void Update(float timeStep);
         void Enter(GameObject gameObject);
         void SetDirection(String direction);

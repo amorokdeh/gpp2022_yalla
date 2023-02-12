@@ -1,0 +1,18 @@
+{
+  "Run": {
+    "Frames": [ 0, 32, 64, 96, 128, 160 ],
+    "Duration": 0.5
+  },
+  "Duck": {
+    "Frames": [ 0, 32, 64, 96, 128, 160 ],
+    "Duration": 0.3
+  },
+  "Jump": {
+    "Frames": [ 0, 32 ],
+    "Duration": 0.5
+  },
+  "Stand": {
+    "Frames": [ 64 ],
+    "Duration": 0.3
+  }
+}

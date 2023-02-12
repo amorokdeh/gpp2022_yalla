@@ -76,34 +76,31 @@ namespace TileBasedGame
 
             GameObject.CharData.Jump.Setup();
         }
-        public State HandleInput(HeroEvent he)
+        public State HandleInput(MovingEvent me)
         {
 
-            if (he.EventType == HeroEvent.Type.GoLeft)
+            if (me.EventType == MovingEvent.Type.GoLeft)
             {
                 Direction = "left";
                 return this;
             }
-            else if (he.EventType == HeroEvent.Type.GoRight)
+            else if (me.EventType == MovingEvent.Type.GoRight)
             {
                 Direction = "right";
                 return this;
             }
-            else if (he.EventType == HeroEvent.Type.GoUp)
+            else if (me.EventType == MovingEvent.Type.GoUp)
             {
                 Jump();
                 return this;
             }
-            else if (he.EventType == HeroEvent.Type.GoDown)
+            else if (me.EventType == MovingEvent.Type.GoDown)
             {
-                State state = new Running();
-                state.SetDirection(Direction);
-                state.SetFlipped(Flipped);
-                return state;
+                return this;
             }
-            else if (he.EventType == HeroEvent.Type.JumpAble)
+            else if (me.EventType == MovingEvent.Type.JumpAble)
             {
-                if (GameObject == he.GameObject)
+                if (GameObject == me.GameObject)
                 {
                     State state = new Running();
                     state.SetDirection(Direction);

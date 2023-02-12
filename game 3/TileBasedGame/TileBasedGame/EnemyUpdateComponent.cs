@@ -43,9 +43,6 @@ namespace TileBasedGame
             GameObject.Died = true;
             GameObject.VelY= 0;
             GameObject.VelX= 0;
-            //TODO überarbeiten
-            //Enemy enemy = (Enemy)GameObject;
-            //enemy.Img = enemy.ExplodingImg;
 
             MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.EnemyDead, GameObject));         
         }
@@ -55,10 +52,12 @@ namespace TileBasedGame
             if (GameObject.direction == "left")
             {
                 moveRight();
+                MessageBus.PostEvent(new MovingEvent(MovingEvent.Type.GoRight, GameObject));
             }
             else if (GameObject.direction == "right")
             {
                 moveLeft();
+                MessageBus.PostEvent(new MovingEvent(MovingEvent.Type.GoLeft, GameObject));
             }
         }
 

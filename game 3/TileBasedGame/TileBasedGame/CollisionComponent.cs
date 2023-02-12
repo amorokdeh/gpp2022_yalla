@@ -125,7 +125,7 @@ namespace TileBasedGame
                     // Colliding from the bottom
                     newY = block.PosY - ob.Height - dis;
                     direction = "bottom";
-                    MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.JumpAble, GameObject));
+                    MessageBus.PostEvent(new MovingEvent(MovingEvent.Type.JumpAble, GameObject));
                 }
 
             }

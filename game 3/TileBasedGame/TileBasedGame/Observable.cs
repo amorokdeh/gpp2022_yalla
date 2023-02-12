@@ -29,7 +29,8 @@ namespace TileBasedGame
         public void Notify(Event e)
         {
             foreach (Observer l in _observers)
-                l.OnEvent(e);
+                if(l != null)
+                    l.OnEvent(e);
         }
 
 

@@ -69,19 +69,19 @@ namespace TileBasedGame
                 switch (e.key.keysym.sym)
                 {
                     case SDL.SDL_Keycode.SDLK_UP:
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoUp));
+                        MessageBus.PostEvent(new MovingEvent(MovingEvent.Type.GoUp, Program.Game.Player));
                         break;
                     case SDL.SDL_Keycode.SDLK_DOWN:
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoDown));
+                        MessageBus.PostEvent(new MovingEvent(MovingEvent.Type.GoDown, Program.Game.Player));
                         break;
                     case SDL.SDL_Keycode.SDLK_LEFT:
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoLeft));
+                        MessageBus.PostEvent(new MovingEvent(MovingEvent.Type.GoLeft, Program.Game.Player));
                         break;
                     case SDL.SDL_Keycode.SDLK_RIGHT:
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoRight));
+                        MessageBus.PostEvent(new MovingEvent(MovingEvent.Type.GoRight, Program.Game.Player));
                         break;
                     case SDL.SDL_Keycode.SDLK_SPACE:
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.TryShooting));
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.TryShooting, Program.Game.Player));
                         break;
                     case SDL.SDL_Keycode.SDLK_ESCAPE:
                         LevelManager.display = GameState.MainMenu;
@@ -96,10 +96,10 @@ namespace TileBasedGame
                 switch (e.key.keysym.sym)
                 {
                     case SDL.SDL_Keycode.SDLK_LEFT:
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoRight));
+                        MessageBus.PostEvent(new MovingEvent(MovingEvent.Type.GoRight, Program.Game.Player));
                         break;
                     case SDL.SDL_Keycode.SDLK_RIGHT:
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoLeft));
+                        MessageBus.PostEvent(new MovingEvent(MovingEvent.Type.GoLeft, Program.Game.Player));
                         break;
                 }
             }
@@ -114,34 +114,34 @@ namespace TileBasedGame
 
                 if (x < -movingPoint) // Move character left
                 {
-                    MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoLeft));
+                    MessageBus.PostEvent(new MovingEvent(MovingEvent.Type.GoLeft, Program.Game.Player));
                     _axisX = "left";
                 }
                 else if (x > movingPoint) // Move character right
                 {
-                    MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoRight));
+                    MessageBus.PostEvent(new MovingEvent(MovingEvent.Type.GoRight, Program.Game.Player));
                     _axisX = "right";
                 }
                 else { //stop
-                    if (_axisX == "left") { MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoRight)); _axisX = "none"; }
-                    if (_axisX == "right") { MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoLeft)); _axisX = "none"; }
+                    if (_axisX == "left") { MessageBus.PostEvent(new MovingEvent(MovingEvent.Type.GoRight, Program.Game.Player)); _axisX = "none"; }
+                    if (_axisX == "right") { MessageBus.PostEvent(new MovingEvent(MovingEvent.Type.GoLeft, Program.Game.Player)); _axisX = "none"; }
                 }
 
 
                 if (y < -movingPoint) // Move character up
                 {
-                    MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoUp));
+                    MessageBus.PostEvent(new MovingEvent(MovingEvent.Type.GoUp, Program.Game.Player));
                     _axisY = "up";
                 }
-                else if (y > movingPoint) // Move character down
+                else if (y > movingPoint) // ducking
                 {
-                    //MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoDown));
+                    MessageBus.PostEvent(new MovingEvent(MovingEvent.Type.GoDown, Program.Game.Player));
                     _axisY = "down";
                 }
                 else
                 { //stop
-                    if (_axisY == "up") { MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoDown)); _axisY = "none"; }
-                    if (_axisY == "down") { MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoUp)); _axisY = "none"; }
+                    if (_axisY == "up") { MessageBus.PostEvent(new MovingEvent(MovingEvent.Type.GoDown, Program.Game.Player)); _axisY = "none"; }
+                    if (_axisY == "down") { MessageBus.PostEvent(new MovingEvent(MovingEvent.Type.GoUp, Program.Game.Player)); _axisY = "none"; }
                 }
             }
 

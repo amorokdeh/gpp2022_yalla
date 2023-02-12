@@ -29,6 +29,15 @@ namespace TileBasedGame
 
         public void OnEvent(Event e)
         {
+            MovingEvent me = e as MovingEvent;
+            if (me != null)
+            {
+                if (me.EventType == MovingEvent.Type.GoUp && Program.Game.Player.JumpPossibility > 0)
+                {
+                    RunSound("Jump");
+                }
+            }
+
             HeroEvent he = e as HeroEvent;
             if (he == null)
                 return;
@@ -71,11 +80,7 @@ namespace TileBasedGame
             else if (he.EventType == HeroEvent.Type.takePower)
             {
                 RunSound("Power");
-            }
-            else if (he.EventType == HeroEvent.Type.GoUp && Program.Game.Player.JumpPossibility > 0)
-            {
-                RunSound("Jump");
-            }
+            }          
             else if (he.EventType == HeroEvent.Type.ReloadShooting)
             {
                 RunSound("reloadShooting");
@@ -95,6 +100,7 @@ namespace TileBasedGame
                 StopMusic();
                 RunMusic("Level3 music");
             }
+ 
         }
         public void AddAudio(AudioComponent au)
         {

@@ -41,8 +41,7 @@ namespace TileBasedGame
         {
             Player = Objects.CreateGamePlayer("player", Globals.MediumImageSize, Globals.BigImageSize);
             Player.Active = true;
-            //Player.CharData = Loader.PlayerAnimation;
-            Component pc = Physics.CreatePlayerComponent();
+            Component pc = Physics.CreateComponent();
             Player.AddComponent(pc);
 
             Player.AddComponent(Rendering.CreateComponent(Loader.PlayerImg, Globals.MediumImageSize, Globals.BigImageSize, Globals.MediumImageSize, Globals.BigImageSize));
@@ -286,7 +285,7 @@ namespace TileBasedGame
         public void Run() {
             Loader.Load();
             Player = (Player)BuildPlayer();
-            Player.CharData = Loader.PlayerAnimation;
+            //Player.CharData = Loader.PlayerAnimation;
             Levels.Run();
         }
 

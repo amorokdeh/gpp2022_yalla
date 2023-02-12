@@ -16,7 +16,6 @@ namespace TileBasedGame
 
         public void Control()
         {
-            GameObject go = GameObject;
 
             int winHeight = Program.Window.Height;
             int winWidth = Program.Window.Width;
@@ -29,25 +28,25 @@ namespace TileBasedGame
             float camTopBorder = cameraY - winHeight / 2;
             float camBottomBorder = cameraY + winHeight / 2;
 
-            bool objectOnCamera = (go.PosX < camRightBorder) && (go.PosX + go.Width > camLeftBorder) && (go.PosY < camBottomBorder) && (go.PosY + go.Height > camTopBorder);
+            bool objectOnCamera = (GameObject.PosX < camRightBorder) && (GameObject.PosX + GameObject.Width > camLeftBorder) && (GameObject.PosY < camBottomBorder) && (GameObject.PosY + GameObject.Height > camTopBorder);
 
-            go.CurrentVelY = go.VelY;
-            go.CurrentVelX = go.VelX;
+            GameObject.CurrentVelY = GameObject.VelY;
+            GameObject.CurrentVelX = GameObject.VelX;
 
-            if (go is Tile)
+            if (GameObject is Tile)
             {
                 if (objectOnCamera){
-                    go.Active = true;
+                    GameObject.Active = true;
                 }
                 else { 
-                    go.Active = false; 
+                    GameObject.Active = false; 
                 }
 
             }
 
-            if (go is Bullet && ! objectOnCamera) {
+            if (GameObject is Bullet && ! objectOnCamera) {
 
-                Program.Game.DespawnPlayerBullet(go);
+                Program.Game.DespawnPlayerBullet(GameObject);
             }
             /*
             if (GameObject is EnemyBullet && GameObject.PosY > Program.Window.Height)

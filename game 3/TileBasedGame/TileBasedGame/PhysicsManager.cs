@@ -15,19 +15,9 @@ namespace TileBasedGame
         {
         }
 
-
-
-
         internal Component CreateComponent()
         {
             PhysicsComponent pc = new PhysicsComponent(this);
-            this._physicsComponents.Add(pc);
-            return pc;
-        }
-
-        internal Component CreatePlayerComponent()
-        {
-            PlayerPhysicsComponent pc = new PlayerPhysicsComponent(this);
             this._physicsComponents.Add(pc);
             return pc;
         }

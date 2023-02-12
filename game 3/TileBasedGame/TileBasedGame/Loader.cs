@@ -14,7 +14,7 @@ namespace TileBasedGame
     class Loader
     {
         //Number of assets to load
-        private int _totalAssets = 30;
+        private int _totalAssets = 32;
         private int _assetsLoaded = 0;
 
         public Text Txt = new Text();
@@ -55,7 +55,8 @@ namespace TileBasedGame
         public AudioComponent Coin = new AudioComponent();
         public AudioComponent Power = new AudioComponent();
         // animation
-        public CharacterData PlayerAnimation = new CharacterData();
+        public CharacterConfig PlayerConfig;
+        public CharacterConfig EnemyConfig;
 
         public Loader() {
 
@@ -76,9 +77,9 @@ namespace TileBasedGame
                 case 9:  return LoadImage(ExplodingImg, "image/Effects/Explosion.png");
                 case 10: return LoadImage(BackgroundImg, "image/Background.png");
 
-                case 11: return LoadLevel(Level1Json = LoadMap("image/Maps/Level1.json"));
-                case 12: return LoadLevel(Level2Json = LoadMap("image/Maps/Level1.json"));
-                case 13: return LoadLevel(Level3Json = LoadMap("image/Maps/Level1.json"));
+                case 11: return LoadCharacter(ref PlayerConfig, "animation/playerAnimation.json");
+                case 12: return LoadCharacter(ref EnemyConfig, "animation/enemyAnimation.json");
+                case 13: return LoadCharacter(ref PlayerConfig, "animation/playerAnimation.json");
 
                 case 14: return LoadMusic(MenuMusic, "sound/MainMenu Music.wav");
                 case 15: return LoadMusic(Level1Music, "sound/Level1 Music.wav");
@@ -97,16 +98,19 @@ namespace TileBasedGame
                 case 27: return LoadSound(Power, "sound/Power.wav");
                 case 28: return LoadSound(ReloadShooting, "sound/reload.wav");
 
-                case 29: return LoadCharacter(PlayerAnimation, "animation/playerAnimation.json");
+                case 29: return LoadLevel(Level1Json = LoadMap("image/Maps/Level1.json"));
+                case 30: return LoadLevel(Level2Json = LoadMap("image/Maps/Level1.json"));
+                case 31: return LoadLevel(Level3Json = LoadMap("image/Maps/Level1.json"));
+
                 default: return "";
             }
         }
 
-        public string LoadCharacter(CharacterData data, string src)
+        public string LoadCharacter(ref CharacterConfig config, string src)
         {
             string file = File.ReadAllText(src);
-            data.SetConfig(CharacterConfig.Load(file));
-            Console.WriteLine(PlayerAnimation);
+            config = CharacterConfig.Load(file);
+            Console.WriteLine(PlayerConfig);
             return src;
         }
 
