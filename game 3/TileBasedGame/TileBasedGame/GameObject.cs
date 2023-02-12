@@ -38,7 +38,6 @@ namespace TileBasedGame
 
         //! an andere Stelle im Programm
         public CharacterData CharData;
-        public int ImgChange;
 
 
 

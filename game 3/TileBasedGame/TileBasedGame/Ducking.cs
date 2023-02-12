@@ -9,10 +9,16 @@ namespace TileBasedGame
     class Ducking : State
     {
         GameObject GameObject;
-        String Direction;
+        public String Direction;
+        int Frame;
+        bool Flipped;
         public void SetDirection(String direction)
         {
             Direction = direction;
+        }
+        public void SetFlipped(bool flipped)
+        {
+            Flipped = flipped;
         }
         public String GetDirection()
         {
@@ -36,15 +42,21 @@ namespace TileBasedGame
             if (GameObject.CurrentVelX == 0)
             {
                 Direction = "stand";
-            } else if (GameObject.CurrentVelX > 0)
+                Frame = GameObject.CharData.Stand.Animate(timeStep);
+            }
+            else if (GameObject.CurrentVelX > 0)
             {
                 GameObject.direction = "right";
-            } else if (GameObject.CurrentVelX < 0)
+                Flipped = false;
+                Frame = GameObject.CharData.Duck.Animate(timeStep);
+            }
+            else if (GameObject.CurrentVelX < 0)
             {
                 GameObject.direction = "left";
-            }
-
-            GameObject.ImgChange = GameObject.CharData.Duck.Animate(timeStep);
+                Flipped = true;
+                Frame = GameObject.CharData.Duck.Animate(timeStep);
+            }      
+            MessageBus.PostEvent(new AnimationEvent(AnimationEvent.Type.Animation, this.GameObject, Frame, Flipped));
         }
         public void Enter(GameObject gameObject)
         {
@@ -69,6 +81,7 @@ namespace TileBasedGame
             {
                 State state = new Running();
                 state.SetDirection(Direction);
+                state.SetFlipped(Flipped);
                 return state;
             }
             else if (he.EventType == HeroEvent.Type.GoDown)

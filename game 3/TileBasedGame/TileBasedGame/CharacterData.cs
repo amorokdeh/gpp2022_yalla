@@ -11,12 +11,14 @@ namespace TileBasedGame
         public Animation Run;
         public Animation Duck;
         public Animation Jump;
+        public Animation Stand;
 
         public void SetConfig(CharacterConfig con)
         {
             Run = con.Run;
             Duck = con.Duck;
             Jump = con.Jump;
+            Stand = con.Stand;
         }
     }
 }

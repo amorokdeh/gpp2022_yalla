@@ -65,59 +65,79 @@ namespace TileBasedGame
             _rect.h = dstH;
             this._dstX = dstX;
         }
-/*
+        
         public override void OnEvent(Event e)
         {
-            
-            HeroEvent he = e as HeroEvent;
-            State.HandleInput(he);
-            if (he == null)
+            AnimationEvent ae = e as AnimationEvent;
+            if (ae == null)
                 return;
-            if (he.GameObject == this.GameObject)
+            if (ae.GameObject == this.GameObject)
             {
 
-                if (he.EventType == HeroEvent.Type.FlyLeft)
+                if (ae.EventType == AnimationEvent.Type.Animation)
                 {
-                    ImgChange = Globals.MediumImageSize * 3;
-                    flipped = SDL.SDL_RendererFlip.SDL_FLIP_HORIZONTAL;
-                }
-                else if (he.EventType == HeroEvent.Type.FlyRight)
-                {
-                    ImgChange = Globals.MediumImageSize * 3;
-                    flipped = SDL.SDL_RendererFlip.SDL_FLIP_NONE;
-                }
-                else if (he.EventType == HeroEvent.Type.FlyStraight) {
-
-                    if (GameObject is Power || GameObject is Coin)
+                    ImgChange = ae.Frame;
+                    if (ae.Flipped)
                     {
-                        ImgChange = Globals.MediumImageSize * 1;
+                        flipped = SDL.SDL_RendererFlip.SDL_FLIP_HORIZONTAL;
+                    } else
+                    {
+                        flipped = SDL.SDL_RendererFlip.SDL_FLIP_NONE;
                     }
                 }
-
-                else if (he.EventType == HeroEvent.Type.FlyUp)
-                    ImgChange = Globals.MediumImageSize * 2;
-                else if (he.EventType == HeroEvent.Type.EnemyDead) { 
-                    rotateAngle= 90;
-                    GameObject.PosY += 32;
-                }
-                else if (he.EventType == HeroEvent.Type.ChangeImage)
-                {
-                    ImgStep++;
-                    if (ImgStep < 5)
-                    {
-                        ImgChange = Globals.MediumImageSize * ImgStep;
-                    }
-                    else
-                    {
-                        ImgChange = Globals.Reset;
-                    }
-
-                }
-                
             }
-        }*/
 
-        override public void Render()
+                    /*
+
+                            HeroEvent he = e as HeroEvent;
+                            State.HandleInput(he);
+                            if (he == null)
+                                return;
+                            if (he.GameObject == this.GameObject)
+                            {
+
+                                if (he.EventType == HeroEvent.Type.FlyLeft)
+                                {
+                                    ImgChange = Globals.MediumImageSize * 3;
+                                    flipped = SDL.SDL_RendererFlip.SDL_FLIP_HORIZONTAL;
+                                }
+                                else if (he.EventType == HeroEvent.Type.FlyRight)
+                                {
+                                    ImgChange = Globals.MediumImageSize * 3;
+                                    flipped = SDL.SDL_RendererFlip.SDL_FLIP_NONE;
+                                }
+                                else if (he.EventType == HeroEvent.Type.FlyStraight) {
+
+                                    if (GameObject is Power || GameObject is Coin)
+                                    {
+                                        ImgChange = Globals.MediumImageSize * 1;
+                                    }
+                                }
+
+                                else if (he.EventType == HeroEvent.Type.FlyUp)
+                                    ImgChange = Globals.MediumImageSize * 2;
+                                else if (he.EventType == HeroEvent.Type.EnemyDead) { 
+                                    rotateAngle= 90;
+                                    GameObject.PosY += 32;
+                                }
+                                else if (he.EventType == HeroEvent.Type.ChangeImage)
+                                {
+                                    ImgStep++;
+                                    if (ImgStep < 5)
+                                    {
+                                        ImgChange = Globals.MediumImageSize * ImgStep;
+                                    }
+                                    else
+                                    {
+                                        ImgChange = Globals.Reset;
+                                    }
+
+                                }
+
+                            }*/
+                }
+
+    override public void Render()
         {
             /*
             if(GameObject is Player) { 
@@ -144,8 +164,8 @@ namespace TileBasedGame
             _srcRect.x = ImgChange;
             _srcRect.y = ImgChangeY;
 
-            if(GameObject is Player)
-                _srcRect.x = GameObject.ImgChange;
+           // if(GameObject is Player)
+             //   _srcRect.x = GameObject.ImgChange;
 
             //SDL.SDL_RenderCopy(Program.Window.Renderer, Img.ImageTexture, ref _srcRect, ref _rect);
             SDL.SDL_RenderCopyEx(Program.Window.Renderer, Img.ImageTexture, ref _srcRect, ref _rect, rotateAngle, IntPtr.Zero, flipped);

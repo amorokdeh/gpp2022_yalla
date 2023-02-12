@@ -31,5 +31,6 @@ namespace TileBasedGame
             NewX = x;
             NewY = y;
         }
+
     }
 }

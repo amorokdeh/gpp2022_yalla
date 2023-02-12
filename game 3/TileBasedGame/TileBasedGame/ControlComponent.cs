@@ -101,8 +101,6 @@ namespace TileBasedGame
                     case SDL.SDL_Keycode.SDLK_RIGHT:
                         MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GoLeft));
                         break;
-
-
                 }
             }
 

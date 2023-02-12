@@ -9,12 +9,18 @@ namespace TileBasedGame
     class Jumping : State
     {
         GameObject GameObject;
-        String Direction;
+        public String Direction;
         int JumpPossibility = 2;
+        int Frame;
+        bool Flipped;
 
         public void SetDirection(String direction)
         {
             Direction = direction;
+        }
+        public void SetFlipped(bool flipped)
+        {
+            Flipped = flipped;
         }
         public String GetDirection()
         {
@@ -51,13 +57,16 @@ namespace TileBasedGame
             else if (GameObject.CurrentVelX > 0)
             {
                 GameObject.direction = "right";
+                Flipped = false;
             }
             else if (GameObject.CurrentVelX < 0)
             {
                 GameObject.direction = "left";
+                Flipped = true;
             }
 
-            GameObject.ImgChange = GameObject.CharData.Jump.Animate(timeStep);
+            Frame = GameObject.CharData.Jump.Animate(timeStep);
+            MessageBus.PostEvent(new AnimationEvent(AnimationEvent.Type.Animation, this.GameObject, Frame, Flipped));
         }
         public void Enter(GameObject gameObject) 
         {
@@ -89,6 +98,7 @@ namespace TileBasedGame
             {
                 State state = new Running();
                 state.SetDirection(Direction);
+                state.SetFlipped(Flipped);
                 return state;
             }
             else if (he.EventType == HeroEvent.Type.JumpAble)
@@ -97,6 +107,7 @@ namespace TileBasedGame
                 {
                     State state = new Running();
                     state.SetDirection(Direction);
+                    state.SetFlipped(Flipped);
                     return state;
                 }
                 return this;

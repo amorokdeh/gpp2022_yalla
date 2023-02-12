@@ -12,6 +12,7 @@ namespace TileBasedGame
         void Update(float timeStep);
         void Enter(GameObject gameObject);
         void SetDirection(String direction);
+        void SetFlipped(bool flipped);
         String GetDirection();
     }
 }
