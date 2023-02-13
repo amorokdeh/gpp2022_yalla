@@ -17,7 +17,7 @@ namespace TileBasedGame
             return cc;
         }
 
-        public void Collide()
+        public void Collide(float deltaT)
         {
             int pl = 0;
             foreach (var component in _collisionComponents)
@@ -30,7 +30,7 @@ namespace TileBasedGame
                         //if ((component.GameObject.Active) && colObject.GameObject != component.GameObject)
                         {
                             
-                            component.Collide(colObject);
+                            component.Collide(colObject, deltaT);
 
                         }
                 }               

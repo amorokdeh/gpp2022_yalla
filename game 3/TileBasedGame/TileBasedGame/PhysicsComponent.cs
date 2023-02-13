@@ -37,19 +37,10 @@ namespace TileBasedGame
                 return;
             if (me.GameObject == GameObject)
             {
-                if(me.EventType != MovingEvent.Type.JumpAble)
-                {
-                    Console.WriteLine(me.EventType.ToString());
-                    Console.WriteLine(me.GameObject.ToString());
-                    Console.WriteLine(GameObject.ToString());
-                    
-                }
-
                 if (GameObject.State != null) 
                 { 
                     Next = GameObject.State.HandleInput(me);
 
-                    //Console.WriteLine(next);
                     if (Next != GameObject.State)
                     {
                         GameObject.State = Next;

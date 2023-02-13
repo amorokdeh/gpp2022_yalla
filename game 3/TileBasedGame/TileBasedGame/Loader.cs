@@ -79,7 +79,7 @@ namespace TileBasedGame
 
                 case 11: return LoadCharacter(ref PlayerConfig, "animation/playerAnimation.json");
                 case 12: return LoadCharacter(ref EnemyConfig, "animation/enemyAnimation.json");
-                case 13: return LoadCharacter(ref PlayerConfig, "animation/playerAnimation.json");
+                //case 13: return LoadCharacter(ref PlayerConfig, "animation/playerAnimation.json");
 
                 case 14: return LoadMusic(MenuMusic, "sound/MainMenu Music.wav");
                 case 15: return LoadMusic(Level1Music, "sound/Level1 Music.wav");
@@ -110,7 +110,6 @@ namespace TileBasedGame
         {
             string file = File.ReadAllText(src);
             config = CharacterConfig.Load(file);
-            Console.WriteLine(PlayerConfig);
             return src;
         }
 

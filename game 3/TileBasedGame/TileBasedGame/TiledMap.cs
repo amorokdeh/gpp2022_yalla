@@ -309,7 +309,8 @@ namespace TileBasedGame
             Program.Game.Player = (Player) Program.Game.BuildPlayer();
             Program.Game.Player.Reset();
             Program.Game.Player.PosX = PlayerXPos;
-            Program.Game.Player.PosY = PlayerYPos;
+            Program.Game.Player.PosY = PlayerYPos -5;
+
         }
 
         public void buildEnemies() {

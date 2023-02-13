@@ -243,9 +243,9 @@ namespace TileBasedGame
             Physics.Move(deltaT);
         }
 
-        public void Collide()
+        public void Collide(float deltaT)
         {
-            Collisions.Collide();
+            Collisions.Collide(deltaT);
         }
 
 

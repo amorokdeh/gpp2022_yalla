@@ -61,7 +61,7 @@ namespace TileBasedGame
         public void Enter(GameObject gameObject)
         {
             GameObject = gameObject;
-            GameObject.Height = GameObject.GeneralHeight-16;
+            GameObject.Height = GameObject.GeneralHeight/2;
 
             GameObject.CharData.Duck.Setup();
         }
@@ -82,6 +82,7 @@ namespace TileBasedGame
                 State state = new Running();
                 state.SetDirection(Direction);
                 state.SetFlipped(Flipped);
+                GameObject.PosY -= GameObject.GeneralHeight / 2 +2;
                 return state;
             }
             else if (me.EventType == MovingEvent.Type.GoDown)

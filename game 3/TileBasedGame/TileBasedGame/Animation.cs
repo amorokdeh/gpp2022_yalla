@@ -17,6 +17,16 @@ namespace TileBasedGame
 
         private int _frame;
 
+        public Animation()
+        {
+
+        }
+        public Animation(int[] frames, float duration)
+        {
+            Frames = frames;
+            Duration = duration;
+        }
+
         public void Setup()
         {
             _steps = Frames.Length;

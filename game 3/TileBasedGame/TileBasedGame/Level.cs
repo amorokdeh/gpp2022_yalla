@@ -23,6 +23,7 @@ namespace TileBasedGame
             buildMap();
 
             this._player = Program.Game.Player;
+            _player.PosY -= 20;
             LevelManager.ControlQuitRequest = false;
 
 
@@ -35,7 +36,7 @@ namespace TileBasedGame
                 Program.Game.ControlPlayer();
                 Program.Game.Move(_avDeltaTime);
                 //Program.Game.Animate(_avDeltaTime);
-                Program.Game.Collide();
+                Program.Game.Collide(_avDeltaTime);
                 Program.Game.DoUpdate();
                 if (_player.Lives <= 0)
                 {

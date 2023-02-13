@@ -19,7 +19,7 @@ namespace TileBasedGame
         }
 
 
-        public void Collide(CollisionComponent colObject)
+        public void Collide(CollisionComponent colObject, float deltaT)
         {
 
             
@@ -40,13 +40,13 @@ namespace TileBasedGame
 
                     if (colObject.Role == "block" || colObject.Role == "spike")
                     {
-                        collideDirection(colObject);
+                        collideDirection(colObject, deltaT);
                     }
 
                     //collide with spike from top
                     if (this.Role == "player" && colObject.Role == "spike")
                     {
-                        if (collideDirection(colObject) == "bottom") {
+                        if (collideDirection(colObject, deltaT) == "bottom") {
                             MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Collision, GameObject));
                             MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Hurt, GameObject));
                         }
@@ -75,59 +75,55 @@ namespace TileBasedGame
 
         }
 
-        public string collideDirection(CollisionComponent colObject)
+        public string collideDirection(CollisionComponent colObject, float deltaT)
         {
             GameObject block = colObject.GameObject;
             GameObject ob = GameObject;
             string direction = "";
 
-            // Calculate the distance between the player and the object on the x and y axis
-            float xDistance = (ob.PosX + (ob.Width / 2)) - (block.PosX + (block.Width / 2));
-            float yDistance = (ob.PosY + (ob.Height / 2)) - (block.PosY + (block.Height / 2));
-            float xShouldBe = (ob.Width / 2) + (block.Width / 2);
-            float yShouldBe = (ob.Height / 2) + (block.Height / 2);
-
             // Fix position
-            int dis = 0;
+            int dis = 1;
      
             float newX = ob.PosX;
             float newY = ob.PosY;
-            // Check if player is colliding from the left or right
-            if (Math.Abs(xDistance) > Math.Abs(yDistance))
-            {
-                if (xDistance > 0)
-                {
-                    // Colliding from the left
-                    newX = block.PosX + block.Width + dis;
-                    direction = "left";
-                    MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.ChangeDirection, GameObject));
-                }
-                else
-                {
-                    // Colliding from the right
-                    newX = block.PosX - ob.Width - dis;
-                    direction = "right";
-                    MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.ChangeDirection, GameObject));
-                }
-            }
-            // Check if player is colliding from the top or bottom
-            else
-            {
-                if (yDistance > 0)
-                {
-                    // Colliding from the top
-                    newY = block.PosY + block.Height + dis;
-                    ob.CurrentVelY = 0;
-                    direction = "top";
-                }
-                else
-                {
-                    // Colliding from the bottom
-                    newY = block.PosY - ob.Height - dis;
-                    direction = "bottom";
-                    MessageBus.PostEvent(new MovingEvent(MovingEvent.Type.JumpAble, GameObject));
-                }
+                
 
+            if (ob.PosY + ob.Height >= block.PosY && ob.PosY - ob.CurrentVelY * deltaT + ob.Height <= block.PosY)
+            {
+                if (GameObject is Player)
+                    Console.WriteLine("collision bottom");
+                // Colliding from the bottom
+                newY = block.PosY - ob.Height - dis;
+                direction = "bottom";
+                MessageBus.PostEvent(new MovingEvent(MovingEvent.Type.JumpAble, GameObject));
+            }
+
+            else if (ob.PosY <= block.PosY + block.Height && ob.PosY - ob.CurrentVelY * deltaT >= block.PosY + block.Height)
+            {
+                if (GameObject is Player)
+                    Console.WriteLine("collision top");
+                // Colliding from the top
+                newY = block.PosY + block.Height + dis;
+                ob.CurrentVelY = 0;
+                direction = "top";
+            }
+            else if (ob.PosX <= block.PosX + block.Width && ob.PosX - ob.CurrentVelX * deltaT >= block.PosX + block.Width)
+            {
+                if (GameObject is Player)
+                    Console.WriteLine("collision left");
+                // Colliding from the left
+                newX = block.PosX + block.Width + dis;
+                direction = "left";
+                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.ChangeDirection, GameObject));
+            }
+            else if (ob.PosX + ob.Width >= block.PosX && ob.PosX - ob.CurrentVelX * deltaT + ob.Width <= block.PosX)
+            {
+                if (GameObject is Player)
+                    Console.WriteLine("collision right");
+                // Colliding from the right
+                newX = block.PosX - ob.Width - dis;
+                direction = "right";
+                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.ChangeDirection, GameObject));
             }
 
 

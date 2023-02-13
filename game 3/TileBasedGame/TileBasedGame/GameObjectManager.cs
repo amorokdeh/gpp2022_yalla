@@ -22,7 +22,7 @@ namespace TileBasedGame
         {
             GameObject gameObject = new Enemy(name, w, h);
             gameObject.PosX= x;
-            gameObject.PosY= y;
+            gameObject.PosY= y -20;
             _gameObjects.Add(gameObject);
             gameObject.CharData.SetConfig(Program.Game.Loader.EnemyConfig);
             gameObject.State = new Running();

@@ -15,10 +15,10 @@ namespace TileBasedGame
 
         public void SetConfig(CharacterConfig con)
         {
-            Run = con.Run;
-            Duck = con.Duck;
-            Jump = con.Jump;
-            Stand = con.Stand;
+            Run = new Animation(con.Run.Frames, con.Run.Duration);
+            Duck = new Animation(con.Duck.Frames, con.Duck.Duration);
+            Jump = new Animation(con.Jump.Frames, con.Jump.Duration);
+            Stand = new Animation(con.Stand.Frames, con.Stand.Duration);
         }
     }
 }
