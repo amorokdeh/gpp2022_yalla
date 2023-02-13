@@ -71,9 +71,9 @@ namespace TileBasedGame
                 case 3:  return LoadImage(BulletImg, "image/Projectiles/Bullet.png");
                 case 4:  return LoadImage(CoinImg, "image/Items/Coin.png");
                 case 5:  return LoadImage(PowerImg, "image/Items/Power.png");
-                case 6:  return LoadImage(Level1Img, "image/Maps/PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.png");
-                case 7:  return LoadImage(Level2Img, "image/Maps/PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.png");
-                case 8:  return LoadImage(Level3Img, "image/Maps/PC Computer - Jazz Jackrabbit 2 The Secret Files - Castle Earlong - 1.png");
+                case 6:  return LoadImage(Level1Img, "image/Maps/Level1.png");
+                case 7:  return LoadImage(Level2Img, "image/Maps/Level2.png");
+                case 8:  return LoadImage(Level3Img, "image/Maps/Level3.png");
                 case 9:  return LoadImage(ExplodingImg, "image/Effects/Explosion.png");
                 case 10: return LoadImage(BackgroundImg, "image/Background.png");
 
@@ -99,7 +99,7 @@ namespace TileBasedGame
                 case 28: return LoadSound(ReloadShooting, "sound/reload.wav");
 
                 case 29: return LoadLevel(Level1Json = LoadMap("image/Maps/Level1.json"));
-                case 30: return LoadLevel(Level2Json = LoadMap("image/Maps/Level1.json"));
+                case 30: return LoadLevel(Level2Json = LoadMap("image/Maps/Level2.json"));
                 case 31: return LoadLevel(Level3Json = LoadMap("image/Maps/Level1.json"));
 
                 default: return "";
