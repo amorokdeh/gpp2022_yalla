@@ -12,6 +12,7 @@ namespace TileBasedGame
         public Animation Duck;
         public Animation Jump;
         public Animation Stand;
+        public Animation Idle;
 
         public void SetConfig(CharacterConfig con)
         {
@@ -19,6 +20,7 @@ namespace TileBasedGame
             Duck = new Animation(con.Duck.Frames, con.Duck.Duration);
             Jump = new Animation(con.Jump.Frames, con.Jump.Duration);
             Stand = new Animation(con.Stand.Frames, con.Stand.Duration);
+            Idle = new Animation(con.Idle.Frames, con.Idle.Duration);
         }
     }
 }

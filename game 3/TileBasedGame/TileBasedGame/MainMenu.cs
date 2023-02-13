@@ -397,8 +397,6 @@ namespace TileBasedGame
             Running = false;
             CloseAndGoTo(LevelManager.GameState.Level1);
             MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Level1));
-            
-
 
         }
         public void StartLevel2()

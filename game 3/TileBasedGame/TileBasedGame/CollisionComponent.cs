@@ -46,7 +46,11 @@ namespace TileBasedGame
                     //collide with spike from top
                     if (this.Role == "player" && colObject.Role == "spike")
                     {
-                        if (collideDirection(colObject, deltaT) == "bottom") {
+                        Console.WriteLine("Spike");
+                        string dir = collideDirection(colObject, deltaT);
+                        Console.WriteLine("dir" + dir);
+                        if ( dir == "bottom") {
+                            Console.WriteLine("Spike bottom");
                             MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Collision, GameObject));
                             MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Hurt, GameObject));
                         }
@@ -90,18 +94,19 @@ namespace TileBasedGame
 
             if (ob.PosY + ob.Height >= block.PosY && ob.PosY - ob.CurrentVelY * deltaT + ob.Height <= block.PosY)
             {
-                if (GameObject is Player)
-                    Console.WriteLine("collision bottom");
+
                 // Colliding from the bottom
                 newY = block.PosY - ob.Height - dis;
                 direction = "bottom";
+                if(colObject.Role == "spike")
+                {
+                    return direction;
+                }        
                 MessageBus.PostEvent(new MovingEvent(MovingEvent.Type.JumpAble, GameObject));
             }
 
             else if (ob.PosY <= block.PosY + block.Height && ob.PosY - ob.CurrentVelY * deltaT >= block.PosY + block.Height)
             {
-                if (GameObject is Player)
-                    Console.WriteLine("collision top");
                 // Colliding from the top
                 newY = block.PosY + block.Height + dis;
                 ob.CurrentVelY = 0;
@@ -109,8 +114,7 @@ namespace TileBasedGame
             }
             else if (ob.PosX <= block.PosX + block.Width && ob.PosX - ob.CurrentVelX * deltaT >= block.PosX + block.Width)
             {
-                if (GameObject is Player)
-                    Console.WriteLine("collision left");
+                
                 // Colliding from the left
                 newX = block.PosX + block.Width + dis;
                 direction = "left";
@@ -118,14 +122,11 @@ namespace TileBasedGame
             }
             else if (ob.PosX + ob.Width >= block.PosX && ob.PosX - ob.CurrentVelX * deltaT + ob.Width <= block.PosX)
             {
-                if (GameObject is Player)
-                    Console.WriteLine("collision right");
                 // Colliding from the right
                 newX = block.PosX - ob.Width - dis;
                 direction = "right";
                 MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.ChangeDirection, GameObject));
             }
-
 
             MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.NeutralCollision, GameObject, newX, newY));
             return direction;

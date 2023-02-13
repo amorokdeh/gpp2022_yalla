@@ -68,6 +68,21 @@ namespace TileBasedGame
         
         public override void OnEvent(Event e)
         {
+
+            HeroEvent he = e as HeroEvent;
+
+            if(he != null)
+            {
+                if (he.GameObject == this.GameObject)
+                {
+                    if (he.EventType == HeroEvent.Type.EnemyDead)
+                    {
+                        rotateAngle = 90;
+                        GameObject.PosY += 32;
+                    }
+                }
+            }
+            
             AnimationEvent ae = e as AnimationEvent;
             if (ae == null)
                 return;
@@ -139,22 +154,6 @@ namespace TileBasedGame
 
     override public void Render()
         {
-            /*
-            if(GameObject is Player) { 
-                if (GameObject.State is Running)
-                {
-                    Console.WriteLine("Running");
-                }
-                else if (GameObject.State is Jumping)
-                {
-                    Console.WriteLine("Jumping");
-                }
-                else if (GameObject.State is Ducking)
-                {
-                    Console.WriteLine("Ducking");
-                }
-            }*/
-
 
             _rect.x = (int)(GameObject.PosX + _dstX - Program.Game.Camera.PosX + Program.Window.Width / 2);
             _rect.y = (int)(GameObject.PosY - Program.Game.Camera.PosY + Program.Window.Height / 2);
@@ -163,9 +162,6 @@ namespace TileBasedGame
             
             _srcRect.x = ImgChange;
             _srcRect.y = ImgChangeY;
-
-           // if(GameObject is Player)
-             //   _srcRect.x = GameObject.ImgChange;
 
             //SDL.SDL_RenderCopy(Program.Window.Renderer, Img.ImageTexture, ref _srcRect, ref _rect);
             SDL.SDL_RenderCopyEx(Program.Window.Renderer, Img.ImageTexture, ref _srcRect, ref _rect, rotateAngle, IntPtr.Zero, flipped);

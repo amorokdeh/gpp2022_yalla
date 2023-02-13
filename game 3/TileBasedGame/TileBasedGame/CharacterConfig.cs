@@ -12,6 +12,7 @@ namespace TileBasedGame
         public Animation Duck;
         public Animation Jump;
         public Animation Stand;
+        public Animation Idle;
         
         public static CharacterConfig Load(string fileName)
         {

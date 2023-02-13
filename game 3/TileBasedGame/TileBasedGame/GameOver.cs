@@ -68,15 +68,18 @@ namespace TileBasedGame
                             Level level = Program.Game.Levels.CurrentLevel;
                             if (level is Level1)
                             {
-                                CloseAndGoTo(LevelManager.GameState.Level1); 
+                                CloseAndGoTo(LevelManager.GameState.Level1);
+                                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Level1));
                             }
                             else if (level is Level2)
                             {
                                 CloseAndGoTo(LevelManager.GameState.Level2);
+                                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Level2));
                             }
                             else if (level is Level3)
                             {
                                 CloseAndGoTo(LevelManager.GameState.Level3);
+                                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Level3));
                             }
 
                             break;
