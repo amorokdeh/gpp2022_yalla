@@ -100,7 +100,7 @@ namespace TileBasedGame
 
                 case 29: return LoadLevel(Level1Json = LoadMap("image/Maps/Level1.json"));
                 case 30: return LoadLevel(Level2Json = LoadMap("image/Maps/Level2.json"));
-                case 31: return LoadLevel(Level3Json = LoadMap("image/Maps/Level1.json"));
+                case 31: return LoadLevel(Level3Json = LoadMap("image/Maps/Level3.json"));
 
                 default: return "";
             }
