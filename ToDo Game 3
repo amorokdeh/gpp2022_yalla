@@ -5,7 +5,7 @@
 [] Collision mit End door "Level win" (Amr)
 [] Tipps aus dem Video aus der Vorlesung einbauen
   x  - schnellere GameObjects
-    - mehr Gegner
+  x  - mehr Gegner
   x  - mehr Bullets
   x  - Wackeln der Kamera
     - bessere Kamerabewegung
