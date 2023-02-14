@@ -12,6 +12,8 @@ namespace TileBasedGame
         public String Direction;
         int Frame;
         bool Flipped;
+        float TimeToIdle = 0;
+        float IdleTime = 0;
         public void SetDirection(String direction)
         {
             Direction = direction;
@@ -43,19 +45,36 @@ namespace TileBasedGame
             {
                 Direction = "stand";
                 Frame = GameObject.CharData.Stand.Animate(timeStep);
+                
+                TimeToIdle += timeStep;
+                if (TimeToIdle > 4)
+                {
+                    Frame = GameObject.CharData.Idle.Animate(timeStep);
+                    IdleTime += timeStep;
+                    if (IdleTime > 1)
+                    {
+                        TimeToIdle = Globals.Reset;
+                        IdleTime = Globals.Reset;
+                    }
+                }
             }
             else if (GameObject.CurrentVelX > 0)
             {
                 GameObject.direction = "right";
                 Flipped = false;
                 Frame = GameObject.CharData.Run.Animate(timeStep);
+                TimeToIdle = Globals.Reset;
+                IdleTime = Globals.Reset;
             }
             else if (GameObject.CurrentVelX < 0)
             {
                 GameObject.direction = "left";
                 Flipped = true;
                 Frame = GameObject.CharData.Run.Animate(timeStep);
+                TimeToIdle = Globals.Reset;
+                IdleTime = Globals.Reset;
             }
+
             MessageBus.PostEvent(new AnimationEvent(AnimationEvent.Type.Animation, this.GameObject, Frame, Flipped));
 
         }
@@ -66,6 +85,9 @@ namespace TileBasedGame
 
 
             GameObject.CharData.Run.Setup();
+            GameObject.CharData.Stand.Setup();
+            GameObject.CharData.Idle.Setup();
+
         }
 
         public State HandleInput(MovingEvent me)

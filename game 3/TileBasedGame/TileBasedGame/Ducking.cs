@@ -64,6 +64,7 @@ namespace TileBasedGame
             GameObject.Height = GameObject.GeneralHeight/2;
 
             GameObject.CharData.Duck.Setup();
+            GameObject.CharData.Stand.Setup();
         }
         public State HandleInput(MovingEvent me)
         {

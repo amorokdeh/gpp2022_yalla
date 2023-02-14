@@ -8,11 +8,11 @@ namespace TileBasedGame
 {
     class CharacterConfig
     {
+        public Animation Idle;
         public Animation Run;
         public Animation Duck;
         public Animation Jump;
         public Animation Stand;
-        public Animation Idle;
         
         public static CharacterConfig Load(string fileName)
         {

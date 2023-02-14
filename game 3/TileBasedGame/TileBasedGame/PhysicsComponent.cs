@@ -54,7 +54,7 @@ namespace TileBasedGame
 
         public virtual void Move(float deltaT)
         {
-            if(GameObject.State != null)
+            if(GameObject.State != null && !GameObject.Died)
                 GameObject.State.Update(deltaT);
 
             GameObject.PosX += GameObject.CurrentVelX * deltaT;
