@@ -1,8 +1,4 @@
-[x] State Modelling Charakter Controller (Majbrit)
 [] Gegner, die auf den Spieler zukommen
-[x] Animationen(Images) langsamer machen
-[] Level 2 and 3 (Amr)
-[] Collision mit End door "Level win" (Amr)
 [] Tipps aus dem Video aus der Vorlesung einbauen
   x  - schnellere GameObjects
   x  - mehr Gegner
@@ -19,6 +15,10 @@
 []"Player-Reaktion" nach dem Kollision mit Gegener und Spitzen
 [] Hinweis: Nach der Wiederholung eines Level wird das Spiel langsamer "FPS drops". Ich habe versucht alle GameObjekte und Liste in Cleaner-Klasse zu löchen und leeren. Aber trotzdem bekommen wir FPS drops. Wenn ich das Memory anschaue finde ich alles ok und werden keine extra Objekte gespeichert.
 
+[x] State Modelling Charakter Controller
+[x] Animationen(Images) langsamer machen
+[x] Level 2 and 3
+[x] Collision mit End door "Level win"
 [x] Schießen per Tastendruck
 [x] Kollision nur in bestimmten Bereich
 [x] Memory Problem lösen
