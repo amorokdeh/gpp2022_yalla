@@ -9,6 +9,11 @@
     - Wackeln der Kamera
     - bessere Kamerabewegung
     - große Explosion
+    - Animation der Bullets
+    - Abschussanimation
+    - Streuung der Bullets
+    - Qualm
+    - Sterbeanimation des Players
 
 [x] Schießen per Tastendruck
 [x] Kollision nur in bestimmten Bereich
