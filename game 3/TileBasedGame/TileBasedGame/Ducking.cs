@@ -82,7 +82,8 @@ namespace TileBasedGame
                 State state = new Running();
                 state.SetDirection(Direction);
                 state.SetFlipped(Flipped);
-                GameObject.PosY -= GameObject.GeneralHeight / 2 +2;
+                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.TryStanding, GameObject, GameObject.PosX, GameObject.PosY));
+                GameObject.PosY -= GameObject.GeneralHeight / 2 +2;               
                 return state;
             }
             else if (me.EventType == MovingEvent.Type.GoDown)

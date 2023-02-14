@@ -34,13 +34,13 @@ namespace TileBasedGame
 
             }
 
-            if (he.EventType == HeroEvent.Type.takeCoin)
+            if (he.EventType == HeroEvent.Type.TakeCoin)
             {
                 he.GameObject.Active= false;
                 he.GameObject.Died= true;
                 Program.Game.Player.Score++;
             }
-            if (he.EventType == HeroEvent.Type.takePower)
+            if (he.EventType == HeroEvent.Type.TakePower)
             {
                 he.GameObject.Active = false;
                 he.GameObject.Died = true;

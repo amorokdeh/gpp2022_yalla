@@ -73,11 +73,11 @@ namespace TileBasedGame
             {
                 RunSound("Player dead");
             }
-            else if (he.EventType == HeroEvent.Type.takeCoin)
+            else if (he.EventType == HeroEvent.Type.TakeCoin)
             {
                 RunSound("Coin");
             }
-            else if (he.EventType == HeroEvent.Type.takePower)
+            else if (he.EventType == HeroEvent.Type.TakePower)
             {
                 RunSound("Power");
             }          

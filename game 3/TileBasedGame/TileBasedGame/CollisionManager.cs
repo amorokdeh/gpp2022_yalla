@@ -26,14 +26,18 @@ namespace TileBasedGame
                 //if (component.GameObject.Active)
                 {
                     foreach (var colObject in _collisionComponents)
+                    {
                         if ((!colObject.GameObject.Died && colObject.GameObject.Active) && colObject.GameObject != component.GameObject)
                         //if ((component.GameObject.Active) && colObject.GameObject != component.GameObject)
                         {
-                            
+
                             component.Collide(colObject, deltaT);
 
                         }
-                }               
+                    }                       
+                }
+                component.OldX = -1;
+                component.OldY = -1;
             }
         }
 

@@ -12,15 +12,43 @@ namespace TileBasedGame
         CollisionManager CollisionManager;
 
         public string Role;
+
+        public float OldX = -1;
+        public float OldY = -1;
         public CollisionComponent(CollisionManager cm, string role)
         {
             Role = role;
             this.CollisionManager = cm;
         }
 
+        public override void OnEvent(Event e)
+        {
+            HeroEvent he = e as HeroEvent;
+            if (he == null)
+                return;
+
+            if(he.EventType == HeroEvent.Type.TryStanding && he.GameObject == GameObject)
+            {
+                OldY = he.NewY;
+            }
+        }
 
         public void Collide(CollisionComponent colObject, float deltaT)
         {
+            if (OldY != -1)
+            {
+                if (colObject.Role == "block")
+                {
+                    if (GameObject.PosX+GameObject.Width > colObject.GameObject.PosX && GameObject.PosX+GameObject.Width < colObject.GameObject.PosX+colObject.GameObject.Width 
+                        || GameObject.PosX < colObject.GameObject.PosX+colObject.GameObject.Width && GameObject.PosX > colObject.GameObject.PosX)
+                    {                       
+                        if (GameObject.PosY <= colObject.GameObject.PosY + colObject.GameObject.Height/2 && OldY >= colObject.GameObject.PosY + colObject.GameObject.Height/2)
+                        {
+                            MessageBus.PostEvent(new MovingEvent(MovingEvent.Type.GoDown, this.GameObject));
+                        }
+                    }
+                }
+            }
 
             
             if (colObject.GameObject.PosY + (colObject.GameObject.Height) > GameObject.PosY && colObject.GameObject.PosY < GameObject.PosY + (GameObject.Height))
@@ -66,13 +94,13 @@ namespace TileBasedGame
                     //player take coins
                     if (this.Role == "player" && colObject.Role == "coin")
                     {
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.takeCoin, colObject.GameObject));
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.TakeCoin, colObject.GameObject));
                     }
                     //player take power
                     if (this.Role == "player" && colObject.Role == "power")
                     {
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.takePower, colObject.GameObject));
-                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.powerUp));
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.TakePower, colObject.GameObject));
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.PowerUp));
                     }
                 }
             }

@@ -26,7 +26,7 @@ namespace TileBasedGame
                     {
                         if (he.EventType == HeroEvent.Type.TryShooting)
                             Shoot();
-                        if (he.EventType == HeroEvent.Type.powerUp)
+                        if (he.EventType == HeroEvent.Type.PowerUp)
                             PowerUp();
                     }
                 }
