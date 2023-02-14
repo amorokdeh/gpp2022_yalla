@@ -14,6 +14,8 @@
     - Streuung der Bullets
     - Qualm
     - Sterbeanimation des Players
+[]"Player-Reaktion" nach dem Kollision mit Gegener und Spitzen
+[] Hinweis: Nach der Wiederholung eines Level wird das Spiel langsamer "FPS drops". Ich habe versucht alle GameObjekte und Liste in Cleaner-Klasse zu löchen und leeren. Aber trotzdem bekommen wir FPS drops. Wenn ich das Memory anschaue finde ich alles ok und werden keine extra Objekte gespeichert.
 
 [x] Schießen per Tastendruck
 [x] Kollision nur in bestimmten Bereich
@@ -22,7 +24,6 @@
 [x] Schießen nach rechts und links (Player-Richtung)
 [x] Coins oder ähnliches zum Einsammeln
 [x] Sounds in Loader class laden
-[x] Collision mit Gegener und Spitzen "Player-Reaktion"
 
 
 Kritik und Tipps umsetzen:
