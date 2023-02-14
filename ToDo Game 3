@@ -4,9 +4,10 @@
 [] Level 2 and 3 (Amr)
 [] Collision mit End door "Level win" (Amr)
 [] Tipps aus dem Video aus der Vorlesung einbauen
+    - schnellere GameObjects
     - mehr Gegner
     - mehr Bullets
-    - Wackeln der Kamera
+  x  - Wackeln der Kamera
     - bessere Kamerabewegung
     - große Explosion
     - Animation der Bullets
@@ -14,6 +15,7 @@
     - Streuung der Bullets
     - Qualm
     - Sterbeanimation des Players
+    
 []"Player-Reaktion" nach dem Kollision mit Gegener und Spitzen
 [] Hinweis: Nach der Wiederholung eines Level wird das Spiel langsamer "FPS drops". Ich habe versucht alle GameObjekte und Liste in Cleaner-Klasse zu löchen und leeren. Aber trotzdem bekommen wir FPS drops. Wenn ich das Memory anschaue finde ich alles ok und werden keine extra Objekte gespeichert.
 
