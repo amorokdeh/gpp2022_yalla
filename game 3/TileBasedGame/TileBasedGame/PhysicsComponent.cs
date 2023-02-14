@@ -130,8 +130,6 @@ namespace TileBasedGame
 
         public void Hurt()
         {
-
-            //GameObject.jumpPossibility = 0;
             GameObject.CurrentVelY = -Globals.HurtChangePosY;
 
             if (GameObject.direction == "right" && GameObject.HurtAmount < Globals.NormalHurtAmount)

@@ -19,6 +19,7 @@ namespace TileBasedGame
         public virtual void Run()
         {
             Program.Game.Cleaner.clean();
+            _avDeltaTime = -1;
 
             buildMap();
 

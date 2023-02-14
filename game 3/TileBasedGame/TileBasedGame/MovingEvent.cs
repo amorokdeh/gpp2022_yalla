@@ -8,7 +8,7 @@ namespace TileBasedGame
 {
     class MovingEvent : Event
     {
-        public enum Type { GoUp, GoDown, GoLeft, GoRight, JumpAble}
+        public enum Type { GoUp, GoDown, GoLeft, GoRight, JumpAble, Stop}
         public Type EventType;
         public GameObject GameObject;
 

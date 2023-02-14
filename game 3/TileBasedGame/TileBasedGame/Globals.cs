@@ -32,8 +32,8 @@ namespace TileBasedGame
 
         public static int AudioStep = 10;
 
-        public const float Gravity = 600.0f;
-        public const float JUMP_VELOCITY = -350.0f;
+        public const float Gravity = 2050.0f;
+        public const float JUMP_VELOCITY = -600.0f;
 
         public const float NormalHurtAmount = 50;
         public const float HurtChangePosX = 2;
