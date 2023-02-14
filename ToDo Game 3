@@ -1,8 +1,14 @@
-[] State Modelling Charakter Controller (Majbrit)
+[x] State Modelling Charakter Controller (Majbrit)
 [] Gegner, die auf den Spieler zukommen
-[] Animationen(Images) langsamer machen
+[x] Animationen(Images) langsamer machen
 [] Level 2 and 3 (Amr)
 [] Collision mit End door "Level win" (Amr)
+[] Tipps aus dem Video aus der Vorlesung einbauen
+    - mehr Gegner
+    - mehr Bullets
+    - Wackeln der Kamera
+    - bessere Kamerabewegung
+    - große Explosion
 
 [x] Schießen per Tastendruck
 [x] Kollision nur in bestimmten Bereich
