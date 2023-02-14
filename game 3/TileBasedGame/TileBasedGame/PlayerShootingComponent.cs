@@ -10,6 +10,7 @@ namespace TileBasedGame
     {
         protected Bullet Bullet;
         private bool relaod = false;
+        private Random _rand = new Random();
         public PlayerShootingComponent(ShootingManager sm) : base(sm)
         {
         }
@@ -46,6 +47,8 @@ namespace TileBasedGame
                     {
                         Bullet.VelX = -Globals.Velocity*2.5f;
                     }
+
+                    Bullet.VelY = _rand.Next(0, 20);
 
                     BulletGap = Globals.Reset;
                     GameObject.Shoot = false;
