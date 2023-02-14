@@ -99,6 +99,11 @@ namespace TileBasedGame
                         MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.TakePower, colObject.GameObject));
                         MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.PowerUp));
                     }
+                    //player win
+                    if (this.Role == "player" && colObject.Role == "EndDoor")
+                    {
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.LevelWin));
+                    }
                 }
             }
 

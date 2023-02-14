@@ -160,7 +160,7 @@ namespace TileBasedGame
         {
             EndDoor endDoor = Objects.CreateEndDoor(name, w, h, x, y);
             endDoor.AddComponent(Rendering.CreateComponent(img, imgFrame, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
-            Component coc = Collisions.CreateComponent("door");
+            Component coc = Collisions.CreateComponent("EndDoor");
             endDoor.AddComponent(coc);
             endDoor.Active = true;
             endDoor.Died = false;

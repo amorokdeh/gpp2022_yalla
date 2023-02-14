@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static TileBasedGame.LevelManager;
 
 namespace TileBasedGame
 {
@@ -11,6 +12,7 @@ namespace TileBasedGame
         public InfoBox infoBox = new InfoBox();
         public bool powerUpInfoRunning = true;
         public bool keysInfoRunning = true;
+        public bool levelInfoRunning = true;
         public InfoBoxManager() { 
         }
 
@@ -39,6 +41,21 @@ namespace TileBasedGame
                 infoBox.printAnimText("Press Enter");
                 keysInfoRunning = infoBox.Control();
             }
+        }
+
+        public void LevelWinInfo()
+        {
+
+            while (levelInfoRunning)
+            {
+                infoBox.renderBox();
+                infoBox.printTxt("Level completed", (Program.Window.Height * 30 / 100) + Program.Window.Height * 10 / 100, 30);
+                infoBox.printAnimText("Press Enter");
+                levelInfoRunning = infoBox.Control();
+            }
+
+            LevelManager.display = GameState.MainMenu;
+            LevelManager.ControlQuitRequest = true;
         }
 
 

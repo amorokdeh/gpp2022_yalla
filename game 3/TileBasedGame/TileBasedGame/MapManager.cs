@@ -34,6 +34,7 @@ namespace TileBasedGame
             currentMap.buildPowers();
             currentMap.buildEndDoor();
             currentMap.resetPlayer();
+            Program.Game.InfoBox.levelInfoRunning = true;
         }
 
         public void clearObjects(){

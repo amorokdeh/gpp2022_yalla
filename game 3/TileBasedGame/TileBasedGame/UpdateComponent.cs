@@ -49,6 +49,10 @@ namespace TileBasedGame
                     Program.Game.Player.Lives++;
                 Program.Game.InfoBox.powerUpInfo();
             }
+            if (he.EventType == HeroEvent.Type.LevelWin)
+            {
+                Program.Game.InfoBox.LevelWinInfo();
+            }
         }
 
         public void DoUpdate()
