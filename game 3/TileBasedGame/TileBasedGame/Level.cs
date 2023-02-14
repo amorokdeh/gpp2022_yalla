@@ -47,7 +47,7 @@ namespace TileBasedGame
                     return;
                 }
 
-                Program.Game.UpdateCamera(_player);
+                Program.Game.UpdateCamera(_player, _avDeltaTime);
                 Program.Game.Render();
 
                 if (Game.Quit)

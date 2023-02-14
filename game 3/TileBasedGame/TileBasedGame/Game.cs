@@ -270,9 +270,9 @@ namespace TileBasedGame
             Shootings.Shoot(deltaT);
         }
 
-        public void UpdateCamera(Player player)
+        public void UpdateCamera(Player player, float deltaT)
         {
-            Camera.UpdateCamera(player);
+            Camera.UpdateCamera(player, deltaT);
         }
 
         public void DoUpdate()

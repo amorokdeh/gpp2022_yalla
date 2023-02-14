@@ -74,11 +74,8 @@ namespace TileBasedGame
                     //collide with spike from top
                     if (this.Role == "player" && colObject.Role == "spike")
                     {
-                        Console.WriteLine("Spike");
                         string dir = collideDirection(colObject, deltaT);
-                        Console.WriteLine("dir" + dir);
                         if ( dir == "bottom") {
-                            Console.WriteLine("Spike bottom");
                             MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Collision, GameObject));
                             MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Hurt, GameObject));
                         }

@@ -83,7 +83,7 @@ namespace TileBasedGame
                             }
 
                             break;
-                        case SDL.SDL_Keycode.SDLK_SPACE: 
+                        case SDL.SDL_Keycode.SDLK_m: 
                             Running = false; 
                             CloseAndGoTo(LevelManager.GameState.MainMenu); 
                             break;
@@ -110,7 +110,7 @@ namespace TileBasedGame
             surfaceMessage = SDL_ttf.TTF_RenderText_Solid(Txt.Font, text, Txt.LightGray);
             Txt.AddText(Program.Window.Renderer, surfaceMessage, Program.Window.Width / 2 - text.Length * 10, nextPos + 300, text.Length * 20, 30);
 
-            text = "DRUECKE SPACE, UM MAIN MENU ZU ZEIGEN";
+            text = "DRUECKE M, UM MAIN MENU ZU ZEIGEN";
             surfaceMessage = SDL_ttf.TTF_RenderText_Solid(Txt.Font, text, Txt.LightGray);
             Txt.AddText(Program.Window.Renderer, surfaceMessage, Program.Window.Width / 2 - text.Length * 10, nextPos + 350, text.Length * 20, 30);
 

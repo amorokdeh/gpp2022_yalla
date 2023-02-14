@@ -21,8 +21,6 @@ namespace TileBasedGame
             Duck = new Animation(con.Duck.Frames, con.Duck.Duration);
             Jump = new Animation(con.Jump.Frames, con.Jump.Duration);
             Stand = new Animation(con.Stand.Frames, con.Stand.Duration);
-            Console.WriteLine(Idle.Duration);
-
         }
     }
 }
