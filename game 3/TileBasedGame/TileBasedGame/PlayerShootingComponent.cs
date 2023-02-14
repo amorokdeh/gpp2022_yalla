@@ -39,12 +39,12 @@ namespace TileBasedGame
 
                     if (GameObject.direction == "right")
                     {
-                        Bullet.VelX = 200;
+                        Bullet.VelX = Globals.Velocity*2.5f;
 
                     }
                     else if (GameObject.direction == "left")
                     {
-                        Bullet.VelX = -200;
+                        Bullet.VelX = -Globals.Velocity*2.5f;
                     }
 
                     BulletGap = Globals.Reset;

@@ -33,6 +33,7 @@ namespace TileBasedGame
             {
                 GameObject.CurrentVelY = Globals.JUMP_VELOCITY;
                 JumpPossibility--;
+                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Jump, this.GameObject));
             }
         }
         public void Update(float timeStep) 

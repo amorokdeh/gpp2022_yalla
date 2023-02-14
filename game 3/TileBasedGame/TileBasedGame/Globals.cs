@@ -10,7 +10,7 @@ namespace TileBasedGame
     {
         public static int Lives = 10;
 
-        public static int Velocity = 120;
+        public static int Velocity = 160;
 
         public static int BigImageSize = 64;
         public static int VeryBigImageSize = 128;
@@ -21,11 +21,8 @@ namespace TileBasedGame
 
         public static int LeftBoundary = 0;
 
-        public static float BulletGap = 1.5f;
-        public static float BulletPowerUp = 0.15f;
-        public static int EnemyGap = 1;
-        public static float AnimationGap = 0.15f;
-        public static int AnimationPause = 5;
+        public static float BulletGap = 0.3f;
+        public static float BulletPowerUp = 0.1f;
 
         public static int Reset = 0;
 

@@ -16,7 +16,6 @@ namespace TileBasedGame
             Program.Game.Controls.clearObjects();
             Program.Game.Collisions.clearObjects();
             Program.Game.Ai.clearObjects();
-            Program.Game.Animations.clearObjects();
             Program.Game.Pool.clearObjects();
             Program.Game.Shootings.clearObjects();
             Program.Game.Updates.clearObjects();

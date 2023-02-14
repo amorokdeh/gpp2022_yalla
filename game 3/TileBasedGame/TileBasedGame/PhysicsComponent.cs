@@ -10,6 +10,7 @@ namespace TileBasedGame
     {
         State Next;
         PhysicsManager PhysicsManager;
+        private bool _isShooting = false;
         public PhysicsComponent(PhysicsManager pm):base()
         {
             this.PhysicsManager = pm;
@@ -25,8 +26,10 @@ namespace TileBasedGame
                     if (he.GameObject is GameObject)
                     {
                         if (he.EventType == HeroEvent.Type.TryShooting)
-                            Shoot();
-                        if (he.EventType == HeroEvent.Type.PowerUp)
+                            _isShooting = true;
+                        else if (he.EventType == HeroEvent.Type.StopShooting)
+                            _isShooting = false;
+                        else if (he.EventType == HeroEvent.Type.PowerUp)
                             PowerUp();
                     }
                 }
@@ -66,6 +69,8 @@ namespace TileBasedGame
                 GameObject.CurrentVelY += Globals.Gravity * deltaT;
             }
 
+            if (_isShooting)
+                Shoot();
 
         }
 

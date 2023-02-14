@@ -18,7 +18,6 @@ namespace TileBasedGame
         public CollisionManager Collisions = new CollisionManager();
         public AIManager Ai = new AIManager();
         public ControlManager Controls = new ControlManager();
-        public AnimationManager Animations = new AnimationManager();
         public PoolManager Pool = new PoolManager();
         public ShootingManager Shootings = new ShootingManager();
         public MapManager Maps = new MapManager();
@@ -58,8 +57,6 @@ namespace TileBasedGame
             Component uc = Updates.CreatePlayerComponent();
             Player.AddComponent(uc);
 
-            Player.AddComponent(Animations.CreateComponent());
-
             //cc.AddObserver(pc);
             coc.AddObserver(uc);
 
@@ -83,7 +80,6 @@ namespace TileBasedGame
             enemy.AddComponent(Ai.CreateComponent());
             Component coc = Collisions.CreateComponent("bad");
             enemy.AddComponent(coc);
-            enemy.AddComponent(Animations.CreateComponent());
             Component uc = Updates.CreateEnemyComponent();
             enemy.AddComponent(uc);
             enemy.Active = true;
@@ -190,7 +186,6 @@ namespace TileBasedGame
             power.AddComponent(Rendering.CreateComponent(Loader.PowerImg, Globals.MediumImageSize, Globals.MediumImageSize, Globals.NormalImageSize, Globals.NormalImageSize));
             Component coc = Collisions.CreateComponent("power");
             power.AddComponent(coc);
-            power.AddComponent(Animations.CreateComponent());
             power.Active = true;
             power.Died = false;
             return power;
@@ -260,10 +255,6 @@ namespace TileBasedGame
 
         }
 
-        public void Animate(float deltaT)
-        {
-            Animations.Animate(deltaT);
-        }
 
         public void Shoot(float deltaT)
         {

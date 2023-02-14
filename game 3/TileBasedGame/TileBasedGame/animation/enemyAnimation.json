@@ -5,11 +5,11 @@
   },
   "Run": {
     "Frames": [ 0, 32, 64, 96, 128, 160 ],
-    "Duration": 0.5
+    "Duration": 0.4
   },
   "Duck": {
     "Frames": [ 0, 32, 64, 96, 128, 160 ],
-    "Duration": 0.3
+    "Duration": 0.2
   },
   "Jump": {
     "Frames": [ 0, 32 ],

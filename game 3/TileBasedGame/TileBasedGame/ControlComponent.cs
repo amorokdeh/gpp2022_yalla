@@ -62,7 +62,6 @@ namespace TileBasedGame
 
         public void HandleEvent(SDL.SDL_Event e)
         {
-
             //If a key was pressed
             if (e.type == SDL.SDL_EventType.SDL_KEYDOWN && e.key.repeat == 0)
             {
@@ -87,7 +86,6 @@ namespace TileBasedGame
                         LevelManager.display = GameState.MainMenu;
                         LevelManager.ControlQuitRequest = true;
                         break; //quit game
-
                 }
             }
             else if (e.type == SDL.SDL_EventType.SDL_KEYUP)
@@ -100,6 +98,9 @@ namespace TileBasedGame
                         break;
                     case SDL.SDL_Keycode.SDLK_RIGHT:
                         MessageBus.PostEvent(new MovingEvent(MovingEvent.Type.GoLeft, Program.Game.Player));
+                        break;
+                    case SDL.SDL_Keycode.SDLK_SPACE:
+                        MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.StopShooting, Program.Game.Player));
                         break;
                 }
             }

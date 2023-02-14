@@ -48,12 +48,6 @@ namespace TileBasedGame
 
                 Program.Game.DespawnPlayerBullet(GameObject);
             }
-            /*
-            if (GameObject is EnemyBullet && GameObject.PosY > Program.Window.Height)
-            {
-                Program.Game.DespawnEnemyBullet(GameObject);
-            }
-            */
         }
     }
 }

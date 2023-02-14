@@ -14,8 +14,8 @@ namespace TileBasedGame
         public Enemy(string name, int w, int h) : base(name, w, h)
         {
             ExplodingImg = Program.Game.Loader.ExplodingImg;
-            VelY = 100;
-            VelX= 100;
+            VelY = Globals.Velocity;
+            VelX= Globals.Velocity;
             
         }
 

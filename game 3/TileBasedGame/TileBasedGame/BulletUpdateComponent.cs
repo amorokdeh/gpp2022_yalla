@@ -22,12 +22,10 @@ namespace TileBasedGame
             {
                 hero = he;
             }
-
         }
 
         public override void Update()
         {
-            Console.WriteLine("BULLET");
             Program.Game.DespawnBullet(GameObject);
         }
     }

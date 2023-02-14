@@ -35,7 +35,6 @@ namespace TileBasedGame
                 Program.Game.ControlEnemy();
                 Program.Game.ControlPlayer();
                 Program.Game.Move(_avDeltaTime);
-                //Program.Game.Animate(_avDeltaTime);
                 Program.Game.Collide(_avDeltaTime);
                 Program.Game.DoUpdate();
                 if (_player.Lives <= 0)

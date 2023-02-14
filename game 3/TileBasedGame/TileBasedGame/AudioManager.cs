@@ -29,15 +29,6 @@ namespace TileBasedGame
 
         public void OnEvent(Event e)
         {
-            MovingEvent me = e as MovingEvent;
-            if (me != null)
-            {
-                if (me.EventType == MovingEvent.Type.GoUp && Program.Game.Player.JumpPossibility > 0)
-                {
-                    RunSound("Jump");
-                }
-            }
-
             HeroEvent he = e as HeroEvent;
             if (he == null)
                 return;
@@ -99,6 +90,10 @@ namespace TileBasedGame
             {
                 StopMusic();
                 RunMusic("Level3 music");
+            }
+            else if (he.EventType == HeroEvent.Type.Jump)
+            {
+                RunSound("Jump");
             }
  
         }
