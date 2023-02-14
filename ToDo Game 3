@@ -4,9 +4,9 @@
 [] Level 2 and 3 (Amr)
 [] Collision mit End door "Level win" (Amr)
 [] Tipps aus dem Video aus der Vorlesung einbauen
-    - schnellere GameObjects
+  x  - schnellere GameObjects
     - mehr Gegner
-    - mehr Bullets
+  x  - mehr Bullets
   x  - Wackeln der Kamera
     - bessere Kamerabewegung
     - große Explosion
