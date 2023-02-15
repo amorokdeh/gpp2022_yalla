@@ -35,6 +35,7 @@ namespace TileBasedGame
 
         public CharacterData CharData = new CharacterData();
 
+
         public GameObject(string name, int w, int h)
         {
             Width = w;

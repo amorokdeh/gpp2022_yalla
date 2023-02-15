@@ -68,7 +68,7 @@ namespace TileBasedGame
                 w = (Program.Window.Width * 4 / 100) * Int32.Parse(_lives),
                 h = Program.Window.Height * 4 / 100,
             };
-            SDL.SDL_SetRenderDrawColor(Program.Window.Renderer, liveColor, (byte) (255 - liveColor), 0, 0);
+            SDL.SDL_SetRenderDrawColor(Program.Window.Renderer, liveColor, (byte) (255 - liveColor), 0, 255);
 
             SDL.SDL_RenderFillRect(Program.Window.Renderer, ref liveRect);
         }

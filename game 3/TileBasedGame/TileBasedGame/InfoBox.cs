@@ -11,21 +11,21 @@ namespace TileBasedGame
     class InfoBox
     {
         public Text Txt = new Text();
-        public bool running = true;
-        public int animText = 0;
+        public bool Running = true;
+        public int AnimText = 0;
 
         public InfoBox()
         {
             Txt.SetUp();
             Txt.LoadText(1);
         }
-        public void printTxt(string txt, int y, int size)
+        public void PrintTxt(string txt, int y, int size)
         {
             IntPtr surfaceMessage = SDL_ttf.TTF_RenderText_Solid(Txt.Font, txt, Txt.Black);
             Txt.AddText(Program.Window.Renderer, surfaceMessage, Program.Window.Width / 2 - txt.Length * 10, y, txt.Length * 20, size);
         }
 
-        public void renderBox()
+        public void RenderBox()
         {
 
             SDL.SDL_RenderPresent(Program.Window.Renderer);
@@ -67,23 +67,23 @@ namespace TileBasedGame
 
                     switch (e.key.keysym.sym)
                     {
-                        case SDL.SDL_Keycode.SDLK_RETURN: running = false; return false;
+                        case SDL.SDL_Keycode.SDLK_RETURN: Running = false; return false;
                     }
                 }
             }
             return true;
         }
 
-        public void printAnimText(string text) {
-            if (animText <= 15)
+        public void PrintAnimText(string text) {
+            if (AnimText <= 15)
             {
-                printTxt(text, (Program.Window.Height * 30 / 100) + Program.Window.Height * 24 / 100, 30);
-                animText++;
+                PrintTxt(text, (Program.Window.Height * 30 / 100) + Program.Window.Height * 24 / 100, 30);
+                AnimText++;
             }
-            else if (animText < 30)
-                animText++;
+            else if (AnimText < 30)
+                AnimText++;
             else
-                animText = 0;
+                AnimText = 0;
         }
     }
 }

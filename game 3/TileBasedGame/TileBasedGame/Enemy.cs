@@ -12,7 +12,7 @@ namespace TileBasedGame
         public Image FlyingImg = new Image();
 
         public Enemy(string name, int w, int h) : base(name, w, h)
-        {
+        {           
             ExplodingImg = Program.Game.Loader.ExplodingImg;
             VelY = Globals.Velocity;
             VelX= Globals.Velocity;

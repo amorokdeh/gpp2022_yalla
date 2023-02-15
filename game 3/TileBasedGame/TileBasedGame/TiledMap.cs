@@ -37,7 +37,7 @@ namespace TileBasedGame
         private List<Power> _powerData = new List<Power>();
         public List<GameObject> Tiles = new List<GameObject>();
 
-        public void load(Dictionary<string, object> map, Image img){
+        public void Load(Dictionary<string, object> map, Image img){
 
             //load tiles size (32 x 32)
             TileWidth = Convert.ToInt32(map["tilewidth"]);
@@ -193,7 +193,7 @@ namespace TileBasedGame
 
         }
 
-        public void buildBckground()
+        public void BuildBackground()
         {
             int line = 0;
             int col = 0;
@@ -222,7 +222,7 @@ namespace TileBasedGame
 
         }
 
-        public void buildBlocks()
+        public void BuildBlocks()
         {
             int line = 0;
             int col = 0;
@@ -250,7 +250,7 @@ namespace TileBasedGame
 
         }
 
-        public void buildSpikes()
+        public void BuildSpikes()
         {
             int line = 0;
             int col = 0;
@@ -278,7 +278,7 @@ namespace TileBasedGame
             }
 
         }
-        public void buildEndDoor()
+        public void BuildEndDoor()
         {
             int line = 0;
             int col = 0;
@@ -305,7 +305,7 @@ namespace TileBasedGame
 
         }
 
-        public void resetPlayer() {
+        public void ResetPlayer() {
 
             Program.Game.Player = (Player) Program.Game.BuildPlayer();
             Program.Game.Player.Reset();
@@ -314,7 +314,7 @@ namespace TileBasedGame
 
         }
 
-        public void buildEnemies() {
+        public void BuildEnemies() {
             int i = 0;
             foreach (Enemy enemy in _enemiesData) {
                 if (i == 0)
@@ -329,7 +329,7 @@ namespace TileBasedGame
                 
             }
         }
-        public void buildCoins()
+        public void BuildCoins()
         {
             int line = 0;
             int col = 0;
@@ -351,7 +351,7 @@ namespace TileBasedGame
                 }
             }
         }
-        public void buildPowers()
+        public void BuildPowers()
         {
             foreach (Power power in _powerData)
             {
@@ -359,7 +359,7 @@ namespace TileBasedGame
             }
         }
 
-        public void clearMap() {
+        public void ClearMap() {
 
 
             for (int i = 0; i < Tiles.Count; i++)

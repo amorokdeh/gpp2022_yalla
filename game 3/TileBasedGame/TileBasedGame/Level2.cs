@@ -8,7 +8,7 @@ namespace TileBasedGame
 {
     class Level2:Level
     {
-        public override void buildMap()
+        public override void BuildMap()
         {
 
             Program.Game.Maps.loadMap("Level 2");

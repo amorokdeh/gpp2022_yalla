@@ -14,32 +14,36 @@ namespace TileBasedGame
         private DateTime _timeNow = DateTime.Now;
         private float _deltaTime;
         private float _avDeltaTime = -1;
-        public Player _player;
+        public Player Player;
+
+        private int _dying = 2;
+
 
         public virtual void Run()
         {
             Program.Game.Cleaner.clean();
             _avDeltaTime = -1;
 
-            buildMap();
+            BuildMap();
 
-            this._player = Program.Game.Player;
-            _player.PosY -= 20;
+            this.Player = Program.Game.Player;
+            Player.PosY -= 20;
             LevelManager.ControlQuitRequest = false;
 
 
             while (true)
             {
                 Program.Window.CalculateFPS(); //frame limit start calculating here
-                calculateDeltaTime();
+                CalculateDeltaTime();
                 Program.Game.Shoot(_avDeltaTime);
                 Program.Game.ControlEnemy();
                 Program.Game.ControlPlayer();
                 Program.Game.Move(_avDeltaTime);
                 Program.Game.Collide(_avDeltaTime);
                 Program.Game.DoUpdate();
-                if (_player.Lives <= 0)
+                if (Player.Lives <= 0)
                 {
+                    Die();
                     LevelManager.display = LevelManager.GameState.GameOver;
                     Program.Game.Audio.StopMusic();
                     MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.GameOver));
@@ -47,7 +51,7 @@ namespace TileBasedGame
                     return;
                 }
 
-                Program.Game.UpdateCamera(_player, _avDeltaTime);
+                Program.Game.UpdateCamera(Player, _avDeltaTime);
                 Program.Game.Render();
 
                 if (Game.Quit)
@@ -68,7 +72,7 @@ namespace TileBasedGame
                 Program.Window.DeltaFPS(); //frame limit end calculating here
             }
         }
-        private void calculateDeltaTime() {
+        private void CalculateDeltaTime() {
 
             _timeNow = DateTime.Now;
             _deltaTime = (_timeNow.Ticks - _timeBefore.Ticks) / 10000000f;
@@ -82,11 +86,29 @@ namespace TileBasedGame
             }
             _timeBefore = _timeNow;
 
-            if (_avDeltaTime > 0.02)
-                _avDeltaTime = 0.02f;
+
+            // set _avDeltaTime down if _avDeltaTime becomes so large that it would become jerky
+            if (_avDeltaTime > 0.05)
+                _avDeltaTime = 0.05f;
         }
 
-        public virtual void buildMap()
+        public void Die()
+        {
+            Program.Game.SetUpRedBlend();
+            float height = (float)Player.Height;
+            while ( Player.Height > 0) 
+            {
+                CalculateDeltaTime();                
+                Program.Game.Render();
+                Program.Game.RedBlend(_avDeltaTime);
+                height -= _avDeltaTime*60f;
+                Player.PosY += _avDeltaTime * 60f;
+                Player.Height = (int)height;
+            }
+            Program.Game.SetOpacity(0);
+        }
+
+        public virtual void BuildMap()
         {
 
         }

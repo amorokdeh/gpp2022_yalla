@@ -10,7 +10,9 @@ namespace TileBasedGame
     class RenderingManager
     {
         private List<RenderingComponent> _renderingComponents = new List<RenderingComponent>();
-
+        SDL.SDL_Rect BackgroundRect;
+        private float _opacity = 0;
+        private float _gap = 0;
 
         internal Component CreateComponent(Image img, int w, int h)
         {
@@ -57,33 +59,61 @@ namespace TileBasedGame
             {
                 if(component.GameObject.Active)
                     component.Render();
-
                 
             }
             Program.Window.FPSCalculate();
 
-
-            // _renderingComponents[0].Render();
-            /*
-            foreach(var rc in SubsetThatNeedsRendering())
-            {
-                rc.Render();
-            }*/
-            if (!Program.Game.Levels.MainMenu.Running)
+            if (!Program.Game.Levels.MainMenu.Running && _opacity == 0)
             {
                 SDL.SDL_RenderPresent(Program.Window.Renderer);
             }
         }
 
-        //noch machen, wenn es wirklich gebraucht wird
-        public IEnumerable<RenderingComponent> SubsetThatNeedsRendering()
+        public void SetOpacity(float opacity)
         {
-            yield break;
+            _opacity = opacity;
         }
 
-        public void clearObjects()
+        public void SetUpRedBlend()
         {
+            _opacity = 0;
+            SDL.SDL_SetRenderDrawBlendMode(Program.Window.Renderer, SDL.SDL_BlendMode.SDL_BLENDMODE_BLEND);
 
+            BackgroundRect = new SDL.SDL_Rect
+            {
+                x = 0,
+                y = 0,
+                w = Program.Window.Width,
+                h = Program.Window.Height,
+            };
+        }
+        public void RedBlend(float deltaT)
+        {
+            _opacity += deltaT * 220f;            
+            int op = (int)_opacity;
+            if (op> 255)
+                op = 255;
+            if(_gap > 0.1)
+            {
+                _gap = 0;
+            } 
+            else if(_gap > 0.05)
+            {
+                SDL.SDL_SetRenderDrawColor(Program.Window.Renderer, 100, 0, 0, (byte)op);
+                
+            }
+            else
+            {
+                SDL.SDL_SetRenderDrawColor(Program.Window.Renderer, 255, 0, 0, (byte)op);
+            }
+            _gap += deltaT;
+            SDL.SDL_RenderFillRect(Program.Window.Renderer, ref BackgroundRect);
+            SDL.SDL_RenderPresent(Program.Window.Renderer);
+        }
+
+
+        public void ClearObjects()
+        {  
             for (int i = 0; i < _renderingComponents.Count; i++)
             {
                 _renderingComponents[i] = null;

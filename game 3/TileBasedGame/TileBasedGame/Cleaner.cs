@@ -11,7 +11,7 @@ namespace TileBasedGame
         public void clean() {
 
             Program.Game.Objects.clearObjects();
-            Program.Game.Rendering.clearObjects();
+            Program.Game.Rendering.ClearObjects();
             Program.Game.Physics.clearObjects();
             Program.Game.Controls.clearObjects();
             Program.Game.Collisions.clearObjects();

@@ -31,12 +31,12 @@ namespace TileBasedGame
             {
                 Console.WriteLine("SDL_ttf could not initialize! SDL_ttf Error: {0}", SDL.SDL_GetError());
             }
-            Gray = new SDL.SDL_Color() { r = 150, g = 150, b = 150 };
-            White = new SDL.SDL_Color() { r = 255, g = 255, b = 255 };
-            LightGray = new SDL.SDL_Color() { r = 235, g = 235, b = 240 };
-            Red = new SDL.SDL_Color() { r = 255, g = 0, b = 0 };
-            Green = new SDL.SDL_Color() { r = 0, g = 255, b = 0 };
-            Black = new SDL.SDL_Color() { r = 0, g = 0, b = 0 };
+            Gray = new SDL.SDL_Color() { r = 150, g = 150, b = 150, a = 255 };
+            White = new SDL.SDL_Color() { r = 255, g = 255, b = 255, a = 255 };
+            LightGray = new SDL.SDL_Color() { r = 235, g = 235, b = 240, a = 255 };
+            Red = new SDL.SDL_Color() { r = 255, g = 0, b = 0, a = 255 };
+            Green = new SDL.SDL_Color() { r = 0, g = 255, b = 0, a = 255 };
+            Black = new SDL.SDL_Color() { r = 0, g = 0, b = 0, a = 255 };
         }
 
         public void LoadText(int num) 

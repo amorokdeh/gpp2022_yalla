@@ -275,18 +275,28 @@ namespace TileBasedGame
             Updates.DoUpdate();
         }
 
+        public void SetUpRedBlend()
+        {
+            Rendering.SetUpRedBlend();
+        }
 
-        //Game loop
-        public void Run() {
-            Loader.Load();
-            Player = (Player)BuildPlayer();
-            //Player.CharData = Loader.PlayerAnimation;
-            Levels.Run();
+        public void RedBlend(float deltaT)
+        {
+            Rendering.RedBlend(deltaT);
+        }
+
+        public void SetOpacity(float opacity)
+        {
+            Rendering.SetOpacity(opacity);
         }
 
 
-
-
+            //Game loop
+            public void Run() {
+            Loader.Load();
+            Player = (Player)BuildPlayer();
+            Levels.Run();
+        }
 
         public void QuitGame(){
             SDL.SDL_DestroyWindow(Program.Window.Show);
