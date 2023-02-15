@@ -96,6 +96,11 @@ namespace TileBasedGame
                 StopMusic();
                 RunMusic("Level3 music");
             }
+            else if(he.EventType == HeroEvent.Type.LevelWin)
+            {
+                StopMusic();
+                RunSound("Win");
+            }
             else if (he.EventType == HeroEvent.Type.Jump)
             {
                 RunSound("Jump");
@@ -170,6 +175,7 @@ namespace TileBasedGame
                 case "Jump": return Program.Game.Loader.Jump;
                 case "Coin": return Program.Game.Loader.Coin;
                 case "Power": return Program.Game.Loader.Power;
+                case "Win": return Program.Game.Loader.Win;
                 case "reloadShooting": return Program.Game.Loader.ReloadShooting;
 
 

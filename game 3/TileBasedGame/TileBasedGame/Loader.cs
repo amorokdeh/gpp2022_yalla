@@ -14,7 +14,7 @@ namespace TileBasedGame
     class Loader
     {
         //Number of assets to load
-        private int _totalAssets = 32;
+        private int _totalAssets = 33;
         private int _assetsLoaded = 0;
 
         public Text Txt = new Text();
@@ -54,6 +54,7 @@ namespace TileBasedGame
         public AudioComponent Jump = new AudioComponent();
         public AudioComponent Coin = new AudioComponent();
         public AudioComponent Power = new AudioComponent();
+        public AudioComponent Win = new AudioComponent();
         // animation
         public CharacterConfig PlayerConfig;
         public CharacterConfig EnemyConfig;
@@ -97,10 +98,11 @@ namespace TileBasedGame
                 case 26: return LoadSound(Coin, "sound/Coin.wav");
                 case 27: return LoadSound(Power, "sound/Power.wav");
                 case 28: return LoadSound(ReloadShooting, "sound/reload.wav");
+                case 29: return LoadSound(Win, "sound/Win.wav");
 
-                case 29: return LoadLevel(Level1Json = LoadMap("image/Maps/Level1.json"));
-                case 30: return LoadLevel(Level2Json = LoadMap("image/Maps/Level2.json"));
-                case 31: return LoadLevel(Level3Json = LoadMap("image/Maps/Level3.json"));
+                case 30: return LoadLevel(Level1Json = LoadMap("image/Maps/Level1.json"));
+                case 31: return LoadLevel(Level2Json = LoadMap("image/Maps/Level2.json"));
+                case 32: return LoadLevel(Level3Json = LoadMap("image/Maps/Level3.json"));
 
                 default: return "";
             }
