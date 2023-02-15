@@ -238,19 +238,19 @@
               "rotation": 0,
               "visible": true,
               "width": 0,
-              "x": 526.333,
-              "y": 952.837
+              "x": 626.333,
+              "y": 962.837
             },
             {
               "class": "Enemy",
               "height": 0,
-              "id": 59,
+              "id": 60,
               "name": "Enemy",
               "point": true,
               "rotation": 0,
               "visible": true,
               "width": 0,
-              "x": 710.333,
+              "x": 810.333,
               "y": 998.837
             }
           ],

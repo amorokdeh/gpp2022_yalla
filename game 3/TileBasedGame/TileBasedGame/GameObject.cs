@@ -33,8 +33,6 @@ namespace TileBasedGame
         public bool Hurt;
         public int HurtAmount;
 
-        public State State;
-
         public CharacterData CharData = new CharacterData();
 
         public GameObject(string name, int w, int h)
@@ -61,7 +59,7 @@ namespace TileBasedGame
         internal void AddComponent(Component component)
         {
             Components.Add(component);
-            component.GameObject = this;
+            component.SetGameObject(this);
         }
 
 

@@ -12,32 +12,24 @@ namespace TileBasedGame
         public String Direction;
         int Frame;
         bool Flipped;
-        public void SetDirection(String direction)
-        {
-            Direction = direction;
-        }
-        public void SetFlipped(bool flipped)
-        {
-            Flipped = flipped;
-        }
-        public String GetDirection()
+        public string GetDirection()
         {
             return Direction;
         }
+        public bool GetFlipped()
+        {
+            return Flipped;
+        }
+        public void SetValues(string direction, bool flipped)
+        {
+            Direction = direction;
+            Flipped = flipped;
+            GameObject.Height = GameObject.GeneralHeight / 2;
+            SetVelocity();
+        }
+
         public void Update(float timeStep)
         {
-            if (Direction == "left" && GameObject.CurrentVelX >= 0)
-            {
-                GameObject.CurrentVelX -= GameObject.VelX;
-            }
-            else if (Direction == "right" && GameObject.CurrentVelX <= 0)
-            {
-                GameObject.CurrentVelX += GameObject.VelX;
-            }
-            else if (Direction == "stand")
-            {
-                GameObject.CurrentVelX = 0;
-            }
 
             if (GameObject.CurrentVelX == 0)
             {
@@ -61,37 +53,48 @@ namespace TileBasedGame
         public void Enter(GameObject gameObject)
         {
             GameObject = gameObject;
-            GameObject.Height = GameObject.GeneralHeight/2;
-
             GameObject.CharData.Duck.Setup();
             GameObject.CharData.Stand.Setup();
         }
-        public State HandleInput(MovingEvent me)
+
+        public void SetVelocity()
+        {
+            if (Direction == "left" && GameObject.CurrentVelX >= 0)
+            {
+                GameObject.CurrentVelX -= GameObject.VelX;
+            }
+            else if (Direction == "right" && GameObject.CurrentVelX <= 0)
+            {
+                GameObject.CurrentVelX += GameObject.VelX;
+            }
+            else if (Direction == "stand")
+            {
+                GameObject.CurrentVelX = 0;
+            }
+        }
+        public PhysicsComponent.AnimationState HandleInput(MovingEvent me)
         {
             if (me.EventType == MovingEvent.Type.GoLeft)
             {
                 Direction = "left";
-                return this;
+                return PhysicsComponent.AnimationState.Duck;
             }
             else if (me.EventType == MovingEvent.Type.GoRight)
             {
                 Direction = "right";
-                return this;
+                return PhysicsComponent.AnimationState.Duck;
             }
             else if (me.EventType == MovingEvent.Type.GoUp)
             {
-                State state = new Running();
-                state.SetDirection(Direction);
-                state.SetFlipped(Flipped);
                 MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.TryStanding, GameObject, GameObject.PosX, GameObject.PosY));
-                GameObject.PosY -= GameObject.GeneralHeight / 2 +2;               
-                return state;
+                GameObject.PosY -= GameObject.GeneralHeight / 2 + 2;
+                return PhysicsComponent.AnimationState.Run;
             }
             else if (me.EventType == MovingEvent.Type.GoDown)
             {
-                return this;
+                return PhysicsComponent.AnimationState.Duck;
             }
-            return this;
+            return PhysicsComponent.AnimationState.Duck;
         }
     }
 }

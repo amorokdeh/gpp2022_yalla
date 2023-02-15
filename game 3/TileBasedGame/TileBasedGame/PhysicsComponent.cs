@@ -8,12 +8,40 @@ namespace TileBasedGame
 {
     class PhysicsComponent : Component
     {
-        State Next;
+        State State;
+        AnimationState Next;
+        State Prev;
         PhysicsManager PhysicsManager;
         private bool _isShooting = false;
+
+        private State _running = new Running();
+        private State _jumping = new Jumping();
+        private State _ducking = new Ducking();
+
+        public enum AnimationState
+        {
+            Run,
+            Jump,
+            Duck
+        }
         public PhysicsComponent(PhysicsManager pm):base()
         {
             this.PhysicsManager = pm;
+        }
+
+        public override void SetGameObject(GameObject gameObject)
+        {
+            GameObject = gameObject;
+
+            if(GameObject.CharData.Run != null)
+            {
+                _running.Enter(GameObject);
+                _jumping.Enter(GameObject);
+                _ducking.Enter(GameObject);
+
+                State = _running;
+                State.SetValues("stand", false);
+            }           
         }
 
         public override void OnEvent(Event e)
@@ -40,15 +68,25 @@ namespace TileBasedGame
                 return;
             if (me.GameObject == GameObject)
             {
-                if (GameObject.State != null) 
-                { 
-                    Next = GameObject.State.HandleInput(me);
+                if (State != null) 
+                {
+                    Next = State.HandleInput(me);
+                    Prev = State;
 
-                    if (Next != GameObject.State)
+                    switch (Next)
                     {
-                        GameObject.State = Next;
-                        GameObject.State.Enter(GameObject);
+                        case AnimationState.Run:
+                            State = _running;
+                            break;
+                        case AnimationState.Duck:
+                            State = _ducking;
+                            break;
+                        case AnimationState.Jump:
+                            State = _jumping;
+                            break;
                     }
+
+                    State.SetValues(Prev.GetDirection(), Prev.GetFlipped());
                 }
             }
         }
@@ -57,8 +95,8 @@ namespace TileBasedGame
 
         public virtual void Move(float deltaT)
         {
-            if(GameObject.State != null && !GameObject.Died)
-                GameObject.State.Update(deltaT);
+            if(State != null && !GameObject.Died)
+                State.Update(deltaT);
 
             GameObject.PosX += GameObject.CurrentVelX * deltaT;
             GameObject.PosY += GameObject.CurrentVelY * deltaT;

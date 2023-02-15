@@ -112,7 +112,6 @@
     <Compile Include="RenderingComponent.cs" />
     <Compile Include="RenderingManager.cs" />
     <Compile Include="Running.cs" />
-    <Compile Include="Shooting.cs" />
     <Compile Include="ShootingComponent.cs" />
     <Compile Include="ShootingManager.cs" />
     <Compile Include="Spike.cs" />

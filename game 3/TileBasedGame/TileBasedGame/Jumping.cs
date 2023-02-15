@@ -14,17 +14,21 @@ namespace TileBasedGame
         int Frame;
         bool Flipped;
 
-        public void SetDirection(String direction)
-        {
-            Direction = direction;
-        }
-        public void SetFlipped(bool flipped)
-        {
-            Flipped = flipped;
-        }
-        public String GetDirection()
+        public string GetDirection()
         {
             return Direction;
+        }
+        public bool GetFlipped()
+        {
+            return Flipped;
+        }
+        public void SetValues(string direction, bool flipped)
+        {
+            Direction = direction;
+            Flipped = flipped;
+            GameObject.Height = GameObject.GeneralHeight;
+            Jump();
+            SetVelocity();
         }
 
         private void Jump()
@@ -38,18 +42,6 @@ namespace TileBasedGame
         }
         public void Update(float timeStep) 
         {
-            if (Direction == "left" && GameObject.CurrentVelX >= 0)
-            {
-                GameObject.CurrentVelX -= GameObject.VelX;
-            }
-            else if (Direction == "right" && GameObject.CurrentVelX <= 0)
-            {
-                GameObject.CurrentVelX += GameObject.VelX;
-            }
-            else if (Direction == "stand")
-            {
-                GameObject.CurrentVelX = 0;
-            }
 
             if (GameObject.CurrentVelX == 0)
             {
@@ -72,45 +64,52 @@ namespace TileBasedGame
         public void Enter(GameObject gameObject) 
         {
             GameObject = gameObject;
-            GameObject.Height = GameObject.GeneralHeight;
-            Jump();
-
             GameObject.CharData.Jump.Setup();
         }
-        public State HandleInput(MovingEvent me)
+
+        public void SetVelocity()
+        {
+            if (Direction == "left" && GameObject.CurrentVelX >= 0)
+            {
+                GameObject.CurrentVelX -= GameObject.VelX;
+            }
+            else if (Direction == "right" && GameObject.CurrentVelX <= 0)
+            {
+                GameObject.CurrentVelX += GameObject.VelX;
+            }
+            else if (Direction == "stand")
+            {
+                GameObject.CurrentVelX = 0;
+            }
+        }
+        public PhysicsComponent.AnimationState HandleInput(MovingEvent me)
         {
 
             if (me.EventType == MovingEvent.Type.GoLeft)
             {
                 Direction = "left";
-                return this;
+                return PhysicsComponent.AnimationState.Jump;
             }
             else if (me.EventType == MovingEvent.Type.GoRight)
             {
                 Direction = "right";
-                return this;
+                return PhysicsComponent.AnimationState.Jump;
             }
             else if (me.EventType == MovingEvent.Type.GoUp)
             {
                 Jump();
-                return this;
+                return PhysicsComponent.AnimationState.Jump;
             }
             else if (me.EventType == MovingEvent.Type.GoDown)
             {
-                return this;
+                return PhysicsComponent.AnimationState.Jump;
             }
             else if (me.EventType == MovingEvent.Type.JumpAble)
             {
-                if (GameObject == me.GameObject)
-                {
-                    State state = new Running();
-                    state.SetDirection(Direction);
-                    state.SetFlipped(Flipped);
-                    return state;
-                }
-                return this;
+                JumpPossibility = 2;
+                return PhysicsComponent.AnimationState.Run;
             }
-                return this;
+                return PhysicsComponent.AnimationState.Jump;
         }
     }
 }

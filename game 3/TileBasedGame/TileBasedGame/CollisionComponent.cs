@@ -66,10 +66,11 @@ namespace TileBasedGame
                         MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.ChangeDirection, this.GameObject));
                     }
 
-                    if (colObject.Role == "block" || colObject.Role == "spike")
+                    else if (colObject.Role == "block" || colObject.Role == "spike")
                     {
                         collideDirection(colObject, deltaT);
                     }
+
 
                     //collide with spike from top
                     if (this.Role == "player" && colObject.Role == "spike")
@@ -121,6 +122,11 @@ namespace TileBasedGame
             float newX = ob.PosX;
             float newY = ob.PosY;
                 
+            if(GameObject is Enemy && colObject.Role == "spike")
+            {
+                Console.WriteLine("ENEMY HIT SPIKE");
+            }
+                
 
             if (ob.PosY + ob.Height >= block.PosY && ob.PosY - ob.CurrentVelY * deltaT + ob.Height <= block.PosY)
             {
@@ -134,7 +140,6 @@ namespace TileBasedGame
                 }        
                 MessageBus.PostEvent(new MovingEvent(MovingEvent.Type.JumpAble, GameObject));
             }
-
             else if (ob.PosY <= block.PosY + block.Height && ob.PosY - ob.CurrentVelY * deltaT >= block.PosY + block.Height)
             {
                 // Colliding from the top
@@ -144,10 +149,14 @@ namespace TileBasedGame
             }
             else if (ob.PosX <= block.PosX + block.Width && ob.PosX - ob.CurrentVelX * deltaT >= block.PosX + block.Width)
             {
-                
                 // Colliding from the left
                 newX = block.PosX + block.Width + dis;
                 direction = "left";
+                MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.ChangeDirection, GameObject));
+            } else if(Role == "bad")
+            {
+                newX = block.PosX - ob.Width - dis;
+                direction = "right";
                 MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.ChangeDirection, GameObject));
             }
             else if (ob.PosX + ob.Width >= block.PosX && ob.PosX - ob.CurrentVelX * deltaT + ob.Width <= block.PosX)

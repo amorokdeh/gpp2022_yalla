@@ -19,5 +19,10 @@ namespace TileBasedGame
         {
         }
 
+        public virtual void SetGameObject(GameObject gameObject)
+        {
+            GameObject = gameObject;
+        }
+
     }
 }

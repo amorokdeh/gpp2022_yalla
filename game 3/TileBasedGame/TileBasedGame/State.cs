@@ -8,11 +8,11 @@ namespace TileBasedGame
 {
     interface State
     {
-        State HandleInput(MovingEvent me);
+        PhysicsComponent.AnimationState HandleInput(MovingEvent me);
         void Update(float timeStep);
         void Enter(GameObject gameObject);
-        void SetDirection(String direction);
-        void SetFlipped(bool flipped);
-        String GetDirection();
+        string GetDirection();
+        bool GetFlipped();
+        void SetValues(string direction, bool flipped);
     }
 }
