@@ -19,6 +19,11 @@ namespace TileBasedGame
             dispatcher.Notify(evt);
         }
 
+        static public void Clean()
+        {
+            dispatcher.Clean();
+        }
+
 
     }
 }

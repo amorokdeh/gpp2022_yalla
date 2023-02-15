@@ -13,24 +13,27 @@ namespace TileBasedGame
     }
     class Observable
     {
-        /*
-        public event EventHandler<EventArgs> EventOccured;
-        public void Notify()
-        {
-            if (EventOccured != null)
-                EventOccured(this, new EventArgs());
-        }
-        */
+
         List<Observer> _observers = new List<Observer>();
         public void AddObserver(Observer o)
         {
             _observers.Add(o);
+
+            Console.WriteLine(_observers.Count());
         }
         public void Notify(Event e)
         {
             foreach (Observer l in _observers)
                 if(l != null)
                     l.OnEvent(e);
+        }
+
+        public void Clean()
+        {
+            _observers.Clear();
+            _observers = null;
+
+            _observers = new List<Observer>();
         }
 
 

@@ -410,6 +410,12 @@ namespace TileBasedGame
             _coinsData = null;
             _powerData = null;
 
+            _layersData.Clear();
+            _layersData = null;
+
+            MessageBus.Clean();
+
+
             //GC.Collect();
 
         }
