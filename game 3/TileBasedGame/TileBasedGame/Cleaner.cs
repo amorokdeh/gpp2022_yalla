@@ -20,6 +20,7 @@ namespace TileBasedGame
             Program.Game.Shootings.clearObjects();
             Program.Game.Updates.clearObjects();
             Program.Game.Maps.clearObjects();
+            GC.Collect();
         }
     }
 }

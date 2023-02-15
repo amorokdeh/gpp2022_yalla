@@ -152,21 +152,37 @@ namespace TileBasedGame
                             }*/
                 }
 
-    override public void Render()
-        {
+        override public void Render(){
 
-            _rect.x = (int)(GameObject.PosX + _dstX - Program.Game.Camera.PosX + Program.Window.Width / 2);
-            _rect.y = (int)(GameObject.PosY - Program.Game.Camera.PosY + Program.Window.Height / 2);
-            _rect.h = GameObject.Height;
+            int winHeight = Program.Window.Height;
+            int winWidth = Program.Window.Width;
 
+            float cameraX = Program.Game.Camera.PosX;
+            float cameraY = Program.Game.Camera.PosY;
+
+            float camLeftBorder = cameraX - winWidth / 2;
+            float camRightBorder = cameraX + winWidth / 2;
+            float camTopBorder = cameraY - winHeight / 2;
+            float camBottomBorder = cameraY + winHeight / 2;
+
+            bool objectOnCamera = (GameObject.PosX < camRightBorder) && (GameObject.PosX + GameObject.Width > camLeftBorder) && (GameObject.PosY < camBottomBorder) && (GameObject.PosY + GameObject.Height > camTopBorder);
             
-            _srcRect.x = ImgChange;
-            _srcRect.y = ImgChangeY;
+            //render only the objects on camera
+            if (objectOnCamera)
+            {
+                _rect.x = (int)(GameObject.PosX + _dstX - Program.Game.Camera.PosX + Program.Window.Width / 2);
+                _rect.y = (int)(GameObject.PosY - Program.Game.Camera.PosY + Program.Window.Height / 2);
+                _rect.h = GameObject.Height;
 
-            //SDL.SDL_RenderCopy(Program.Window.Renderer, Img.ImageTexture, ref _srcRect, ref _rect);
-            SDL.SDL_RenderCopyEx(Program.Window.Renderer, Img.ImageTexture, ref _srcRect, ref _rect, rotateAngle, IntPtr.Zero, flipped);
-            
-            SDL.SDL_SetRenderDrawColor(Program.Window.Renderer, 255, 255, 255, 255);
+
+                _srcRect.x = ImgChange;
+                _srcRect.y = ImgChangeY;
+
+                //SDL.SDL_RenderCopy(Program.Window.Renderer, Img.ImageTexture, ref _srcRect, ref _rect);
+                SDL.SDL_RenderCopyEx(Program.Window.Renderer, Img.ImageTexture, ref _srcRect, ref _rect, rotateAngle, IntPtr.Zero, flipped);
+
+                SDL.SDL_SetRenderDrawColor(Program.Window.Renderer, 255, 255, 255, 255);
+            }
         }
     }
 }

@@ -50,6 +50,7 @@ namespace TileBasedGame
 
         public void Render()
         {
+
             SDL.SDL_SetRenderDrawColor(Program.Window.Renderer, 5, 5, 5, 255);
             SDL.SDL_RenderClear(Program.Window.Renderer);
             foreach (var component in _renderingComponents)
@@ -88,7 +89,7 @@ namespace TileBasedGame
                 _renderingComponents[i] = null;
             }
             _renderingComponents.Clear();
-            GC.Collect();
+            //GC.Collect();
         }
     }
 }

@@ -33,12 +33,13 @@ namespace TileBasedGame
             GameObject.CurrentVelY = GameObject.VelY;
             GameObject.CurrentVelX = GameObject.VelX;
 
-            if (GameObject is Tile)
+            if (GameObject is Tile || GameObject is Coin || GameObject is Power)
             {
-                if (objectOnCamera){
+                if (objectOnCamera & !GameObject.Died)
+                {
                     GameObject.Active = true;
                 }
-                else { 
+                else {
                     GameObject.Active = false; 
                 }
 

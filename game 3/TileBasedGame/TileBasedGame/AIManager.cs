@@ -34,7 +34,7 @@ namespace TileBasedGame
                 _aiComponents[i] = null;
             }
             _aiComponents.Clear();
-            GC.Collect();
+            //GC.Collect();
         }
     }
 }

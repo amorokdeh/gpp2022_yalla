@@ -177,7 +177,7 @@ namespace TileBasedGame
             }
             _enemyBulletPool.Clear();
 
-            GC.Collect();
+            //GC.Collect();
         }
 
 

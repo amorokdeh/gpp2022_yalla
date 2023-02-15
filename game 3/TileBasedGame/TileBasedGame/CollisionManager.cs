@@ -49,7 +49,7 @@ namespace TileBasedGame
                 _collisionComponents[i] = null;
             }
             _collisionComponents.Clear();
-            GC.Collect();
+            //GC.Collect();
         }
     }
 }

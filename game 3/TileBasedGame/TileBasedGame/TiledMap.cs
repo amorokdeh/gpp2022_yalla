@@ -77,6 +77,7 @@ namespace TileBasedGame
 
                             int number = (int)data;
                             _backgroundData.Add(number);
+
                         }
                     }
 
@@ -409,7 +410,7 @@ namespace TileBasedGame
             _coinsData = null;
             _powerData = null;
 
-            GC.Collect();
+            //GC.Collect();
 
         }
 

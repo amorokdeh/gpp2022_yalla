@@ -47,7 +47,7 @@ namespace TileBasedGame
                 _physicsComponents[i] = null;
             }
             _physicsComponents.Clear();
-            GC.Collect();
+            //GC.Collect();
         }
 
     }

@@ -123,6 +123,7 @@ namespace TileBasedGame
         {
             Tile tile = Objects.CreateTile(name, w, h, x, y);
             tile.AddComponent(Rendering.CreateComponent(img, imgFrame, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
+            tile.AddComponent(Ai.CreateComponent());
             tile.Active = true;
             tile.Died = false;
             return tile;
@@ -161,6 +162,7 @@ namespace TileBasedGame
             EndDoor endDoor = Objects.CreateEndDoor(name, w, h, x, y);
             endDoor.AddComponent(Rendering.CreateComponent(img, imgFrame, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
             Component coc = Collisions.CreateComponent("EndDoor");
+            endDoor.AddComponent(Ai.CreateComponent());
             endDoor.AddComponent(coc);
             endDoor.Active = true;
             endDoor.Died = false;
@@ -174,6 +176,7 @@ namespace TileBasedGame
             coin.AddComponent(Rendering.CreateComponent(Loader.CoinImg, Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize, Globals.MediumImageSize, imgX, imgY));
             Component coc = Collisions.CreateComponent("coin");
             coin.AddComponent(coc);
+            coin.AddComponent(Ai.CreateComponent());
             coin.Active = true;
             coin.Died = false;
             return coin;
@@ -186,6 +189,7 @@ namespace TileBasedGame
             power.AddComponent(Rendering.CreateComponent(Loader.PowerImg, Globals.MediumImageSize, Globals.MediumImageSize, Globals.NormalImageSize, Globals.NormalImageSize));
             Component coc = Collisions.CreateComponent("power");
             power.AddComponent(coc);
+            power.AddComponent(Ai.CreateComponent());
             power.Active = true;
             power.Died = false;
             return power;

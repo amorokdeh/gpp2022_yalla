@@ -41,7 +41,7 @@ namespace TileBasedGame
                 _shootingComponents[i] = null;
             }
             _shootingComponents.Clear();
-            GC.Collect();
+            //GC.Collect();
         }
     }
 }

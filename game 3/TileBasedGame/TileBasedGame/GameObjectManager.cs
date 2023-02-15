@@ -116,11 +116,12 @@ namespace TileBasedGame
             for(int i = 0; i < _gameObjects.Count; i++)
             {
                 _gameObjects[i].Active= false;
-                _gameObjects[i].Died= false;
+                _gameObjects[i].Died= true;
                 _gameObjects[i] = null;
+                
             }
             _gameObjects.Clear();
-            GC.Collect();
+            //GC.Collect();
         }
     }
 
