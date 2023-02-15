@@ -12,6 +12,8 @@
     - Qualm
     - Sterbeanimation des Players
     
+[] CollisionComponent aufräumen
+    
 []"Player-Reaktion" nach dem Kollision mit Gegener und Spitzen
 [] Hinweis: Nach der Wiederholung eines Level wird das Spiel langsamer "FPS drops". Ich habe versucht alle GameObjekte und Liste in Cleaner-Klasse zu löchen und leeren. Aber trotzdem bekommen wir FPS drops. Wenn ich das Memory anschaue finde ich alles ok und werden keine extra Objekte gespeichert.
 
