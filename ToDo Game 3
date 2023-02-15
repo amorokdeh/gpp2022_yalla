@@ -10,7 +10,7 @@
     - Abschussanimation
   x  - Streuung der Bullets
     - Qualm
-    - Sterbeanimation des Players
+  x  - Sterbeanimation des Players
     
 [] CollisionComponent aufräumen
     
