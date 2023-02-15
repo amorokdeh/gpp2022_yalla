@@ -35,8 +35,8 @@ namespace TileBasedGame
                     Bullet = (Bullet)Program.Game.RequestPlayerBullet(GameObject);
                     Console.WriteLine(Bullet.Active);
                     MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Shooting));
-                    Bullet.PosY = Bullet.GameObject.PosY + (Bullet.GameObject.Height / 3);
-                    Bullet.PosX = Bullet.GameObject.PosX + (Bullet.GameObject.Width / 3);
+                    Bullet.PosY = Bullet.GameObject.PosY + (Bullet.GameObject.Height / 4);
+                    Bullet.PosX = Bullet.GameObject.PosX + (Bullet.GameObject.Width / 2);
 
                     if (GameObject.direction == "right")
                     {
@@ -48,7 +48,7 @@ namespace TileBasedGame
                         Bullet.VelX = -Globals.Velocity*2.5f;
                     }
 
-                    Bullet.VelY = _rand.Next(0, 20);
+                    Bullet.VelY = _rand.Next(-20, 2);
 
                     BulletGap = Globals.Reset;
                     GameObject.Shoot = false;

@@ -23,6 +23,7 @@ namespace TileBasedGame
 
         public static float BulletGap = 0.3f;
         public static float BulletPowerUp = 0.1f;
+        public static int BulletSize = 24;
 
         public static int Reset = 0;
 

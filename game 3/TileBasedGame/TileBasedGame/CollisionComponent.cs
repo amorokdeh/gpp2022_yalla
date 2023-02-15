@@ -122,12 +122,6 @@ namespace TileBasedGame
             float newX = ob.PosX;
             float newY = ob.PosY;
                 
-            if(GameObject is Enemy && colObject.Role == "spike")
-            {
-                Console.WriteLine("ENEMY HIT SPIKE");
-            }
-                
-
             if (ob.PosY + ob.Height >= block.PosY && ob.PosY - ob.CurrentVelY * deltaT + ob.Height <= block.PosY)
             {
 

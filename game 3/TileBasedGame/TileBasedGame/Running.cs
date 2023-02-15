@@ -108,10 +108,14 @@ namespace TileBasedGame
             }
             else if (me.EventType == MovingEvent.Type.GoUp)
             {
+                TimeToIdle = Globals.Reset;
+                IdleTime = Globals.Reset;
                 return PhysicsComponent.AnimationState.Jump;
             }
             else if (me.EventType == MovingEvent.Type.GoDown)
             {
+                TimeToIdle = Globals.Reset;
+                IdleTime = Globals.Reset;
                 return PhysicsComponent.AnimationState.Duck;
             }
 

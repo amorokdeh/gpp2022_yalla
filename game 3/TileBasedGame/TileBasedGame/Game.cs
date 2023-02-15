@@ -90,9 +90,9 @@ namespace TileBasedGame
 
         public GameObject BuildPlayerBullet(GameObject bullet, GameObject player)
         {
-            bullet = Objects.CreatePlayerBullet("playerBullet", player, Globals.MediumImageSize, Globals.MediumImageSize);
+            bullet = Objects.CreatePlayerBullet("playerBullet", player, Globals.BulletSize, Globals.BulletSize);
             bullet.AddComponent(Physics.CreateComponent());
-            bullet.AddComponent(Rendering.CreateComponent(Loader.BulletImg, Globals.MediumImageSize, Globals.MediumImageSize));
+            bullet.AddComponent(Rendering.CreateComponent(Loader.BulletImg, Globals.BulletSize, Globals.BulletSize));
             bullet.AddComponent(Ai.CreateComponent());
             Component coc = Collisions.CreateComponent("good");
             bullet.AddComponent(coc);
