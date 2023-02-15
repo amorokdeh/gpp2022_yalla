@@ -19,7 +19,7 @@ namespace TileBasedGame
         {
             _observers.Add(o);
 
-            Console.WriteLine(_observers.Count());
+            //Console.WriteLine(_observers.Count());
         }
         public void Notify(Event e)
         {
@@ -34,6 +34,7 @@ namespace TileBasedGame
             _observers = null;
 
             _observers = new List<Observer>();
+            Program.Game.RegisterInBus();
         }
 
 

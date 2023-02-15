@@ -290,9 +290,14 @@ namespace TileBasedGame
             Rendering.SetOpacity(opacity);
         }
 
+        public void RegisterInBus()
+        {
+            Audio.RegisterInBus();
+        }
 
-            //Game loop
-            public void Run() {
+
+        //Game loop
+        public void Run() {
             Loader.Load();
             Player = (Player)BuildPlayer();
             Levels.Run();

@@ -27,6 +27,11 @@ namespace TileBasedGame
             MessageBus.Register(this);
         }
 
+        public void RegisterInBus()
+        {
+            MessageBus.Register(this);
+        }
+
         public void OnEvent(Event e)
         {
             HeroEvent he = e as HeroEvent;
