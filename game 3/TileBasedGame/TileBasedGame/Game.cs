@@ -40,31 +40,17 @@ namespace TileBasedGame
         {
             Player = Objects.CreateGamePlayer("player", Globals.MediumImageSize, Globals.BigImageSize);
             Player.Active = true;
-            Component pc = Physics.CreateComponent();
-            Player.AddComponent(pc);
-
+            Player.AddComponent(Physics.CreateComponent());
             Player.AddComponent(Rendering.CreateComponent(Loader.PlayerImg, Globals.MediumImageSize, Globals.BigImageSize, Globals.MediumImageSize, Globals.BigImageSize));
             Player.AddComponent(Rendering.CreateInfoComponent());
-
-            Component cc = Controls.CreateComponent();
-            Player.AddComponent(cc);
-
-            Component coc = Collisions.CreateComponent("player");
-            Player.AddComponent(coc);
-
+            Player.AddComponent(Controls.CreateComponent());
+            Player.AddComponent(Collisions.CreateComponent("player"));
             Player.AddComponent(Shootings.CreatePlayerComponent());
-
-            Component uc = Updates.CreatePlayerComponent();
-            Player.AddComponent(uc);
-
-            //cc.AddObserver(pc);
-            coc.AddObserver(uc);
-
+            Player.AddComponent(Updates.CreatePlayerComponent());
 
             Camera = new Camera(Player);
             return Player;
         }
-
 
         //Enemy
         public GameObject BuildEnemy(GameObject enemy, int type)
@@ -78,14 +64,10 @@ namespace TileBasedGame
             enemy.AddComponent(Physics.CreateComponent());
             enemy.AddComponent(Rendering.CreateComponent(img, Globals.MediumImageSize, Globals.BigImageSize, Globals.MediumImageSize, Globals.BigImageSize));
             enemy.AddComponent(Ai.CreateComponent());
-            Component coc = Collisions.CreateComponent("bad");
-            enemy.AddComponent(coc);
-            Component uc = Updates.CreateEnemyComponent();
-            enemy.AddComponent(uc);
+            enemy.AddComponent(Collisions.CreateComponent("bad"));
+            enemy.AddComponent(Updates.CreateEnemyComponent());
             enemy.Active = true;
-            coc.AddObserver(uc);
             return enemy;
-
         }
 
         public GameObject BuildPlayerBullet(GameObject bullet, GameObject player)
@@ -94,11 +76,8 @@ namespace TileBasedGame
             bullet.AddComponent(Physics.CreateComponent());
             bullet.AddComponent(Rendering.CreateComponent(Loader.BulletImg, Globals.BulletSize, Globals.BulletSize));
             bullet.AddComponent(Ai.CreateComponent());
-            Component coc = Collisions.CreateComponent("good");
-            bullet.AddComponent(coc);
-            Component uc = Updates.CreateBulletComponent();
-            bullet.AddComponent(uc);
-            coc.AddObserver(uc);
+            bullet.AddComponent(Collisions.CreateComponent("good"));
+            bullet.AddComponent(Updates.CreateBulletComponent());
             return bullet;
         }
 
@@ -109,13 +88,9 @@ namespace TileBasedGame
             bullet.AddComponent(Physics.CreateComponent());
             bullet.AddComponent(Rendering.CreateComponent(Loader.BulletImg, Globals.NormalImageSize * Globals.Multiplier, Globals.NormalImageSize * Globals.Multiplier));
             bullet.AddComponent(Ai.CreateComponent());
-            Component coc = Collisions.CreateComponent("bad");
-            bullet.AddComponent(coc);
-            Component uc = Updates.CreateBulletComponent();
-            bullet.AddComponent(uc);
-            coc.AddObserver(uc);
+            bullet.AddComponent(Collisions.CreateComponent("bad"));
+            bullet.AddComponent(Updates.CreateBulletComponent());
             return bullet;
-
         }
 
         // Background tiles

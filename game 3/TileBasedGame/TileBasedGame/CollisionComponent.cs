@@ -17,6 +17,7 @@ namespace TileBasedGame
         public float OldY = -1;
         public CollisionComponent(CollisionManager cm, string role)
         {
+            MessageBus.Register(this);
             Role = role;
             this.CollisionManager = cm;
         }

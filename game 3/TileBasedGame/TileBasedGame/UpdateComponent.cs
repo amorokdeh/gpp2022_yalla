@@ -13,6 +13,7 @@ namespace TileBasedGame
         public HeroEvent hero;
         public UpdateComponent(UpdateManager um):base()
         {
+            MessageBus.Register(this);
             this.UpdateManager = um;
         }
 

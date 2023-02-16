@@ -10,7 +10,7 @@ namespace TileBasedGame
     {
         public EnemyUpdateComponent(UpdateManager um) : base(um)
         {
-            
+            //MessageBus.Register(this);
         }
 
         public override void OnEvent(Event e)

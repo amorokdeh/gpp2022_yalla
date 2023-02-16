@@ -23,6 +23,7 @@ namespace TileBasedGame
 
         public ImageRenderingComponent(RenderingManager rm, Image image, int x, int y, int w, int h, int dstW, int dstH, int dstX = 0) : base()
         {
+            MessageBus.Register(this);
             this.RenderingManager = rm;
             Img = image;
             _srcRect.x = x;

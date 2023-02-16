@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace TileBasedGame
 {
-    class Component : Observable, Observer
+    class Component : Observer
     {
         public GameObject GameObject;
 
         public Component()
         {
-            MessageBus.Register(this);
+            //MessageBus.Register(this);
         }
 
         public virtual void OnEvent(Event e)

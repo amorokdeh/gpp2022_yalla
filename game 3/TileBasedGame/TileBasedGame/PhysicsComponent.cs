@@ -26,6 +26,7 @@ namespace TileBasedGame
         }
         public PhysicsComponent(PhysicsManager pm):base()
         {
+            MessageBus.Register(this);
             this.PhysicsManager = pm;
         }
 
