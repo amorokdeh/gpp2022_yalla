@@ -1,10 +1,5 @@
 ﻿using SDL2;
 using System;
-using System.IO;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using static SDL2.SDL;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace TileBasedGame
 {
@@ -90,12 +85,10 @@ namespace TileBasedGame
             if (ScreenMode.Equals("Full screen"))
             {
                 MiniScreen();
-
             }
             else
             {
-                FullScreen();
-                
+                FullScreen();             
             }
         }
         public void FPSCalculate()
@@ -116,7 +109,6 @@ namespace TileBasedGame
                 IntPtr surfaceMessage = SDL_ttf.TTF_RenderText_Solid(_txt.Font, text, _txt.White);
                 _txt.AddText(Program.Window.Renderer, surfaceMessage, Width/90, Height / 90, 75, 20);
             }
-
         }
 
         //limit Fps
@@ -168,7 +160,6 @@ namespace TileBasedGame
                 SDL.SDL_SetWindowSize(Show, Width, Height);
             }
         }
-
     }
 }
 

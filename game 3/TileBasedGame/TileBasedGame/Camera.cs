@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TileBasedGame
 {
-
     class Camera : Observable, Observer
     {
         public float PosX;
@@ -59,7 +54,6 @@ namespace TileBasedGame
                 _diffX = Globals.Reset;
                 _diffY = Globals.Reset;
             }
-
 
             int view = Program.Window.Width * 10 / 100;
             int camSpeed = 25;

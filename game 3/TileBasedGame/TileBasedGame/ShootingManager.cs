@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace TileBasedGame
 {
@@ -23,7 +19,6 @@ namespace TileBasedGame
             return sc;
         }
 
-
         public void Shoot(float deltaTime)
         {
             foreach (var component in _shootingComponents)
@@ -41,7 +36,6 @@ namespace TileBasedGame
                 _shootingComponents[i] = null;
             }
             _shootingComponents.Clear();
-            //GC.Collect();
         }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace TileBasedGame
 {
@@ -18,8 +14,6 @@ namespace TileBasedGame
         public void AddObserver(Observer o)
         {
             _observers.Add(o);
-
-            //Console.WriteLine(_observers.Count());
         }
         public void Notify(Event e)
         {
@@ -36,7 +30,5 @@ namespace TileBasedGame
             _observers = new List<Observer>();
             Program.Game.RegisterInBus();
         }
-
-
     }
 }

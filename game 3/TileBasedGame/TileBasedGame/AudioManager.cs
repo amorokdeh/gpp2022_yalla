@@ -1,9 +1,6 @@
 ﻿using SDL2;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TileBasedGame
 {
@@ -177,11 +174,8 @@ namespace TileBasedGame
                 case "Power": return Program.Game.Loader.Power;
                 case "Win": return Program.Game.Loader.Win;
                 case "reloadShooting": return Program.Game.Loader.ReloadShooting;
-
-
             }
             return null;
         }
-
     }
 }

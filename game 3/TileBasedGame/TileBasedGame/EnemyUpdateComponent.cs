@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TileBasedGame
 {
     class EnemyUpdateComponent : UpdateComponent
     {
-        public EnemyUpdateComponent(UpdateManager um) : base(um)
-        {
-            //MessageBus.Register(this);
-        }
+        public EnemyUpdateComponent(UpdateManager um) : base(um) {}
 
         public override void OnEvent(Event e)
         {
@@ -35,10 +28,8 @@ namespace TileBasedGame
             }
         }
 
-
         public override void Update()
         {
-            Console.WriteLine("ENEMY");
             Program.Game.Player.Score++;
             GameObject.Died = true;
             GameObject.VelY= 0;
@@ -73,6 +64,5 @@ namespace TileBasedGame
             GameObject.direction = "right";
             GameObject.VelX *= -1;
         }
-
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace TileBasedGame
 {
@@ -11,9 +7,7 @@ namespace TileBasedGame
     {
         private List<PhysicsComponent> _physicsComponents = new List<PhysicsComponent>();
 
-        public PhysicsManager()
-        {
-        }
+        public PhysicsManager() {}
 
         internal Component CreateComponent()
         {
@@ -28,15 +22,11 @@ namespace TileBasedGame
             {
                 if(component.GameObject.Active)
                     component.Move(deltaT);
-                //Console.WriteLine(component.GameObject.GetType());
                 if(component.GameObject is Player)
                 {
                     component.CheckBorders();
-                    //Console.WriteLine("Player");
                 }
             }
-
-
         }
 
         public void clearObjects()
@@ -47,8 +37,6 @@ namespace TileBasedGame
                 _physicsComponents[i] = null;
             }
             _physicsComponents.Clear();
-            //GC.Collect();
         }
-
     }
 }

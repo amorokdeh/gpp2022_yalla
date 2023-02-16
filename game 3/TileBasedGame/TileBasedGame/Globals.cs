@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace TileBasedGame
 {
     public static class Globals
@@ -39,7 +34,5 @@ namespace TileBasedGame
         public const float NormalHurtAmount = 50;
         public const float HurtChangePosX = 2;
         public const float HurtChangePosY = 20;
-
-
     }
 }

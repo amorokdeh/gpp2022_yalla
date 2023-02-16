@@ -3,11 +3,6 @@ using SDL2;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace TileBasedGame
 {
@@ -59,9 +54,7 @@ namespace TileBasedGame
         public CharacterConfig PlayerConfig;
         public CharacterConfig EnemyConfig;
 
-        public Loader() {
-
-        } 
+        public Loader() {} 
 
         public string loadAssets(int i) {
             switch (i)

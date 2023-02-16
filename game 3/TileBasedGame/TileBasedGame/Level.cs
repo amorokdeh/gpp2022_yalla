@@ -8,15 +8,12 @@ using System.Threading.Tasks;
 namespace TileBasedGame
 {
     class Level
-    {
-        
+    {       
         private DateTime _timeBefore = DateTime.Now;
         private DateTime _timeNow = DateTime.Now;
         private float _deltaTime;
         private float _avDeltaTime = -1;
         public Player Player;
-
-        private int _dying = 2;
 
 
         public virtual void Run()
@@ -108,9 +105,6 @@ namespace TileBasedGame
             Program.Game.SetOpacity(0);
         }
 
-        public virtual void BuildMap()
-        {
-
-        }
+        public virtual void BuildMap() {}
     }
 }

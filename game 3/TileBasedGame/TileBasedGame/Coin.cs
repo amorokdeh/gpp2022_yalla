@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-
+﻿
 namespace TileBasedGame
 {
     class Coin : GameObject
     {
-        public Coin(string name, int w, int h) : base(name, w, h){
-
-        }
+        public Coin(string name, int w, int h) : base(name, w, h) {}
     }
 }

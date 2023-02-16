@@ -1,28 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace TileBasedGame
 {
     class Component : Observer
     {
         public GameObject GameObject;
 
-        public Component()
-        {
-            //MessageBus.Register(this);
-        }
+        public Component() {}
 
-        public virtual void OnEvent(Event e)
-        {
-        }
+        public virtual void OnEvent(Event e) {}
 
         public virtual void SetGameObject(GameObject gameObject)
         {
             GameObject = gameObject;
         }
-
     }
 }

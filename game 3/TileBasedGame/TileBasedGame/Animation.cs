@@ -17,10 +17,7 @@ namespace TileBasedGame
 
         private int _frame;
 
-        public Animation()
-        {
-
-        }
+        public Animation() {}
         public Animation(int[] frames, float duration)
         {
             Frames = frames;
@@ -51,12 +48,7 @@ namespace TileBasedGame
   
                 _time = 0;
             }
-
             return _frame;
-
         }
-
     }
-
-
 }

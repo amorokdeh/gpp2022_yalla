@@ -1,46 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace TileBasedGame
 {
     class PoolManager
     {
-
-
         private GameObject _objectPrefab;
         private List<GameObject> _enemyUfoPool = new List<GameObject>();
         private List<GameObject> _enemyShipPool = new List<GameObject>();
         private List<GameObject> _playerBulletPool = new List<GameObject>();
         private List<GameObject> _enemyBulletPool = new List<GameObject>();
 
-        public PoolManager()
-        {
-            
-        }
-        /*
-        public GameObject RequestEnemyUfo()
-        {
-            foreach (GameObject enemy in _enemyUfoPool)
-            {
-                if (enemy.Active == false)
-                {
-                    //Console.WriteLine("Old enemy");
-                    enemy.Active = true;
-
-                    return enemy;
-                }
-            }
-            //Console.WriteLine("New enemy");
-            GameObject newEnemy = Program.Game.BuildUfo(_objectPrefab);
-            newEnemy.Active = true;
-            _enemyUfoPool.Add(newEnemy);
-
-            return newEnemy;
-        }
-        */
+        public PoolManager() {}
 
         public void DespawnEnemy(GameObject enemy)
         {
@@ -49,60 +19,35 @@ namespace TileBasedGame
             enemy1.Died = false;
 
             enemy1.ExplosionStep = Globals.Reset;
-            //enemy1.Img = enemy1.FlyingImg;
-
         }
-        /*
-        public GameObject RequestEnemyShip()
-        {
-            foreach (GameObject enemy in _enemyShipPool)
-            {
-                if (enemy.Active == false)
-                {
-                    //Console.WriteLine("Old enemy");
-                    enemy.Active = true;
-                    return enemy;
-                }
-            }
-            //Console.WriteLine("New enemy");
-            GameObject newEnemy = Program.Game.BuildEnemy(_objectPrefab);
-            newEnemy.Active = true;
-            _enemyShipPool.Add(newEnemy);
-
-            return newEnemy;
-        }
-        */
+   
         public GameObject RequestPlayerBullet(GameObject player)
         {
             foreach (GameObject bullet in _playerBulletPool)
             {
                 if (bullet.Active == false)
                 {
-                    //Console.WriteLine("Old bullet");
                     bullet.Active = true;
                     return bullet;
                 }
             }
-            //Console.WriteLine("New bullet");
             GameObject newBullet = Program.Game.BuildPlayerBullet(_objectPrefab, player);
             newBullet.Active = true;
             _playerBulletPool.Add(newBullet);
 
             return newBullet;
         }
-        //############# Enemy Bullet
+        //Enemy Bullet
         public GameObject RequestEnemyBullet(GameObject enemy)
         {
             foreach (GameObject bullet in _enemyBulletPool)
             {
                 if (bullet.Active == false)
                 {
-                    //Console.WriteLine("Old bullet");
                     bullet.Active = true;
                     return bullet;
                 }
             }
-            //Console.WriteLine("New bullet");
             GameObject newBullet = Program.Game.BuildEnemyBullet(_objectPrefab, enemy);
             newBullet.Active = true;
             _enemyBulletPool.Add(newBullet);
@@ -176,10 +121,6 @@ namespace TileBasedGame
                 _enemyBulletPool[i] = null;
             }
             _enemyBulletPool.Clear();
-
-            //GC.Collect();
         }
-
-
     }
 }

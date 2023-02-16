@@ -1,13 +1,7 @@
 ﻿using SDL2;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 using static SDL2.SDL;
-using static System.Net.Mime.MediaTypeNames;
+
 
 namespace TileBasedGame
 {
@@ -31,8 +25,6 @@ namespace TileBasedGame
         private IntPtr _gGameController = new IntPtr();
         private string _axisY = "None";
         private bool _movingY = false;
-        //create a rect
-        private SDL_Rect _rect;
 
         private Choices _selected = Choices.StartGame;
 
@@ -66,7 +58,6 @@ namespace TileBasedGame
             ShowFPS,
             ScreenSize,
             BackOption
-
         }
         
 
@@ -124,13 +115,9 @@ namespace TileBasedGame
                 Render();
                 Control();
                 Program.Window.DeltaFPS(); //frame limit end calculating here
-
             }
-
             if (Quit) { CloseAndGoTo(LevelManager.GameState.Quit); } //close the game
         }
-
-
 
         public void Control()
         {
@@ -445,7 +432,6 @@ namespace TileBasedGame
             SDL.SDL_RenderClear(Program.Window.Renderer);
             //Background
             _rendering.Render();
-
             
             //calculate FPS
             Program.Window.FPSCalculate();
@@ -527,7 +513,6 @@ namespace TileBasedGame
         public void CloseAndGoTo(LevelManager.GameState gs)
         {
             LevelManager.display = gs;
-
         }
     }
 }

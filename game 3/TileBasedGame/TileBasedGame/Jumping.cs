@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TileBasedGame
 {
@@ -27,7 +23,8 @@ namespace TileBasedGame
             Direction = direction;
             Flipped = flipped;
             GameObject.Height = GameObject.GeneralHeight;
-            Jump();
+            if(JumpPossibility == 2)
+                Jump();
             SetVelocity();
         }
 
@@ -109,7 +106,7 @@ namespace TileBasedGame
                 JumpPossibility = 2;
                 return PhysicsComponent.AnimationState.Run;
             }
-                return PhysicsComponent.AnimationState.Jump;
+            return PhysicsComponent.AnimationState.Jump;
         }
     }
 }

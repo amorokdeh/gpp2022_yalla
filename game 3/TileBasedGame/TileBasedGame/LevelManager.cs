@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TileBasedGame
 {
     class LevelManager
     {
-
         public Level CurrentLevel;
         public MainMenu MainMenu;
         public GameOver GameOver;
         public static bool ControlQuitRequest = false;
-
+        public static GameState display;
 
         public enum GameState
         {
@@ -24,9 +19,6 @@ namespace TileBasedGame
             Level3,
             GameOver
         }
-
-        public static GameState display;
-
 
         public void RunLevel1()
         {
@@ -53,7 +45,6 @@ namespace TileBasedGame
         public void RunGameOver()
         {
             GameOver = new GameOver();
-            Console.WriteLine("GameOver");
             GameOver.Run();
         }
 

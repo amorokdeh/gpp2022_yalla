@@ -1,10 +1,4 @@
 ﻿using SDL2;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TileBasedGame
 {
@@ -26,15 +20,11 @@ namespace TileBasedGame
         public Loader Loader = new Loader();
         public Cleaner Cleaner = new Cleaner();
 
-
         public static bool Quit;
         public Player Player;
         public Camera Camera;
 
-        public Game()
-        {
-
-        }
+        public Game() {}
 
         public GameObject BuildPlayer()
         {
@@ -102,7 +92,6 @@ namespace TileBasedGame
             tile.Active = true;
             tile.Died = false;
             return tile;
-
         }
 
         // Blocks tiles
@@ -115,7 +104,6 @@ namespace TileBasedGame
             block.Active = true;
             block.Died = false;
             return block;
-
         }
 
         // Spikes tiles
@@ -128,7 +116,6 @@ namespace TileBasedGame
             spike.Active = true;
             spike.Died = false;
             return spike;
-
         }
         
         // End door tiles
@@ -142,7 +129,6 @@ namespace TileBasedGame
             endDoor.Active = true;
             endDoor.Died = false;
             return endDoor;
-
         }
         //Coins
         public GameObject BuildCoin(Coin coin, int imgX, int imgY)
@@ -168,7 +154,6 @@ namespace TileBasedGame
             power.Active = true;
             power.Died = false;
             return power;
-
         }
 
         public void DespawnEnemy(GameObject enemy)
@@ -233,7 +218,6 @@ namespace TileBasedGame
             Pool.SetInactive();
 
         }
-
 
         public void Shoot(float deltaT)
         {

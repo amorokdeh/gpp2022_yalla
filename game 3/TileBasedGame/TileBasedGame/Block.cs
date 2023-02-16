@@ -8,8 +8,6 @@ namespace TileBasedGame
 {
     class Block : Tile
     {
-        public Block(string name, int w, int h, int x, int y) : base(name, w, h, x, y)
-        {
-        }
+        public Block(string name, int w, int h, int x, int y) : base(name, w, h, x, y) {}
     }
 }

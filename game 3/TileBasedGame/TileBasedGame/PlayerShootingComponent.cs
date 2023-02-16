@@ -11,9 +11,7 @@ namespace TileBasedGame
         protected Bullet Bullet;
         private bool relaod = false;
         private Random _rand = new Random();
-        public PlayerShootingComponent(ShootingManager sm) : base(sm)
-        {
-        }
+        public PlayerShootingComponent(ShootingManager sm) : base(sm) {}
 
         public override void Shoot(float deltaTime)
         {
@@ -27,13 +25,11 @@ namespace TileBasedGame
                     MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.ReloadShooting));
                     GameObject.CanShoot = true;
                     relaod = true;
-
                 }
 
                 if (GameObject.Shoot)
                 {
                     Bullet = (Bullet)Program.Game.RequestPlayerBullet(GameObject);
-                    Console.WriteLine(Bullet.Active);
                     MessageBus.PostEvent(new HeroEvent(HeroEvent.Type.Shooting));
                     Bullet.PosY = Bullet.GameObject.PosY + (Bullet.GameObject.Height / 4);
                     Bullet.PosX = Bullet.GameObject.PosX + (Bullet.GameObject.Width / 2);
@@ -56,7 +52,6 @@ namespace TileBasedGame
                     relaod = false;
                 }
             }
-
         }
     }
 }

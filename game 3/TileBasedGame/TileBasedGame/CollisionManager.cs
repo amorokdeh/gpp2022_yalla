@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace TileBasedGame
 {
@@ -19,7 +15,6 @@ namespace TileBasedGame
 
         public void Collide(float deltaT)
         {
-            int pl = 0;
             foreach (var component in _collisionComponents)
             {
                 if (!component.GameObject.Died && component.GameObject.Active)

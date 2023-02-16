@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static TileBasedGame.LevelManager;
+﻿using static TileBasedGame.LevelManager;
 
 namespace TileBasedGame
 {
@@ -13,8 +8,7 @@ namespace TileBasedGame
         public bool powerUpInfoRunning = true;
         public bool keysInfoRunning = true;
         public bool levelInfoRunning = true;
-        public InfoBoxManager() { 
-        }
+        public InfoBoxManager() {}
 
         public void powerUpInfo() {
 
@@ -30,7 +24,6 @@ namespace TileBasedGame
 
         public void keysInfo()
         {
-
             while (keysInfoRunning)
             {
                 infoBox.RenderBox();
@@ -48,8 +41,10 @@ namespace TileBasedGame
 
             while (levelInfoRunning)
             {
+                string text = "Score: " + Program.Game.Player.Score;
                 infoBox.RenderBox();
                 infoBox.PrintTxt("Level completed", (Program.Window.Height * 30 / 100) + Program.Window.Height * 10 / 100, 30);
+                infoBox.PrintTxt(text, (Program.Window.Height * 30 / 100) + Program.Window.Height * 17 / 100, 30);
                 infoBox.PrintAnimText("Press Enter");
                 levelInfoRunning = infoBox.Control();
             }
@@ -57,7 +52,5 @@ namespace TileBasedGame
             LevelManager.display = GameState.MainMenu;
             LevelManager.ControlQuitRequest = true;
         }
-
-
     }
 }

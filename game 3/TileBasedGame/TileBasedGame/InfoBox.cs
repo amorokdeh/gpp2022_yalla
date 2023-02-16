@@ -1,10 +1,5 @@
 ﻿using SDL2;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace TileBasedGame
 {
@@ -49,8 +44,7 @@ namespace TileBasedGame
                 h = Program.Window.Height * 30 / 100,
             };
             SDL.SDL_SetRenderDrawColor(Program.Window.Renderer, 255, 255, 255, 255);
-            SDL.SDL_RenderFillRect(Program.Window.Renderer, ref backgroundRect);
-            
+            SDL.SDL_RenderFillRect(Program.Window.Renderer, ref backgroundRect);           
         }
 
         public bool Control()

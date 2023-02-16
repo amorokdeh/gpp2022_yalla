@@ -1,10 +1,5 @@
 ﻿using SDL2;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using static TileBasedGame.LevelManager;
 
 namespace TileBasedGame
@@ -18,17 +13,13 @@ namespace TileBasedGame
         private string _axisX = "none";
         private string _axisY = "none";
 
-
         public ControlComponent(ControlManager cm)
         {
             this.ControlManager = cm;
             SetupController();
         }
 
-        public void Control()
-        {
-
-        }
+        public void Control() {}
 
         public bool SetupController()
         {
@@ -145,7 +136,6 @@ namespace TileBasedGame
                     if (_axisY == "down") { MessageBus.PostEvent(new MovingEvent(MovingEvent.Type.GoUp, Program.Game.Player)); _axisY = "none"; }
                 }
             }
-
         }
     }
 }

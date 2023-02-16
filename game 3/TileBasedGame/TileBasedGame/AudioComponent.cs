@@ -15,14 +15,10 @@ namespace TileBasedGame
         public int volumeMusic = 50;
         public int volumeSound = 50;
 
-        public AudioComponent()
-        {
-
-        }
+        public AudioComponent() {}
 
         public IntPtr LoadMusic(String source)
         {
-
             music = SDL_mixer.Mix_LoadMUS(source);
             if (music == IntPtr.Zero)
             {
@@ -62,7 +58,6 @@ namespace TileBasedGame
         {
             volumeSound = volume;
         }
-
         public void stopMusic()
         {
             //Free the music
@@ -77,6 +72,5 @@ namespace TileBasedGame
             music = IntPtr.Zero;
             SDL_mixer.Mix_CloseAudio();
         }
-
     }
 }

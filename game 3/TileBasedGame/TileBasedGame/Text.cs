@@ -1,9 +1,5 @@
 ﻿using SDL2;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TileBasedGame
 {
@@ -19,10 +15,7 @@ namespace TileBasedGame
         public SDL.SDL_Color Red;
         public SDL.SDL_Color Green;
         public SDL.SDL_Color Black;
-        public Text() 
-        { 
-        
-        }
+        public Text() {}
 
         public void SetUp() 
         {
@@ -63,6 +56,5 @@ namespace TileBasedGame
             SDL.SDL_FreeSurface(surfaceMessage);
             SDL.SDL_DestroyTexture(Message);
         }
-
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace TileBasedGame
 {
     class Player:GameObject
@@ -11,9 +6,7 @@ namespace TileBasedGame
         public int Lives = Globals.Lives;
         public int Score = 0;
 
-        public Player(string name, int w, int h): base(name, w, h)
-        {
-        }
+        public Player(string name, int w, int h): base(name, w, h) {}
         
         public void Reset()
         {

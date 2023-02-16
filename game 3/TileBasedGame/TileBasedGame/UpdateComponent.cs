@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace TileBasedGame
 {
     class UpdateComponent : Component
@@ -32,7 +27,6 @@ namespace TileBasedGame
                 {
                     UpdatePosition(he);
                 }
-
             }
 
             if (he.EventType == HeroEvent.Type.TakeCoin)
@@ -63,13 +57,10 @@ namespace TileBasedGame
             hero = null;
         }
 
-        public virtual void Update()
-        {
+        public virtual void Update() {}
 
-        }
         public virtual void UpdatePosition(HeroEvent heroEv)
         {
-
             GameObject.PosY = heroEv.NewY;
             GameObject.PosX = heroEv.NewX;
         }

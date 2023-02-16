@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace TileBasedGame
 {
     class PhysicsComponent : Component
@@ -92,8 +87,6 @@ namespace TileBasedGame
             }
         }
 
-
-
         public virtual void Move(float deltaT)
         {
             if(State != null && !GameObject.Died)
@@ -110,7 +103,6 @@ namespace TileBasedGame
 
             if (_isShooting)
                 Shoot();
-
         }
 
         public void CheckBorders()
@@ -134,8 +126,6 @@ namespace TileBasedGame
             {
                 GameObject.PosY = mapHeight - GameObject.Height;
             }
-
-
         }
         public void StopMoving()
         {
@@ -189,7 +179,6 @@ namespace TileBasedGame
                 GameObject.HurtAmount = 0;
             }
         }
-
     }
 }
 

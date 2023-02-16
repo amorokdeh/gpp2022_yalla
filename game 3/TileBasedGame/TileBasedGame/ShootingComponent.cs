@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace TileBasedGame
 {
     class ShootingComponent : Component
@@ -18,8 +13,6 @@ namespace TileBasedGame
             this.ShootingManager = sm;
         }
 
-        public virtual void Shoot(float deltaTime)
-        {
-        }
+        public virtual void Shoot(float deltaTime) {}
     }
 }

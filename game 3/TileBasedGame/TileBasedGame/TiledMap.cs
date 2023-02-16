@@ -1,15 +1,7 @@
 ﻿using System;
-using System.IO;
-using System.Linq;
 using System.Collections.Generic;
-using Newtonsoft.Json;
-using SDL2;
 using Newtonsoft.Json.Linq;
-using System.Xml.Linq;
-using System.ComponentModel;
-using System.Security.Policy;
-using System.Data;
-using System.Collections;
+
 
 namespace TileBasedGame
 {
@@ -54,7 +46,6 @@ namespace TileBasedGame
 
             if (map.ContainsKey("layers"))
             {
-
                 JArray layersArray = (JArray)map["layers"];
                 foreach (var layer in layersArray)
                 {
@@ -74,17 +65,14 @@ namespace TileBasedGame
                         JArray dataArray = (JArray)layerData["data"];
                         foreach (var data in dataArray)
                         {
-
                             int number = (int)data;
                             _backgroundData.Add(number);
-
                         }
                     }
 
                     //load bolcks data
                     if (layerName.Equals("Blocks") && layerData.ContainsKey("data"))
                     {
-
                         JArray dataArray = (JArray)layerData["data"];
                         foreach (var data in dataArray)
                         {
@@ -101,20 +89,16 @@ namespace TileBasedGame
                         JArray layerObject = (JArray)layerData["objects"];
                         foreach (var obj in layerObject)
                         {
-
                             var objX = obj["x"];
                             var objY = obj["y"];
                             PlayerXPos = Convert.ToInt32(objX);
                             PlayerYPos = Convert.ToInt32(objY);
-
                         }
-
                     }
 
                     //load Enemies
                     if (layerName.Equals("Enemy") && layerData.ContainsKey("objects"))
                     {
-
                         JArray layerObject = (JArray)layerData["objects"];
                         foreach (var obj in layerObject)
                         {
@@ -125,12 +109,10 @@ namespace TileBasedGame
                             enemy.PosY = Convert.ToInt32(objY);
                             _enemiesData.Add(enemy);
                         }
-
                     }
                     //load Coins
                     if (layerName.Equals("Coin") && layerData.ContainsKey("objects"))
                     {
-
                         JArray layerObject = (JArray)layerData["objects"];
                         foreach (var obj in layerObject)
                         {
@@ -141,12 +123,10 @@ namespace TileBasedGame
                             coin.PosY = Convert.ToInt32(objY);
                             _coinsData.Add(coin);
                         }
-
                     }
                     //load Coins
                     if (layerName.Equals("Power") && layerData.ContainsKey("objects"))
                     {
-
                         JArray layerObject = (JArray)layerData["objects"];
                         foreach (var obj in layerObject)
                         {
@@ -157,13 +137,11 @@ namespace TileBasedGame
                             power.PosY = Convert.ToInt32(objY);
                             _powerData.Add(power);
                         }
-
                     }
 
                     //load Spikes
                     if (layerName.Equals("Spike") && layerData.ContainsKey("data"))
                     {
-
                         JArray dataArray = (JArray)layerData["data"];
                         foreach (var data in dataArray)
                         {
@@ -176,7 +154,6 @@ namespace TileBasedGame
                     //load End door
                     if (layerName.Equals("End") && layerData.ContainsKey("data"))
                     {
-
                         JArray dataArray = (JArray)layerData["data"];
                         foreach (var data in dataArray)
                         {
@@ -185,9 +162,6 @@ namespace TileBasedGame
                             _endDoorData.Add(number);
                         }
                     }
-
-                    Console.WriteLine(layerName);
-
                 }
             }
 
@@ -212,14 +186,11 @@ namespace TileBasedGame
                     //new line
                     if (col == MapWidth / TileWidth)
                     {
-
                         line++;
                         col = 0;
                     }
-
                 }
             }
-
         }
 
         public void BuildBlocks()
@@ -229,8 +200,7 @@ namespace TileBasedGame
 
             //build blocks
             foreach (int data in _blocksData)
-            {
-                
+            { 
                 int x = col * TileWidth;
                 int y = line * TileHeight;
                 if (data != 0)
@@ -241,13 +211,10 @@ namespace TileBasedGame
                 //new line
                 if (col == MapWidth / TileWidth)
                 {
-
                     line++;
                     col = 0;
-                }
-                
+                }               
             }
-
         }
 
         public void BuildSpikes()
@@ -258,7 +225,6 @@ namespace TileBasedGame
             //build spikes
             foreach (int data in _spikesData)
             {
-
                 int x = col * TileWidth;
                 int y = line * TileHeight;
                 if (data != 0)
@@ -270,13 +236,10 @@ namespace TileBasedGame
                 //new line
                 if (col == MapWidth / TileWidth)
                 {
-
                     line++;
                     col = 0;
                 }
-
             }
-
         }
         public void BuildEndDoor()
         {
@@ -286,7 +249,6 @@ namespace TileBasedGame
             //build end door
             foreach (int data in _endDoorData)
             {
-
                 int x = col * TileWidth;
                 int y = line * TileHeight;
                 if (data != 0) {
@@ -300,9 +262,7 @@ namespace TileBasedGame
                     line++;
                     col = 0;
                 }
-
             }
-
         }
 
         public void ResetPlayer() {
@@ -325,8 +285,7 @@ namespace TileBasedGame
                 else {
                     Program.Game.BuildEnemy(enemy, 2);
                     i = 0;
-                }
-                
+                }                
             }
         }
         public void BuildCoins()
@@ -366,8 +325,7 @@ namespace TileBasedGame
             {
                 Tiles[i].Active = false;
                 Tiles[i].Died = true;
-                Tiles[i] = null;
-                
+                Tiles[i] = null;                
             }
 
             for (int i = 0; i < _enemiesData.Count; i++)
@@ -391,7 +349,6 @@ namespace TileBasedGame
                 _powerData[i] = null;
             }
 
-
             Tiles.Clear();
             _backgroundData.Clear();
             _blocksData.Clear();
@@ -414,11 +371,6 @@ namespace TileBasedGame
             _layersData = null;
 
             MessageBus.Clean();
-
-
-            //GC.Collect();
-
         }
-
     }
 }

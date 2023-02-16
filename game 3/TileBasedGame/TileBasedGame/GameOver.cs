@@ -1,9 +1,5 @@
 ﻿using SDL2;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TileBasedGame
 {
@@ -33,7 +29,6 @@ namespace TileBasedGame
 
                 SDL.SDL_SetRenderDrawColor(Renderer, 0, 60, 20, 255);
                 WinnerText = "GAME OVER";
-
         }
         public void Run()
         {
@@ -89,7 +84,6 @@ namespace TileBasedGame
                             break;
                     }
                 }
-
             }
         }
 
@@ -126,6 +120,5 @@ namespace TileBasedGame
             //go to ...
             LevelManager.display = gs;
         }
-
     }
 }

@@ -1,16 +1,10 @@
 ﻿using System;
 using SDL2;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Numerics;
 
 namespace TileBasedGame
 {
     class InfoRenderingComponent : RenderingComponent
     {
-
         private Text _txt = new Text();
         private string _text;
         private string _lives;

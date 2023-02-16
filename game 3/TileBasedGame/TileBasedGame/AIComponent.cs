@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace TileBasedGame
 {
     class AIComponent : Component
@@ -16,7 +11,6 @@ namespace TileBasedGame
 
         public void Control()
         {
-
             int winHeight = Program.Window.Height;
             int winWidth = Program.Window.Width;
 

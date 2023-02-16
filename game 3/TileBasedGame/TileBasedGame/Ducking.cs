@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TileBasedGame
 {
     class Ducking : State
     {
         GameObject GameObject;
-        public String Direction;
+        public string Direction;
         int Frame;
         bool Flipped;
         public string GetDirection()

@@ -1,9 +1,5 @@
 ﻿using System;
 using SDL2;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TileBasedGame
 {
@@ -33,7 +29,6 @@ namespace TileBasedGame
             _rect.w = dstW;
             _rect.h = dstH;
             this._dstX = dstX;
-            //GameObject.ImgChange = x;
             ImgChange = x;
             ImgChangeY = y;
         }
@@ -41,8 +36,8 @@ namespace TileBasedGame
         public ImageRenderingComponent(RenderingManager rm, int imgFrame,  Image image, int x, int y, int w, int h, int dstW, int dstH, int dstX = 0) : base()
         {
             //set image
-            int line = 0;
-            int col = 0;
+            int line;
+            int col;
 
             int i = 0;
             while (i < (imgFrame - 10))
@@ -102,58 +97,9 @@ namespace TileBasedGame
                     }
                 }
             }
+        }
 
-                    /*
-
-                            HeroEvent he = e as HeroEvent;
-                            State.HandleInput(he);
-                            if (he == null)
-                                return;
-                            if (he.GameObject == this.GameObject)
-                            {
-
-                                if (he.EventType == HeroEvent.Type.FlyLeft)
-                                {
-                                    ImgChange = Globals.MediumImageSize * 3;
-                                    flipped = SDL.SDL_RendererFlip.SDL_FLIP_HORIZONTAL;
-                                }
-                                else if (he.EventType == HeroEvent.Type.FlyRight)
-                                {
-                                    ImgChange = Globals.MediumImageSize * 3;
-                                    flipped = SDL.SDL_RendererFlip.SDL_FLIP_NONE;
-                                }
-                                else if (he.EventType == HeroEvent.Type.FlyStraight) {
-
-                                    if (GameObject is Power || GameObject is Coin)
-                                    {
-                                        ImgChange = Globals.MediumImageSize * 1;
-                                    }
-                                }
-
-                                else if (he.EventType == HeroEvent.Type.FlyUp)
-                                    ImgChange = Globals.MediumImageSize * 2;
-                                else if (he.EventType == HeroEvent.Type.EnemyDead) { 
-                                    rotateAngle= 90;
-                                    GameObject.PosY += 32;
-                                }
-                                else if (he.EventType == HeroEvent.Type.ChangeImage)
-                                {
-                                    ImgStep++;
-                                    if (ImgStep < 5)
-                                    {
-                                        ImgChange = Globals.MediumImageSize * ImgStep;
-                                    }
-                                    else
-                                    {
-                                        ImgChange = Globals.Reset;
-                                    }
-
-                                }
-
-                            }*/
-                }
-
-        override public void Render(){
+        public override void Render(){
 
             int winHeight = Program.Window.Height;
             int winWidth = Program.Window.Width;

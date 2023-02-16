@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace TileBasedGame
 {
     class MapManager
@@ -35,7 +30,6 @@ namespace TileBasedGame
             currentMap.BuildEndDoor();
             currentMap.ResetPlayer();
             Program.Game.InfoBox.levelInfoRunning = true;
-
         }
 
         public void clearObjects(){

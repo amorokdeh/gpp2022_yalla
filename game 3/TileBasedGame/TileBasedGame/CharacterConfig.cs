@@ -3,7 +3,6 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 
-
 namespace TileBasedGame
 {
     class CharacterConfig

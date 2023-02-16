@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TileBasedGame
 {
     class Running : State
     {
         GameObject GameObject;
-        public String Direction;
+        public string Direction;
         int Frame;
         bool Flipped;
         float TimeToIdle = 0;
